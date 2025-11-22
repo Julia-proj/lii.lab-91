@@ -11,7 +11,7 @@ export function Hero() {
       <div className="container relative z-10 px-4 md:px-6">
         <div className="max-w-2xl text-white fade-in-section">
           <span className="inline-block py-1 px-3 border border-white/30 rounded-full text-xs font-medium tracking-wider mb-6 uppercase">
-            
+            Manic 0.0
           </span>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 leading-tight">
             Formación profesional <br /> en manicura
