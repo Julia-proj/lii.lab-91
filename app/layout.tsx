@@ -19,7 +19,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className={`${inter.variable} ${playfair.variable} font-sans`}>{children}</body>
+      {/* ensuring bg-white is set on body for safety */}
+      <body className={`${inter.variable} ${playfair.variable} font-sans bg-white text-neutral-900`}>{children}</body>
     </html>
   )
 }
