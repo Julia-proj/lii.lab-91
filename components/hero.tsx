@@ -5,7 +5,7 @@ export function Hero() {
     <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img src="/Foto11.PNG" alt="Lili Portrait" className="w-full h-full object-cover" />
+        <img src="/Foto111.PNG" alt="Lili Portrait" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
       </div>
 
