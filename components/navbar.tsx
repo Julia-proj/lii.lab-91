@@ -24,16 +24,18 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-4" : "bg-transparent py-6"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled ? "bg-white/95 backdrop-blur-sm shadow-sm py-4" : "bg-transparent py-6"
       }`}
     >
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
+      <div className="container mx-auto px-6 flex items-center justify-between">
         <Link
           href="#"
-          className={`text-2xl font-serif font-bold tracking-tight ${isScrolled ? "text-gray-900" : "text-white"}`}
+          className={`text-2xl font-serif font-bold tracking-tight transition-colors ${
+            isScrolled ? "text-neutral-900" : "text-white"
+          }`}
         >
-          Lili.lab
+          Lii.lab
         </Link>
 
         {/* Desktop Menu */}
@@ -42,8 +44,8 @@ export function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-[#F4B4C7] ${
-                isScrolled ? "text-gray-600" : "text-gray-200"
+              className={`text-sm font-medium tracking-wide transition-colors hover:text-[#CDB4DB] ${
+                isScrolled ? "text-neutral-600" : "text-white/90"
               }`}
             >
               {link.name}
@@ -58,21 +60,24 @@ export function Navbar() {
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? (
-            <X className={isScrolled ? "text-gray-900" : "text-white"} />
+            <X className="text-neutral-900" />
           ) : (
-            <Menu className={isScrolled ? "text-gray-900" : "text-white"} />
+            <Menu className={isScrolled ? "text-neutral-900" : "text-white"} />
           )}
         </button>
       </div>
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white border-b border-gray-100 p-4 md:hidden flex flex-col gap-4 shadow-lg h-screen">
+        <div className="absolute top-0 left-0 w-full h-screen bg-white z-50 flex flex-col items-center justify-center space-y-8">
+          <button onClick={() => setIsMobileMenuOpen(false)} className="absolute top-6 right-6 p-2 text-neutral-900">
+            <X size={32} />
+          </button>
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="text-gray-600 hover:text-[#F4B4C7] font-medium py-2 text-lg"
+              className="text-3xl font-serif text-neutral-900 hover:text-[#CDB4DB]"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.name}
