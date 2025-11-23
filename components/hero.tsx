@@ -16,7 +16,8 @@ export function Hero() {
             MANIC 0.0 
           </span>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-tight mb-6">Formación profesional en manicura</h1>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-tight mb-6">Formación profesional en 
+            manicura</h1>
 
           <p className="text-2xl md:text-3xl text-[#CDB4DB] font-serif mb-6 font-light"></p>
 
