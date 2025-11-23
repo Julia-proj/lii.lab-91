@@ -13,12 +13,12 @@ export function Hero() {
       <div className="container mx-auto px-6 relative z-10 pt-20">
         <div className="max-w-2xl text-white fade-in-section">
           <span className="inline-block py-1 px-3 border border-white/30 rounded-full text-xs tracking-widest uppercase mb-6 backdrop-blur-sm">
-            MANIC 0.0 · Formación para manicuristas
+            MANIC 0.0 
           </span>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-tight mb-6">Lii.lab</h1>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-tight mb-6">Formación profesional en manicura</h1>
 
-          <p className="text-2xl md:text-3xl text-[#CDB4DB] font-serif mb-6 font-light">Manic 0.0</p>
+          <p className="text-2xl md:text-3xl text-[#CDB4DB] font-serif mb-6 font-light"></p>
 
           <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-lg leading-relaxed font-light">
             Formación y guía metodológica para manicuristas que quieren trabajar con precisión, rapidez y método.
