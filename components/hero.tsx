@@ -6,23 +6,19 @@ export function Hero() {
     <section id="hero" className="relative h-screen min-h-[600px] flex items-center overflow-hidden">
       {/* Background Image with Gradient Overlay */}
       <div className="absolute inset-0 z-0">
-        <img
-          src="/black-and-white-portrait-woman-minimalist.jpg"
-          alt="Lili Manicurista"
-          className="w-full h-full object-cover"
-        />
+        <img src="/images/hero.jpeg" alt="Lili Manicurista" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10 pt-20">
         <div className="max-w-2xl text-white fade-in-section">
           <span className="inline-block py-1 px-3 border border-white/30 rounded-full text-xs tracking-widest uppercase mb-6 backdrop-blur-sm">
-            Manic 0.0
+            MANIC 0.0 · Formación para manicuristas
           </span>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-tight mb-6">
-            Formación profesional <br /> en manicura
-          </h1>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-tight mb-6">Lii.lab</h1>
+
+          <p className="text-2xl md:text-3xl text-[#CDB4DB] font-serif mb-6 font-light">Manic 0.0</p>
 
           <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-lg leading-relaxed font-light">
             Formación y guía metodológica para manicuristas que quieren trabajar con precisión, rapidez y método.
