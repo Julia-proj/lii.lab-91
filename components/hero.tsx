@@ -7,7 +7,7 @@ export function Hero() {
       {/* Background Image with Gradient Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/black-and-white-portrait-woman-minimalist.jpg"
+          src="/Foto11.PNG"
           alt="Lili Manicurista"
           className="w-full h-full object-cover"
         />
@@ -17,7 +17,7 @@ export function Hero() {
       <div className="container mx-auto px-6 relative z-10 pt-20">
         <div className="max-w-2xl text-white fade-in-section">
           <span className="inline-block py-1 px-3 border border-white/30 rounded-full text-xs tracking-widest uppercase mb-6 backdrop-blur-sm">
-            Lii.lab · Formación para manicuristas
+            Manic 0.0
           </span>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-tight mb-6">
