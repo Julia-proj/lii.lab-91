@@ -1,4 +1,4 @@
-import { BookOpen } from "lucide-react"
+import { BookOpen, Target, Zap, ClipboardList } from "lucide-react"
 
 export function About() {
   return (
@@ -9,9 +9,9 @@ export function About() {
           <div className="w-full md:w-1/2 relative group fade-in-section">
             <div className="relative h-[500px] w-full overflow-hidden rounded-lg shadow-xl">
               <img
-                src="/Foto7.jpg"
+                src="/images/foto7.jpeg"
                 alt="Lili"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale hover:grayscale-0"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               {/* Stylish text overlay */}
               <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/60 via-transparent to-transparent">
@@ -40,11 +40,30 @@ export function About() {
                 <span className="font-medium text-neutral-900">Curso de Subida de Cualificación</span>, ambos creados a
                 partir de métodos prácticos y fáciles de aprender.
               </p>
-              <p>
-                Mi enfoque profesional se centra en la precisión, la rapidez y la metodología. Creo firmemente que una
-                buena formación no solo mejora la calidad del servicio, sino que también reduce significativamente los
-                tiempos de trabajo.
-              </p>
+            </div>
+
+            <div className="grid grid-cols-3 gap-4 py-6">
+              <div className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="bg-[#CDB4DB]/20 p-3 rounded-full mb-3 text-[#8e7f97]">
+                  <Target size={28} />
+                </div>
+                <h3 className="font-serif font-bold text-neutral-900 text-sm mb-1">Precisión</h3>
+                <p className="text-xs text-gray-600">Técnica exacta y detallada</p>
+              </div>
+              <div className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="bg-[#CDB4DB]/20 p-3 rounded-full mb-3 text-[#8e7f97]">
+                  <Zap size={28} />
+                </div>
+                <h3 className="font-serif font-bold text-neutral-900 text-sm mb-1">Rapidez</h3>
+                <p className="text-xs text-gray-600">Optimización de tiempos sin sacrificar calidad</p>
+              </div>
+              <div className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="bg-[#CDB4DB]/20 p-3 rounded-full mb-3 text-[#8e7f97]">
+                  <ClipboardList size={28} />
+                </div>
+                <h3 className="font-serif font-bold text-neutral-900 text-sm mb-1">Metodología</h3>
+                <p className="text-xs text-gray-600">Proceso estructurado</p>
+              </div>
             </div>
 
             {/* Featured Card */}
@@ -54,7 +73,7 @@ export function About() {
                 <BookOpen size={24} />
               </div>
               <div>
-                <h3 className="font-serif text-lg font-bold mb-2 text-neutral-900">Autora de la “Guía Metodológica”</h3>
+                <h3 className="font-serif text-lg font-bold mb-2 text-neutral-900">Autora de la "Guía Metodológica"</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">
                   Un libro completo que reúne toda la información esencial para una manicurista: manicura profesional,
                   esterilización, enfermedades de las uñas y normas de seguridad.

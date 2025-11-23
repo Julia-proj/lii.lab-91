@@ -35,7 +35,7 @@ export function Navbar() {
             isScrolled ? "text-neutral-900" : "text-white"
           }`}
         >
-          Lii.lab
+          MANIC 0.0
         </Link>
 
         {/* Desktop Menu */}

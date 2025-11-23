@@ -19,20 +19,20 @@ import Link from "next/link"
 export function Course() {
   const features = [
     { icon: Shield, title: "Esterilización y desinfección" },
-    { icon: Zap, title: "Uso del torno" }, // Electric Nail Drill
+    { icon: Zap, title: "Uso del torno" },
     { icon: Brush, title: "Pinceles y herramientas" },
     { icon: Sparkles, title: "Acabados perfectos" },
     { icon: BookOpen, title: "Teoría completa" },
-    { icon: Hand, title: "Práctica en modelos" }, // Nail
+    { icon: Hand, title: "Práctica en modelos" },
     { icon: Microscope, title: "Anatomía detallada" },
     { icon: ClipboardList, title: "Organización y método" },
   ]
 
   const gallery = [
     "/nails-art-close-up.jpg",
-    "/Foto4.JPG",
-    "/nail-polish-bottles.JPG",
-    "/Foto6.JPG",
+    "/manicure-process-salon.jpg",
+    "/nail-polish-bottles.png",
+    "/woman-manicure.jpg",
   ]
 
   return (
@@ -47,9 +47,9 @@ export function Course() {
             <div className="relative">
               <div className="absolute -top-4 -left-4 w-24 h-24 bg-[#CDB4DB]/20 rounded-full z-0"></div>
               <img
-                src="/Foto2.JPG"
+                src="/images/foto2.jpeg"
                 alt="Curso Manicura"
-                className="relative z-10 rounded-lg shadow-xl w-full object-cover h-[500px] grayscale hover:grayscale-0 transition-all duration-500"
+                className="relative z-10 rounded-lg shadow-xl w-full object-cover h-[500px] transition-all duration-500"
               />
             </div>
           </div>
@@ -83,22 +83,22 @@ export function Course() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start fade-in-section">
           {/* 3.3 Info Card */}
           <div className="lg:col-span-5">
-            <div className="bg-neutral-900 text-white p-8 rounded-2xl shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#CDB4DB] rounded-full blur-3xl opacity-20 -mr-16 -mt-16"></div>
+            <div className="bg-[#F3F4F6] text-neutral-900 p-8 rounded-2xl shadow-sm border border-gray-200 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#CDB4DB] rounded-full blur-3xl opacity-10 -mr-16 -mt-16"></div>
 
               <h3 className="text-2xl font-serif mb-8 relative z-10">Información del curso</h3>
               <div className="space-y-6 relative z-10">
-                <InfoRow icon={Euro} label="Precio" text="800€" dark />
-                <InfoRow icon={Clock} label="Duración" text="3 días intensivos" dark />
-                <InfoRow icon={Package} label="Práctica" text="Modelos reales" dark />
-                <InfoRow icon={UserCheck} label="Incluye" text="Kit + Guía Metodológica" dark />
+                <InfoRow icon={Euro} label="Precio" text="800€" />
+                <InfoRow icon={Clock} label="Duración" text="3 días intensivos" />
+                <InfoRow icon={Package} label="Práctica" text="Modelos reales" />
+                <InfoRow icon={UserCheck} label="Incluye" text="Kit + Guía Metodológica" />
               </div>
 
               <div className="mt-10 relative z-10">
                 <Link
                   href="https://www.instagram.com/lii.lab/?hl=es"
                   target="_blank"
-                  className="group block w-full bg-white text-neutral-900 text-center py-4 rounded-lg font-medium hover:bg-[#CDB4DB] transition-colors flex items-center justify-center gap-2"
+                  className="group block w-full bg-[#CDB4DB] text-neutral-900 text-center py-4 rounded-lg font-medium hover:bg-[#bda0cb] transition-colors flex items-center justify-center gap-2"
                 >
                   <span>Reservar plaza</span>
                   <ArrowUpRight
@@ -155,17 +155,15 @@ export function Course() {
   )
 }
 
-function InfoRow({ icon: Icon, label, text, dark }: { icon: any; label: string; text: string; dark?: boolean }) {
+function InfoRow({ icon: Icon, label, text }: { icon: any; label: string; text: string }) {
   return (
     <div className="flex items-center gap-4">
-      <div className={`p-2 rounded-lg ${dark ? "bg-white/10 text-white" : "bg-gray-100 text-neutral-900"}`}>
+      <div className="p-2 rounded-lg bg-[#CDB4DB]/10 text-[#8e7f97]">
         <Icon size={20} />
       </div>
       <div>
-        <p className={`text-xs font-bold uppercase tracking-wider ${dark ? "text-white/60" : "text-neutral-500"}`}>
-          {label}
-        </p>
-        <p className={`font-medium ${dark ? "text-white" : "text-neutral-900"}`}>{text}</p>
+        <p className="text-xs font-bold uppercase tracking-wider text-neutral-500">{label}</p>
+        <p className="font-medium text-neutral-900">{text}</p>
       </div>
     </div>
   )
