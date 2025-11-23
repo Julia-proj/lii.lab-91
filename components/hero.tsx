@@ -7,7 +7,8 @@ export function Hero() {
       {/* Background Image with Gradient Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/foto11.PNG"
+          src="/black-and-white-portrait-woman-minimalist.jpg"
+          alt="Lili Manicurista"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
