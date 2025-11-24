@@ -12,24 +12,24 @@ export function Guide() {
   ]
 
   return (
-    <section id="guia" className="py-24 bg-[#fafafa] border-t border-gray-100">
+    <section id="guia" className="py-32 md:py-48 bg-[#fafafa] border-t border-gray-100">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col-reverse md:flex-row gap-16 items-center">
+        <div className="flex flex-col-reverse md:flex-row gap-20 items-center">
           {/* Text Content */}
           <div className="w-full md:w-1/2 fade-in-section">
-            <div className="mb-8">
-              <div className="flex items-center gap-2 text-[#F4B4C7] mb-2">
+            <div className="mb-12">
+              <div className="flex items-center gap-2 text-[#F4B4C7] mb-3">
                 <Book size={20} />
                 <span className="font-bold text-sm uppercase tracking-widest">Material Exclusivo</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-serif mb-6 text-neutral-900">Guía Metodológica</h2>
-              <p className="text-neutral-600 text-lg leading-relaxed mb-8 font-light">
+              <h2 className="text-5xl md:text-6xl font-serif mb-8 text-neutral-900">Guía Metodológica</h2>
+              <p className="text-neutral-600 text-lg leading-relaxed mb-10 font-light">
                 Un libro completo que reúne la información esencial para una manicurista. Escrita de forma clara y
                 práctica para mejorar la técnica y optimizar los tiempos de servicio.
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 mb-10">
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 mb-12">
               <h3 className="text-xl font-serif mb-6 text-neutral-900">Contenido principal</h3>
               <ul className="space-y-4">
                 {contents.map((item, idx) => (
@@ -43,9 +43,9 @@ export function Guide() {
               </ul>
             </div>
 
-            <div className="mb-8 pl-4 border-l-4 border-[#CDB4DB]">
-              <h3 className="font-bold text-neutral-900 mb-1">Para formadoras y profesionales</h3>
-              <p className="text-neutral-600 text-sm">
+            <div className="mb-12 pl-6 border-l-4 border-[#CDB4DB]">
+              <h3 className="font-serif text-2xl font-bold text-neutral-900 mb-3">Para formadoras y profesionales</h3>
+              <p className="text-neutral-600 text-base leading-relaxed">
                 Facilita el trabajo de enseñanza y evita crear materiales desde cero.
               </p>
             </div>
@@ -53,7 +53,7 @@ export function Guide() {
             <Link
               href="https://www.instagram.com/lii.lab/?hl=es"
               target="_blank"
-              className="inline-block px-8 py-4 bg-[#CDB4DB] text-neutral-900 font-medium rounded-full hover:bg-[#bda0cb] transition-colors shadow-sm hover:shadow-md"
+              className="inline-block w-full md:w-auto px-10 py-4 bg-[#CDB4DB] text-neutral-900 font-medium rounded-full hover:bg-[#bda0cb] transition-all duration-300 shadow-sm hover:shadow-md text-center"
             >
               Obtener la Guía en Instagram
             </Link>

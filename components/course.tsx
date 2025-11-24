@@ -29,10 +29,10 @@ export function Course() {
   ]
 
   const gallery = [
-    "/images/foto5.jpg",
-    "/images/foto4.jpg",
-    "/images/foto3.jpg",
-    "/images/foto6.jpg",
+    "/nails-art-close-up.jpg",
+    "/manicure-process-salon.jpg",
+    "/nail-polish-bottles.png",
+    "/woman-manicure.jpg",
   ]
 
   return (

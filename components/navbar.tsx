@@ -29,14 +29,24 @@ export function Navbar() {
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link
-          href="#"
-          className={`text-2xl font-serif font-bold tracking-tight transition-colors ${
-            isScrolled ? "text-neutral-900" : "text-white"
-          }`}
-        >
-          MANIC 0.0
-        </Link>
+        <div className="flex items-center gap-8">
+          <Link
+            href="#"
+            className={`text-lg font-serif font-bold tracking-tight transition-colors ${
+              isScrolled ? "text-neutral-900" : "text-white"
+            }`}
+          >
+            Lii.lab
+          </Link>
+          <div className={`h-6 w-px transition-colors ${isScrolled ? "bg-neutral-300" : "bg-white/30"}`} />
+          <span
+            className={`text-xs font-light tracking-[0.15em] transition-colors ${
+              isScrolled ? "text-neutral-500" : "text-white/70"
+            }`}
+          >
+            MANIC 0.0
+          </span>
+        </div>
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center gap-8">

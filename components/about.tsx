@@ -31,8 +31,9 @@ export function About() {
 
             <div className="prose prose-lg text-neutral-600 leading-relaxed font-light">
               <p>
-                Soy Lili, manicurista con más de diez años de experiencia dedicada a formar y acompañar a profesionales
-                que buscan perfeccionar su técnica y optimizar su tiempo de trabajo.
+                Soy Lili, manicurista con más de{" "}
+                <span className="font-semibold text-neutral-900">diez años de experiencia</span> dedicada a formar y
+                acompañar a profesionales que buscan perfeccionar su técnica y optimizar su tiempo de trabajo.
               </p>
               <p>
                 A lo largo de mi trayectoria he desarrollado dos cursos: el{" "}
@@ -42,50 +43,61 @@ export function About() {
               </p>
             </div>
 
-            <div className="grid grid-cols-3 gap-4 py-6">
-              <div className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <div className="bg-[#CDB4DB]/20 p-3 rounded-full mb-3 text-[#8e7f97]">
-                  <Target size={28} />
+            <div className="pt-8 space-y-8">
+              <div className="flex gap-6 items-start">
+                <div className="shrink-0 mt-1">
+                  <BookOpen size={24} className="text-[#8e7f97]" />
                 </div>
-                <h3 className="font-serif font-bold text-neutral-900 text-sm mb-1">Precisión</h3>
-                <p className="text-xs text-gray-600">Técnica exacta y detallada</p>
+                <div>
+                  <h3 className="font-serif font-bold text-neutral-900 text-lg mb-1">Formación continua</h3>
+                  <p className="text-neutral-600 text-base leading-relaxed font-light">
+                    Método propio creado después de años de práctica real en cabina.
+                  </p>
+                </div>
               </div>
-              <div className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <div className="bg-[#CDB4DB]/20 p-3 rounded-full mb-3 text-[#8e7f97]">
-                  <Zap size={28} />
+
+              <div className="flex gap-6 items-start">
+                <div className="shrink-0 mt-1">
+                  <Target size={24} className="text-[#8e7f97]" />
                 </div>
-                <h3 className="font-serif font-bold text-neutral-900 text-sm mb-1">Rapidez</h3>
-                <p className="text-xs text-gray-600">Optimización de tiempos sin sacrificar calidad</p>
+                <div>
+                  <h3 className="font-serif font-bold text-neutral-900 text-lg mb-1">Precisión</h3>
+                  <p className="text-neutral-600 text-base leading-relaxed font-light">
+                    Técnica exacta y detallada que evita retrabajos y garantiza resultados limpios.
+                  </p>
+                </div>
               </div>
-              <div className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <div className="bg-[#CDB4DB]/20 p-3 rounded-full mb-3 text-[#8e7f97]">
-                  <ClipboardList size={28} />
+
+              <div className="flex gap-6 items-start">
+                <div className="shrink-0 mt-1">
+                  <Zap size={24} className="text-[#8e7f97]" />
                 </div>
-                <h3 className="font-serif font-bold text-neutral-900 text-sm mb-1">Metodología</h3>
-                <p className="text-xs text-gray-600">Proceso estructurado</p>
+                <div>
+                  <h3 className="font-serif font-bold text-neutral-900 text-lg mb-1">Rapidez</h3>
+                  <p className="text-neutral-600 text-base leading-relaxed font-light">
+                    Optimización de tiempos sin perder calidad.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-6 items-start">
+                <div className="shrink-0 mt-1">
+                  <ClipboardList size={24} className="text-[#8e7f97]" />
+                </div>
+                <div>
+                  <h3 className="font-serif font-bold text-neutral-900 text-lg mb-1">Metodología</h3>
+                  <p className="text-neutral-600 text-base leading-relaxed font-light">
+                    Sistema claro y estructurado que facilita aprender, replicar y trabajar sin improvisaciones.
+                  </p>
+                </div>
               </div>
             </div>
+            {/* End new advantages block */}
 
-            {/* Featured Card */}
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex gap-5 items-start transform hover:-translate-y-1 transition-transform duration-300">
-              {/* Updated accent color */}
-              <div className="bg-[#CDB4DB]/20 p-3 rounded-full shrink-0 text-[#8e7f97]">
-                <BookOpen size={24} />
-              </div>
-              <div>
-                <h3 className="font-serif text-lg font-bold mb-2 text-neutral-900">Autora de la "Guía Metodológica"</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  Un libro completo que reúne toda la información esencial para una manicurista: manicura profesional,
-                  esterilización, enfermedades de las uñas y normas de seguridad.
-                </p>
-              </div>
-            </div>
-
-            <div className="pt-4">
-              {/* Updated border color */}
-              <p className="text-neutral-900 font-medium italic border-l-4 border-[#CDB4DB] pl-4 py-1">
-                "Mi objetivo es ayudar a otras manicuristas a crecer, profesionalizarse y ofrecer servicios de alto
-                nivel."
+            <div className="pt-4 mt-8">
+              <p className="text-neutral-900 text-base leading-relaxed font-light">
+                Mi objetivo es ayudar a otras manicuristas a crecer, profesionalizarse y ofrecer servicios de alto
+                nivel.
               </p>
             </div>
           </div>
