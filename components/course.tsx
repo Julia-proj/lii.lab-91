@@ -43,13 +43,13 @@ export function Course() {
       <div className="container mx-auto px-6 relative z-10">
         {/* 3.1 Intro */}
         <div className="flex flex-col lg:flex-row gap-16 items-center mb-24 fade-in-section">
-          <div className="w-full lg:w-2/3 flex justify-center">
+          <div className="w-full lg:w-1/2">
             <div className="relative">
               <div className="absolute -top-4 -left-4 w-24 h-24 bg-[#CDB4DB]/20 rounded-full z-0"></div>
               <img
                 src="/images/foto2.jpeg"
                 alt="Curso Manicura"
-                className="w-full max-w-[280px] mx-auto rounded-lg shadow-xl object-cover"
+                className="relative z-10 rounded-lg shadow-xl w-full object-cover h-[500px] transition-all duration-500"
               />
             </div>
           </div>
