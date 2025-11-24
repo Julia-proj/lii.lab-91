@@ -44,7 +44,7 @@ export function Navbar() {
               isScrolled ? "text-neutral-500" : "text-white/70"
             }`}
           >
-            MANIC 0.0
+           
           </span>
         </div>
 
