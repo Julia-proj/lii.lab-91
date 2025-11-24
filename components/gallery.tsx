@@ -3,7 +3,7 @@ import Image from "next/image"
 export default function Gallery() {
   const images = [
     {
-      src: "/foto5.JPG",
+      src: "/Foto5.JPG",
       alt: "Guía metodológica",
     },
     {
@@ -11,11 +11,11 @@ export default function Gallery() {
       alt: "Nail polish product",
     },
     {
-      src: "/foto6.jpg",
+      src: "/Foto6.jpg",
       alt: "Perfect manicure nails",
     },
     {
-      src: "/foto3.jpg",
+      src: "/Foto3.jpg",
       alt: "Manicure tools",
     },
   ]
