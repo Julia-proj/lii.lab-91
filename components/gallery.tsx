@@ -7,7 +7,7 @@ export default function Gallery() {
       alt: "Guía metodológica",
     },
     {
-      src: "/foto4.JPG",
+      src: "/Foto4.JPG",
       alt: "Nail polish product",
     },
     {
