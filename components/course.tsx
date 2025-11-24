@@ -46,11 +46,11 @@ export function Course() {
           <div className="w-full lg:w-1/2">
             <div className="relative">
               <div className="absolute -top-4 -left-4 w-24 h-24 bg-[#CDB4DB]/20 rounded-full z-0"></div>
-              <img
-                src="/images/foto2.jpeg"
-                alt="Curso Manicura"
-                className="relative z-10 rounded-lg shadow-xl w-full object-cover h-[500px] transition-all duration-500"
-              />
+             <img
+  src="/images/foto2.jpeg"
+  alt="Curso Manicura"
+  className="relative z-10 rounded-lg shadow-xl w-full max-w-[280px] mx-auto object-cover h-auto transition-all duration-500"
+/>
             </div>
           </div>
           <div className="w-full lg:w-1/2 space-y-8">
