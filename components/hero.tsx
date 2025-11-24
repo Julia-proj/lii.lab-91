@@ -13,7 +13,7 @@ export function Hero() {
       <div className="container mx-auto px-6 relative z-10 pt-20">
         <div className="max-w-2xl text-white fade-in-section">
           <span className="inline-block py-2 px-4 border border-white/30 rounded-full text-xs tracking-widest uppercase mb-8 backdrop-blur-sm font-light">
-            Lii.lab · Formación para manicuristas
+            MANIC 0.0
           </span>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-tight mb-8 text-white">
