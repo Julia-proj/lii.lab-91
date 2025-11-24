@@ -9,7 +9,7 @@ export function About() {
           <div className="w-full md:w-1/2 relative group fade-in-section">
             <div className="relative h-[500px] w-full overflow-hidden rounded-lg shadow-xl">
               <img
-                src="/images/foto7.jpeg"
+                src="/images/Foto7.JPG"
                 alt="Lili"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
