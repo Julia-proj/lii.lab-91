@@ -38,7 +38,7 @@ export function About() {
               <p>
                 A lo largo de mi trayectoria he desarrollado dos cursos: el{" "}
                 <span className="font-medium text-neutral-900">curso de iniciación en manicura</span> y el{" "}
-                <span className="font-medium text-neutral-900">curso de Subida de cualificación</span>, ambos creados a
+                <span className="font-medium text-neutral-900">curso de subida de cualificación</span>, ambos creados a
                 partir de métodos prácticos y fáciles de aprender.
               </p>
             </div>
