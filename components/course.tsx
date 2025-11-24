@@ -29,10 +29,10 @@ export function Course() {
   ]
 
   const gallery = [
-    "/Foto5.JPG",
-    "/Foto4.JPG"",
-    "/Foto6.jpg",
-    "/Foto3.jpg",
+    "/images/Foto5.jpg",
+    "/images/Foto4.jpg",
+    "/images/Foto6.jpg",
+    "/images/Foto5.jpg",
   ]
 
   return (
