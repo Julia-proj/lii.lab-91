@@ -17,7 +17,7 @@ export function Hero() {
           </span>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-tight mb-8 text-white">
-            Formación profesional en manicura
+            Formación profesional<br />en manicura
           </h1>
 
           <p className="text-lg md:text-xl text-gray-200 mb-12 max-w-lg leading-relaxed font-light">
