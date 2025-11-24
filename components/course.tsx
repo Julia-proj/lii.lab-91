@@ -42,50 +42,27 @@ export function Course() {
 
       <div className="container mx-auto px-6 relative z-10">
         {/* 3.1 Intro */}
-       <div className="flex flex-col lg:flex-row gap-16 items-center mb-24 fade-in-section">
-
-  {/* ЛЕВАЯ КОЛОНКА (фото + заголовок для мобилы) */}
-  <div className="w-full lg:w-1/3 flex justify-center">
-    <div className="relative">
-
-      {/* Заголовок и бейдж для МОБИЛЫ */}
-      <div className="mb-4 lg:hidden text-center">
-        <span className="inline-block bg-[#CDB4DB] text-neutral-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-2">
-          Curso de Iniciación
-        </span>
-        <h2 className="text-[32px] font-serif leading-tight">
-          Curso Manic 0.0
-        </h2>
-      </div>
-
-      {/* декоративный кружок */}
-      <div className="absolute -top-4 -left-4 w-24 h-24 bg-[#CDB4DB]/20 rounded-full z-0"></div>
-
-      {/* ФОТО */}
-      <img
-        src="/images/foto2.jpeg"
-        alt="Curso Manicura"
-        className="relative z-10 rounded-lg shadow-xl w-full max-w-[280px] mx-auto object-cover h-auto transition-all duration-500"
-      />
-    </div>
-  </div>
-
-  {/* ПРАВАЯ КОЛОНКА (текст + заголовок для десктопа) */}
-  <div className="w-full lg:w-2/3 space-y-8">
-    <div className="hidden lg:block">
-      <span className="inline-block bg-[#CDB4DB] text-neutral-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4">
-        Curso de Iniciación
-      </span>
-      <h2 className="text-5xl font-serif leading-tight mb-6">
-        Curso Manic 0.0
-      </h2>
-    </div>
-
-    <p className="text-xl text-neutral-600 font-light leading-relaxed">
-      ¿Siempre has querido aprender manicura desde cero? Este curso es tu oportunidad perfecta.
-      Te enseñaremos todo lo necesario para iniciar tu camino profesional con bases sólidas.
-    </p>
-  </div>
+        <div className="flex flex-col lg:flex-row gap-16 items-center mb-24 fade-in-section">
+          <div className="w-full lg:w-1/2">
+            <div className="relative">
+              <div className="absolute -top-4 -left-4 w-24 h-24 bg-[#CDB4DB]/20 rounded-full z-0"></div>
+              <img
+                src="/images/foto2.jpeg"
+                alt="Curso Manicura"
+                className="relative z-10 rounded-lg shadow-xl w-full object-cover h-[500px] transition-all duration-500"
+              />
+            </div>
+          </div>
+          <div className="w-full lg:w-1/2 space-y-8">
+            <div>
+              <span className="inline-block bg-[#CDB4DB] text-neutral-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4">
+                Curso de Iniciación
+              </span>
+              <h2 className="text-5xl font-serif text-neutral-900 leading-tight mb-6">Curso Manic 0.0</h2>
+              <p className="text-xl text-neutral-600 font-light leading-relaxed">
+                ¿Siempre has querido aprender manicura desde cero? Este curso es tu oportunidad perfecta. Te enseñaremos
+                todo lo necesario para iniciar tu camino profesional con bases sólidas.
+              </p>
             </div>
 
             {/* Features Grid embedded in intro column for better flow on mobile */}
