@@ -32,7 +32,7 @@ export function Course() {
     "/images/foto5.jpg",
     "/images/foto4.jpg",
     "/images/foto6.jpg",
-    "/images/foto5.jpg",
+    "/images/foto3.jpg",
   ]
 
   return (
