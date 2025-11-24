@@ -42,23 +42,29 @@ export function Course() {
 
       <div className="container mx-auto px-6 relative z-10">
         {/* 3.1 Intro */}
-        <div className="flex flex-col lg:flex-row gap-16 items-center mb-24 fade-in-section">
-          <div className="w-full lg:w-1/2">
-            <div className="relative">
-              <div className="absolute -top-4 -left-4 w-24 h-24 bg-[#CDB4DB]/20 rounded-full z-0"></div>
-              <img
-                src="/images/foto2.jpeg"
-                alt="Curso Manicura"
-                className="relative z-10 rounded-lg shadow-xl w-full object-cover h-[500px] transition-all duration-500"
-              />
+        <div className="flex flex-col lg:flex-row gap-12 items-center mb-24 fade-in-section">
+          <div className="w-full lg:w-5/12">
+            <div className="relative max-w-md mx-auto lg:mx-0">
+              <div className="relative h-[420px] rounded-lg overflow-hidden shadow-xl">
+                <img
+                  src="/images/foto2.jpeg"
+                  alt="Curso Manicura"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <span className="inline-block bg-white/95 backdrop-blur-sm text-neutral-900 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide mb-3">
+                    Curso de Iniciación
+                  </span>
+                  <h2 className="text-3xl sm:text-4xl md:text-[2.5rem] font-serif text-white leading-tight">
+                    Curso Manic&nbsp;0.0
+                  </h2>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="w-full lg:w-1/2 space-y-8">
+          <div className="w-full lg:w-7/12 space-y-8">
             <div>
-              <span className="inline-block bg-[#CDB4DB] text-neutral-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4">
-                Curso de Iniciación
-              </span>
-              <h2 className="text-5xl font-serif text-neutral-900 leading-tight mb-6">Curso Manic 0.0</h2>
               <p className="text-xl text-neutral-600 font-light leading-relaxed">
                 ¿Siempre has querido aprender manicura desde cero? Este curso es tu oportunidad perfecta. Te enseñaremos
                 todo lo necesario para iniciar tu camino profesional con bases sólidas.

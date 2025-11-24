@@ -14,15 +14,10 @@ export function Guide() {
   return (
     <section id="guia" className="py-32 md:py-48 bg-[#fafafa] border-t border-gray-100">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col-reverse md:flex-row gap-20 items-center">
+        <div className="flex flex-col-reverse md:flex-row gap-12 items-center">
           {/* Text Content */}
-          <div className="w-full md:w-1/2 fade-in-section">
+          <div className="w-full md:w-7/12 fade-in-section">
             <div className="mb-12">
-              <div className="flex items-center gap-2 text-[#F4B4C7] mb-3">
-                <Book size={20} />
-                <span className="font-bold text-sm uppercase tracking-widest">Material Exclusivo</span>
-              </div>
-              <h2 className="text-5xl md:text-6xl font-serif mb-8 text-neutral-900">Guía Metodológica</h2>
               <p className="text-neutral-600 text-lg leading-relaxed mb-10 font-light">
                 Un libro completo que reúne la información esencial para una manicurista. Escrita de forma clara y
                 práctica para mejorar la técnica y optimizar los tiempos de servicio.
@@ -60,16 +55,25 @@ export function Guide() {
           </div>
 
           {/* Image Content */}
-          <div className="w-full md:w-1/2 flex justify-center fade-in-section">
-            <div className="relative w-[80%] md:w-full max-w-md aspect-[3/4]">
-              {/* Decorative Elements */}
-              <div className="absolute top-4 -right-4 w-full h-full border border-neutral-200 rounded-none z-0"></div>
-
-              <img
-                src="/images/foto8.jpeg"
-                alt="Guía Metodológica"
-                className="absolute inset-0 w-full h-full object-cover shadow-2xl z-10 transition-all duration-700"
-              />
+          <div className="w-full md:w-5/12 flex justify-center fade-in-section">
+            <div className="relative max-w-sm mx-auto">
+              <div className="relative h-[420px] rounded-lg overflow-hidden shadow-xl">
+                <img
+                  src="/images/foto8.jpeg"
+                  alt="Guía Metodológica"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Book size={18} className="text-white" />
+                    <span className="text-white text-xs font-bold uppercase tracking-widest">Material Exclusivo</span>
+                  </div>
+                  <h2 className="text-3xl sm:text-4xl font-serif text-white leading-tight">
+                    Guía Metodológica
+                  </h2>
+                </div>
+              </div>
             </div>
           </div>
         </div>
