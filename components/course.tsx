@@ -43,7 +43,7 @@ export function Course() {
       <div className="container mx-auto px-6 relative z-10">
         {/* 3.1 Intro */}
         <div className="flex flex-col lg:flex-row gap-16 items-center mb-24 fade-in-section">
-          <div className="w-full lg:w-1/2">
+          <div className="w-full lg:w-1/3 flex justify-center">
             <div className="relative">
               <div className="absolute -top-4 -left-4 w-24 h-24 bg-[#CDB4DB]/20 rounded-full z-0"></div>
              <img
@@ -53,7 +53,7 @@ export function Course() {
 />
             </div>
           </div>
-          <div className="w-full lg:w-1/2 space-y-8">
+          <div className="w-full lg:w-2/3 space-y-8">
             <div>
               <span className="inline-block bg-[#CDB4DB] text-neutral-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4">
                 Curso de Iniciación
