@@ -58,7 +58,8 @@ export function Course() {
               <span className="inline-block bg-[#CDB4DB] text-neutral-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4">
                 Curso de Iniciación
               </span>
-              <h2 className="text-5xl font-serif text-neutral-900 leading-tight mb-6">Curso Manic 0.0</h2>
+              <h2 className="text-[24px] sm:text-4xl font-serif tracking-tight leading-[1.1] whitespace-nowrap">
+  Curso Manic 0.0 </h2>
               <p className="text-xl text-neutral-600 font-light leading-relaxed">
                 ¿Siempre has querido aprender manicura desde cero? Este curso es tu oportunidad perfecta. Te enseñaremos
                 todo lo necesario para iniciar tu camino profesional con bases sólidas.
