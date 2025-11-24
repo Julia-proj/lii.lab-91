@@ -21,8 +21,7 @@ export function Hero() {
           </h1>
 
           <p className="text-lg md:text-xl text-gray-200 mb-12 max-w-lg leading-relaxed font-light">
-            Cursos diseñados para manicuristas que buscan dominar técnicas precisas, optimizar tiempos y trabajar con
-            metodología.
+            Formación y guía metodológica para manicuristas que quieren trabajar con precisión, rapidez y método.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
