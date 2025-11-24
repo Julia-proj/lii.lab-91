@@ -29,10 +29,10 @@ export function Course() {
   ]
 
   const gallery = [
-    "/images/foto5.jpg",
-    "/images/foto4.jpg",
-    "/images/foto6.jpg",
-    "/images/foto3.jpg",
+    "/images/Foto5.JPG",
+    "/images/Foto4.JPG",
+    "/images/Foto6.jpg",
+    "/images/Foto3.jpg",
   ]
 
   return (
@@ -47,7 +47,7 @@ export function Course() {
             <div className="relative">
               <div className="absolute -top-4 -left-4 w-24 h-24 bg-[#CDB4DB]/20 rounded-full z-0"></div>
               <img
-                src="/images/foto2.jpeg"
+                src="/images/Foto2.JPG"
                 alt="Curso Manicura"
                 className="relative z-10 rounded-lg shadow-xl w-full object-cover h-[500px] transition-all duration-500"
               />
