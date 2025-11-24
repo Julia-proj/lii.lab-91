@@ -32,7 +32,7 @@ export function About() {
             <div className="prose prose-lg text-neutral-600 leading-relaxed font-light">
               <p>
                 Soy Lili, manicurista con más de{" "}
-                <span className="font-semibold text-neutral-900">diez años de experiencia</span> dedicada a formar y
+                <span className="font-semibold text-neutral-900">10 años de experiencia</span> dedicada a formar y
                 acompañar a profesionales que buscan perfeccionar su técnica y optimizar su tiempo de trabajo.
               </p>
               <p>
