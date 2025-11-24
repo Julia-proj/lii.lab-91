@@ -66,7 +66,7 @@ export function Guide() {
               <div className="absolute top-4 -right-4 w-full h-full border border-neutral-200 rounded-none z-0"></div>
 
               <img
-                src="/images/foto8.jpeg"
+                src="/images/Foto8.JPG"
                 alt="Guía Metodológica"
                 className="absolute inset-0 w-full h-full object-cover shadow-2xl z-10 transition-all duration-700"
               />
