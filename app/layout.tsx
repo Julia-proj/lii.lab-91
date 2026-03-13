@@ -1,6 +1,8 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
+import { SessionProvider } from "next-auth/react"
+import { Toaster } from "sonner"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
@@ -19,8 +21,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="scroll-smooth">
-      {/* ensuring bg-white is set on body for safety */}
-      <body className={`${inter.variable} ${playfair.variable} font-sans bg-white text-neutral-900`}>{children}</body>
+      <body className={`${inter.variable} ${playfair.variable} font-sans bg-white text-neutral-900`}>
+        <SessionProvider>
+          {children}
+          <Toaster position="top-right" richColors />
+        </SessionProvider>
+      </body>
     </html>
   )
 }

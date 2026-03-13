@@ -66,7 +66,7 @@ export function Course() {
             </div>
 
             {/* Features Grid embedded in intro column for better flow on mobile */}
-            <div className="grid grid-cols-2 gap-3 pt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4">
               {features.map((item, idx) => (
                 <div
                   key={idx}
@@ -77,6 +77,22 @@ export function Course() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Video reel */}
+        <div className="flex justify-center mb-16 fade-in-section">
+          <div className="w-[60%] sm:w-[50%] md:w-[40%] lg:max-w-xs rounded-2xl overflow-hidden shadow-lg border border-neutral-200 bg-black">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full aspect-[9/16] object-cover"
+              poster="/images/video-poster.jpg"
+            >
+              <source src="/videos/curso-preview.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
 
@@ -96,9 +112,8 @@ export function Course() {
 
               <div className="mt-10 relative z-10">
                 <Link
-                  href="https://www.instagram.com/lii.lab/?hl=es"
-                  target="_blank"
-                  className="group block w-full bg-[#CDB4DB] text-neutral-900 text-center py-4 rounded-lg font-medium hover:bg-[#bda0cb] transition-colors flex items-center justify-center gap-2"
+                  href="/booking/course"
+                  className="group w-full bg-[#B48EC5] text-white text-center py-4 rounded-lg font-semibold hover:bg-[#a37ab5] transition-colors shadow-sm hover:shadow-md flex items-center justify-center gap-2"
                 >
                   <span>Reservar plaza</span>
                   <ArrowUpRight

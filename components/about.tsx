@@ -7,7 +7,7 @@ export function About() {
         <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
           {/* Image Column - With text overlay for style */}
           <div className="w-full md:w-1/2 relative group fade-in-section">
-            <div className="relative h-[500px] w-full overflow-hidden rounded-lg shadow-xl">
+            <div className="relative h-[350px] md:h-[500px] w-full overflow-hidden rounded-lg shadow-xl">
               <img
                 src="/images/Foto7.JPG"
                 alt="Lili"

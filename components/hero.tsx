@@ -1,13 +1,13 @@
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Calendar } from "lucide-react"
 
 export function Hero() {
   return (
     <section id="hero" className="relative h-screen min-h-[600px] flex items-center overflow-hidden">
       {/* Background Image with Gradient Overlay */}
       <div className="absolute inset-0 z-0">
-        <img src="/images/Hero.JPG" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
+        <img src="/images/Hero.JPG" alt="Lii.lab beauty studio" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-black/20 md:bg-gradient-to-r md:from-black/70 md:via-black/40 md:to-transparent"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10 pt-20">
@@ -16,25 +16,26 @@ export function Hero() {
             MANIC 0.0
           </span>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-tight mb-8 text-white">
-            Formación profesional<br />en manicura
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif leading-tight mb-8 text-white">
+            Formación profesional<br className="hidden sm:inline" /> en manicura
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-200 mb-12 max-w-lg leading-relaxed font-light">
+          <p className="text-base sm:text-lg md:text-xl text-gray-200 mb-12 max-w-lg leading-relaxed font-light">
             Formación y guía metodológica para manicuristas que quieren trabajar con precisión, rapidez y método.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
-              href="#cursos"
-              className="group px-8 py-4 bg-[#CDB4DB] text-neutral-900 font-medium rounded-full hover:bg-[#bda0cb] transition-all duration-300 text-center flex items-center justify-center gap-2"
+              href="/booking"
+              className="group px-8 py-4 bg-[#B48EC5] text-white font-semibold rounded-full hover:bg-[#a37ab5] transition-all duration-300 text-center flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
             >
-              <span>Ver cursos</span>
+              <Calendar size={18} />
+              <span>Reservar cita</span>
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               href="#guia"
-              className="px-8 py-4 bg-transparent border border-white text-white font-medium rounded-full hover:bg-white hover:text-neutral-900 transition-all duration-300 text-center"
+              className="px-8 py-4 bg-transparent border border-white/80 text-white font-medium rounded-full hover:bg-white hover:text-neutral-900 transition-all duration-300 text-center backdrop-blur-sm"
             >
               Guía Metodológica
             </Link>

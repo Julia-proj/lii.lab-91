@@ -1,4 +1,4 @@
-import { Instagram, ArrowRight } from "lucide-react"
+import { BookOpen, ArrowRight, Calendar } from "lucide-react"
 import Link from "next/link"
 
 export function Contact() {
@@ -7,19 +7,27 @@ export function Contact() {
       <div className="container mx-auto px-6 max-w-2xl fade-in-section">
         <h2 className="text-4xl md:text-5xl font-serif mb-6 text-neutral-900">Contacto</h2>
         <p className="text-xl text-neutral-600 mb-12 font-light">
-          ¿Quieres reservar plaza en el curso o conseguir la Guía Metodológica? Escríbeme y te responderé personalmente.
+          ¿Quieres reservar una cita o conseguir la Guía Metodológica? Elige lo que necesitas.
         </p>
 
-        {/* Removed WhatsApp and Email buttons, kept only Instagram as requested */}
-        <Link
-          href="https://www.instagram.com/lii.lab/?hl=es"
-          target="_blank"
-          className="inline-flex items-center gap-3 px-10 py-5 bg-neutral-900 text-white rounded-full hover:bg-[#CDB4DB] hover:text-neutral-900 transition-all duration-300 group shadow-xl hover:shadow-2xl"
-        >
-          <Instagram size={24} />
-          <span className="text-lg font-medium">Escribir por Instagram</span>
-          <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-        </Link>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link
+            href="/booking"
+            className="inline-flex items-center gap-3 px-10 py-5 bg-[#CDB4DB] text-neutral-900 rounded-full hover:bg-[#bda0cb] transition-all duration-300 group shadow-lg hover:shadow-xl"
+          >
+            <Calendar size={24} />
+            <span className="text-lg font-medium">Reservar cita</span>
+            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
+          <Link
+            href="#guia"
+            className="inline-flex items-center gap-3 px-10 py-5 bg-neutral-900 text-white rounded-full hover:bg-[#CDB4DB] hover:text-neutral-900 transition-all duration-300 group shadow-xl hover:shadow-2xl"
+          >
+            <BookOpen size={24} />
+            <span className="text-lg font-medium">Conseguir la guía</span>
+            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
       </div>
     </section>
   )
