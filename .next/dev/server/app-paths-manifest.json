@@ -1,5 +1,8 @@
 {
+  "/(admin)/admin/bookings/page": "app/(admin)/admin/bookings/page.js",
   "/(admin)/admin/page": "app/(admin)/admin/page.js",
+  "/(admin)/admin/schedule/page": "app/(admin)/admin/schedule/page.js",
+  "/(admin)/admin/services/page": "app/(admin)/admin/services/page.js",
   "/(app)/booking/confirmation/[id]/page": "app/(app)/booking/confirmation/[id]/page.js",
   "/(app)/booking/page": "app/(app)/booking/page.js",
   "/(app)/dashboard/page": "app/(app)/dashboard/page.js",
@@ -9,6 +12,8 @@
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
   "/api/available-slots/route": "app/api/available-slots/route.js",
   "/api/blocked-dates/route": "app/api/blocked-dates/route.js",
+  "/api/blocked-hours/route": "app/api/blocked-hours/route.js",
+  "/api/bookings/[id]/route": "app/api/bookings/[id]/route.js",
   "/api/bookings/route": "app/api/bookings/route.js",
   "/api/services/route": "app/api/services/route.js",
   "/page": "app/page.js"

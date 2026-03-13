@@ -24,7 +24,7 @@ interface BookingData {
   date: string
   startTime: string
   endTime: string
-  service: { name: string }
+  services: { name: string }[]
   user: { name: string }
   status: string
 }
@@ -435,7 +435,7 @@ export default function AdminSchedulePage() {
                           <div>
                             <span className="font-medium">{b.startTime} - {b.endTime}</span>
                             <span className="text-neutral-400 mx-1.5">&middot;</span>
-                            <span className="text-neutral-600">{b.service?.name}</span>
+                            <span className="text-neutral-600">{(b.services || []).map((s) => s.name).join(', ')}</span>
                           </div>
                           <div className="text-xs text-neutral-400">
                             {b.user?.name}

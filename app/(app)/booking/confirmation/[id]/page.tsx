@@ -5,6 +5,12 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Calendar, Clock, Euro, CheckCircle } from 'lucide-react'
 
+interface ServiceData {
+  name: string
+  price: number
+  duration: number
+}
+
 export default async function ConfirmationPage({
   params,
 }: {
@@ -17,7 +23,7 @@ export default async function ConfirmationPage({
   await dbConnect()
 
   const booking = await Booking.findById(id)
-    .populate('service', 'name category price duration')
+    .populate('services', 'name category price duration')
     .lean()
 
   if (!booking) {
@@ -31,7 +37,8 @@ export default async function ConfirmationPage({
     )
   }
 
-  const service = booking.service as { name: string; price: number; duration: number }
+  const services = (booking.services || []) as ServiceData[]
+  const totalPrice = services.reduce((sum, s) => sum + s.price, 0)
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr + 'T00:00:00')
@@ -43,7 +50,10 @@ export default async function ConfirmationPage({
     })
   }
 
-  const formatDuration = (min: number) => {
+  const formatDuration = (startTime: string, endTime: string) => {
+    const [sh, sm] = startTime.split(':').map(Number)
+    const [eh, em] = endTime.split(':').map(Number)
+    const min = (eh * 60 + em) - (sh * 60 + sm)
     const h = Math.floor(min / 60)
     const m = min % 60
     if (h === 0) return `${m}min`
@@ -62,7 +72,21 @@ export default async function ConfirmationPage({
       </div>
 
       <div className="bg-white rounded-xl border border-neutral-200 p-6 text-left">
-        <h3 className="font-medium text-lg mb-4">{service.name}</h3>
+        {services.length === 1 ? (
+          <h3 className="font-medium text-lg mb-4">{services[0].name}</h3>
+        ) : (
+          <div className="mb-4">
+            <h3 className="font-medium text-base mb-2">Servicios reservados</h3>
+            <div className="space-y-1">
+              {services.map((s, i) => (
+                <div key={i} className="flex justify-between text-sm">
+                  <span className="text-neutral-700">{s.name}</span>
+                  <span className="text-neutral-500">{s.price}€</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="space-y-3 text-sm">
           <div className="flex items-center gap-3 text-neutral-600">
@@ -71,11 +95,11 @@ export default async function ConfirmationPage({
           </div>
           <div className="flex items-center gap-3 text-neutral-600">
             <Clock className="w-4 h-4 text-[#CDB4DB]" />
-            <span>{booking.startTime} - {booking.endTime} · {formatDuration(service.duration)}</span>
+            <span>{booking.startTime} - {booking.endTime} · {formatDuration(booking.startTime, booking.endTime)}</span>
           </div>
           <div className="flex items-center gap-3 text-neutral-600">
             <Euro className="w-4 h-4 text-[#CDB4DB]" />
-            <span>{service.price}€ · Pago en local</span>
+            <span>{totalPrice}€ · Pago en local</span>
           </div>
         </div>
       </div>

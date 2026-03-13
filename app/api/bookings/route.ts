@@ -21,7 +21,7 @@ export async function GET() {
       : { user: session.user.id }
 
     const bookings = await Booking.find(filter)
-      .populate('service', 'name category price duration')
+      .populate('services', 'name category price duration')
       .populate('user', 'name email phone')
       .sort({ date: -1, startTime: -1 })
 
@@ -47,28 +47,33 @@ export async function POST(req: NextRequest) {
 
     await dbConnect()
 
-    const service = await Service.findById(parsed.data.serviceId)
-    if (!service || !service.active) {
-      return NextResponse.json({ error: 'Servicio no disponible' }, { status: 404 })
+    const { services: serviceIds, quantities = {}, date, startTime, notes } = parsed.data
+
+    // Fetch all requested services
+    const services = await Service.find({ _id: { $in: serviceIds }, active: true })
+    if (services.length !== serviceIds.length) {
+      return NextResponse.json({ error: 'Uno o más servicios no están disponibles' }, { status: 404 })
     }
 
-    // Calcular duración real (considerando cantidad para Decoraciones, etc.)
-    const quantity = parsed.data.quantity ?? 1
-    const effectiveDuration = service.duration * quantity
+    // Calculate total duration considering quantities
+    const totalDuration = services.reduce((sum, svc) => {
+      const qty = quantities[svc._id.toString()] ?? 1
+      return sum + svc.duration * qty
+    }, 0)
 
     // Calculate end time
-    const startMin = parseTimeToMinutes(parsed.data.startTime)
-    const endTime = minutesToTime(startMin + effectiveDuration)
+    const startMin = parseTimeToMinutes(startTime)
+    const endTime = minutesToTime(startMin + totalDuration)
 
     // Reject bookings for past dates (timezone-aware: Europe/Madrid)
     const nowInSpain = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Madrid' }))
     const today = `${nowInSpain.getFullYear()}-${String(nowInSpain.getMonth() + 1).padStart(2, '0')}-${String(nowInSpain.getDate()).padStart(2, '0')}`
-    if (parsed.data.date < today) {
+    if (date < today) {
       return NextResponse.json({ error: 'No se pueden reservar fechas pasadas' }, { status: 400 })
     }
 
     // Reject past times for same-day bookings
-    if (parsed.data.date === today) {
+    if (date === today) {
       const nowMinutes = nowInSpain.getHours() * 60 + nowInSpain.getMinutes()
       if (startMin <= nowMinutes) {
         return NextResponse.json({ error: 'No se pueden reservar horas ya pasadas' }, { status: 400 })
@@ -77,12 +82,12 @@ export async function POST(req: NextRequest) {
 
     // Check for conflicts (atomic check)
     const conflict = await Booking.findOne({
-      date: parsed.data.date,
+      date,
       status: { $in: ['confirmada', 'pendiente'] },
       $expr: {
         $and: [
           { $lt: ['$startTime', endTime] },
-          { $gt: ['$endTime', parsed.data.startTime] },
+          { $gt: ['$endTime', startTime] },
         ],
       },
     })
@@ -94,35 +99,42 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    // Create ONE booking with all services
     const booking = await Booking.create({
       user: session.user.id,
-      service: parsed.data.serviceId,
-      date: parsed.data.date,
-      startTime: parsed.data.startTime,
+      services: serviceIds,
+      quantities: Object.keys(quantities).length > 0 ? quantities : undefined,
+      date,
+      startTime,
       endTime,
       status: 'confirmada',
-      quantity: quantity > 1 ? quantity : undefined,
-      notes: parsed.data.notes,
+      notes: notes || undefined,
     })
 
     // Populate for response
     const populated = await Booking.findById(booking._id)
-      .populate('service', 'name category price duration')
+      .populate('services', 'name category price duration')
       .populate('user', 'name email phone')
 
     // Send notifications (fire and forget — don't block the response)
-    if (populated?.user && populated?.service) {
+    if (populated?.user && populated?.services?.length > 0) {
       const user = populated.user as { name: string; email: string; phone?: string }
-      const svc = populated.service as { name: string; price: number }
+      const svcList = populated.services as { name: string; price: number }[]
+      const totalPrice = svcList.reduce((sum, s, i) => {
+        const svcId = serviceIds[i]
+        const qty = quantities[svcId] ?? 1
+        return sum + s.price * qty
+      }, 0)
+      const serviceNames = svcList.map((s) => s.name).join(', ')
       notifyNewBooking({
         clientName: user.name,
         clientEmail: user.email,
         clientPhone: user.phone,
-        serviceName: svc.name,
-        date: parsed.data.date,
-        startTime: parsed.data.startTime,
+        serviceName: serviceNames,
+        date,
+        startTime,
         endTime,
-        price: svc.price,
+        price: totalPrice,
       }).catch((err) => console.error('Notification error:', err))
     }
 

@@ -104,43 +104,32 @@ export function ConfirmationStep() {
 
     setLoading(true)
     try {
-      // Create one booking per service, with consecutive time blocks
-      let cursor = state.timeSlot
-      let lastBookingId = ''
+      // Create ONE booking with all services
+      const res = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          services: state.services.map((s) => s._id),
+          quantities: state.quantities,
+          date: state.date,
+          startTime: state.timeSlot,
+          notes: state.notes || undefined,
+        }),
+      })
 
-      for (const service of state.services) {
-        const qty = state.quantities[service._id] ?? 1
-        const effectiveDuration = service.duration * qty
-        const endTime = computeEndTime(cursor, effectiveDuration)
-        const res = await fetch('/api/bookings', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            serviceId: service._id,
-            date: state.date,
-            startTime: cursor,
-            quantity: qty > 1 ? qty : undefined,
-            notes: state.services.length === 1 ? (state.notes || undefined) : undefined,
-          }),
-        })
+      const data = await res.json()
 
-        const data = await res.json()
-
-        if (!res.ok) {
-          toast.error(data.error || 'Error al crear la reserva')
-          if (res.status === 409) {
-            dispatch({ type: 'GO_TO_STEP', payload: 2 })
-          }
-          return
+      if (!res.ok) {
+        toast.error(data.error || 'Error al crear la reserva')
+        if (res.status === 409) {
+          dispatch({ type: 'GO_TO_STEP', payload: 2 })
         }
-
-        lastBookingId = data._id
-        cursor = endTime
+        return
       }
 
       localStorage.removeItem('liilab-booking-state')
-      toast.success(state.services.length > 1 ? 'Reservas confirmadas!' : 'Reserva confirmada!')
-      router.push(`/booking/confirmation/${lastBookingId}`)
+      toast.success('Reserva confirmada!')
+      router.push(`/booking/confirmation/${data._id}`)
     } catch {
       toast.error('Error de conexion')
     } finally {

@@ -18,7 +18,7 @@ export async function GET(
     await dbConnect()
 
     const booking = await Booking.findById(id)
-      .populate('service', 'name category price duration')
+      .populate('services', 'name category price duration')
       .populate('user', 'name email phone')
 
     if (!booking) {
@@ -76,6 +76,10 @@ export async function PATCH(
         booking.paidAmount = body.paidAmount;
         changed = true;
       }
+      if (typeof body.adminNotes === 'string') {
+        booking.adminNotes = body.adminNotes;
+        changed = true;
+      }
     } else if (body.status === 'cancelada') {
       booking.status = 'cancelada'
       changed = true;
@@ -88,22 +92,24 @@ export async function PATCH(
     }
 
     const populated = await Booking.findById(booking._id)
-      .populate('service', 'name category price duration')
+      .populate('services', 'name category price duration')
       .populate('user', 'name email phone')
 
     // Send cancellation notification if status changed to cancelled
-    if (booking.status === 'cancelada' && populated?.user && populated?.service) {
+    if (booking.status === 'cancelada' && populated?.user && populated?.services?.length > 0) {
       const user = populated.user as { name: string; email: string; phone?: string }
-      const svc = populated.service as { name: string; price: number }
+      const svcList = populated.services as { name: string; price: number }[]
+      const serviceNames = svcList.map((s) => s.name).join(', ')
+      const totalPrice = svcList.reduce((sum, s) => sum + s.price, 0)
       notifyCancellation({
         clientName: user.name,
         clientEmail: user.email,
         clientPhone: user.phone,
-        serviceName: svc.name,
+        serviceName: serviceNames,
         date: booking.date,
         startTime: booking.startTime,
         endTime: booking.endTime,
-        price: svc.price,
+        price: totalPrice,
       }).catch((err) => console.error('Cancellation notification error:', err))
     }
 

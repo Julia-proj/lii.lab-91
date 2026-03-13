@@ -13,10 +13,10 @@ export const loginSchema = z.object({
 })
 
 export const bookingSchema = z.object({
-  serviceId: z.string().min(1, 'Servicio obligatorio'),
+  services: z.array(z.string()).min(1),
+  quantities: z.record(z.string(), z.number().int().min(1)).optional(),
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Formato de fecha inválido'),
   startTime: z.string().regex(/^\d{2}:\d{2}$/, 'Formato de hora inválido'),
-  quantity: z.number().int().min(1).max(10).optional(),
   notes: z.string().optional(),
 })
 

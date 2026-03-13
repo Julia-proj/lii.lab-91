@@ -49,7 +49,7 @@ export function Course() {
               <img
                 src="/images/Foto2.JPG"
                 alt="Curso Manicura"
-                className="relative z-10 rounded-lg shadow-xl w-full object-cover h-[500px] transition-all duration-500"
+                className="relative z-10 rounded-lg shadow-xl w-full object-cover h-[220px] sm:h-[360px] lg:h-[500px] transition-all duration-500"
               />
             </div>
           </div>
@@ -80,29 +80,27 @@ export function Course() {
           </div>
         </div>
 
-        {/* Video reel */}
-        <div className="flex justify-center mb-16 fade-in-section">
-          <div className="w-[60%] sm:w-[50%] md:w-[40%] lg:max-w-xs rounded-2xl overflow-hidden shadow-lg border border-neutral-200 bg-black">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full aspect-[9/16] object-cover"
-              poster="/images/video-poster.jpg"
-            >
-              <source src="/videos/curso-preview.mp4" type="video/mp4" />
-            </video>
-          </div>
-        </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start fade-in-section">
           {/* 3.3 Info Card */}
           <div className="lg:col-span-5">
             <div className="bg-[#F3F4F6] text-neutral-900 p-8 rounded-2xl shadow-sm border border-gray-200 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#CDB4DB] rounded-full blur-3xl opacity-10 -mr-16 -mt-16"></div>
 
-              <h3 className="text-2xl font-serif mb-8 relative z-10">Información del curso</h3>
+              <h3 className="text-2xl font-serif mb-4 relative z-10">Información del curso</h3>
+
+              {/* Preview video */}
+              <div className="relative z-10 mb-7 rounded-xl overflow-hidden shadow-sm border border-gray-200/60">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full aspect-video object-cover"
+                >
+                  <source src="/videos/curso.mp4" type="video/mp4" />
+                </video>
+              </div>
+
               <div className="space-y-6 relative z-10">
                 <InfoRow icon={Euro} label="Precio" text="800€" />
                 <InfoRow icon={Clock} label="Duración" text="3 días intensivos" />

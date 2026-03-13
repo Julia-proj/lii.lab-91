@@ -605,6 +605,12 @@ function assertConfig(request, options) {
 "[project]/node_modules/.pnpm/@auth+core@0.41.0_nodemailer@8.0.2/node_modules/@auth/core/lib/vendored/cookie.js [middleware-edge] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
+__turbopack_context__.s([
+    "parse",
+    ()=>parse,
+    "serialize",
+    ()=>serialize
+]);
 /**
  * @source https://github.com/jshttp/cookie
  * @author blakeembrey
@@ -622,13 +628,7 @@ function assertConfig(request, options) {
  * tchar             = "!" / "#" / "$" / "%" / "&" / "'" /
  *                     "*" / "+" / "-" / "." / "^" / "_" /
  *                     "`" / "|" / "~" / DIGIT / ALPHA
- */ __turbopack_context__.s([
-    "parse",
-    ()=>parse,
-    "serialize",
-    ()=>serialize
-]);
-const cookieNameRegExp = /^[!#$%&'*+\-.^_`|~0-9A-Za-z]+$/;
+ */ const cookieNameRegExp = /^[!#$%&'*+\-.^_`|~0-9A-Za-z]+$/;
 /**
  * RegExp to match cookie-value in RFC 6265 sec 4.1.1
  *
@@ -817,6 +817,14 @@ function serialize(name, val, options) {
 "[project]/node_modules/.pnpm/@auth+core@0.41.0_nodemailer@8.0.2/node_modules/@auth/core/jwt.js [middleware-edge] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
+__turbopack_context__.s([
+    "decode",
+    ()=>decode,
+    "encode",
+    ()=>encode,
+    "getToken",
+    ()=>getToken
+]);
 /**
  *
  *
@@ -853,15 +861,7 @@ function serialize(name, val, options) {
  * - [RFC7519 - JSON Web Token (JWT)](https://www.rfc-editor.org/rfc/rfc7519)
  *
  * @module jwt
- */ __turbopack_context__.s([
-    "decode",
-    ()=>decode,
-    "encode",
-    ()=>encode,
-    "getToken",
-    ()=>getToken
-]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$panva$2b$hkdf$40$1$2e$2$2e$1$2f$node_modules$2f40$panva$2f$hkdf$2f$dist$2f$web$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/@panva+hkdf@1.2.1/node_modules/@panva/hkdf/dist/web/index.js [middleware-edge] (ecmascript)");
+ */ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$panva$2b$hkdf$40$1$2e$2$2e$1$2f$node_modules$2f40$panva$2f$hkdf$2f$dist$2f$web$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/@panva+hkdf@1.2.1/node_modules/@panva/hkdf/dist/web/index.js [middleware-edge] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$jose$40$6$2e$2$2e$1$2f$node_modules$2f$jose$2f$dist$2f$webapi$2f$jwt$2f$encrypt$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/jose@6.2.1/node_modules/jose/dist/webapi/jwt/encrypt.js [middleware-edge] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$jose$40$6$2e$2$2e$1$2f$node_modules$2f$jose$2f$dist$2f$webapi$2f$util$2f$base64url$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__base64url$3e$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/jose@6.2.1/node_modules/jose/dist/webapi/util/base64url.js [middleware-edge] (ecmascript) <export * as base64url>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$jose$40$6$2e$2$2e$1$2f$node_modules$2f$jose$2f$dist$2f$webapi$2f$jwk$2f$thumbprint$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/jose@6.2.1/node_modules/jose/dist/webapi/jwk/thumbprint.js [middleware-edge] (ecmascript)");
@@ -4040,11 +4040,11 @@ function stringToTransports(tstring) {
 "[project]/node_modules/.pnpm/@auth+core@0.41.0_nodemailer@8.0.2/node_modules/@auth/core/lib/actions/callback/index.js [middleware-edge] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
-// TODO: Make this file smaller
 __turbopack_context__.s([
     "callback",
     ()=>callback
 ]);
+// TODO: Make this file smaller
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$errors$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/@auth+core@0.41.0_nodemailer@8.0.2/node_modules/@auth/core/errors.js [middleware-edge] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$lib$2f$actions$2f$callback$2f$handle$2d$login$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/@auth+core@0.41.0_nodemailer@8.0.2/node_modules/@auth/core/lib/actions/callback/handle-login.js [middleware-edge] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$lib$2f$actions$2f$callback$2f$oauth$2f$callback$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/@auth+core@0.41.0_nodemailer@8.0.2/node_modules/@auth/core/lib/actions/callback/oauth/callback.js [middleware-edge] (ecmascript)");
@@ -5262,6 +5262,10 @@ function createActionURL(action, protocol, headers, envObject, config) {
 "[project]/node_modules/.pnpm/@auth+core@0.41.0_nodemailer@8.0.2/node_modules/@auth/core/index.js [middleware-edge] (ecmascript) <locals>", ((__turbopack_context__) => {
 "use strict";
 
+__turbopack_context__.s([
+    "Auth",
+    ()=>Auth
+]);
 /**
  *
  * :::warning Experimental
@@ -5298,11 +5302,7 @@ function createActionURL(action, protocol, headers, envObject, config) {
  * - [Guides](https://authjs.dev/guides)
  *
  * @module @auth/core
- */ __turbopack_context__.s([
-    "Auth",
-    ()=>Auth
-]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$lib$2f$utils$2f$assert$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/@auth+core@0.41.0_nodemailer@8.0.2/node_modules/@auth/core/lib/utils/assert.js [middleware-edge] (ecmascript)");
+ */ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$lib$2f$utils$2f$assert$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/@auth+core@0.41.0_nodemailer@8.0.2/node_modules/@auth/core/lib/utils/assert.js [middleware-edge] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$errors$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/@auth+core@0.41.0_nodemailer@8.0.2/node_modules/@auth/core/errors.js [middleware-edge] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$lib$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/@auth+core@0.41.0_nodemailer@8.0.2/node_modules/@auth/core/lib/index.js [middleware-edge] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$lib$2f$symbols$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/@auth+core@0.41.0_nodemailer@8.0.2/node_modules/@auth/core/lib/symbols.js [middleware-edge] (ecmascript)");

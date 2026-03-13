@@ -18,7 +18,7 @@ interface Stats {
 
 interface UpcomingBooking {
   _id: string
-  service: { name: string }
+  services: { name: string }[]
   user: { name: string }
   date: string
   startTime: string
@@ -67,7 +67,7 @@ function UpcomingBookingRow({
       <div>
         <span className="font-medium">{booking.user?.name || 'Cliente'}</span>
         <span className="text-neutral-400 mx-2">·</span>
-        <span className="text-neutral-500">{booking.service?.name}</span>
+        <span className="text-neutral-500">{(booking.services || []).map((s) => s.name).join(', ')}</span>
       </div>
       <div className="flex items-center gap-3 text-neutral-500 text-right">
         <span className="capitalize">{formatDate(booking.date)}</span>

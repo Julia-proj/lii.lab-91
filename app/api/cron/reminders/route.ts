@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
       date: tomorrowStr,
       status: { $in: ['confirmada', 'pendiente'] },
     })
-      .populate('service', 'name price duration')
+      .populate('services', 'name price duration')
       .populate('user', 'name email phone')
       .lean()
 
@@ -31,20 +31,23 @@ export async function GET(req: NextRequest) {
 
     for (const booking of bookings) {
       const user = booking.user as { name: string; email: string; phone?: string }
-      const service = booking.service as { name: string; price: number }
+      const svcList = (booking.services || []) as { name: string; price: number }[]
 
-      if (!user || !service) continue
+      if (!user || svcList.length === 0) continue
+
+      const serviceNames = svcList.map((s) => s.name).join(', ')
+      const totalPrice = svcList.reduce((sum, s) => sum + s.price, 0)
 
       try {
         await sendBookingReminder({
           clientName: user.name,
           clientEmail: user.email,
           clientPhone: user.phone,
-          serviceName: service.name,
+          serviceName: serviceNames,
           date: booking.date,
           startTime: booking.startTime,
           endTime: booking.endTime,
-          price: service.price,
+          price: totalPrice,
         })
         sent++
       } catch (err) {

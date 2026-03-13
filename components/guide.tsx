@@ -97,17 +97,19 @@ export function Guide() {
             </div>
           </div>
 
-          {/* Image Content */}
+          {/* Video Content */}
           <div className="w-full md:w-1/2 flex justify-center fade-in-section">
-            <div className="relative w-[80%] md:w-full max-w-md aspect-[3/4] overflow-hidden">
-              {/* Decorative Elements */}
-              <div className="absolute top-4 -right-4 w-full h-full border border-neutral-200 rounded-none z-0"></div>
-
-              <img
-                src="/images/Foto8.JPG"
-                alt="Guía Metodológica"
-                className="absolute inset-0 w-full h-full object-cover shadow-2xl z-10 transition-all duration-700"
-              />
+            <div className="relative w-[85%] md:w-full max-w-sm">
+              <div className="absolute top-4 -right-4 w-full h-full border border-neutral-200 z-0" />
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="relative z-10 w-full aspect-[3/4] object-cover shadow-2xl"
+              >
+                <source src="/videos/guia.mp4" type="video/mp4" />
+              </video>
             </div>
           </div>
         </div>

@@ -12,9 +12,7 @@ export function Navbar() {
   const { data: session } = useSession()
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -28,10 +26,9 @@ export function Navbar() {
   }, [isDropdownOpen])
 
   const navLinks = [
-    { name: "Quién soy", href: "#quien-soy", highlight: false },
-    { name: "Cursos", href: "#cursos", highlight: false },
-    { name: "Guía", href: "#guia", highlight: false },
-    { name: "Reservar", href: "/booking", highlight: true },
+    { name: "Quién soy", href: "#quien-soy" },
+    { name: "Cursos", href: "#cursos" },
+    { name: "Guía", href: "#guia" },
   ]
 
   return (
@@ -50,14 +47,7 @@ export function Navbar() {
           >
             Lii.lab
           </Link>
-          <div className={`h-6 w-px transition-colors ${isScrolled ? "bg-neutral-300" : "bg-white/30"}`} />
-          <span
-            className={`text-xs font-light tracking-[0.15em] transition-colors ${
-              isScrolled ? "text-neutral-500" : "text-white/70"
-            }`}
-          >
-           
-          </span>
+          <div className={`h-6 w-px transition-colors hidden sm:block ${isScrolled ? "bg-neutral-300" : "bg-white/30"}`} />
         </div>
 
         {/* Desktop Menu */}
@@ -66,15 +56,21 @@ export function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className={`text-sm font-medium tracking-wide transition-colors ${
-                link.highlight
-                  ? "bg-[#CDB4DB] text-neutral-900 px-4 py-1.5 rounded-full hover:bg-[#bda0cb]"
-                  : `hover:text-[#CDB4DB] ${isScrolled ? "text-neutral-600" : "text-white/90"}`
+              className={`text-sm font-medium tracking-wide transition-colors hover:text-[#CDB4DB] ${
+                isScrolled ? "text-neutral-600" : "text-white/90"
               }`}
             >
               {link.name}
             </Link>
           ))}
+
+          {/* Reservar CTA */}
+          <Link
+            href="/booking"
+            className="text-sm font-medium bg-[#CDB4DB] text-neutral-900 px-4 py-1.5 rounded-full hover:bg-[#bda0cb] hover:text-white transition-colors"
+          >
+            Reservar
+          </Link>
 
           {/* Auth section */}
           {session ? (
@@ -127,57 +123,102 @@ export function Navbar() {
           )}
         </nav>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {isMobileMenuOpen ? (
-            <X className="text-neutral-900" />
-          ) : (
-            <Menu className={isScrolled ? "text-neutral-900" : "text-white"} />
-          )}
-        </button>
+        {/* Mobile: Reservar pill + hamburger */}
+        <div className="md:hidden flex items-center gap-2">
+          <Link
+            href="/booking"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-xs font-semibold bg-[#CDB4DB] text-white px-4 py-2 rounded-full hover:bg-[#bda0cb] transition-colors shadow-sm"
+          >
+            Reservar
+          </Link>
+          <button
+            className="p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? (
+              <X className={isScrolled ? "text-neutral-900" : "text-white"} />
+            ) : (
+              <Menu className={isScrolled ? "text-neutral-900" : "text-white"} />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 w-full h-screen bg-white z-50 flex flex-col items-center justify-center space-y-6">
-          <button onClick={() => setIsMobileMenuOpen(false)} className="absolute top-6 right-6 p-2 text-neutral-900">
-            <X size={32} />
-          </button>
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="text-3xl font-serif text-neutral-900 hover:text-[#CDB4DB]"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {link.name}
-            </Link>
-          ))}
-          <div className="pt-4 border-t border-neutral-200 w-48 text-center">
-            {session ? (
-              <div className="space-y-3">
-                {session.user?.role === "admin" ? (
-                  <Link href="/admin" className="block text-lg text-neutral-600 hover:text-[#CDB4DB]" onClick={() => setIsMobileMenuOpen(false)}>
-                    Admin
-                  </Link>
-                ) : (
-                  <Link href="/dashboard" className="block text-lg text-neutral-600 hover:text-[#CDB4DB]" onClick={() => setIsMobileMenuOpen(false)}>
-                    Mi panel
-                  </Link>
-                )}
-                <button onClick={() => { signOut({ callbackUrl: "/" }); setIsMobileMenuOpen(false) }} className="text-lg text-red-500">
-                  Cerrar sesión
-                </button>
-              </div>
-            ) : (
-              <Link href="/login" className="text-lg text-neutral-600 hover:text-[#CDB4DB]" onClick={() => setIsMobileMenuOpen(false)}>
-                Iniciar sesión
+        <div className="fixed inset-0 w-full h-screen bg-white z-50 flex flex-col">
+          {/* Header */}
+          <div className="flex items-center justify-between px-6 py-5 border-b border-neutral-100">
+            <span className="font-serif text-xl text-neutral-900">Lii.lab</span>
+            <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-neutral-500">
+              <X size={24} />
+            </button>
+          </div>
+
+          {/* Links */}
+          <div className="flex-1 flex flex-col justify-center px-8 space-y-2">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="text-2xl font-serif text-neutral-800 hover:text-[#CDB4DB] py-2 transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.name}
               </Link>
-            )}
+            ))}
+
+            {/* Auth links */}
+            <div className="pt-2 border-t border-neutral-100">
+              {session ? (
+                <div className="space-y-1 pt-2">
+                  {session.user?.role === "admin" ? (
+                    <Link
+                      href="/admin"
+                      className="block text-lg text-neutral-500 hover:text-[#CDB4DB] py-1.5 transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Admin
+                    </Link>
+                  ) : (
+                    <Link
+                      href="/dashboard"
+                      className="block text-lg text-neutral-500 hover:text-[#CDB4DB] py-1.5 transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Mi panel
+                    </Link>
+                  )}
+                  <button
+                    onClick={() => { signOut({ callbackUrl: "/" }); setIsMobileMenuOpen(false) }}
+                    className="text-lg text-red-400 py-1.5"
+                  >
+                    Cerrar sesión
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  href="/login"
+                  className="block text-lg text-neutral-500 hover:text-[#CDB4DB] py-1.5 pt-2 transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Iniciar sesión
+                </Link>
+              )}
+            </div>
+          </div>
+
+          {/* Bottom CTA */}
+          <div className="px-8 pb-10">
+            <Link
+              href="/booking"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="block w-full text-center bg-[#B48EC5] hover:bg-[#a37ab5] text-white font-semibold py-4 rounded-2xl transition-colors shadow-md text-lg"
+            >
+              Reservar cita
+            </Link>
           </div>
         </div>
       )}

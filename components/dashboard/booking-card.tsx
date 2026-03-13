@@ -4,9 +4,17 @@ import { Calendar, Clock, Euro, X } from 'lucide-react'
 import { toast } from 'sonner'
 import { useState } from 'react'
 
+interface ServiceData {
+  name: string
+  price: number
+  duration: number
+  category: string
+}
+
 interface BookingData {
   _id: string
-  service: { name: string; price: number; duration: number; category: string }
+  services: ServiceData[]
+  quantities?: Record<string, string | number>
   date: string
   startTime: string
   endTime: string
@@ -45,6 +53,9 @@ export function BookingCard({ booking, onCancel }: BookingCardProps) {
     completada: 'Completada',
   }
 
+  const services = booking.services || []
+  const totalPrice = services.reduce((sum, s) => sum + s.price, 0)
+
   const isPast = new Date(booking.date + 'T' + booking.endTime) < new Date()
   const canCancel =
     !isPast &&
@@ -80,7 +91,11 @@ export function BookingCard({ booking, onCancel }: BookingCardProps) {
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-2">
-            <h3 className="font-medium">{booking.service.name}</h3>
+            {services.length === 1 ? (
+              <h3 className="font-medium">{services[0].name}</h3>
+            ) : (
+              <h3 className="font-medium">{services.map((s) => s.name).join(' + ')}</h3>
+            )}
             <span
               className={`text-xs px-2 py-0.5 rounded-full border ${
                 statusColors[booking.status] || statusColors.pendiente
@@ -89,6 +104,16 @@ export function BookingCard({ booking, onCancel }: BookingCardProps) {
               {statusLabel[booking.status] || booking.status}
             </span>
           </div>
+
+          {services.length > 1 && (
+            <div className="mb-2 space-y-0.5">
+              {services.map((s, i) => (
+                <p key={i} className="text-xs text-neutral-500">
+                  {s.name} — {s.price}€
+                </p>
+              ))}
+            </div>
+          )}
 
           <div className="space-y-1.5 text-sm text-neutral-500">
             <div className="flex items-center gap-2">
@@ -103,7 +128,7 @@ export function BookingCard({ booking, onCancel }: BookingCardProps) {
             </div>
             <div className="flex items-center gap-2">
               <Euro className="w-3.5 h-3.5 text-[#CDB4DB]" />
-              <span>{booking.service.price}€</span>
+              <span>{totalPrice}€</span>
             </div>
           </div>
         </div>

@@ -1,16 +1,16 @@
 import Link from "next/link"
-import { ArrowRight, Calendar } from "lucide-react"
+import { ArrowRight, BookOpen } from "lucide-react"
 
 export function Hero() {
   return (
-    <section id="hero" className="relative h-screen min-h-[600px] flex items-center overflow-hidden">
+    <section id="hero" className="relative min-h-[100svh] flex items-center">
       {/* Background Image with Gradient Overlay */}
       <div className="absolute inset-0 z-0">
         <img src="/images/Hero.JPG" alt="Lii.lab beauty studio" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-black/20 md:bg-gradient-to-r md:from-black/70 md:via-black/40 md:to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-black/20 md:bg-gradient-to-r md:from-black/70 md:via-black/40 md:to-transparent" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 pt-20">
+      <div className="container mx-auto px-6 relative z-10 pt-24 pb-16">
         <div className="max-w-2xl text-white fade-in-section">
           <span className="inline-block py-2 px-4 border border-white/30 rounded-full text-xs tracking-widest uppercase mb-8 backdrop-blur-sm font-light">
             MANIC 0.0
@@ -26,11 +26,11 @@ export function Hero() {
 
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
-              href="/booking"
+              href="#cursos"
               className="group px-8 py-4 bg-[#B48EC5] text-white font-semibold rounded-full hover:bg-[#a37ab5] transition-all duration-300 text-center flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
             >
-              <Calendar size={18} />
-              <span>Reservar cita</span>
+              <BookOpen size={18} />
+              <span>Ver cursos</span>
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link

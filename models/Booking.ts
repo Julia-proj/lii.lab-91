@@ -2,14 +2,15 @@ import mongoose, { Schema, Document, Model } from 'mongoose'
 
 export interface IBookingDocument extends Document {
   user: mongoose.Types.ObjectId
-  service: mongoose.Types.ObjectId
+  services: mongoose.Types.ObjectId[]
+  quantities?: Map<string, number> // serviceId -> quantity (for Decoraciones etc)
   date: string // YYYY-MM-DD
   startTime: string // HH:mm
   endTime: string   // HH:mm
   status: 'pendiente' | 'confirmada' | 'cancelada' | 'completada'
-  quantity?: number  // Para servicios como Decoraciones (default 1)
   notes?: string
   paidAmount?: number // Сумма, реально оплаченная клиентом (может редактировать только админ)
+  adminNotes?: string // Заметки админа (только для внутреннего использования)
   createdAt: Date
   updatedAt: Date
 }
@@ -17,7 +18,8 @@ export interface IBookingDocument extends Document {
 const BookingSchema = new Schema<IBookingDocument>(
   {
     user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    service: { type: Schema.Types.ObjectId, ref: 'Service', required: true },
+    services: [{ type: Schema.Types.ObjectId, ref: 'Service', required: true }],
+    quantities: { type: Map, of: Number, default: {} },
     date: { type: String, required: true }, // YYYY-MM-DD
     startTime: { type: String, required: true },
     endTime: { type: String, required: true },
@@ -26,9 +28,9 @@ const BookingSchema = new Schema<IBookingDocument>(
       enum: ['pendiente', 'confirmada', 'cancelada', 'completada'],
       default: 'confirmada',
     },
-    quantity: { type: Number, default: 1, min: 1, max: 10 },
     notes: { type: String },
     paidAmount: { type: Number },
+    adminNotes: { type: String },
   },
   { timestamps: true }
 )

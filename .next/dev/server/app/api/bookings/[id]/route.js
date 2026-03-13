@@ -1,10 +1,10 @@
 var R=require("../../../../chunks/[turbopack]_runtime.js")("server/app/api/bookings/[id]/route.js")
-R.c("server/chunks/275cd_next_4b0815ab._.js")
+R.c("server/chunks/02768_next_697887e6._.js")
 R.c("server/chunks/90449_@auth_core_efd5ec22._.js")
 R.c("server/chunks/f54b7_jose_dist_webapi_b9c92e68._.js")
 R.c("server/chunks/e6f78_nodemailer_c9ecae3c._.js")
-R.c("server/chunks/node_modules__pnpm_a69bfc83._.js")
-R.c("server/chunks/[root-of-the-server]__bec2be7b._.js")
+R.c("server/chunks/[root-of-the-server]__3ce7af0d._.js")
+R.c("server/chunks/[root-of-the-server]__34c0128c._.js")
 R.c("server/chunks/_next-internal_server_app_api_bookings_[id]_route_actions_b6e76d8c.js")
-R.m("[project]/node_modules/.pnpm/next@16.0.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/app/api/bookings/[id]/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)")
-module.exports=R.m("[project]/node_modules/.pnpm/next@16.0.3_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/app/api/bookings/[id]/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)").exports
+R.m("[project]/node_modules/.pnpm/next@16.1.6_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/app/api/bookings/[id]/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)")
+module.exports=R.m("[project]/node_modules/.pnpm/next@16.1.6_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/app/api/bookings/[id]/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)").exports

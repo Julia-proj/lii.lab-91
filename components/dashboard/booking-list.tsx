@@ -8,7 +8,8 @@ import { toast } from 'sonner'
 
 interface BookingData {
   _id: string
-  service: { name: string; price: number; duration: number; category: string }
+  services: { name: string; price: number; duration: number; category: string }[]
+  quantities?: Record<string, string | number>
   date: string
   startTime: string
   endTime: string

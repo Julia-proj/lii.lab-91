@@ -50,13 +50,13 @@ export async function GET() {
         date: { $gte: today },
         status: { $in: ['confirmada', 'pendiente'] },
       })
-        .populate('service', 'name')
+        .populate('services', 'name')
         .populate('user', 'name')
         .sort({ date: 1, startTime: 1 })
         .limit(5)
         .lean(),
       Booking.find()
-        .populate('service', 'name')
+        .populate('services', 'name')
         .populate('user', 'name')
         .sort({ createdAt: -1 })
         .limit(10)
