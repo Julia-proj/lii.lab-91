@@ -1,8 +1,15 @@
 import Link from 'next/link'
 import { auth } from '@/lib/auth'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
-  const session = await auth()
+  let session = null
+  try {
+    session = await auth()
+  } catch {
+    // auth unavailable, continue without session
+  }
 
   return (
     <div className="min-h-screen bg-[#fafafa]">

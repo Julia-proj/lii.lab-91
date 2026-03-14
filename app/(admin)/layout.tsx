@@ -3,10 +3,16 @@ import { auth } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 
 // Layout del panel admin: solo accesible para usuarios con rol 'admin'
-export default async function AdminLayout({ children }: { children: React.ReactNode }) {
-  const session = await auth()
+export const dynamic = 'force-dynamic'
 
-  // Si no hay sesión o el usuario no es admin, redirigir a inicio
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  let session = null
+  try {
+    session = await auth()
+  } catch {
+    redirect('/')
+  }
+
   if (!session || session.user?.role !== 'admin') {
     redirect('/')
   }
