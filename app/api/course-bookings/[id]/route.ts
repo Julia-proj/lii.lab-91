@@ -53,14 +53,39 @@ export async function PATCH(
       return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
     }
 
-    if (body.status === 'cancelada') {
-      booking.status = 'cancelada'
-      await booking.save()
+    const allowedStatuses = ['pendiente', 'confirmada', 'cancelada']
+    if (body.status && allowedStatuses.includes(body.status)) {
+      // Admin can set any status; regular user can only cancel
+      if (session.user.role === 'admin' || body.status === 'cancelada') {
+        booking.status = body.status
+        await booking.save()
+      }
     }
 
     return NextResponse.json(booking)
   } catch (error) {
     console.error('Error updating course booking:', error)
     return NextResponse.json({ error: 'Error al actualizar reserva' }, { status: 500 })
+  }
+}
+
+export async function DELETE(
+  _req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const session = await auth()
+    if (!session || session.user.role !== 'admin') {
+      return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
+    }
+
+    const { id } = await params
+    await dbConnect()
+
+    await CourseBooking.findByIdAndDelete(id)
+    return NextResponse.json({ ok: true })
+  } catch (error) {
+    console.error('Error deleting course booking:', error)
+    return NextResponse.json({ error: 'Error al eliminar reserva' }, { status: 500 })
   }
 }

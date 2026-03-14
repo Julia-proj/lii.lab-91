@@ -1,8 +1,172 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { Search, Filter, Trash2, StickyNote, ChevronDown, ChevronUp, Check, Pencil } from 'lucide-react'
+import { Search, Filter, Trash2, StickyNote, ChevronDown, ChevronUp, Check, Pencil, Calendar } from 'lucide-react'
 import { toast } from 'sonner'
+
+// ── Course bookings section ─────────────────────────────────────────────────
+
+interface CourseBookingData {
+  _id: string
+  user: { name: string; email: string; phone?: string }
+  startDate: string
+  days: string[]
+  status: string
+  notes?: string
+  createdAt: string
+}
+
+const COURSE_STATUS_COLORS: Record<string, { bg: string; text: string; dot: string }> = {
+  confirmada: { bg: 'bg-emerald-50', text: 'text-emerald-700', dot: 'bg-emerald-500' },
+  pendiente:  { bg: 'bg-amber-50',   text: 'text-amber-700',   dot: 'bg-amber-400' },
+  cancelada:  { bg: 'bg-red-50',     text: 'text-red-600',     dot: 'bg-red-400' },
+}
+
+function CourseBookingRow({ booking, onUpdate }: { booking: CourseBookingData; onUpdate: (id: string, patch: Partial<CourseBookingData>) => void }) {
+  const fmt = (d: string) =>
+    new Date(d + 'T00:00:00').toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' })
+
+  const handleStatusChange = async (newStatus: string) => {
+    try {
+      const res = await fetch(`/api/course-bookings/${booking._id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      })
+      if (!res.ok) { toast.error('Error al actualizar'); return }
+      onUpdate(booking._id, { status: newStatus })
+      toast.success('Estado actualizado')
+    } catch { toast.error('Error de conexión') }
+  }
+
+  const handleDelete = async () => {
+    if (!confirm('¿Eliminar esta reserva de curso?')) return
+    try {
+      const res = await fetch(`/api/course-bookings/${booking._id}`, { method: 'DELETE' })
+      if (!res.ok) { toast.error('Error al eliminar'); return }
+      onUpdate(booking._id, { status: '__deleted__' } as Partial<CourseBookingData>)
+      toast.success('Reserva eliminada')
+    } catch { toast.error('Error de conexión') }
+  }
+
+  const s = COURSE_STATUS_COLORS[booking.status] || COURSE_STATUS_COLORS.pendiente
+
+  return (
+    <div className="bg-white rounded-xl border border-neutral-200 overflow-hidden hover:border-[#CDB4DB]/50 transition-colors">
+      <div className="p-4 sm:p-5">
+        <div className="flex flex-col sm:flex-row sm:items-start gap-3">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-1 flex-wrap">
+              <span className="font-semibold text-neutral-900 text-sm">{booking.user?.name || '—'}</span>
+              <span className={`inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full ${s.bg} ${s.text}`}>
+                <span className={`w-1.5 h-1.5 rounded-full ${s.dot}`} />
+                {booking.status}
+              </span>
+              <span className="text-xs bg-[#CDB4DB]/20 text-[#7B4FAC] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">Curso</span>
+            </div>
+            <div className="text-xs text-neutral-400 flex flex-wrap gap-x-3 gap-y-0.5 mb-3">
+              <span>{booking.user?.email}</span>
+              {booking.user?.phone && <span>{booking.user.phone}</span>}
+            </div>
+            <p className="text-sm font-medium text-neutral-800 mb-2">MANIC 0.0 · 800€</p>
+            <div className="space-y-1">
+              {booking.days.map((d, i) => (
+                <div key={i} className="flex items-center gap-2 text-xs text-neutral-500">
+                  <Calendar className="w-3.5 h-3.5 text-[#CDB4DB] shrink-0" />
+                  <span className="capitalize">Día {i + 1}: {fmt(d)}</span>
+                </div>
+              ))}
+            </div>
+            {booking.notes && (
+              <p className="mt-2 text-xs text-neutral-400 italic border-l-2 border-neutral-100 pl-2">{booking.notes}</p>
+            )}
+          </div>
+        </div>
+      </div>
+      <div className="px-4 sm:px-5 py-2.5 bg-neutral-50 border-t border-neutral-100 flex flex-wrap items-center gap-2">
+        <select
+          value={booking.status}
+          onChange={(e) => handleStatusChange(e.target.value)}
+          className="text-xs border border-neutral-200 rounded-lg px-2.5 py-1.5 bg-white focus:outline-none focus:ring-2 focus:ring-[#CDB4DB] cursor-pointer"
+        >
+          <option value="pendiente">Pendiente</option>
+          <option value="confirmada">Confirmada</option>
+          <option value="cancelada">Cancelada</option>
+        </select>
+        {booking.status === 'cancelada' && (
+          <button
+            onClick={handleDelete}
+            className="ml-auto flex items-center gap-1 text-xs text-red-400 hover:text-red-600 px-2.5 py-1.5 rounded-lg hover:bg-red-50 transition-colors border border-transparent hover:border-red-100"
+          >
+            <Trash2 className="w-3.5 h-3.5" />
+            Eliminar
+          </button>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function AdminCourseBookingsTab() {
+  const [bookings, setBookings] = useState<CourseBookingData[]>([])
+  const [loading, setLoading] = useState(true)
+  const [search, setSearch] = useState('')
+
+  useEffect(() => {
+    fetch('/api/course-bookings')
+      .then((r) => r.json())
+      .then((d) => setBookings(d))
+      .catch(() => toast.error('Error al cargar'))
+      .finally(() => setLoading(false))
+  }, [])
+
+  const handleUpdate = (id: string, patch: Partial<CourseBookingData>) => {
+    if ((patch as { status?: string }).status === '__deleted__') {
+      setBookings((prev) => prev.filter((b) => b._id !== id))
+    } else {
+      setBookings((prev) => prev.map((b) => b._id === id ? { ...b, ...patch } : b))
+    }
+  }
+
+  const filtered = bookings
+    .filter((b) => !search ||
+      b.user?.name?.toLowerCase().includes(search.toLowerCase()) ||
+      b.user?.email?.toLowerCase().includes(search.toLowerCase())
+    )
+    .sort((a, b) => b.startDate.localeCompare(a.startDate))
+
+  if (loading) return (
+    <div className="flex items-center justify-center py-16">
+      <div className="w-6 h-6 border-2 border-neutral-200 border-t-[#CDB4DB] rounded-full animate-spin" />
+    </div>
+  )
+
+  return (
+    <div>
+      <div className="mb-5">
+        <div className="relative">
+          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
+          <input
+            type="text"
+            placeholder="Buscar por nombre o email..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-neutral-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#CDB4DB] focus:border-transparent"
+          />
+        </div>
+      </div>
+      {filtered.length === 0 ? (
+        <div className="bg-white rounded-xl border border-neutral-200 p-10 text-center">
+          <p className="text-neutral-400 text-sm">No hay reservas de curso</p>
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {filtered.map((b) => <CourseBookingRow key={b._id} booking={b} onUpdate={handleUpdate} />)}
+        </div>
+      )}
+    </div>
+  )
+}
 
 interface ServiceData {
   name: string
@@ -273,6 +437,7 @@ function BookingRow({ booking, onUpdate }: { booking: BookingData; onUpdate: (id
 }
 
 export default function AdminBookingsPage() {
+  const [tab, setTab] = useState<'citas' | 'cursos'>('citas')
   const [bookings, setBookings] = useState<BookingData[]>([])
   const [loading, setLoading] = useState(true)
   const [statusFilter, setStatusFilter] = useState<string>('all')
@@ -326,9 +491,28 @@ export default function AdminBookingsPage() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="font-serif text-2xl text-neutral-900">Reservas</h1>
-          <p className="text-xs text-neutral-400 mt-0.5">{bookings.length} en total</p>
+          <p className="text-xs text-neutral-400 mt-0.5">{bookings.length} citas en total</p>
         </div>
       </div>
+
+      {/* Tab switcher */}
+      <div className="flex gap-1 mb-6 bg-neutral-100 p-1 rounded-xl w-fit">
+        <button
+          onClick={() => setTab('citas')}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${tab === 'citas' ? 'bg-white text-neutral-900 shadow-sm' : 'text-neutral-500 hover:text-neutral-700'}`}
+        >
+          Citas
+        </button>
+        <button
+          onClick={() => setTab('cursos')}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${tab === 'cursos' ? 'bg-white text-neutral-900 shadow-sm' : 'text-neutral-500 hover:text-neutral-700'}`}
+        >
+          Cursos
+        </button>
+      </div>
+
+      {tab === 'cursos' && <AdminCourseBookingsTab />}
+      {tab === 'citas' && <>
 
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-3 mb-5">
@@ -385,6 +569,7 @@ export default function AdminBookingsPage() {
           ))}
         </div>
       )}
+      </>}
     </div>
   )
 }
