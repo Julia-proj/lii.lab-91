@@ -1,10 +1,5 @@
 {
-  "/(app)/booking/course/page": "app/(app)/booking/course/page.js",
   "/(app)/booking/page": "app/(app)/booking/page.js",
-  "/(auth)/login/page": "app/(auth)/login/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
-  "/api/course-availability/route": "app/api/course-availability/route.js",
-  "/api/services/route": "app/api/services/route.js",
-  "/page": "app/page.js"
+  "/api/services/route": "app/api/services/route.js"
 }
