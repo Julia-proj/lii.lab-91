@@ -15,11 +15,10 @@
 import type { NextAuthConfig } from 'next-auth'
 
 export const authConfig = {
-  // Redirigir a /login cuando se necesita autenticacion
+  secret: process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: '/login',
   },
-  // Usamos JWT (no sesiones en BD) para que funcione en edge y serverless
   session: { strategy: 'jwt' as const },
   // Providers vacios aqui — se definen en auth.ts (que tiene acceso a Mongoose/bcrypt)
   providers: [],
