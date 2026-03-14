@@ -39,3 +39,30 @@
 [01:21:42.660] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [01:29:12.367] Server  LOG     ✓ Finished filesystem cache database compaction in 7.7min
 [01:29:15.845] Server  LOG     ✓ Finished writing to filesystem cache in 7.8min
+[20:52:04.319] Server  LOG     ✓ Finished writing to filesystem cache in 45s
+[20:56:02.264] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:05:57.699] Server  LOG     ✓ Compiled in 785ms
+[21:06:03.772] Server  LOG     ✓ Compiled in 355ms
+[21:06:08.532] Server  LOG     ✓ Compiled in 641ms
+[21:06:14.938] Server  LOG     ✓ Compiled in 479ms
+[21:06:22.735] Server  LOG     ✓ Compiled in 740ms
+[21:06:27.386] Server  LOG     ✓ Compiled in 377ms
+[21:06:36.282] Server  LOG     ✓ Compiled in 4.7s
+[21:06:45.236] Server  LOG     ✓ Compiled in 537ms
+[21:06:53.347] Server  LOG     ✓ Compiled in 3.2s
+[21:06:55.810] Server  LOG     ✓ Compiled in 562ms
+[21:07:00.018] Server  LOG     ✓ Compiled in 523ms
+[21:07:09.218] Server  LOG     ✓ Compiled in 413ms
+[21:07:30.121] Server  LOG     ✓ Compiled in 12.9s
+[21:11:39.298] Server  LOG     ✓ Compiled in 863ms
+[21:11:46.887] Server  LOG     ✓ Compiled in 593ms
+[21:11:55.357] Server  LOG     ✓ Compiled in 1415ms
+[21:12:03.409] Server  LOG     ✓ Compiled in 4.8s
+[21:12:08.040] Server  LOG     ✓ Compiled in 1335ms
+[21:13:50.004] Server  LOG     ✓ Finished filesystem cache database compaction in 110s
+[21:13:50.731] Server  LOG     ✓ Finished writing to filesystem cache in 105s
+[21:16:05.974] Server  LOG     ✓ Compiled in 354ms
+[21:16:14.744] Server  LOG     ✓ Compiled in 999ms
+[21:16:30.469] Server  LOG     ✓ Compiled in 512ms
+[21:16:35.952] Server  LOG     ✓ Compiled in 369ms
+[21:16:42.971] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

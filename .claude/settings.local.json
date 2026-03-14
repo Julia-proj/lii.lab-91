@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find \"/c/Users/Julee/Desktop/projects\\(post-grad-bootcamp\\)/Lili-lab/lii.lab-91\" -name \"*.config.*\" -o -name \"next.config.*\" -o -name \"tailwind.config.*\")"
+    ]
+  }
+}

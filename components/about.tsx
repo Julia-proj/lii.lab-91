@@ -2,12 +2,12 @@ import { BookOpen, Target, Zap, ClipboardList } from "lucide-react"
 
 export function About() {
   return (
-    <section id="quien-soy" className="py-20 md:py-32 bg-[#f5f5f5]">
+    <section id="quien-soy" className="py-16 md:py-28 bg-[#f5f5f5]">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
           {/* Image Column - With text overlay for style */}
           <div className="w-full md:w-1/2 relative group fade-in-section">
-            <div className="relative h-[350px] md:h-[500px] w-full overflow-hidden rounded-lg shadow-xl">
+            <div className="relative h-[300px] md:h-[500px] w-full overflow-hidden rounded-lg shadow-xl">
               <img
                 src="/images/Foto7.JPG"
                 alt="Lili"
@@ -43,7 +43,7 @@ export function About() {
               </p>
             </div>
 
-            <div className="pt-8 space-y-8">
+            <div className="pt-4 space-y-5 md:space-y-7">
               <div className="flex gap-6 items-start">
                 <div className="shrink-0 mt-1">
                   <BookOpen size={24} className="text-[#8e7f97]" />

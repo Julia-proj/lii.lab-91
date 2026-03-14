@@ -42,14 +42,14 @@ export function Course() {
 
       <div className="container mx-auto px-6 relative z-10">
         {/* 3.1 Intro */}
-        <div className="flex flex-col lg:flex-row gap-16 items-center mb-24 fade-in-section">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center mb-16 md:mb-24 fade-in-section">
           <div className="w-full lg:w-1/2">
             <div className="relative">
               <div className="absolute -top-4 -left-4 w-24 h-24 bg-[#CDB4DB]/20 rounded-full z-0"></div>
               <img
                 src="/images/Foto2.JPG"
                 alt="Curso Manicura"
-                className="relative z-10 rounded-lg shadow-xl w-full object-cover h-[220px] sm:h-[360px] lg:h-[500px] transition-all duration-500"
+                className="relative z-10 rounded-lg shadow-xl w-full object-cover object-top h-[420px] sm:h-[500px] lg:h-[560px] transition-all duration-500"
               />
             </div>
           </div>
@@ -66,14 +66,14 @@ export function Course() {
             </div>
 
             {/* Features Grid embedded in intro column for better flow on mobile */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4">
+            <div className="grid grid-cols-2 gap-3 pt-4">
               {features.map((item, idx) => (
                 <div
                   key={idx}
-                  className="flex flex-col sm:flex-row items-start sm:items-center gap-3 p-3 rounded-lg bg-neutral-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-[#CDB4DB]/30"
+                  className="flex flex-row items-center gap-2 p-3 rounded-lg bg-neutral-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-[#CDB4DB]/30"
                 >
-                  <item.icon size={20} className="text-neutral-400 shrink-0" />
-                  <span className="font-medium text-neutral-800 text-sm">{item.title}</span>
+                  <item.icon size={18} className="text-neutral-400 shrink-0" />
+                  <span className="font-medium text-neutral-800 text-xs sm:text-sm leading-tight">{item.title}</span>
                 </div>
               ))}
             </div>

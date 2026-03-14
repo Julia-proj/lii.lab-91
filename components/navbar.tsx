@@ -53,7 +53,7 @@ export function Navbar() {
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
-            <Link
+            <a
               key={link.name}
               href={link.href}
               className={`text-sm font-medium tracking-wide transition-colors hover:text-[#CDB4DB] ${
@@ -61,7 +61,7 @@ export function Navbar() {
               }`}
             >
               {link.name}
-            </Link>
+            </a>
           ))}
 
           {/* Reservar CTA */}
@@ -128,9 +128,13 @@ export function Navbar() {
           <Link
             href="/booking"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="text-xs font-semibold bg-[#CDB4DB] text-white px-4 py-2 rounded-full hover:bg-[#bda0cb] transition-colors shadow-sm"
+            className={`text-xs font-semibold px-4 py-2 rounded-full transition-all duration-300 ${
+              isScrolled
+                ? "bg-[#B48EC5] text-white shadow-sm hover:bg-[#a37ab5]"
+                : "bg-white/15 backdrop-blur-sm border border-white/40 text-white hover:bg-white/25"
+            }`}
           >
-            Reservar
+            Reservar cita
           </Link>
           <button
             className="p-2"
@@ -160,14 +164,14 @@ export function Navbar() {
           {/* Links */}
           <div className="flex-1 flex flex-col justify-center px-8 space-y-2">
             {navLinks.map((link) => (
-              <Link
+              <a
                 key={link.name}
                 href={link.href}
                 className="text-2xl font-serif text-neutral-800 hover:text-[#CDB4DB] py-2 transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.name}
-              </Link>
+              </a>
             ))}
 
             {/* Auth links */}
