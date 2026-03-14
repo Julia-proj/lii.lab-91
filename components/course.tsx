@@ -49,7 +49,7 @@ export function Course() {
               <img
                 src="/images/Foto2.JPG"
                 alt="Curso Manicura"
-                className="relative z-10 rounded-lg shadow-xl w-full object-cover object-top h-[420px] sm:h-[500px] lg:h-[560px] transition-all duration-500"
+                className="relative z-10 rounded-lg shadow-xl w-full object-cover object-top h-[420px] sm:h-[560px] lg:h-[620px] transition-all duration-500"
               />
             </div>
           </div>
@@ -150,10 +150,10 @@ export function Course() {
         </div>
 
         {/* 3.4 Gallery */}
-        <div className="mt-24 fade-in-section">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="mt-12 md:mt-20 fade-in-section">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
             {gallery.map((src, idx) => (
-              <div key={idx} className="aspect-[4/5] overflow-hidden rounded-lg group">
+              <div key={idx} className="aspect-square sm:aspect-[4/5] overflow-hidden rounded-lg group">
                 <img
                   src={src || "/placeholder.svg"}
                   alt={`Gallery ${idx}`}

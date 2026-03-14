@@ -1,6 +1,6 @@
 "use client"
 
-import { Check, Book, Instagram } from "lucide-react"
+import { Check, Book, Instagram, ArrowRight, Sparkles } from "lucide-react"
 import Link from "next/link"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
@@ -71,7 +71,7 @@ export function Guide() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col gap-3">
             <button
               onClick={async () => {
                 if (!session) {
@@ -94,17 +94,27 @@ export function Guide() {
                 }
               }}
               disabled={loadingStripe}
-              className="inline-block w-full sm:w-auto px-10 py-4 bg-[#B48EC5] text-white font-semibold rounded-full hover:bg-[#a37ab5] transition-all duration-300 shadow-md hover:shadow-lg text-center disabled:opacity-60"
+              className="group w-full flex items-center justify-between px-7 py-5 bg-[#9B6AB5] hover:bg-[#8a5aa4] active:scale-[0.99] text-white rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-60"
+              style={{ boxShadow: "0 8px 32px rgba(155,106,181,0.45)" }}
             >
-              {loadingStripe ? "Cargando..." : "Consigue tu Guía al instante"}
+              <div className="flex items-center gap-3">
+                <Sparkles size={20} className="shrink-0" />
+                <div className="text-left">
+                  <p className="font-semibold text-base leading-tight">
+                    {loadingStripe ? "Cargando..." : "Consigue tu Guía"}
+                  </p>
+                  <p className="text-white/75 text-xs mt-0.5">Descarga inmediata · Pago único</p>
+                </div>
+              </div>
+              <ArrowRight size={20} className="shrink-0 group-hover:translate-x-1 transition-transform" />
             </button>
             <Link
               href="https://www.instagram.com/lii.lab/?hl=es"
               target="_blank"
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-10 py-4 border border-neutral-300 text-neutral-600 font-medium rounded-full hover:border-[#CDB4DB] hover:text-neutral-900 transition-all duration-300 text-center"
+              className="inline-flex items-center justify-center gap-2 w-full px-7 py-4 border border-neutral-200 text-neutral-500 font-medium rounded-2xl hover:border-[#CDB4DB] hover:text-neutral-900 transition-all duration-300"
             >
-              <Instagram size={18} />
-              Preguntar por Instagram
+              <Instagram size={17} />
+              <span className="text-sm">Preguntar por Instagram</span>
             </Link>
           </div>
         </div>

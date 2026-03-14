@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useSession, signOut } from "next-auth/react"
-import { Menu, X, ChevronDown, LogOut, LayoutDashboard, Shield } from "lucide-react"
+import { Menu, X, ChevronDown, LogOut, LayoutDashboard, Shield, ArrowRight } from "lucide-react"
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -67,9 +67,9 @@ export function Navbar() {
           {/* Reservar CTA */}
           <Link
             href="/booking"
-            className="text-sm font-medium bg-[#CDB4DB] text-neutral-900 px-4 py-1.5 rounded-full hover:bg-[#bda0cb] hover:text-white transition-colors"
+            className="text-sm font-medium bg-[#CDB4DB] text-neutral-900 px-5 py-2 rounded-full hover:bg-[#bda0cb] hover:text-white transition-colors"
           >
-            Reservar
+            Reservar cita
           </Link>
 
           {/* Auth section */}
@@ -152,52 +152,53 @@ export function Navbar() {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 w-full h-screen bg-white z-50 flex flex-col">
+        <div className="fixed inset-0 w-full h-screen bg-neutral-950 z-50 flex flex-col overflow-hidden">
+          {/* Decorative background glow */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#CDB4DB]/8 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-24 left-0 w-48 h-48 bg-[#CDB4DB]/5 rounded-full blur-3xl pointer-events-none" />
+
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-5 border-b border-neutral-100">
-            <span className="font-serif text-xl text-neutral-900">Lii.lab</span>
-            <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-neutral-500">
-              <X size={24} />
+          <div className="flex items-center justify-between px-6 py-5 border-b border-white/8 relative z-10">
+            <span className="font-serif text-xl text-white tracking-tight">Lii.lab</span>
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2 text-white/50 hover:text-white transition-colors"
+            >
+              <X size={22} />
             </button>
           </div>
 
           {/* Links */}
-          <div className="flex-1 flex flex-col justify-center px-8 space-y-2">
+          <div className="flex-1 flex flex-col justify-center px-7 relative z-10">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-2xl font-serif text-neutral-800 hover:text-[#CDB4DB] py-2 transition-colors"
+                className="group flex items-center justify-between py-5 border-b border-white/8 last:border-0"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {link.name}
+                <span className="text-3xl font-serif text-white group-hover:text-[#CDB4DB] transition-colors duration-200">
+                  {link.name}
+                </span>
+                <ArrowRight size={18} className="text-white/20 group-hover:text-[#CDB4DB] group-hover:translate-x-1 transition-all duration-200" />
               </a>
             ))}
 
-            {/* Auth links */}
-            <div className="pt-2 border-t border-neutral-100">
+            {/* Auth */}
+            <div className="pt-6">
               {session ? (
-                <div className="space-y-1 pt-2">
-                  {session.user?.role === "admin" ? (
-                    <Link
-                      href="/admin"
-                      className="block text-lg text-neutral-500 hover:text-[#CDB4DB] py-1.5 transition-colors"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Admin
-                    </Link>
-                  ) : (
-                    <Link
-                      href="/dashboard"
-                      className="block text-lg text-neutral-500 hover:text-[#CDB4DB] py-1.5 transition-colors"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Mi panel
-                    </Link>
-                  )}
+                <div className="flex items-center gap-4">
+                  <Link
+                    href={session.user?.role === "admin" ? "/admin" : "/dashboard"}
+                    className="text-sm text-white/40 hover:text-white/70 transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {session.user?.role === "admin" ? "Admin" : "Mi panel"}
+                  </Link>
+                  <span className="text-white/20">·</span>
                   <button
                     onClick={() => { signOut({ callbackUrl: "/" }); setIsMobileMenuOpen(false) }}
-                    className="text-lg text-red-400 py-1.5"
+                    className="text-sm text-white/40 hover:text-red-400 transition-colors"
                   >
                     Cerrar sesión
                   </button>
@@ -205,7 +206,7 @@ export function Navbar() {
               ) : (
                 <Link
                   href="/login"
-                  className="block text-lg text-neutral-500 hover:text-[#CDB4DB] py-1.5 pt-2 transition-colors"
+                  className="text-sm text-white/40 hover:text-white/70 transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Iniciar sesión
@@ -215,14 +216,18 @@ export function Navbar() {
           </div>
 
           {/* Bottom CTA */}
-          <div className="px-8 pb-10">
+          <div className="px-6 pb-10 relative z-10">
             <Link
               href="/booking"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block w-full text-center bg-[#B48EC5] hover:bg-[#a37ab5] text-white font-semibold py-4 rounded-2xl transition-colors shadow-md text-lg"
+              className="flex items-center justify-center gap-2 w-full bg-[#B48EC5] hover:bg-[#a37ab5] active:scale-[0.98] text-white font-semibold py-4 rounded-2xl transition-all duration-200 text-base shadow-lg"
+              style={{ boxShadow: "0 8px 30px rgba(180,142,197,0.3)" }}
             >
               Reservar cita
             </Link>
+            <p className="text-center text-white/25 text-xs mt-3 tracking-wide">
+              Formación profesional en manicura
+            </p>
           </div>
         </div>
       )}

@@ -76,3 +76,17 @@
 [23:21:27.362] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
 [23:21:41.656] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [23:21:43.374] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:23:24.721] Server  LOG     ✓ Compiled in 19.4s
+[23:23:59.934] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:26:09.987] Server  LOG     ○ Compiling /api/stripe/checkout ...
+[23:28:04.078] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[23:28:21.712] Server  LOG     ○ Compiling /admin/bookings ...
+[23:29:33.972] Server  LOG     ✓ Compiled in 2.8s
+[23:29:40.609] Server  LOG     ✓ Compiled in 1095ms
+[23:30:07.520] Server  LOG     ✓ Compiled in 5.1s
+[23:30:16.995] Server  LOG     ✓ Compiled in 4.6s
+[23:30:37.509] Server  LOG     ✓ Compiled in 3.3s
+[23:31:44.081] Server  LOG     ✓ Finished filesystem cache database compaction in 3.2min
+[23:31:45.178] Server  LOG     ✓ Finished writing to filesystem cache in 2.2min
+[23:33:14.973] Server  LOG     ✓ Compiled in 1248ms
+[23:33:22.921] Server  LOG     ✓ Compiled in 2.7s
