@@ -1,27 +1,33 @@
-import Link from "next/link"
 import { ArrowRight, BookOpen } from "lucide-react"
-
 
 export function Hero() {
   return (
-    <section id="hero" className="relative min-h-[100svh] flex items-start">
-      {/* Background Image with Gradient Overlay */}
+    <section
+      id="hero"
+      className="relative min-h-[100svh] lg:max-h-[900px] flex flex-col justify-end"
+    >
+      {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img src="/images/Hero.JPG" alt="Lii.lab beauty studio" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-black/20 md:bg-gradient-to-r md:from-black/70 md:via-black/40 md:to-transparent" />
+        <img
+          src="/images/Hero.JPG"
+          alt="Lii.lab beauty studio"
+          className="w-full h-full object-cover"
+          style={{ objectPosition: "center 30%" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/10 md:bg-gradient-to-r md:from-black/65 md:via-black/30 md:to-transparent" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 pt-28 sm:pt-32 pb-16">
-        <div className="max-w-2xl text-white fade-in-section">
-          <span className="inline-block py-1.5 px-4 border border-white/30 rounded-full text-xs tracking-widest uppercase mb-5 backdrop-blur-sm font-light">
+      <div className="container mx-auto px-6 relative z-10 pb-20 sm:pb-28">
+        <div className="max-w-xl text-white fade-in-section">
+          <span className="inline-block py-1.5 px-4 border border-white/25 rounded-full text-xs tracking-widest uppercase mb-4 backdrop-blur-sm text-white/60 font-light">
             MANIC 0.0
           </span>
 
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif leading-tight mb-5 md:mb-8 text-white">
-            Formación profesional<br className="hidden sm:inline" /> en manicura
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif leading-[1.1] mb-4 md:mb-6 text-white">
+            Formación profesional<br /> en manicura
           </h1>
 
-          <p className="text-base sm:text-lg md:text-xl text-gray-200 mb-8 md:mb-12 max-w-lg leading-relaxed font-light">
+          <p className="text-sm sm:text-base md:text-lg text-gray-200/90 mb-8 max-w-sm md:max-w-lg leading-relaxed font-light">
             Formación y guía metodológica para manicuristas que quieren trabajar con precisión, rapidez y método.
           </p>
 
@@ -36,7 +42,7 @@ export function Hero() {
             </a>
             <a
               href="#guia"
-              className="px-8 py-4 bg-transparent border border-white/80 text-white font-medium rounded-full hover:bg-white hover:text-neutral-900 transition-all duration-300 text-center backdrop-blur-sm"
+              className="px-8 py-4 bg-transparent border border-white/60 text-white font-medium rounded-full hover:bg-white hover:text-neutral-900 transition-all duration-300 text-center backdrop-blur-sm"
             >
               Guía Metodológica
             </a>

@@ -15,6 +15,7 @@ import {
   Microscope,
 } from "lucide-react"
 import Link from "next/link"
+import { CourseDatesPreview } from "./course/course-dates-preview"
 
 export function Course() {
   const features = [
@@ -83,13 +84,13 @@ export function Course() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start fade-in-section">
           {/* 3.3 Info Card */}
           <div className="lg:col-span-5">
-            <div className="bg-[#F3F4F6] text-neutral-900 p-8 rounded-2xl shadow-sm border border-gray-200 relative overflow-hidden">
+            <div className="bg-[#FAF8F5] text-neutral-900 p-8 rounded-2xl shadow-sm border border-neutral-200/60 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#CDB4DB] rounded-full blur-3xl opacity-10 -mr-16 -mt-16"></div>
 
               <h3 className="text-2xl font-serif mb-4 relative z-10">Información del curso</h3>
 
               {/* Preview video */}
-              <div className="relative z-10 mb-7 rounded-xl overflow-hidden shadow-sm border border-gray-200/60">
+              <div className="relative z-10 mb-7 rounded-xl overflow-hidden shadow-sm ring-1 ring-black/5">
                 <video
                   autoPlay
                   loop
@@ -108,7 +109,9 @@ export function Course() {
                 <InfoRow icon={UserCheck} label="Incluye" text="Kit + Guía Metodológica" />
               </div>
 
-              <div className="mt-10 relative z-10">
+              <CourseDatesPreview />
+
+              <div className="mt-5 relative z-10">
                 <Link
                   href="/booking/course"
                   className="group w-full bg-[#B48EC5] text-white text-center py-4 rounded-lg font-semibold hover:bg-[#a37ab5] transition-colors shadow-sm hover:shadow-md flex items-center justify-center gap-2"
@@ -184,9 +187,9 @@ function InfoRow({ icon: Icon, label, text }: { icon: any; label: string; text: 
 
 function DayItem({ day, title, children }: { day: string; title: string; children: React.ReactNode }) {
   return (
-    <div className="bg-gray-50 p-6 rounded-xl border border-transparent hover:border-[#CDB4DB]/50 transition-colors">
+    <div className="bg-white p-6 rounded-xl shadow-sm border border-neutral-100 hover:border-[#CDB4DB]/40 transition-colors">
       <div className="flex items-center gap-4 mb-2">
-        <span className="text-3xl font-serif text-[#CDB4DB] font-bold">{day}</span>
+        <span className="text-5xl font-serif text-neutral-300 font-bold leading-none">{day}</span>
         <h4 className="text-xl font-medium text-neutral-900">{title}</h4>
       </div>
       {children}

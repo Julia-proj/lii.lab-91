@@ -132,6 +132,7 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     overflow-x: hidden;
+    line-height: 1.7;
   }
 
   h1,

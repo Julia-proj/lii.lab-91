@@ -1,92 +1,49 @@
-[00:01:14.376] Server  LOG     ○ Compiling middleware ...
-[00:01:35.830] Server  WARN    ⚠ Minimum recommended TypeScript version is v5.1.0, older versions can potentially be incompatible with Next.js. Detected: 5.0.2
-[00:01:36.076] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:01:52.906] Server  LOG     ✓ Ready in 92.1s
-[00:01:57.963] Server  LOG     ○ Compiling / ...
-[00:04:01.883] Server  LOG     ○ Compiling /_not-found/page ...
-[00:04:09.997] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:10.763] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:17.024] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:05:18.432] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:05:42.480] Server  LOG     ○ Compiling /api/bookings ...
-[00:05:44.950] Server  WARN    WhatsApp not configured: no Twilio or CallMeBot credentials
-[00:05:44.952] Server  WARN    WhatsApp not configured: no Twilio or CallMeBot credentials
-[00:05:45.840] Server  ERROR   Error sending email: Error: Missing credentials for "PLAIN"
-[00:05:45.957] Server  ERROR   Error al enviar notificacion (canal 0): Error: Missing credentials for "PLAIN"
-[00:06:24.554] Server  LOG     ○ Compiling /api/bookings/[id] ...
-[00:06:52.028] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:06:58.183] Server  LOG     ○ Compiling /login ...
-[00:07:03.999] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:09:27.673] Server  WARN    WhatsApp not configured: no Twilio or CallMeBot credentials
-[00:09:27.675] Server  WARN    WhatsApp not configured: no Twilio or CallMeBot credentials
-[00:09:27.902] Server  ERROR   Error sending email: Error: Missing credentials for "PLAIN"
-[00:09:27.927] Server  ERROR   Error al enviar notificacion (canal 0): Error: Missing credentials for "PLAIN"
-[00:11:39.928] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:14:22.670] Server  WARN    WhatsApp not configured: no Twilio or CallMeBot credentials
-[00:14:22.671] Server  WARN    WhatsApp not configured: no Twilio or CallMeBot credentials
-[00:14:22.886] Server  ERROR   Error sending email: Error: Missing credentials for "PLAIN"
-[00:52:38.470] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:14:57.049] Server  LOG     ✓ Compiled in 17.7s
-[01:15:11.254] Server  LOG     ✓ Finished writing to filesystem cache in 10.6s
-[01:17:58.392] Server  LOG     ✓ Finished writing to filesystem cache in 44s
-[01:18:37.535] Server  LOG     ✓ Compiled in 183s
-[01:18:45.088] Server  LOG     ✓ Compiled in 8.4s
-[01:18:46.682] Server  LOG     ✓ Compiled in 1021ms
-[01:18:59.471] Server  LOG     ✓ Compiled in 5.5s
-[01:19:05.186] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:19:07.304] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:21:31.394] Server  LOG     ✓ Finished writing to filesystem cache in 3.0min
-[01:21:42.660] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:29:12.367] Server  LOG     ✓ Finished filesystem cache database compaction in 7.7min
-[01:29:15.845] Server  LOG     ✓ Finished writing to filesystem cache in 7.8min
-[20:52:04.319] Server  LOG     ✓ Finished writing to filesystem cache in 45s
-[20:56:02.264] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[21:05:57.699] Server  LOG     ✓ Compiled in 785ms
-[21:06:03.772] Server  LOG     ✓ Compiled in 355ms
-[21:06:08.532] Server  LOG     ✓ Compiled in 641ms
-[21:06:14.938] Server  LOG     ✓ Compiled in 479ms
-[21:06:22.735] Server  LOG     ✓ Compiled in 740ms
-[21:06:27.386] Server  LOG     ✓ Compiled in 377ms
-[21:06:36.282] Server  LOG     ✓ Compiled in 4.7s
-[21:06:45.236] Server  LOG     ✓ Compiled in 537ms
-[21:06:53.347] Server  LOG     ✓ Compiled in 3.2s
-[21:06:55.810] Server  LOG     ✓ Compiled in 562ms
-[21:07:00.018] Server  LOG     ✓ Compiled in 523ms
-[21:07:09.218] Server  LOG     ✓ Compiled in 413ms
-[21:07:30.121] Server  LOG     ✓ Compiled in 12.9s
-[21:11:39.298] Server  LOG     ✓ Compiled in 863ms
-[21:11:46.887] Server  LOG     ✓ Compiled in 593ms
-[21:11:55.357] Server  LOG     ✓ Compiled in 1415ms
-[21:12:03.409] Server  LOG     ✓ Compiled in 4.8s
-[21:12:08.040] Server  LOG     ✓ Compiled in 1335ms
-[21:13:50.004] Server  LOG     ✓ Finished filesystem cache database compaction in 110s
-[21:13:50.731] Server  LOG     ✓ Finished writing to filesystem cache in 105s
-[21:16:05.974] Server  LOG     ✓ Compiled in 354ms
-[21:16:14.744] Server  LOG     ✓ Compiled in 999ms
-[21:16:30.469] Server  LOG     ✓ Compiled in 512ms
-[21:16:35.952] Server  LOG     ✓ Compiled in 369ms
-[21:16:42.971] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[22:52:18.668] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[23:06:09.470] Server  LOG     ○ Compiling /_error ...
-[23:06:16.326] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[23:07:13.823] Server  LOG     ✓ Finished writing to filesystem cache in 15.8s
-[23:09:07.107] Server  LOG     ✓ Finished writing to filesystem cache in 41s
-[23:14:21.274] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[23:21:23.012] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[23:21:27.362] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[23:21:41.656] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[23:21:43.374] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[23:23:24.721] Server  LOG     ✓ Compiled in 19.4s
-[23:23:59.934] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[23:26:09.987] Server  LOG     ○ Compiling /api/stripe/checkout ...
-[23:28:04.078] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[23:28:21.712] Server  LOG     ○ Compiling /admin/bookings ...
-[23:29:33.972] Server  LOG     ✓ Compiled in 2.8s
-[23:29:40.609] Server  LOG     ✓ Compiled in 1095ms
-[23:30:07.520] Server  LOG     ✓ Compiled in 5.1s
-[23:30:16.995] Server  LOG     ✓ Compiled in 4.6s
-[23:30:37.509] Server  LOG     ✓ Compiled in 3.3s
-[23:31:44.081] Server  LOG     ✓ Finished filesystem cache database compaction in 3.2min
-[23:31:45.178] Server  LOG     ✓ Finished writing to filesystem cache in 2.2min
-[23:33:14.973] Server  LOG     ✓ Compiled in 1248ms
-[23:33:22.921] Server  LOG     ✓ Compiled in 2.7s
+[00:03:41.626] Server  LOG     ○ Compiling middleware ...
+[00:04:17.149] Server  WARN    ⚠ Minimum recommended TypeScript version is v5.1.0, older versions can potentially be incompatible with Next.js. Detected: 5.0.2
+[00:04:17.356] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:04:48.919] Server  LOG     ✓ Ready in 226.8s
+[00:04:52.002] Server  LOG     ○ Compiling / ...
+[00:06:53.153] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:55.691] Browser ERROR   {"kind":"error","name":"ClientFetchError","type":"AuthError"}
+[00:06:57.382] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:57.484] Browser ERROR   {"kind":"error","name":"ClientFetchError","type":"AuthError"}
+[00:06:59.517] Browser ERROR   {"kind":"error","name":"ClientFetchError","type":"AuthError"}
+[00:06:59.702] Browser ERROR   {"kind":"error","name":"ClientFetchError","type":"AuthError"}
+[00:15:16.218] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:15:16.606] Browser ERROR   {"kind":"error","name":"ClientFetchError","type":"AuthError"}
+[00:15:16.606] Browser ERROR   {"kind":"error","name":"ClientFetchError","type":"AuthError"}
+[00:18:01.249] Server  LOG     ✓ Compiled in 14.2s
+[00:18:28.140] Server  LOG       Reload env: .env.local
+[00:18:28.355] Server  LOG       Reload env: .env.local
+[00:18:35.957] Server  LOG     ✓ Compiled in 6.5s
+[00:19:29.222] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:19:32.369] Server  LOG     ○ Compiling /api/auth/[...nextauth] ...
+[00:20:45.267] Server  ERROR   [auth][error] JWTSessionError: Read more at https://errors.authjs.dev#jwtsessionerror
+[00:20:45.464] Server  ERROR   [auth][cause]: "Error: no matching decryption secret\n    at clockTolerance (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\.next\\dev\\server\\chunks\\90449_@auth_core_efd5ec22._.js:915:15)\n    at async flattenedDecrypt (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\.next\\dev\\server\\chunks\\f54b7_jose_dist_webapi_b9c92e68._.js:3329:15)\n    at async compactDecrypt (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\.next\\dev\\server\\chunks\\f54b7_jose_dist_webapi_b9c92e68._.js:3418:23)\n    at async jwtDecrypt (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\.next\\dev\\server\\chunks\\f54b7_jose_dist_webapi_b9c92e68._.js:3452:23)\n    at async Object.decode (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\.next\\dev\\server\\chunks\\90449_@auth_core_efd5ec22._.js:905:25)\n    at async Module.session (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\.next\\dev\\server\\chunks\\90449_@auth_core_efd5ec22._.js:4546:29)\n    at async AuthInternal (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\.next\\dev\\server\\chunks\\90449_@auth_core_efd5ec22._.js:5131:24)\n    at async Auth (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\.next\\dev\\server\\chunks\\90449_@auth_core_efd5ec22._.js:5370:34)\n    at async AppRouteRouteModule.do (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\node_modules\\.pnpm\\next@16.1.6_react-dom@19.2.0_react@19.2.0__react@19.2.0\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.dev.js:5:37866)\n    at async AppRouteRouteModule.handle (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\node_modules\\.pnpm\\next@16.1.6_react-dom@19.2.0_react@19.2.0__react@19.2.0\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.dev.js:5:45156)\n    at async responseGenerator (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\.next\\dev\\server\\chunks\\02768_next_7813760d._.js:17148:38)\n    at async AppRouteRouteModule.handleResponse (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\node_modules\\.pnpm\\next@16.1.6_react-dom@19.2.0_react@19.2.0__react@19.2.0\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.dev.js:1:191938)\n    at async handleResponse (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\.next\\dev\\server\\chunks\\02768_next_7813760d._.js:17211:32)\n    at async Module.handler (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\.next\\dev\\server\\chunks\\02768_next_7813760d._.js:17264:13)\n    at async DevServer.renderToResponseWithComponentsImpl (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\node_modules\\.pnpm\\next@16.1.6_react-dom@19.2.0_react@19.2.0__react@19.2.0\\node_modules\\next\\dist\\server\\base-server.js:1442:9)\n    at async DevServer.renderPageComponent (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\node_modules\\.pnpm\\next@16.1.6_react-dom@19.2.0_react@19.2.0__react@19.2.0\\node_modules\\next\\dist\\server\\base-server.js:1494:24)\n    at async DevServer.renderToResponseImpl (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\node_modules\\.pnpm\\next@16.1.6_react-dom@19.2.0_react@19.2.0__react@19.2.0\\node_modules\\next\\dist\\server\\base-server.js:1544:32)\n    at async DevServer.pipeImpl (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\node_modules\\.pnpm\\next@16.1.6_react-dom@19.2.0_react@19.2.0__react@19.2.0\\node_modules\\next\\dist\\server\\base-server.js:1038:25)\n    at async NextNodeServer.handleCatchallRenderRequest (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\node_modules\\.pnpm\\next@16.1.6_react-dom@19.2.0_react@19.2.0__react@19.2.0\\node_modules\\next\\dist\\server\\next-server.js:395:17)\n    at async DevServer.handleRequestImpl (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\node_modules\\.pnpm\\next@16.1.6_react-dom@19.2.0_react@19.2.0__react@19.2.0\\node_modules\\next\\dist\\server\\base-server.js:929:17)\n    at async C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\node_modules\\.pnpm\\next@16.1.6_react-dom@19.2.0_react@19.2.0__react@19.2.0\\node_modules\\next\\dist\\server\\dev\\next-dev-server.js:387:20\n    at async Span.traceAsyncFn (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\node_modules\\.pnpm\\next@16.1.6_react-dom@19.2.0_react@19.2.0__react@19.2.0\\node_modules\\next\\dist\\trace\\trace.js:157:20)\n    at async DevServer.handleRequest (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\node_modules\\.pnpm\\next@16.1.6_react-dom@19.2.0_react@19.2.0__react@19.2.0\\node_modules\\next\\dist\\server\\dev\\next-dev-server.js:383:24)\n    at async invokeRender (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\node_modules\\.pnpm\\next@16.1.6_react-dom@19.2.0_react@19.2.0__react@19.2.0\\node_modules\\next\\dist\\server\\lib\\router-server.js:248:21)\n    at async handleRequest (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\node_modules\\.pnpm\\next@16.1.6_react-dom@19.2.0_react@19.2.0__react@19.2.0\\node_modules\\next\\dist\\server\\lib\\router-server.js:447:24)\n    at async requestHandlerImpl (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\node_modules\\.pnpm\\next@16.1.6_react-dom@19.2.0_react@19.2.0__react@19.2.0\\node_modules\\next\\dist\\server\\lib\\router-server.js:496:13)\n    at async Server.requestListener (C:\\Users\\Julee\\Desktop\\projects(post-grad-bootcamp)\\Lili-lab\\lii.lab-91\\node_modules\\.pnpm\\next@16.1.6_react-dom@19.2.0_react@19.2.0__react@19.2.0\\node_modules\\next\\dist\\server\\lib\\start-server.js:226:13)"
+[00:20:45.469] Server  ERROR   [auth][details]: "{}"
+[00:23:02.581] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:24:45.162] Server  LOG     ✓ Compiled in 1323ms
+[00:26:09.330] Server  LOG     ✓ Compiled in 265ms
+[00:26:18.208] Server  LOG     ✓ Finished filesystem cache database compaction in 77s
+[00:27:17.741] Server  LOG     ✓ Compiled in 253ms
+[00:27:44.166] Server  LOG     ○ Compiling /booking/course ...
+[00:28:12.289] Server  LOG     ○ Compiling /api/course-availability ...
+[00:28:18.566] Server  ERROR   Error fetching course availability: Error: MONGO_URI is not defined in environment variables
+[00:28:20.303] Server  ERROR   Error fetching course availability: Error: MONGO_URI is not defined in environment variables
+[00:31:55.160] Server  LOG     ✓ Compiled in 1464ms
+[00:32:11.171] Server  LOG     ✓ Compiled in 1138ms
+[00:32:17.009] Server  LOG     ✓ Compiled in 972ms
+[00:32:27.676] Server  LOG     ✓ Compiled in 3.4s
+[00:32:28.021] Server  ERROR   Error fetching course availability: Error: MONGO_URI is not defined in environment variables
+[00:32:28.319] Server  ERROR   Error fetching course availability: Error: MONGO_URI is not defined in environment variables
+[00:32:28.810] Server  ERROR   Error fetching course availability: Error: MONGO_URI is not defined in environment variables
+[00:32:29.618] Server  ERROR   Error fetching course availability: Error: MONGO_URI is not defined in environment variables
+[00:36:06.007] Server  LOG     ✓ Compiled in 1749ms
+[00:36:23.220] Server  ERROR   Error fetching course availability: Error: MONGO_URI is not defined in environment variables
+[00:36:23.530] Server  ERROR   Error fetching course availability: Error: MONGO_URI is not defined in environment variables
+[00:36:40.507] Server  ERROR   Error fetching course availability: Error: MONGO_URI is not defined in environment variables
+[00:36:40.822] Server  ERROR   Error fetching course availability: Error: MONGO_URI is not defined in environment variables
+[00:36:59.919] Server  ERROR   Error fetching course availability: Error: MONGO_URI is not defined in environment variables
+[00:37:00.637] Server  ERROR   Error fetching course availability: Error: MONGO_URI is not defined in environment variables
+[00:37:01.732] Server  ERROR   Error fetching services: Error: MONGO_URI is not defined in environment variables
+[00:37:01.921] Server  ERROR   Error fetching services: Error: MONGO_URI is not defined in environment variables

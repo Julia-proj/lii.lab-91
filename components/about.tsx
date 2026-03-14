@@ -7,11 +7,12 @@ export function About() {
         <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
           {/* Image Column - With text overlay for style */}
           <div className="w-full md:w-1/2 relative group fade-in-section">
-            <div className="relative h-[300px] md:h-[500px] w-full overflow-hidden rounded-lg shadow-xl">
+            <div className="relative h-[280px] sm:h-[380px] md:h-[500px] w-full overflow-hidden rounded-lg shadow-xl">
               <img
                 src="/images/Foto7.JPG"
                 alt="Lili"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform"
+                style={{ objectPosition: "center 15%" }}
               />
               {/* Stylish text overlay */}
               <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/60 via-transparent to-transparent">
@@ -27,7 +28,7 @@ export function About() {
 
           {/* Text Column */}
           <div className="w-full md:w-1/2 space-y-8 fade-in-section">
-            <h2 className="text-4xl md:text-5xl font-serif text-neutral-900 mb-6">Quién soy</h2>
+            <h2 className="text-4xl md:text-5xl font-serif text-neutral-950 tracking-tight mb-6">Quién soy</h2>
 
             <div className="prose prose-lg text-neutral-600 leading-relaxed font-light">
               <p>
@@ -49,7 +50,7 @@ export function About() {
                   <BookOpen size={24} className="text-[#8e7f97]" />
                 </div>
                 <div>
-                  <h3 className="font-serif font-bold text-neutral-900 text-lg mb-1">Formación continua</h3>
+                  <h3 className="font-sans font-semibold text-neutral-800 text-base mb-1">Formación continua</h3>
                   <p className="text-neutral-600 text-base leading-relaxed font-light">
                     Método propio creado después de años de práctica real en cabina.
                   </p>
@@ -61,7 +62,7 @@ export function About() {
                   <Target size={24} className="text-[#8e7f97]" />
                 </div>
                 <div>
-                  <h3 className="font-serif font-bold text-neutral-900 text-lg mb-1">Precisión</h3>
+                  <h3 className="font-sans font-semibold text-neutral-800 text-base mb-1">Precisión</h3>
                   <p className="text-neutral-600 text-base leading-relaxed font-light">
                     Técnica exacta y detallada que evita retrabajos y garantiza resultados limpios.
                   </p>
@@ -73,7 +74,7 @@ export function About() {
                   <Zap size={24} className="text-[#8e7f97]" />
                 </div>
                 <div>
-                  <h3 className="font-serif font-bold text-neutral-900 text-lg mb-1">Rapidez</h3>
+                  <h3 className="font-sans font-semibold text-neutral-800 text-base mb-1">Rapidez</h3>
                   <p className="text-neutral-600 text-base leading-relaxed font-light">
                     Optimización de tiempos sin perder calidad.
                   </p>
@@ -85,7 +86,7 @@ export function About() {
                   <ClipboardList size={24} className="text-[#8e7f97]" />
                 </div>
                 <div>
-                  <h3 className="font-serif font-bold text-neutral-900 text-lg mb-1">Metodología</h3>
+                  <h3 className="font-sans font-semibold text-neutral-800 text-base mb-1">Metodología</h3>
                   <p className="text-neutral-600 text-base leading-relaxed font-light">
                     Sistema claro y estructurado que facilita aprender, replicar y trabajar sin improvisaciones.
                   </p>

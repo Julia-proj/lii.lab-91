@@ -21,7 +21,7 @@ export function Contact() {
           </Link>
           <Link
             href="#guia"
-            className="inline-flex items-center justify-center gap-3 px-8 py-4 sm:px-10 sm:py-5 bg-neutral-900 text-white rounded-full hover:bg-[#CDB4DB] hover:text-neutral-900 transition-all duration-300 group shadow-xl hover:shadow-2xl"
+            className="inline-flex items-center justify-center gap-3 px-8 py-4 sm:px-10 sm:py-5 bg-neutral-900 text-white rounded-full hover:bg-neutral-800 transition-all duration-300 group shadow-xl hover:shadow-2xl"
           >
             <BookOpen size={20} />
             <span className="text-base sm:text-lg font-medium">Conseguir la guía</span>

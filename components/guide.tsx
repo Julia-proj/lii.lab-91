@@ -51,11 +51,11 @@ export function Guide() {
             </div>
             <div className="p-8">
               <h3 className="text-xl font-serif mb-6 text-neutral-900">Contenido principal</h3>
-              <ul className="space-y-4">
+              <ul className="space-y-3">
                 {contents.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 group">
-                    <div className="mt-1 shrink-0 w-6 h-6 rounded-full bg-[#e8f5e9] flex items-center justify-center group-hover:bg-[#c8e6c9] transition-colors border border-[#a5d6a7]">
-                      <Check size={14} className="text-[#2e7d32]" strokeWidth={2.5} />
+                    <div className="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-green-50 flex items-center justify-center group-hover:bg-green-100 transition-colors border border-green-200">
+                      <Check size={12} className="text-[#2e7d32]" strokeWidth={2.5} />
                     </div>
                     <span className="text-neutral-700 font-medium">{item}</span>
                   </li>
@@ -94,8 +94,8 @@ export function Guide() {
                 }
               }}
               disabled={loadingStripe}
-              className="group w-full flex items-center justify-between px-7 py-5 bg-[#9B6AB5] hover:bg-[#8a5aa4] active:scale-[0.99] text-white rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-60"
-              style={{ boxShadow: "0 8px 32px rgba(155,106,181,0.45)" }}
+              className="group w-full flex items-center justify-between px-7 py-5 rounded-2xl transition-all duration-300 shadow-md hover:shadow-lg active:scale-[0.99] disabled:opacity-60 bg-[#7B4FAC] hover:bg-[#6B3F9C] text-white"
+              style={{ boxShadow: "0 4px 20px rgba(123,79,172,0.35)" }}
             >
               <div className="flex items-center gap-3">
                 <Sparkles size={20} className="shrink-0" />
@@ -111,7 +111,7 @@ export function Guide() {
             <Link
               href="https://www.instagram.com/lii.lab/?hl=es"
               target="_blank"
-              className="inline-flex items-center justify-center gap-2 w-full px-7 py-4 border border-neutral-200 text-neutral-500 font-medium rounded-2xl hover:border-[#CDB4DB] hover:text-neutral-900 transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 w-full px-7 py-4 border border-neutral-200 text-neutral-500 font-medium rounded-2xl hover:border-neutral-400 hover:text-neutral-900 hover:bg-neutral-50/50 transition-all duration-300"
             >
               <Instagram size={17} />
               <span className="text-sm">Preguntar por Instagram</span>
