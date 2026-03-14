@@ -5,6 +5,8 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Calendar, Clock, Euro, CheckCircle } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 interface ServiceData {
   name: string
   price: number
@@ -16,15 +18,25 @@ export default async function ConfirmationPage({
 }: {
   params: Promise<{ id: string }>
 }) {
-  const session = await auth()
+  let session = null
+  try {
+    session = await auth()
+  } catch {
+    redirect('/login')
+  }
   if (!session) redirect('/login')
 
   const { id } = await params
-  await dbConnect()
 
-  const booking = await Booking.findById(id)
-    .populate('services', 'name category price duration')
-    .lean()
+  let booking = null
+  try {
+    await dbConnect()
+    booking = await Booking.findById(id)
+      .populate('services', 'name category price duration')
+      .lean()
+  } catch {
+    // DB error — show fallback
+  }
 
   if (!booking) {
     return (
