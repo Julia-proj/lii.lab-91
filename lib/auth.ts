@@ -1,5 +1,4 @@
 import NextAuth from 'next-auth'
-import Google from 'next-auth/providers/google'
 import Credentials from 'next-auth/providers/credentials'
 import { authConfig } from './auth.config'
 import { dbConnect } from './db'
@@ -8,10 +7,6 @@ import User from '@/models/User'
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
   providers: [
-    Google({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
     Credentials({
       credentials: {
         email: { label: 'Email', type: 'email' },
@@ -43,32 +38,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (user) {
         token.role = user.role || 'user'
         token.id = user.id
-      }
-
-      // On Google sign-in, upsert the user in MongoDB
-      if (account?.provider === 'google') {
-        await dbConnect()
-        const existing = await User.findOne({ email: token.email })
-        if (!existing) {
-          const newUser = await User.create({
-            name: token.name,
-            email: token.email,
-            googleId: account.providerAccountId,
-            role: 'user',
-            image: token.picture,
-          })
-          token.id = newUser._id.toString()
-          token.role = 'user'
-        } else {
-          token.id = existing._id.toString()
-          token.role = existing.role
-          // Update Google ID if missing
-          if (!existing.googleId) {
-            existing.googleId = account.providerAccountId
-            existing.image = token.picture || existing.image
-            await existing.save()
-          }
-        }
       }
 
       // Re-read role from DB on every token refresh to prevent stale admin roles
