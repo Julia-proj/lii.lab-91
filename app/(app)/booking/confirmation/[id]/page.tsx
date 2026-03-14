@@ -1,5 +1,6 @@
 import { dbConnect } from '@/lib/db'
 import Booking from '@/models/Booking'
+import '@/models/Service'
 import { auth } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
