@@ -47,3 +47,8 @@
 [00:37:00.637] Server  ERROR   Error fetching course availability: Error: MONGO_URI is not defined in environment variables
 [00:37:01.732] Server  ERROR   Error fetching services: Error: MONGO_URI is not defined in environment variables
 [00:37:01.921] Server  ERROR   Error fetching services: Error: MONGO_URI is not defined in environment variables
+[00:47:42.555] Server  LOG     ✓ Compiled in 20.4s
+[00:47:42.961] Server  ERROR   Error fetching services: Error: MONGO_URI is not defined in environment variables
+[00:47:43.213] Server  ERROR   Error fetching services: Error: MONGO_URI is not defined in environment variables
+[00:47:58.439] Server  LOG     ✓ Finished writing to filesystem cache in 15.8s
+[00:54:49.292] Server  LOG       Reload env: .env.local

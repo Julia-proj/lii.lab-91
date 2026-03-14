@@ -96,6 +96,7 @@ export function Course() {
                   loop
                   muted
                   playsInline
+                  preload="metadata"
                   className="w-full aspect-video object-cover"
                 >
                   <source src="/videos/curso.mp4" type="video/mp4" />

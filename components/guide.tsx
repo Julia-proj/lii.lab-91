@@ -44,6 +44,7 @@ export function Guide() {
                 loop
                 muted
                 playsInline
+                preload="metadata"
                 className="w-full aspect-video object-cover rounded-xl"
               >
                 <source src="/videos/guia.mp4" type="video/mp4" />
