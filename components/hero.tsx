@@ -4,7 +4,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[100svh] lg:max-h-[900px] flex flex-col justify-end"
+      className="relative min-h-[100svh] lg:max-h-[900px] flex flex-col justify-between"
     >
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
@@ -17,12 +17,16 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/10 md:bg-gradient-to-r md:from-black/65 md:via-black/30 md:to-transparent" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 pb-20 sm:pb-28">
-        <div className="max-w-xl text-white fade-in-section">
-          <span className="inline-block py-1.5 px-4 border border-white/25 rounded-full text-xs tracking-widest uppercase mb-4 backdrop-blur-sm text-white/60 font-light">
-            MANIC 0.0
-          </span>
+      {/* Badge — top left */}
+      <div className="container mx-auto px-6 relative z-10 pt-24 sm:pt-28">
+        <span className="inline-block py-1.5 px-4 border border-white/25 rounded-full text-xs tracking-widest uppercase backdrop-blur-sm text-white/60 font-light">
+          MANIC 0.0
+        </span>
+      </div>
 
+      {/* Main content — bottom, slightly raised */}
+      <div className="container mx-auto px-6 relative z-10 pb-14 sm:pb-20 md:pb-24">
+        <div className="max-w-xl text-white fade-in-section">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif leading-[1.1] mb-4 md:mb-6 text-white">
             Formación profesional<br /> en manicura
           </h1>
