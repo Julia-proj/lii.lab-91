@@ -599,6 +599,10 @@
     top: 50%;
   }
 
+  .top-\[72px\] {
+    top: 72px;
+  }
+
   .top-full {
     top: 100%;
   }
@@ -1034,6 +1038,10 @@
     height: calc(var(--spacing) * 32);
   }
 
+  .h-\[100svh\] {
+    height: 100svh;
+  }
+
   .h-\[280px\] {
     height: 280px;
   }
@@ -1072,6 +1080,10 @@
 
   .max-h-\(--radix-select-content-available-height\) {
     max-height: var(--radix-select-content-available-height);
+  }
+
+  .max-h-\[900px\] {
+    max-height: 900px;
   }
 
   .min-h-16 {
@@ -2240,6 +2252,10 @@
     padding-block: calc(var(--spacing) * 3);
   }
 
+  .py-3\.5 {
+    padding-block: calc(var(--spacing) * 3.5);
+  }
+
   .py-4 {
     padding-block: calc(var(--spacing) * 4);
   }
@@ -2326,6 +2342,10 @@
 
   .pb-10 {
     padding-bottom: calc(var(--spacing) * 10);
+  }
+
+  .pb-12 {
+    padding-bottom: calc(var(--spacing) * 12);
   }
 
   .pb-14 {
@@ -4126,8 +4146,26 @@
   }
 
   @media (min-width: 40rem) {
+    .sm\:top-\[80px\] {
+      top: 80px;
+    }
+  }
+
+  @media (min-width: 40rem) {
     .sm\:col-span-2 {
       grid-column: span 2 / span 2;
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .sm\:mb-5 {
+      margin-bottom: calc(var(--spacing) * 5);
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .sm\:mb-8 {
+      margin-bottom: calc(var(--spacing) * 8);
     }
   }
 
@@ -4270,8 +4308,20 @@
   }
 
   @media (min-width: 40rem) {
+    .sm\:px-8 {
+      padding-inline: calc(var(--spacing) * 8);
+    }
+  }
+
+  @media (min-width: 40rem) {
     .sm\:px-10 {
       padding-inline: calc(var(--spacing) * 10);
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .sm\:py-4 {
+      padding-block: calc(var(--spacing) * 4);
     }
   }
 
@@ -4290,6 +4340,12 @@
   @media (min-width: 40rem) {
     .sm\:pt-28 {
       padding-top: calc(var(--spacing) * 28);
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .sm\:pb-16 {
+      padding-bottom: calc(var(--spacing) * 16);
     }
   }
 
@@ -4457,6 +4513,12 @@
   @media (min-width: 48rem) {
     .md\:py-28 {
       padding-block: calc(var(--spacing) * 28);
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:pb-20 {
+      padding-bottom: calc(var(--spacing) * 20);
     }
   }
 
