@@ -2,15 +2,10 @@
 
 import { Check, Book, Instagram, ArrowRight, Sparkles } from "lucide-react"
 import Link from "next/link"
-import { useSession } from "next-auth/react"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
-import { toast } from "sonner"
+
+const STRIPE_GUIDE_URL = "https://buy.stripe.com/7sYbIT592fFwbE34QS7EQ00"
 
 export function Guide() {
-  const { data: session } = useSession()
-  const router = useRouter()
-  const [loadingStripe, setLoadingStripe] = useState(false)
   const contents = [
     "Anatomía y fisiología de la uña",
     "Protocolos de higiene y esterilización",
@@ -73,42 +68,21 @@ export function Guide() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <button
-              onClick={async () => {
-                if (!session) {
-                  router.push("/login")
-                  return
-                }
-                setLoadingStripe(true)
-                try {
-                  const res = await fetch("/api/stripe/checkout", { method: "POST" })
-                  const data = await res.json()
-                  if (data.url) {
-                    window.location.href = data.url
-                  } else {
-                    toast.error("Error al iniciar el pago")
-                  }
-                } catch {
-                  toast.error("Error de conexión")
-                } finally {
-                  setLoadingStripe(false)
-                }
-              }}
-              disabled={loadingStripe}
-              className="group w-full flex items-center justify-between px-7 py-5 rounded-2xl transition-all duration-300 shadow-md hover:shadow-lg active:scale-[0.99] disabled:opacity-60 bg-[#7B4FAC] hover:bg-[#6B3F9C] text-white"
+            <Link
+              href={STRIPE_GUIDE_URL}
+              target="_blank"
+              className="group w-full flex items-center justify-between px-7 py-5 rounded-2xl transition-all duration-300 shadow-md hover:shadow-lg active:scale-[0.99] bg-[#7B4FAC] hover:bg-[#6B3F9C] text-white"
               style={{ boxShadow: "0 4px 20px rgba(123,79,172,0.35)" }}
             >
               <div className="flex items-center gap-3">
                 <Sparkles size={20} className="shrink-0" />
                 <div className="text-left">
-                  <p className="font-semibold text-base leading-tight">
-                    {loadingStripe ? "Cargando..." : "Consigue tu Guía"}
-                  </p>
+                  <p className="font-semibold text-base leading-tight">Consigue tu Guía</p>
                   <p className="text-white/75 text-xs mt-0.5">Descarga inmediata · Pago único</p>
                 </div>
               </div>
               <ArrowRight size={20} className="shrink-0 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
             <Link
               href="https://www.instagram.com/lii.lab/?hl=es"
               target="_blank"
