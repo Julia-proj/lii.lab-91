@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbConnect } from '@/lib/db'
 import CourseBooking from '@/models/CourseBooking'
+import User from '@/models/User'
 import BlockedDate from '@/models/BlockedDate'
 import { auth } from '@/lib/auth'
 import { courseBookingSchema } from '@/lib/validators'
 import { getCourseDays, findAvailableCourseWindows } from '@/lib/course-availability'
 import { isSameDay, startOfDay, addDays } from 'date-fns'
+import { sendWhatsAppToAdmin } from '@/lib/whatsapp'
 
 export async function GET() {
   try {
@@ -98,6 +100,24 @@ export async function POST(req: NextRequest) {
       status: 'confirmada',
       notes: parsed.data.notes || '',
     })
+
+    // Notify admin via WhatsApp (fire and forget)
+    try {
+      const user = await User.findById(session.user.id).select('name email phone').lean() as { name?: string; email?: string; phone?: string } | null
+      const daysFormatted = courseDays.map((d, i) =>
+        `Día ${i + 1}: ${d.toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' })}`
+      ).join('\n')
+      const msg =
+        `Nueva reserva de CURSO Lii.lab:\n` +
+        `${user?.name || 'Cliente'}\n` +
+        `${user?.email || ''}\n` +
+        (user?.phone ? `${user.phone}\n` : '') +
+        `MANIC 0.0 · 800€\n` +
+        `${daysFormatted}`
+      sendWhatsAppToAdmin(msg).catch((e) => console.error('WhatsApp course notification error:', e))
+    } catch (e) {
+      console.error('Course notification error:', e)
+    }
 
     return NextResponse.json(courseBooking, { status: 201 })
   } catch (error) {
