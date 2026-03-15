@@ -36,3 +36,10 @@
 [17:21:42.143] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [17:56:06.764] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [18:00:03.324] Server  LOG     ○ Compiling /_error ...
+[22:41:25.726] Server  LOG     ✓ Finished writing to filesystem cache in 70s
+[22:42:30.320] Server  LOG     ✓ Finished writing to filesystem cache in 17.3s
+[22:44:35.285] Server  LOG       Reload env: .env.local
+[22:44:53.317] Server  LOG     ✓ Compiled in 365.8s
+[22:46:33.156] Server  LOG     ✓ Finished writing to filesystem cache in 2.3min
+[22:52:12.146] Server  LOG     ✓ Finished filesystem cache database compaction in 5.7min
+[22:52:15.221] Server  LOG     ✓ Finished writing to filesystem cache in 5.7min
