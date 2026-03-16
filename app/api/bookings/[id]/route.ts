@@ -25,7 +25,6 @@ export async function GET(
       return NextResponse.json({ error: 'Reserva no encontrada' }, { status: 404 })
     }
 
-    // Users can only see their own bookings, admins can see all
     if (session.user.role !== 'admin' && booking.user._id.toString() !== session.user.id) {
       return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
     }
@@ -51,69 +50,79 @@ export async function PATCH(
     const body = await req.json()
     await dbConnect()
 
-    const booking = await Booking.findById(id)
-    if (!booking) {
+    // Fetch only what's needed for auth check (lean — fast, no mongoose overhead)
+    const existing = await Booking.findById(id).select('user status').lean()
+    if (!existing) {
       return NextResponse.json({ error: 'Reserva no encontrada' }, { status: 404 })
     }
 
-    // Users can only cancel their own bookings
-    if (session.user.role !== 'admin' && booking.user.toString() !== session.user.id) {
+    // Auth check: users can only touch their own bookings
+    if (session.user.role !== 'admin' && existing.user.toString() !== session.user.id) {
       return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
     }
 
-    // Admin can change any valid status, user can only cancel
+    // Build the $set payload
     const validStatuses = ['pendiente', 'confirmada', 'cancelada', 'completada']
-    let changed = false;
+    const updateFields: Record<string, unknown> = {}
+
     if (session.user.role === 'admin') {
-      if (body.status) {
+      if (body.status !== undefined) {
         if (!validStatuses.includes(body.status)) {
           return NextResponse.json({ error: 'Estado no válido' }, { status: 400 })
         }
-        booking.status = body.status
-        changed = true;
+        updateFields.status = body.status
       }
       if (typeof body.paidAmount === 'number') {
-        booking.paidAmount = body.paidAmount;
-        changed = true;
+        updateFields.paidAmount = body.paidAmount
       }
       if (typeof body.adminNotes === 'string') {
-        booking.adminNotes = body.adminNotes;
-        changed = true;
+        updateFields.adminNotes = body.adminNotes
       }
-    } else if (body.status === 'cancelada') {
-      booking.status = 'cancelada'
-      changed = true;
     } else {
-      return NextResponse.json({ error: 'Acción no permitida' }, { status: 400 })
+      // Regular user: only allowed to cancel
+      if (body.status === 'cancelada') {
+        updateFields.status = 'cancelada'
+      } else {
+        return NextResponse.json({ error: 'Acción no permitida' }, { status: 403 })
+      }
     }
 
-    if (changed) {
-      await booking.save()
+    if (Object.keys(updateFields).length === 0) {
+      return NextResponse.json({ error: 'Nada que actualizar' }, { status: 400 })
     }
 
-    const populated = await Booking.findById(booking._id)
+    // Use findByIdAndUpdate — avoids save() validation issues with legacy documents
+    const updated = await Booking.findByIdAndUpdate(
+      id,
+      { $set: updateFields },
+      { new: true, runValidators: false }
+    )
       .populate('services', 'name category price duration')
       .populate('user', 'name email phone')
 
-    // Send cancellation notification if status changed to cancelled
-    if (booking.status === 'cancelada' && populated?.user && populated?.services?.length > 0) {
-      const user = populated.user as { name: string; email: string; phone?: string }
-      const svcList = populated.services as { name: string; price: number }[]
-      const serviceNames = svcList.map((s) => s.name).join(', ')
-      const totalPrice = svcList.reduce((sum, s) => sum + s.price, 0)
-      notifyCancellation({
-        clientName: user.name,
-        clientEmail: user.email,
-        clientPhone: user.phone,
-        serviceName: serviceNames,
-        date: booking.date,
-        startTime: booking.startTime,
-        endTime: booking.endTime,
-        price: totalPrice,
-      }).catch((err) => console.error('Cancellation notification error:', err))
+    if (!updated) {
+      return NextResponse.json({ error: 'Reserva no encontrada' }, { status: 404 })
     }
 
-    return NextResponse.json(populated)
+    // Fire cancellation notification (non-blocking)
+    if (updateFields.status === 'cancelada') {
+      const user = updated.user as { name: string; email: string; phone?: string }
+      const svcList = updated.services as { name: string; price: number }[]
+      if (user?.email && svcList?.length > 0) {
+        notifyCancellation({
+          clientName: user.name,
+          clientEmail: user.email,
+          clientPhone: user.phone,
+          serviceName: svcList.map((s) => s.name).join(', '),
+          date: updated.date,
+          startTime: updated.startTime,
+          endTime: updated.endTime,
+          price: svcList.reduce((sum, s) => sum + s.price, 0),
+        }).catch((err) => console.error('Cancellation notification error:', err))
+      }
+    }
+
+    return NextResponse.json(updated)
   } catch (error) {
     console.error('Error updating booking:', error)
     return NextResponse.json({ error: 'Error al actualizar reserva' }, { status: 500 })
