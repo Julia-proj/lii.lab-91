@@ -218,34 +218,39 @@ export default function AdminSchedulePage() {
   }
 
   return (
-    <div>
-      <h1 className="font-serif text-2xl mb-6">Gestion de horario</h1>
+    <div className="space-y-5">
+      <div>
+        <h1 className="font-serif text-2xl text-neutral-900">Horario</h1>
+        <p className="text-xs text-neutral-400 mt-0.5">Gestiona disponibilidad y bloqueos</p>
+      </div>
 
-      {/* Weekly schedule overview */}
-      <div className="bg-white rounded-xl border border-neutral-200 p-4 mb-6">
-        <h2 className="font-medium mb-3 text-sm">Horario semanal</h2>
-        <div className="grid grid-cols-7 gap-1 text-center text-xs">
-          {[1, 2, 3, 4, 5, 6, 0].map((dow) => {
-            const day = WEEK_SCHEDULE[dow]
-            return (
-              <div key={dow} className={`rounded-lg p-2 ${day?.open ? 'bg-green-50' : 'bg-neutral-50'}`}>
-                <p className="font-semibold mb-1">{DAY_NAMES[dow]}</p>
-                {day?.open ? (
-                  day.blocks.map((b, i) => (
-                    <p key={i} className="text-green-700">{b.start}-{b.end}</p>
-                  ))
-                ) : (
-                  <p className="text-neutral-400">Cerrado</p>
-                )}
-              </div>
-            )
-          })}
+      {/* Weekly schedule — scrollable on mobile */}
+      <div className="bg-white rounded-2xl border border-neutral-100 p-4">
+        <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-3">Horario semanal</h2>
+        <div className="overflow-x-auto -mx-1 px-1">
+          <div className="grid grid-cols-7 gap-1.5 text-center text-xs min-w-[360px]">
+            {[1, 2, 3, 4, 5, 6, 0].map((dow) => {
+              const day = WEEK_SCHEDULE[dow]
+              return (
+                <div key={dow} className={`rounded-xl px-1.5 py-2.5 ${day?.open ? 'bg-emerald-50 border border-emerald-100' : 'bg-neutral-50 border border-neutral-100'}`}>
+                  <p className="font-bold text-[11px] mb-1 text-neutral-600">{DAY_NAMES[dow]}</p>
+                  {day?.open ? (
+                    day.blocks.map((b, i) => (
+                      <p key={i} className="text-[10px] text-emerald-700 font-medium leading-tight">{b.start}<br />{b.end}</p>
+                    ))
+                  ) : (
+                    <p className="text-[10px] text-neutral-300 font-medium">—</p>
+                  )}
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* Interactive calendar */}
-        <div className="bg-white rounded-xl border border-neutral-200 p-4">
+        <div className="bg-white rounded-2xl border border-neutral-100 p-4">
           <div className="flex items-center justify-between mb-4">
             <button onClick={prevMonth} className="p-1.5 hover:bg-neutral-100 rounded-lg transition-colors">
               <ChevronLeft className="w-5 h-5" />
@@ -313,7 +318,7 @@ export default function AdminSchedulePage() {
         <div className="space-y-4">
           {selectedDate ? (
             <>
-              <div className="bg-white rounded-xl border border-neutral-200 p-4">
+              <div className="bg-white rounded-2xl border border-neutral-100 p-4">
                 <h3 className="font-serif text-base mb-1 capitalize">{formatDateFull(selectedDate)}</h3>
                 {selectedDow !== null && (
                   <p className="text-xs text-neutral-400 mb-3">
@@ -363,7 +368,7 @@ export default function AdminSchedulePage() {
 
               {/* Block specific hours */}
               {!selectedIsBlocked && selectedSchedule?.open && (
-                <div className="bg-white rounded-xl border border-neutral-200 p-4">
+                <div className="bg-white rounded-2xl border border-neutral-100 p-4">
                   <h3 className="font-medium text-sm mb-3 flex items-center gap-2">
                     <Clock className="w-4 h-4 text-orange-400" />
                     Bloquear horas
@@ -422,7 +427,7 @@ export default function AdminSchedulePage() {
               )}
 
               {/* Bookings for this day */}
-              <div className="bg-white rounded-xl border border-neutral-200 p-4">
+              <div className="bg-white rounded-2xl border border-neutral-100 p-4">
                 <h3 className="font-medium text-sm mb-3">Citas del dia</h3>
                 {selectedBookings.length === 0 ? (
                   <p className="text-xs text-neutral-400">No hay citas</p>
@@ -454,8 +459,9 @@ export default function AdminSchedulePage() {
               </div>
             </>
           ) : (
-            <div className="bg-white rounded-xl border border-neutral-200 p-8 text-center text-neutral-400 text-sm">
-              Selecciona un dia en el calendario para ver detalles y bloquear fechas u horas
+            <div className="bg-white rounded-2xl border border-neutral-100 p-8 text-center">
+              <CalendarOff className="w-8 h-8 text-neutral-200 mx-auto mb-3" />
+              <p className="text-sm text-neutral-400">Selecciona un día para ver detalles y gestionar bloqueos</p>
             </div>
           )}
         </div>
@@ -463,7 +469,7 @@ export default function AdminSchedulePage() {
 
       {/* All blocked dates summary */}
       {blockedDates.length > 0 && (
-        <div className="bg-white rounded-xl border border-neutral-200 p-4 mt-6">
+        <div className="bg-white rounded-2xl border border-neutral-100 p-4">
           <h2 className="font-medium mb-3 text-sm flex items-center gap-2">
             <CalendarOff className="w-4 h-4 text-red-400" />
             Todas las fechas bloqueadas
