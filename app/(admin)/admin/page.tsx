@@ -188,7 +188,6 @@ export default function AdminDashboard() {
 
   const secondaryStats = [
     { label: 'Reservas de curso', value: stats?.totalCourseBookings ?? 0, icon: BookOpen },
-    { label: 'Guías vendidas', value: stats?.totalGuidesSold ?? 0, icon: BookOpen },
     { label: 'Usuarios registrados', value: stats?.totalUsers ?? 0, icon: Users },
     { label: 'Total citas (activas)', value: stats?.totalBookings ?? 0, icon: Calendar },
   ]
@@ -206,7 +205,7 @@ export default function AdminDashboard() {
         {primaryStats.map((s) => {
           const Icon = s.icon
           return (
-            <div key={s.label} className={`${s.bg} rounded-2xl p-4`}>
+            <div key={s.label} className={`${s.bg} rounded-2xl p-4 border border-black/[0.04]`}>
               <div className={`w-8 h-8 rounded-xl bg-white/60 flex items-center justify-center mb-3 ${s.iconColor}`}>
                 <Icon className="w-4 h-4" />
               </div>
@@ -220,11 +219,11 @@ export default function AdminDashboard() {
       </div>
 
       {/* Secondary stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div className="grid grid-cols-3 gap-3">
         {secondaryStats.map((s) => {
           const Icon = s.icon
           return (
-            <div key={s.label} className="bg-white border border-neutral-100 rounded-xl p-3 flex items-center gap-3">
+            <div key={s.label} className="bg-white border border-neutral-200 rounded-xl p-3 flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-neutral-50 flex items-center justify-center shrink-0">
                 <Icon className="w-4 h-4 text-neutral-400" />
               </div>
