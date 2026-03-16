@@ -240,16 +240,21 @@ function BookingRow({ booking, onUpdate }: { booking: BookingData; onUpdate: (id
     const amount = parseFloat(paidVal)
     if (isNaN(amount) || amount < 0) { toast.error('Importe inválido'); return }
     setSavingPaid(true)
+    // Auto-complete when a payment is recorded (unless already cancelled/completed)
+    const newStatus =
+      booking.status !== 'cancelada' && booking.status !== 'completada'
+        ? 'completada'
+        : booking.status
     try {
       const res = await fetch(`/api/bookings/${booking._id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ paidAmount: amount }),
+        body: JSON.stringify({ paidAmount: amount, status: newStatus }),
       })
       if (!res.ok) { toast.error('Error al guardar'); return }
-      onUpdate(booking._id, { paidAmount: amount })
+      onUpdate(booking._id, { paidAmount: amount, status: newStatus })
       setEditingPaid(false)
-      toast.success('Pagado guardado')
+      toast.success('Pago registrado · Marcada como completada')
     } catch { toast.error('Error de conexion') } finally { setSavingPaid(false) }
   }
 
