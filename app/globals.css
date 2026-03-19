@@ -29,6 +29,17 @@
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
+  /* Brand design tokens */
+  --plum: 273 20% 33%;
+  --plum-hover: 273 22% 27%;
+  --plum-foreground: 0 0% 98%;
+  --lavender: 278 32% 78%;
+  --gold: 43 60% 55%;
+  --gold-light: 43 50% 90%;
+  --rose-accent: 350 40% 70%;
+  --warm-bg: 45 20% 98%;
+  --quiensoy-bg: 0 0% 96%;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -40,38 +51,48 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  /* Warm sandy dark — fácil para la vista */
+  --background: oklch(0.17 0.008 65);
+  --foreground: oklch(0.92 0.006 65);
+  --card: oklch(0.20 0.008 65);
+  --card-foreground: oklch(0.92 0.006 65);
+  --popover: oklch(0.20 0.008 65);
+  --popover-foreground: oklch(0.92 0.006 65);
+  --primary: oklch(0.92 0.006 65);
+  --primary-foreground: oklch(0.20 0.008 65);
+  --secondary: oklch(0.26 0.008 65);
+  --secondary-foreground: oklch(0.92 0.006 65);
+  --muted: oklch(0.26 0.008 65);
+  --muted-foreground: oklch(0.65 0.006 65);
+  --accent: oklch(0.26 0.008 65);
+  --accent-foreground: oklch(0.92 0.006 65);
   --destructive: oklch(0.396 0.141 25.723);
   --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
+  --border: oklch(0.28 0.008 65);
+  --input: oklch(0.28 0.008 65);
+  --ring: oklch(0.45 0.006 65);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar: oklch(0.22 0.008 65);
+  --sidebar-foreground: oklch(0.92 0.006 65);
   --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  --sidebar-accent: oklch(0.26 0.008 65);
+  --sidebar-accent-foreground: oklch(0.92 0.006 65);
+  --sidebar-border: oklch(0.28 0.008 65);
+  --sidebar-ring: oklch(0.45 0.006 65);
+  /* Brand tokens — dark mode */
+  --plum: 273 20% 55%;
+  --plum-hover: 273 22% 48%;
+  --lavender: 278 32% 72%;
+  --gold: 43 60% 62%;
+  --gold-light: 43 25% 22%;
+  --rose-accent: 350 40% 67%;
+  --warm-bg: 38 8% 15%;
+  --quiensoy-bg: 38 6% 17%;
 }
 
 @theme inline {
@@ -115,10 +136,16 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Adding custom brand colors */
-  /* Updated to a neutral purple as requested */
-  --color-brand-pink: #cdb4db;
-  --color-brand-gray: #f5f5f5;
+  /* Brand colors — mapped from CSS vars so dark mode works */
+  --color-plum: hsl(var(--plum));
+  --color-plum-hover: hsl(var(--plum-hover));
+  --color-plum-foreground: hsl(var(--plum-foreground));
+  --color-lavender: hsl(var(--lavender));
+  --color-gold: hsl(var(--gold));
+  --color-gold-light: hsl(var(--gold-light));
+  --color-rose-accent: hsl(var(--rose-accent));
+  --color-warm-bg: hsl(var(--warm-bg));
+  --color-quiensoy-bg: hsl(var(--quiensoy-bg));
 }
 
 @layer base {
@@ -135,6 +162,18 @@
     line-height: 1.7;
   }
 
+  /* Subtle grain texture in dark mode */
+  .dark body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
   h1,
   h2,
   h3,
@@ -142,19 +181,28 @@
   h5,
   h6 {
     @apply font-serif;
+    letter-spacing: -0.01em;
+    font-weight: 600;
   }
 }
 
 @layer utilities {
-  .fade-in-section {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    will-change: opacity, visibility;
+  .transition-smooth {
+    transition: var(--transition-smooth);
   }
 
-  .fade-in-section.is-visible {
-    opacity: 1;
-    transform: none;
+  .fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }

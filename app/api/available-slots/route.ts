@@ -11,6 +11,7 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url)
     const dateStr = searchParams.get('date')
     const serviceId = searchParams.get('serviceId')
+    const excludeId = searchParams.get('excludeId') // booking id to exclude from conflict check (reschedule)
 
     if (!dateStr || !serviceId) {
       return NextResponse.json(
@@ -36,11 +37,15 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ slots: [], blocked: true })
     }
 
-    // Get existing bookings for this date (only confirmed/pending ones)
-    const existingBookings = await Booking.find({
+    // Get existing bookings for this date, excluding the current booking if rescheduling
+    const bookingFilter: Record<string, unknown> = {
       date: dateStr,
       status: { $in: ['confirmada', 'pendiente'] },
-    }).select('startTime endTime')
+    }
+    if (excludeId) {
+      bookingFilter._id = { $ne: excludeId }
+    }
+    const existingBookings = await Booking.find(bookingFilter).select('startTime endTime')
 
     // Get blocked hours for this date — treat them as fake bookings so slots
     // that overlap with blocked hours are excluded

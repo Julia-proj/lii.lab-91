@@ -1,24 +1,47 @@
 import { BookOpen, Target, Zap, ClipboardList } from "lucide-react"
 
+const advantages = [
+  {
+    icon: BookOpen,
+    title: "Formación continua",
+    desc: "Método propio creado después de años de práctica real en cabina.",
+  },
+  {
+    icon: Target,
+    title: "Precisión",
+    desc: "Técnica exacta y detallada que evita retrabajos y garantiza resultados limpios.",
+  },
+  {
+    icon: Zap,
+    title: "Rapidez",
+    desc: "Optimización de tiempos sin perder calidad.",
+  },
+  {
+    icon: ClipboardList,
+    title: "Metodología",
+    desc: "Sistema claro y estructurado que facilita aprender, replicar y trabajar sin improvisaciones.",
+  },
+]
+
 export function About() {
   return (
-    <section id="quien-soy" className="py-16 md:py-28 bg-[#f5f5f5]">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
-          {/* Image Column - With text overlay for style */}
-          <div className="w-full md:w-1/2 relative group fade-in-section">
-            <div className="relative h-[280px] sm:h-[380px] md:h-[500px] w-full overflow-hidden rounded-lg shadow-xl">
+    <section id="quien-soy" className="py-12 md:py-20 bg-quiensoy-bg">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
+
+          {/* Image Column */}
+          <div className="relative group">
+            <div className="relative w-full aspect-[3/2] md:aspect-[4/5] overflow-hidden rounded-xl shadow-xl">
               <img
                 src="/images/Foto7.JPG"
                 alt="Lili"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform"
                 style={{ objectPosition: "center 15%" }}
               />
-              {/* Stylish text overlay */}
-              <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/60 via-transparent to-transparent">
-                <div className="border-l-2 border-[#CDB4DB] pl-4">
-                  <h3 className="text-4xl font-serif text-white mb-1">Soy Lili</h3>
-                  <p className="text-[#CDB4DB] text-sm tracking-[0.2em] uppercase font-medium">
+              <div className="absolute inset-0 flex flex-col justify-end p-5 md:p-8 bg-gradient-to-t from-black/60 via-transparent to-transparent">
+                <div className="border-l-2 border-lavender pl-3 md:pl-4">
+                  <h3 className="text-2xl md:text-4xl font-serif text-white mb-0.5">Soy Lili</h3>
+                  <p className="text-lavender text-xs md:text-sm tracking-[0.2em] uppercase font-medium">
                     Manicurista & Formadora
                   </p>
                 </div>
@@ -27,10 +50,10 @@ export function About() {
           </div>
 
           {/* Text Column */}
-          <div className="w-full md:w-1/2 space-y-8 fade-in-section">
-            <h2 className="text-4xl md:text-5xl font-serif text-neutral-950 tracking-tight mb-6">Quién soy</h2>
+          <div className="space-y-5 md:space-y-8">
+            <h2 className="text-3xl md:text-5xl font-serif text-neutral-950 tracking-tight">Quién soy</h2>
 
-            <div className="prose prose-lg text-neutral-600 leading-relaxed font-light">
+            <div className="text-neutral-600 leading-relaxed font-light text-sm md:text-base space-y-3">
               <p>
                 Soy Lili, manicurista con más de{" "}
                 <span className="font-semibold text-neutral-900">10 años de experiencia</span> dedicada a formar y
@@ -44,63 +67,27 @@ export function About() {
               </p>
             </div>
 
-            <div className="pt-4 space-y-5 md:space-y-7">
-              <div className="flex gap-6 items-start">
-                <div className="shrink-0 mt-1">
-                  <BookOpen size={24} className="text-[#8e7f97]" />
+            <div className="space-y-2 md:space-y-3">
+              {advantages.map(({ icon: Icon, title, desc }) => (
+                <div
+                  key={title}
+                  className="flex gap-3 items-start p-3 md:p-4 rounded-xl bg-white hover:shadow-md transition-smooth"
+                >
+                  <div className="shrink-0 mt-0.5 p-2 rounded-lg bg-gold-light">
+                    <Icon size={15} className="text-plum" />
+                  </div>
+                  <div>
+                    <h3 className="font-sans font-semibold text-neutral-800 text-sm mb-0.5">{title}</h3>
+                    <p className="text-neutral-500 text-xs leading-relaxed font-light">{desc}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-sans font-semibold text-neutral-800 text-base mb-1">Formación continua</h3>
-                  <p className="text-neutral-600 text-base leading-relaxed font-light">
-                    Método propio creado después de años de práctica real en cabina.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-6 items-start">
-                <div className="shrink-0 mt-1">
-                  <Target size={24} className="text-[#8e7f97]" />
-                </div>
-                <div>
-                  <h3 className="font-sans font-semibold text-neutral-800 text-base mb-1">Precisión</h3>
-                  <p className="text-neutral-600 text-base leading-relaxed font-light">
-                    Técnica exacta y detallada que evita retrabajos y garantiza resultados limpios.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-6 items-start">
-                <div className="shrink-0 mt-1">
-                  <Zap size={24} className="text-[#8e7f97]" />
-                </div>
-                <div>
-                  <h3 className="font-sans font-semibold text-neutral-800 text-base mb-1">Rapidez</h3>
-                  <p className="text-neutral-600 text-base leading-relaxed font-light">
-                    Optimización de tiempos sin perder calidad.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-6 items-start">
-                <div className="shrink-0 mt-1">
-                  <ClipboardList size={24} className="text-[#8e7f97]" />
-                </div>
-                <div>
-                  <h3 className="font-sans font-semibold text-neutral-800 text-base mb-1">Metodología</h3>
-                  <p className="text-neutral-600 text-base leading-relaxed font-light">
-                    Sistema claro y estructurado que facilita aprender, replicar y trabajar sin improvisaciones.
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
-            {/* End new advantages block */}
 
-            <div className="pt-4 mt-8">
-              <p className="text-neutral-900 text-base leading-relaxed font-light">
-                Mi objetivo es ayudar a otras manicuristas a crecer, profesionalizarse y ofrecer servicios de alto
-                nivel.
-              </p>
-            </div>
+            <p className="text-neutral-900 text-sm md:text-base leading-relaxed font-light pt-1">
+              Mi objetivo es ayudar a otras manicuristas a crecer, profesionalizarse y ofrecer servicios de alto
+              nivel.
+            </p>
           </div>
         </div>
       </div>

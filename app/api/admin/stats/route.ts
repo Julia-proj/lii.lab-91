@@ -1,12 +1,8 @@
 import { NextResponse } from 'next/server'
 import { dbConnect } from '@/lib/db'
-import Booking from '@/models/Booking'
-import CourseBooking from '@/models/CourseBooking'
-import User from '@/models/User'
+import { Booking, CourseBooking, User } from '@/models'
 import GuideOrder from '@/models/GuideOrder'
 import { auth } from '@/lib/auth'
-import { startOfMonth, endOfMonth, startOfDay, endOfDay } from 'date-fns'
-
 export async function GET() {
   try {
     const session = await auth()
@@ -17,9 +13,11 @@ export async function GET() {
     await dbConnect()
 
     const now = new Date()
-    const monthStart = startOfMonth(now).toISOString().split('T')[0]
-    const monthEnd = endOfMonth(now).toISOString().split('T')[0]
-    const today = now.toISOString().split('T')[0]
+    const pad = (n: number) => String(n).padStart(2, '0')
+    const y = now.getFullYear(), m = now.getMonth()
+    const monthStart = `${y}-${pad(m + 1)}-01`
+    const monthEnd = `${y}-${pad(m + 1)}-${pad(new Date(y, m + 1, 0).getDate())}`
+    const today = `${y}-${pad(m + 1)}-${pad(now.getDate())}`
 
     // Aggregate ingresos (paidAmount) for today and this month
     const [

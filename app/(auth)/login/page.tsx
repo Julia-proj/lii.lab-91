@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, Suspense } from 'react'
-import { signIn } from 'next-auth/react'
+import { signIn, getSession } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 
@@ -29,7 +29,12 @@ function LoginForm() {
       if (res?.error) {
         setError('Email o contraseña incorrectos')
       } else {
-        router.push(callbackUrl)
+        const session = await getSession()
+        if (session?.user?.role === 'admin') {
+          router.push('/admin')
+        } else {
+          router.push('/dashboard')
+        }
         router.refresh()
       }
     } catch {
@@ -60,7 +65,7 @@ function LoginForm() {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#CDB4DB] focus:border-transparent"
+            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-plum focus:border-transparent"
             placeholder="tu@email.com"
           />
         </div>
@@ -75,7 +80,7 @@ function LoginForm() {
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#CDB4DB] focus:border-transparent"
+            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-plum focus:border-transparent"
             placeholder="••••••"
           />
         </div>
@@ -83,7 +88,7 @@ function LoginForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-[#B48EC5] hover:bg-[#a37ab5] text-white font-semibold py-3 rounded-full transition-colors disabled:opacity-60 shadow-sm hover:shadow-md"
+          className="w-full bg-plum hover:bg-plum-hover text-white font-semibold py-3 rounded-lg transition-colors disabled:opacity-60"
         >
           {loading ? 'Iniciando sesión...' : 'Iniciar sesión'}
         </button>
@@ -91,7 +96,7 @@ function LoginForm() {
 
       <p className="text-center text-sm text-neutral-500 mt-6">
         ¿No tienes cuenta?{' '}
-        <Link href="/register" className="text-[#9b7fa8] hover:text-[#7d6389] hover:underline font-medium">
+        <Link href="/register" className="text-plum hover:text-plum-hover hover:underline font-medium">
           Regístrate
         </Link>
       </p>
@@ -103,7 +108,7 @@ export default function LoginPage() {
   return (
     <Suspense fallback={
       <div className="bg-white rounded-2xl shadow-sm border border-neutral-200 p-8 text-center">
-        <div className="w-6 h-6 border-2 border-neutral-200 border-t-[#CDB4DB] rounded-full animate-spin mx-auto" />
+        <div className="w-6 h-6 border-2 border-neutral-200 border-t-plum rounded-full animate-spin mx-auto" />
       </div>
     }>
       <LoginForm />

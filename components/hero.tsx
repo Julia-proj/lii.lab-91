@@ -1,18 +1,16 @@
-import { ArrowRight, BookOpen } from "lucide-react"
+import { Download } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export function Hero() {
   return (
-    <section
-      id="hero"
-      className="relative h-[100svh] max-h-[900px] overflow-hidden"
-    >
+    <section id="hero" className="relative h-svh sm:min-h-screen overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
           src="/images/Hero.JPG"
           alt="Lii.lab beauty studio"
           className="w-full h-full object-cover"
-          style={{ objectPosition: "center 30%" }}
+          style={{ objectPosition: "center 20%" }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/10 md:bg-gradient-to-r md:from-black/65 md:via-black/30 md:to-transparent" />
       </div>
@@ -24,9 +22,9 @@ export function Hero() {
         </span>
       </div>
 
-      {/* Main content — pinned to bottom */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 container mx-auto px-6 pb-12 sm:pb-16 md:pb-20">
-        <div className="max-w-xl text-white fade-in-section">
+      {/* Content — pinned to bottom so face stays visible */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 container mx-auto px-4 sm:px-6 pb-12 sm:pb-16 md:pb-20">
+        <div className="max-w-xl text-white">
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif leading-[1.1] mb-3 sm:mb-5 md:mb-6 text-white">
             Formación profesional<br /> en manicura
           </h1>
@@ -36,20 +34,24 @@ export function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-            <a
-              href="#cursos"
-              className="group px-7 py-3.5 sm:px-8 sm:py-4 bg-[#B48EC5] text-white font-semibold rounded-full hover:bg-[#a37ab5] transition-all duration-300 text-center flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+            <Button
+              size="lg"
+              asChild
+              className="bg-[#CDB4DB] text-white hover:bg-[#bda0cb] transition-colors"
             >
-              <BookOpen size={17} />
-              <span>Ver cursos</span>
-              <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a
-              href="#guia"
-              className="px-7 py-3.5 sm:px-8 sm:py-4 bg-transparent border border-white/60 text-white font-medium rounded-full hover:bg-white hover:text-neutral-900 transition-all duration-300 text-center backdrop-blur-sm"
+              <a href="#formacion">Ver cursos</a>
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              asChild
+              className="gap-2 border-white/60 text-white bg-transparent hover:bg-white/10 hover:text-white hover:border-white/80 transition-colors backdrop-blur-sm"
             >
-              Guía Metodológica
-            </a>
+              <a href="#formacion">
+                <Download className="w-4 h-4" />
+                Guía Metodológica
+              </a>
+            </Button>
           </div>
         </div>
       </div>

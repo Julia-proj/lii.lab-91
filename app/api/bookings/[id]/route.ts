@@ -78,6 +78,35 @@ export async function PATCH(
       if (typeof body.adminNotes === 'string') {
         updateFields.adminNotes = body.adminNotes
       }
+      // Reschedule: allow admin to change date and times
+      if (typeof body.date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(body.date)) {
+        updateFields.date = body.date
+      }
+      if (typeof body.startTime === 'string' && /^\d{2}:\d{2}$/.test(body.startTime)) {
+        updateFields.startTime = body.startTime
+      }
+      if (typeof body.endTime === 'string' && /^\d{2}:\d{2}$/.test(body.endTime)) {
+        updateFields.endTime = body.endTime
+      }
+      // Conflict check when rescheduling
+      if (updateFields.date || updateFields.startTime || updateFields.endTime) {
+        const newDate = (updateFields.date as string) || (existing as { date: string }).date
+        const newStart = (updateFields.startTime as string) || (existing as { startTime?: string }).startTime
+        const newEnd = (updateFields.endTime as string) || (existing as { endTime?: string }).endTime
+        if (newDate && newStart && newEnd) {
+          const conflict = await Booking.findOne({
+            _id: { $ne: id },
+            date: newDate,
+            status: { $nin: ['cancelada'] },
+            $or: [
+              { startTime: { $lt: newEnd }, endTime: { $gt: newStart } },
+            ],
+          }).lean()
+          if (conflict) {
+            return NextResponse.json({ error: 'Ese horario ya está ocupado' }, { status: 409 })
+          }
+        }
+      }
     } else {
       // Regular user: only allowed to cancel
       if (body.status === 'cancelada') {

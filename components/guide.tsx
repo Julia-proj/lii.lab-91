@@ -77,7 +77,7 @@ export function Guide() {
               <div className="flex items-center gap-3">
                 <Sparkles size={20} className="shrink-0" />
                 <div className="text-left">
-                  <p className="font-semibold text-base leading-tight">Consigue tu Guía</p>
+                  <p className="font-semibold text-base leading-tight">Consigue tu Guía · 27,99€</p>
                   <p className="text-white/75 text-xs mt-0.5">Descarga inmediata · Pago único</p>
                 </div>
               </div>

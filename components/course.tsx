@@ -13,6 +13,8 @@ import {
   ArrowUpRight,
   BookOpen,
   Microscope,
+  Users,
+  Instagram,
 } from "lucide-react"
 import Link from "next/link"
 import { CourseDatesPreview } from "./course/course-dates-preview"
@@ -104,7 +106,7 @@ export function Course() {
               </div>
 
               <div className="space-y-6 relative z-10">
-                <InfoRow icon={Euro} label="Precio" text="800€" />
+                <InfoRow icon={Euro} label="Precio" text="749,99€" />
                 <InfoRow icon={Clock} label="Duración" text="3 días intensivos" />
                 <InfoRow icon={Package} label="Práctica" text="Modelos reales" />
                 <InfoRow icon={UserCheck} label="Incluye" text="Kit + Guía Metodológica" />
@@ -150,6 +152,88 @@ export function Course() {
                 </ul>
               </DayItem>
             </div>
+          </div>
+        </div>
+
+        {/* Subida de Cualificación course */}
+        <div className="mt-16 md:mt-24 fade-in-section">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* Info Card — first on all screens */}
+            <div className="lg:col-span-5">
+              <div className="bg-[#FAF8F5] text-neutral-900 p-8 rounded-2xl shadow-sm border border-neutral-200/60 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#F4B4C7] rounded-full blur-3xl opacity-20 -mr-16 -mt-16" />
+                <div className="relative z-10 space-y-5 mb-8">
+                  <InfoRow icon={Euro} label="Precio" text="349,99€" />
+                  <InfoRow icon={Clock} label="Duración" text="1 día intensivo" />
+                  <InfoRow icon={Package} label="Formato" text="Teoría + práctica con 2 modelos reales" />
+                  <InfoRow icon={UserCheck} label="Nivel" text="Intermedio / Avanzado" />
+                </div>
+                <Link
+                  href="/booking/course?type=subida"
+                  className="group w-full bg-[#B48EC5] text-white text-center py-4 rounded-lg font-semibold hover:bg-[#a37ab5] transition-colors shadow-sm hover:shadow-md flex items-center justify-center gap-2 relative z-10"
+                >
+                  <span>Reservar plaza</span>
+                  <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Description */}
+            <div className="lg:col-span-7">
+              <div className="mb-4">
+                <span className="inline-block bg-[#F4B4C7] text-neutral-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                  Nuevo
+                </span>
+              </div>
+              <h3 className="text-3xl font-serif text-neutral-900 mb-1">Curso de Subida de Cualificación</h3>
+              <p className="text-lg text-[#B48EC5] font-light mb-5">Perfecciona tu técnica y optimiza tu tiempo</p>
+              <p className="text-neutral-600 leading-relaxed mb-8">
+                Para manicuristas que quieren pulir sus conocimientos y llegar a hacer manicura combinada perfecta.
+                10 años de experiencia, todos los trucos y sobre todo rendimiento de tiempo para mayor ganancia.
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  "Técnica de manicura combinada",
+                  "Trucos para optimizar tiempos",
+                  "Rendimiento y productividad",
+                  "Práctica con 2 modelos reales",
+                  "Teoría avanzada",
+                  "Certificado",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-2 p-3 rounded-lg bg-neutral-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-[#CDB4DB]/30"
+                  >
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#CDB4DB] shrink-0" />
+                    <span className="font-medium text-neutral-800 text-xs sm:text-sm leading-tight">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA equipos de salón */}
+        <div className="mt-12 md:mt-16 fade-in-section">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-5 bg-neutral-50 border border-neutral-200 rounded-2xl px-7 py-6">
+            <div className="flex items-center gap-4">
+              <div className="p-3 rounded-xl bg-[#CDB4DB]/15 shrink-0">
+                <Users size={22} className="text-[#7B4FAC]" />
+              </div>
+              <div>
+                <p className="font-semibold text-neutral-900">¿Formación para tu equipo del salón?</p>
+                <p className="text-sm text-neutral-500 mt-0.5">Precios especiales para grupos</p>
+              </div>
+            </div>
+            <Link
+              href="https://www.instagram.com/lii.lab/?hl=es"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 shrink-0 px-5 py-2.5 rounded-xl border border-neutral-300 text-neutral-700 text-sm font-medium hover:border-[#CDB4DB] hover:text-[#7B4FAC] hover:bg-[#CDB4DB]/5 transition-all"
+            >
+              <Instagram size={16} />
+              Escribir por Instagram
+            </Link>
           </div>
         </div>
 

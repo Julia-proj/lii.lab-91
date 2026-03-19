@@ -3,48 +3,65 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useSession, signOut } from 'next-auth/react'
-import { BarChart3, Calendar, CalendarOff, Scissors, Menu, X, ArrowLeft, LogOut } from 'lucide-react'
-import { useState } from 'react'
+import { CalendarDays, Scissors, Settings, Menu, X, ArrowLeft, LogOut, Sun, Moon } from 'lucide-react'
+import { useState, useEffect } from 'react'
 
 const navItems = [
-  { href: '/admin', label: 'Panel', icon: BarChart3 },
-  { href: '/admin/bookings', label: 'Reservas', icon: Calendar },
-  { href: '/admin/schedule', label: 'Horario', icon: CalendarOff },
+  { href: '/admin',          label: 'Agenda',    icon: CalendarDays },
   { href: '/admin/services', label: 'Servicios', icon: Scissors },
+  { href: '/admin/settings', label: 'Ajustes',   icon: Settings },
 ]
 
 export function AdminSidebar() {
   const pathname = usePathname()
   const { data: session } = useSession()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [isDark, setIsDark] = useState(false)
+
+  useEffect(() => {
+    const saved = localStorage.getItem('admin-theme')
+    const dark = saved === 'dark'
+    setIsDark(dark)
+    document.documentElement.classList.toggle('dark', dark)
+  }, [])
+
+  const toggleTheme = () => {
+    const next = !isDark
+    setIsDark(next)
+    document.documentElement.classList.toggle('dark', next)
+    localStorage.setItem('admin-theme', next ? 'dark' : 'light')
+  }
 
   if (!session || session.user?.role !== 'admin') return null
+
+  const isActive = (href: string) =>
+    href === '/admin' ? pathname === '/admin' : pathname.startsWith(href)
 
   const nav = (
     <nav className="flex-1">
       <ul className="space-y-0.5">
         {navItems.map((item) => {
           const Icon = item.icon
-          const isActive = pathname === item.href
+          const active = isActive(item.href)
           return (
             <li key={item.href}>
               <Link
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
                 className={`flex items-center gap-3 px-3 py-4 lg:py-2.5 rounded-lg text-sm font-medium transition-all duration-150 ${
-                  isActive
+                  active
                     ? 'bg-white/10 text-white'
                     : 'text-neutral-400 hover:bg-white/6 hover:text-neutral-100'
                 }`}
               >
                 <span className={`p-1.5 rounded-md transition-colors ${
-                  isActive ? 'bg-[#9b7fa8]/40 text-[#d4b8e0]' : 'text-neutral-500'
+                  active ? 'bg-plum/40 text-white' : 'text-neutral-500'
                 }`}>
                   <Icon className="w-5 h-5 lg:w-4 lg:h-4" />
                 </span>
                 <span className="text-base lg:text-sm">{item.label}</span>
-                {isActive && (
-                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-[#c9a9d4]" />
+                {active && (
+                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-plum/60" />
                 )}
               </Link>
             </li>
@@ -69,11 +86,11 @@ export function AdminSidebar() {
         {nav}
       </div>
 
-      {/* Bottom: user + links */}
+      {/* Bottom: user + actions */}
       <div className="px-3 pb-5 border-t border-white/8 pt-4 space-y-1">
         <div className="flex items-center gap-2.5 px-2 py-2">
-          <div className="w-8 h-8 rounded-full bg-[#9b7fa8]/30 border border-[#9b7fa8]/40 flex items-center justify-center shrink-0">
-            <span className="text-sm font-bold text-[#d4b8e0]">
+          <div className="w-8 h-8 rounded-full bg-plum/30 border border-plum/40 flex items-center justify-center shrink-0">
+            <span className="text-sm font-bold text-white/80">
               {session.user?.name?.[0]?.toUpperCase() || 'A'}
             </span>
           </div>
@@ -82,6 +99,17 @@ export function AdminSidebar() {
             <p className="text-[11px] text-neutral-500 truncate">{session.user?.email}</p>
           </div>
         </div>
+
+        <button
+          onClick={toggleTheme}
+          className="flex items-center gap-2 px-3 py-3 lg:py-2 text-sm text-neutral-500 hover:text-neutral-200 hover:bg-white/5 transition-colors rounded-lg w-full"
+        >
+          {isDark
+            ? <Sun className="w-4 h-4 shrink-0 text-amber-400" />
+            : <Moon className="w-4 h-4 shrink-0" />
+          }
+          {isDark ? 'Modo claro' : 'Modo oscuro'}
+        </button>
 
         <Link
           href="/"

@@ -5,7 +5,7 @@ import User from '@/models/User'
 import BlockedDate from '@/models/BlockedDate'
 import { auth } from '@/lib/auth'
 import { courseBookingSchema } from '@/lib/validators'
-import { getCourseDays, findAvailableCourseWindows } from '@/lib/course-availability'
+import { getCourseDays } from '@/lib/course-availability'
 import { isSameDay, startOfDay, addDays } from 'date-fns'
 import { sendWhatsAppToAdmin } from '@/lib/whatsapp'
 
@@ -56,14 +56,27 @@ export async function POST(req: NextRequest) {
     await dbConnect()
 
     const startDate = new Date(parsed.data.startDate + 'T00:00:00')
+    const courseType = parsed.data.courseType || 'manic-0.0'
 
-    // Validate: compute the 3 course days
-    const courseDays = getCourseDays(startDate)
-    if (courseDays.length !== 3) {
-      return NextResponse.json(
-        { error: 'La fecha seleccionada no permite 3 días laborables consecutivos' },
-        { status: 400 }
-      )
+    // Compute course days: 3 for manic-0.0, 1 for perfeccionamiento
+    let courseDays: Date[]
+    if (courseType === 'perfeccionamiento') {
+      const dow = startDate.getDay()
+      if (dow === 0 || dow === 6) {
+        return NextResponse.json(
+          { error: 'La fecha seleccionada debe ser un día laborable' },
+          { status: 400 }
+        )
+      }
+      courseDays = [startDate]
+    } else {
+      courseDays = getCourseDays(startDate)
+      if (courseDays.length !== 3) {
+        return NextResponse.json(
+          { error: 'La fecha seleccionada no permite 3 días laborables consecutivos' },
+          { status: 400 }
+        )
+      }
     }
 
     // Double-check availability (race condition protection)
@@ -77,7 +90,7 @@ export async function POST(req: NextRequest) {
       c.days.map((d: string | Date) => new Date(d))
     )
 
-    // Check none of our 3 days are blocked or taken
+    // Check none of our days are blocked or taken
     for (const day of courseDays) {
       if (blockedDates.some((bd) => isSameDay(bd, day))) {
         return NextResponse.json(
@@ -97,6 +110,7 @@ export async function POST(req: NextRequest) {
       user: session.user.id,
       startDate: parsed.data.startDate,
       days: courseDays.map((d) => d.toISOString().split('T')[0]),
+      courseType,
       status: 'confirmada',
       notes: parsed.data.notes || '',
     })
@@ -112,7 +126,7 @@ export async function POST(req: NextRequest) {
         `${user?.name || 'Cliente'}\n` +
         `${user?.email || ''}\n` +
         (user?.phone ? `${user.phone}\n` : '') +
-        `MANIC 0.0 · 800€\n` +
+        `${courseType === 'perfeccionamiento' ? 'Perfeccionamiento · 349,99€' : 'MANIC 0.0 · 749,99€'}\n` +
         `${daysFormatted}`
       sendWhatsAppToAdmin(msg).catch((e) => console.error('WhatsApp course notification error:', e))
     } catch (e) {

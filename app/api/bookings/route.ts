@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbConnect } from '@/lib/db'
-import Booking from '@/models/Booking'
-import Service from '@/models/Service'
+import { Booking, Service } from '@/models'
 import { auth } from '@/lib/auth'
 import { bookingSchema } from '@/lib/validators'
 import { minutesToTime, parseTimeToMinutes } from '@/lib/schedule'

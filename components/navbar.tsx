@@ -7,15 +7,26 @@ import { Menu, X, ChevronDown, LogOut, LayoutDashboard, Shield, ArrowRight } fro
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const { data: session } = useSession()
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50)
-    window.addEventListener("scroll", handleScroll)
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      setIsScrolled(currentScrollY > 50)
+      if (currentScrollY > lastScrollY && currentScrollY > 80 && !isMobileMenuOpen) {
+        setIsVisible(false)
+      } else {
+        setIsVisible(true)
+      }
+      setLastScrollY(currentScrollY)
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [lastScrollY, isMobileMenuOpen])
 
   useEffect(() => {
     const handleClick = () => setIsDropdownOpen(false)
@@ -27,20 +38,22 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Quién soy", href: "#quien-soy" },
-    { name: "Cursos", href: "#cursos" },
-    { name: "Guía", href: "#guia" },
+    { name: "Formación", href: "#formacion" },
+    { name: "Reservar cita", href: "/booking", highlight: true },
   ]
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      } ${
         isScrolled ? "bg-white/95 backdrop-blur-sm shadow-sm py-4" : "bg-transparent py-6"
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <div className="flex items-center gap-8">
           <Link
-            href="#"
+            href="/#hero"
             className={`text-lg font-serif font-bold tracking-tight transition-colors ${
               isScrolled ? "text-neutral-900" : "text-white"
             }`}
@@ -52,11 +65,11 @@ export function Navbar() {
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center gap-6">
-          {navLinks.map((link) => (
+          {navLinks.filter(l => !l.highlight).map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className={`text-sm font-medium tracking-wide transition-colors hover:text-[#CDB4DB] ${
+              className={`text-sm font-medium tracking-wide transition-colors hover:text-plum ${
                 isScrolled ? "text-neutral-600" : "text-white/90"
               }`}
             >
@@ -67,7 +80,7 @@ export function Navbar() {
           {/* Reservar CTA */}
           <Link
             href="/booking"
-            className="text-sm font-medium bg-[#CDB4DB] text-neutral-900 px-5 py-2 rounded-full hover:bg-[#bda0cb] hover:text-white transition-colors"
+            className="text-sm font-medium bg-plum text-white px-5 py-2 rounded-md hover:bg-plum-hover transition-colors"
           >
             Reservar cita
           </Link>
@@ -79,9 +92,9 @@ export function Navbar() {
                 onClick={(e) => { e.stopPropagation(); setIsDropdownOpen(!isDropdownOpen) }}
                 className={`flex items-center gap-1.5 text-sm font-medium transition-colors ${
                   isScrolled ? "text-neutral-600" : "text-white/90"
-                } hover:text-[#CDB4DB]`}
+                } hover:text-plum`}
               >
-                <span className="w-7 h-7 rounded-full bg-[#CDB4DB] text-white flex items-center justify-center text-xs font-bold">
+                <span className="w-7 h-7 rounded-full bg-plum text-white flex items-center justify-center text-xs font-bold">
                   {session.user?.name?.[0]?.toUpperCase() || "U"}
                 </span>
                 <ChevronDown className="w-3.5 h-3.5" />
@@ -114,7 +127,7 @@ export function Navbar() {
           ) : (
             <Link
               href="/login"
-              className={`text-sm font-medium transition-colors hover:text-[#CDB4DB] ${
+              className={`text-sm font-medium transition-colors hover:text-plum ${
                 isScrolled ? "text-neutral-600" : "text-white/90"
               }`}
             >
@@ -128,7 +141,7 @@ export function Navbar() {
           <Link
             href="/booking"
             onClick={() => setIsMobileMenuOpen(false)}
-            className={`text-xs font-semibold px-4 py-2 rounded-full border transition-all duration-300 ${
+            className={`text-xs font-semibold px-4 py-2 rounded-md border transition-all duration-300 ${
               isScrolled
                 ? "bg-transparent border-neutral-300 text-neutral-600 hover:bg-neutral-100"
                 : "bg-white/15 backdrop-blur-sm border-white/40 text-white hover:bg-white/25"
@@ -155,7 +168,7 @@ export function Navbar() {
         <div className="fixed inset-0 w-full h-screen bg-white z-50 flex flex-col">
           {/* Header */}
           <div className="flex items-center justify-between px-6 py-5 border-b border-neutral-100">
-            <span className="font-serif text-xl text-neutral-900 tracking-tight">Lii.lab</span>
+            <Link href="/#hero" onClick={() => setIsMobileMenuOpen(false)} className="font-serif text-xl text-neutral-900 tracking-tight">Lii.lab</Link>
             <button
               onClick={() => setIsMobileMenuOpen(false)}
               className="p-2 text-neutral-400 hover:text-neutral-700 transition-colors"
@@ -164,62 +177,60 @@ export function Navbar() {
             </button>
           </div>
 
-          {/* Links */}
+          {/* Nav links */}
           <div className="flex-1 flex flex-col justify-center px-7">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 className="group flex items-center justify-between py-5 border-b border-neutral-100 last:border-0"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <span className="text-3xl font-serif text-neutral-900 group-hover:text-[#CDB4DB] transition-colors duration-200">
+                <span className={`text-3xl font-serif transition-colors duration-200 ${
+                  link.highlight
+                    ? "text-plum group-hover:text-plum-hover"
+                    : "text-neutral-900 group-hover:text-plum"
+                }`}>
                   {link.name}
                 </span>
-                <ArrowRight size={16} className="text-neutral-300 group-hover:text-[#CDB4DB] group-hover:translate-x-1 transition-all duration-200" />
-              </a>
+                <ArrowRight size={16} className={`group-hover:translate-x-1 transition-all duration-200 ${
+                  link.highlight ? "text-plum" : "text-neutral-300 group-hover:text-plum"
+                }`} />
+              </Link>
             ))}
+          </div>
 
-            {/* Auth */}
-            <div className="pt-6 flex items-center gap-4">
-              {session ? (
-                <>
-                  <Link
-                    href={session.user?.role === "admin" ? "/admin" : "/dashboard"}
-                    className="text-sm font-medium text-neutral-500 hover:text-neutral-900 transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {session.user?.role === "admin" ? "Admin" : "Mi panel"}
-                  </Link>
-                  <span className="text-neutral-300">·</span>
-                  <button
-                    onClick={() => { signOut({ callbackUrl: "/" }); setIsMobileMenuOpen(false) }}
-                    className="text-sm text-neutral-400 hover:text-red-500 transition-colors"
-                  >
-                    Cerrar sesión
-                  </button>
-                </>
-              ) : (
+          {/* Bottom: Auth */}
+          <div className="px-6 pb-10 space-y-2">
+            {session ? (
+              <>
+                <Link
+                  href={session.user?.role === "admin" ? "/admin" : "/dashboard"}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center justify-between w-full px-5 py-4 rounded-xl border border-neutral-200 text-neutral-700 font-medium text-sm hover:border-plum hover:text-plum transition-all duration-200"
+                >
+                  <span>{session.user?.role === "admin" ? "Panel de administración" : "Mi panel"}</span>
+                  <ArrowRight size={15} className="text-neutral-400" />
+                </Link>
+                <button
+                  onClick={() => { signOut({ callbackUrl: "/" }); setIsMobileMenuOpen(false) }}
+                  className="w-full px-5 py-3.5 rounded-xl border border-red-100 text-red-500 font-medium text-sm hover:bg-red-50 transition-all duration-200"
+                >
+                  Cerrar sesión
+                </button>
+              </>
+            ) : (
+              <div className="flex flex-col gap-2 pt-2 border-t border-neutral-100">
+                <p className="text-[10px] uppercase tracking-widest text-neutral-400 font-medium px-1 mb-1">Cuenta</p>
                 <Link
                   href="/login"
-                  className="text-sm font-medium text-neutral-500 hover:text-neutral-900 transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center justify-center w-full px-5 py-4 rounded-xl bg-plum text-white font-semibold text-base hover:bg-plum-hover transition-all duration-200 shadow-sm"
                 >
                   Iniciar sesión
                 </Link>
-              )}
-            </div>
-          </div>
-
-          {/* Bottom CTA */}
-          <div className="px-6 pb-10">
-            <Link
-              href="/booking"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center justify-center w-full bg-[#B48EC5] hover:bg-[#a37ab5] active:scale-[0.98] text-white font-semibold py-4 rounded-2xl transition-all duration-200 text-base shadow-md"
-            >
-              Reservar cita
-            </Link>
+              </div>
+            )}
           </div>
         </div>
       )}

@@ -79,3 +79,34 @@ function getThreeConsecutiveWorkingDays(
 export function getCourseDays(startDate: Date): Date[] {
   return getThreeConsecutiveWorkingDays(startOfDay(startDate), [], [])
 }
+
+/**
+ * Find available single working days for the perfeccionamiento course (1 day format).
+ */
+export function findAvailableSingleDays({
+  startFrom,
+  weeksAhead = 12,
+  blockedDates,
+  existingCourseDays,
+}: CourseAvailabilityParams): Date[] {
+  const endAt = addDays(startFrom, weeksAhead * 7)
+  const validDates: Date[] = []
+  let cursor = startOfDay(startFrom)
+
+  while (isBefore(cursor, endAt)) {
+    const dow = cursor.getDay()
+    const schedule = WEEK_SCHEDULE[dow]
+
+    if (
+      schedule?.open &&
+      !blockedDates.some((bd) => isSameDay(bd, cursor)) &&
+      !existingCourseDays.some((cd) => isSameDay(cd, cursor))
+    ) {
+      validDates.push(new Date(cursor))
+    }
+
+    cursor = addDays(cursor, 1)
+  }
+
+  return validDates
+}

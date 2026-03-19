@@ -22,6 +22,7 @@ export const bookingSchema = z.object({
 
 export const courseBookingSchema = z.object({
   startDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Formato de fecha inválido'),
+  courseType: z.enum(['manic-0.0', 'perfeccionamiento']).default('manic-0.0'),
   notes: z.string().optional(),
 })
 

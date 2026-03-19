@@ -2,13 +2,14 @@ import { NextRequest, NextResponse } from 'next/server'
 import { dbConnect } from '@/lib/db'
 import BlockedDate from '@/models/BlockedDate'
 import CourseBooking from '@/models/CourseBooking'
-import { findAvailableCourseWindows } from '@/lib/course-availability'
+import { findAvailableCourseWindows, findAvailableSingleDays } from '@/lib/course-availability'
 import { addDays, startOfDay } from 'date-fns'
 
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url)
     const weeksAhead = Math.min(Math.max(parseInt(searchParams.get('weeks') || '12', 10) || 12, 1), 52)
+    const courseType = searchParams.get('type') || 'manic-0.0'
 
     await dbConnect()
 
@@ -24,12 +25,9 @@ export async function GET(req: NextRequest) {
 
     const startFrom = startOfDay(addDays(new Date(), 1)) // Start from tomorrow
 
-    const availableStartDates = findAvailableCourseWindows({
-      startFrom,
-      weeksAhead,
-      blockedDates,
-      existingCourseDays,
-    })
+    const availableStartDates = courseType === 'perfeccionamiento'
+      ? findAvailableSingleDays({ startFrom, weeksAhead, blockedDates, existingCourseDays })
+      : findAvailableCourseWindows({ startFrom, weeksAhead, blockedDates, existingCourseDays })
 
     return NextResponse.json({
       availableStartDates: availableStartDates.map((d) =>
