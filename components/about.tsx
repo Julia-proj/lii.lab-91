@@ -31,7 +31,7 @@ export function About() {
 
           {/* Image Column */}
           <div className="relative group">
-            <div className="relative w-full aspect-[3/2] md:aspect-[4/5] overflow-hidden rounded-xl shadow-xl">
+            <div className="relative w-full aspect-[3/2] md:h-[480px] md:aspect-auto overflow-hidden rounded-xl shadow-xl">
               <img
                 src="/images/Foto7.JPG"
                 alt="Lili"
@@ -50,7 +50,7 @@ export function About() {
           </div>
 
           {/* Text Column */}
-          <div className="space-y-5 md:space-y-8">
+          <div className="space-y-5 md:space-y-7">
             <h2 className="text-3xl md:text-5xl font-serif text-neutral-950 tracking-tight">Quién soy</h2>
 
             <div className="text-neutral-600 leading-relaxed font-light text-sm md:text-base space-y-3">
@@ -67,18 +67,18 @@ export function About() {
               </p>
             </div>
 
-            <div className="space-y-2 md:space-y-3">
+            <div className="space-y-2 md:space-y-2.5">
               {advantages.map(({ icon: Icon, title, desc }) => (
                 <div
                   key={title}
-                  className="flex gap-3 items-start p-3 md:p-4 rounded-xl bg-white hover:shadow-md transition-smooth"
+                  className="flex gap-3.5 items-start p-3.5 md:p-4 rounded-xl bg-white hover:shadow-md transition-smooth"
                 >
-                  <div className="shrink-0 mt-0.5 p-2 rounded-lg bg-gold-light">
-                    <Icon size={15} className="text-plum" />
+                  <div className="shrink-0 mt-0.5">
+                    <Icon size={18} className="text-plum" />
                   </div>
                   <div>
-                    <h3 className="font-sans font-semibold text-neutral-800 text-sm mb-0.5">{title}</h3>
-                    <p className="text-neutral-500 text-xs leading-relaxed font-light">{desc}</p>
+                    <h3 className="font-sans font-semibold text-neutral-800 text-sm md:text-base mb-0.5">{title}</h3>
+                    <p className="text-neutral-500 text-xs md:text-sm leading-relaxed font-light">{desc}</p>
                   </div>
                 </div>
               ))}

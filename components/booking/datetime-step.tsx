@@ -135,59 +135,32 @@ export function DateTimeStep() {
 
   const serviceNames = state.services.map((s) => s.name).join(' + ')
 
-  return (
+  const SlotPanel = () => (
     <div>
-      <h2 className="font-serif text-xl mb-2 text-center">Elige fecha y hora</h2>
-      {state.services.length > 0 && (
-        <p className="text-sm text-neutral-500 mb-6 text-center">
-          {serviceNames} &middot; {formatDuration(totalDuration)}
-        </p>
-      )}
-
-      <div className="flex justify-center mb-6">
-        <DayPicker
-          mode="single"
-          selected={selectedDate}
-          onSelect={handleDateSelect}
-          disabled={isDisabled}
-          locale={es}
-          showOutsideDays={false}
-          components={{ DayButton: CalendarDayButton as React.ComponentType<React.ComponentProps<'button'>> }}
-          className="bg-white rounded-xl border border-neutral-200 p-4 shadow-sm"
-          classNames={{
-            month_caption: 'font-serif text-base mb-3 text-center capitalize',
-            nav: 'flex items-center justify-between mb-2',
-            chevron: 'fill-[#CDB4DB]',
-            day: 'text-center',
-            weeks: 'mt-1',
-            weekdays: 'text-xs text-neutral-400',
-            weekday: 'w-10 text-center pb-1 font-normal',
-          }}
-        />
-      </div>
-
-      {state.date && (
+      {!state.date ? (
+        <div className="hidden md:flex h-full items-center justify-center py-12">
+          <p className="text-sm text-neutral-400 text-center">Selecciona una fecha<br />para ver los horarios disponibles</p>
+        </div>
+      ) : (
         <div>
-          <p className="text-sm font-medium text-neutral-700 mb-4 text-center capitalize">
+          <p className="text-sm font-semibold text-neutral-700 mb-4 capitalize">
             {formatDateStr(state.date)}
           </p>
 
           {slotsLoading ? (
-            <div className="flex justify-center py-6">
+            <div className="flex justify-center py-8">
               <div className="animate-spin w-6 h-6 border-2 border-[#CDB4DB] border-t-transparent rounded-full" />
             </div>
           ) : slots.length === 0 ? (
-            <p className="text-center text-sm text-neutral-500 py-4 bg-neutral-50 rounded-xl">
-              No hay horarios disponibles para este dia. Elige otra fecha.
+            <p className="text-sm text-neutral-500 py-4 bg-neutral-50 rounded-xl text-center">
+              No hay horarios disponibles. Elige otra fecha.
             </p>
           ) : (
             <div className="space-y-5">
               {morningSlots.length > 0 && (
                 <div>
-                  <h3 className="text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-widest">
-                    Manana
-                  </h3>
-                  <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                  <h3 className="text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-widest">Mañana</h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 gap-2">
                     {morningSlots.map((slot) => {
                       const end = computeEndTime(slot, totalDuration)
                       return (
@@ -210,13 +183,10 @@ export function DateTimeStep() {
                   </div>
                 </div>
               )}
-
               {afternoonSlots.length > 0 && (
                 <div>
-                  <h3 className="text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-widest">
-                    Tarde
-                  </h3>
-                  <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                  <h3 className="text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-widest">Tarde</h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 gap-2">
                     {afternoonSlots.map((slot) => {
                       const end = computeEndTime(slot, totalDuration)
                       return (
@@ -243,6 +213,55 @@ export function DateTimeStep() {
           )}
         </div>
       )}
+    </div>
+  )
+
+  return (
+    <div>
+      <h2 className="font-serif text-xl mb-2 text-center">Elige fecha y hora</h2>
+      {state.services.length > 0 && (
+        <p className="text-sm text-neutral-500 mb-6 text-center">
+          {serviceNames} &middot; {formatDuration(totalDuration)}
+        </p>
+      )}
+
+      {/* Desktop: 2-column (calendar | slots) */}
+      <div className="md:grid md:grid-cols-[auto_1fr] md:gap-8 md:items-start">
+        {/* Calendar */}
+        <div className="flex justify-center mb-6 md:mb-0">
+          <DayPicker
+            mode="single"
+            selected={selectedDate}
+            onSelect={handleDateSelect}
+            disabled={isDisabled}
+            locale={es}
+            showOutsideDays={false}
+            components={{ DayButton: CalendarDayButton as React.ComponentType<React.ComponentProps<'button'>> }}
+            className="bg-white rounded-xl border border-neutral-200 p-4 shadow-sm"
+            classNames={{
+              month_caption: 'font-serif text-base mb-3 text-center capitalize',
+              nav: 'flex items-center justify-between mb-2',
+              chevron: 'fill-[#CDB4DB]',
+              day: 'text-center',
+              weeks: 'mt-1',
+              weekdays: 'text-xs text-neutral-400',
+              weekday: 'w-10 text-center pb-1 font-normal',
+            }}
+          />
+        </div>
+
+        {/* Slots — shown right of calendar on desktop, below on mobile */}
+        <div className="md:pt-1">
+          {/* Mobile: only show when date selected */}
+          <div className="md:hidden">
+            {state.date && <SlotPanel />}
+          </div>
+          {/* Desktop: always rendered (shows prompt or slots) */}
+          <div className="hidden md:block">
+            <SlotPanel />
+          </div>
+        </div>
+      </div>
 
       <button
         onClick={() => dispatch({ type: 'GO_TO_STEP', payload: 1 })}

@@ -7,13 +7,13 @@ export function Gallery() {
   ]
 
   return (
-    <section className="grid grid-cols-4">
+    <section className="grid grid-cols-2 md:grid-cols-4">
       {photos.map((src, idx) => (
-        <div key={idx} className="overflow-hidden aspect-square sm:aspect-[4/3] md:aspect-[3/2]">
+        <div key={idx} className="overflow-hidden aspect-[4/3]">
           <img
             src={src}
             alt={`Lii.lab trabajo ${idx + 1}`}
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-cover object-top"
           />
         </div>
       ))}

@@ -44,7 +44,7 @@ export function Formacion() {
       <div className="container mx-auto px-4">
         {/* Section Title */}
         <div className="text-center mb-14 fade-in">
-          <h2 className="text-4xl md:text-5xl font-serif mb-3">Formación</h2>
+          <h2 className="text-4xl md:text-5xl font-serif mb-3">Formaciones</h2>
           <div className="w-16 h-[2px] mx-auto bg-gold" />
         </div>
 
@@ -253,7 +253,8 @@ export function Formacion() {
               </div>
 
               <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-                Metodología completa para llevar siempre contigo. Anatomía de la uña,
+                Perfecta si ya impartes cursos o quieres empezar — todo el método resumido
+                para ahorrar tiempo en la explicación teórica. Anatomía de la uña,
                 protocolos de higiene, técnicas de preparación y organización del trabajo.
               </p>
 
@@ -291,21 +292,30 @@ export function Formacion() {
         </div>
 
         {/* Bottom Banner */}
-        <div className="mt-10 rounded-2xl border border-plum/25 bg-lavender/20 fade-in">
-          <div className="px-6 sm:px-10 py-8 flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-10">
-            <div className="flex-1 min-w-0">
-              <p className="text-[10px] tracking-[0.25em] uppercase text-plum/50 mb-2">Formación privada</p>
-              <h3 className="text-xl sm:text-2xl font-serif text-plum mb-1.5">
-                ¿Tienes un salón y quieres formar a tu equipo?
-              </h3>
-              <p className="text-sm text-plum/60 leading-relaxed">
-                Formación personalizada con precios especiales para equipos.
-              </p>
+        <div className="mt-10 rounded-2xl bg-gradient-to-br from-lavender/35 via-lavender/20 to-plum/10 border border-plum/20 overflow-hidden fade-in">
+          <div className="px-8 sm:px-12 py-10 sm:py-12">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-plum/60 mb-3 font-medium">
+              Formación privada · Empresas &amp; salones
+            </p>
+            <h3 className="text-2xl sm:text-3xl font-serif text-plum mb-3 leading-tight">
+              ¿Tienes un salón y quieres<br className="hidden sm:block" /> formar a tu equipo?
+            </h3>
+            <p className="text-sm sm:text-base text-plum/70 leading-relaxed mb-6 max-w-lg">
+              Formación presencial adaptada a tu equipo, tu ritmo y tus objetivos.
+              Precios especiales para grupos de 2 a 8 personas.
+            </p>
+            <div className="flex flex-wrap gap-4 sm:gap-8 mb-8">
+              {["Formación en tu local", "Grupos de 2 a 8 personas", "Precio adaptado al equipo"].map((item) => (
+                <div key={item} className="flex items-center gap-2 text-sm text-plum/75">
+                  <span className="w-1.5 h-1.5 rounded-full bg-plum/50 shrink-0" />
+                  {item}
+                </div>
+              ))}
             </div>
             <Button
               size="lg"
               asChild
-              className="shrink-0 bg-plum text-white hover:bg-plum-hover transition-colors gap-2"
+              className="bg-plum text-white hover:bg-plum-hover transition-colors gap-2 shadow-sm"
             >
               <a
                 href="https://www.instagram.com/lii.lab/?hl=es"

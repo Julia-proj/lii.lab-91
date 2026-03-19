@@ -37,7 +37,7 @@ export function Hero() {
             <Button
               size="lg"
               asChild
-              className="bg-[#CDB4DB] text-white hover:bg-[#bda0cb] transition-colors"
+              className="bg-[#B09EC2] text-white hover:bg-[#9e8cb0] transition-colors"
             >
               <a href="#formacion">Ver cursos</a>
             </Button>

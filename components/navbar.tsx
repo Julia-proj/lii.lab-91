@@ -38,7 +38,7 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Quién soy", href: "#quien-soy" },
-    { name: "Formación", href: "#formacion" },
+    { name: "Formaciones", href: "#formacion" },
     { name: "Reservar cita", href: "/booking", highlight: true },
   ]
 

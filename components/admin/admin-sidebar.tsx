@@ -137,7 +137,7 @@ export function AdminSidebar() {
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
         aria-label="Abrir menú"
-        className="lg:hidden fixed top-3 left-3 z-50 bg-[#111115] border border-white/10 rounded-xl p-3 shadow-lg active:scale-95 transition-transform"
+        className="lg:hidden fixed top-3 left-3 z-50 bg-[#3f3f4e] dark:bg-[#111115] border border-white/15 rounded-xl p-3 shadow-lg active:scale-95 transition-transform"
       >
         {mobileOpen
           ? <X className="w-5 h-5 text-neutral-300" />
@@ -157,7 +157,7 @@ export function AdminSidebar() {
       <aside
         className={`
           fixed lg:static inset-y-0 left-0 z-40
-          w-64 lg:w-56 bg-[#111115] border-r border-white/6
+          w-64 lg:w-56 bg-[#3f3f4e] dark:bg-[#111115] border-r border-white/8 dark:border-white/6
           transition-transform duration-200 ease-in-out lg:translate-x-0
           ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
