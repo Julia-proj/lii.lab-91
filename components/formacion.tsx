@@ -298,34 +298,26 @@ export function Formacion() {
         </div>
 
         {/* Bottom Banner — Formar tu equipo — quiet luxury */}
-        <div className="mt-10 rounded-2xl overflow-hidden fade-in relative bg-[#EDE8DF] border border-[#D4CAC0]/70">
-          {/* Fine rule at top */}
-          <div className="absolute top-0 left-10 right-10 h-px bg-gradient-to-r from-transparent via-[#C4B5A8]/50 to-transparent" />
-
-          <div className="relative px-8 sm:px-12 py-8 sm:py-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 sm:gap-10">
-            <div className="min-w-0">
-              <p className="text-[10px] tracking-[0.35em] uppercase text-[#9A8F84] mb-3 font-medium">
-                Formación privada
-              </p>
-              <h3 className="text-xl sm:text-2xl font-serif text-[#29231e] leading-tight">
-                ¿Tienes un salón y quieres<br className="hidden sm:block" /> formar a tu equipo?
-              </h3>
-              <p className="text-xs text-[#A8998E] mt-2.5 leading-relaxed tracking-wide">
-                Presencial en tu local &nbsp;·&nbsp; Grupos de 2–8 personas
-              </p>
-            </div>
-
-            <div className="shrink-0">
-              <a
-                href="https://www.instagram.com/lii.lab/?hl=es"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium text-[#29231e] border border-[#29231e]/25 hover:border-[#29231e]/50 hover:bg-[#29231e]/5 rounded-lg px-4 py-2.5 transition-all"
-              >
-                <Instagram className="w-3.5 h-3.5" />
-                Escribir por Instagram
-              </a>
-            </div>
+        <div className="mt-10 rounded-2xl fade-in bg-[#F5F0EA] border border-[#C8BEB2]/35">
+          <div className="px-8 sm:px-16 py-10 sm:py-14 text-center">
+            <p className="text-[9px] tracking-[0.45em] uppercase text-[#B0A598] mb-4 font-medium">
+              Formación privada
+            </p>
+            <h3 className="text-2xl sm:text-3xl font-serif text-[#29231e] leading-tight mb-2">
+              ¿Tienes un salón y quieres<br />formar a tu equipo?
+            </h3>
+            <p className="text-[11px] text-[#B0A598] tracking-wide mb-8">
+              Presencial en tu local &nbsp;·&nbsp; Grupos de 2–8 personas
+            </p>
+            <a
+              href="https://www.instagram.com/lii.lab/?hl=es"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-[#29231e] border-b border-[#29231e]/30 pb-px hover:border-[#29231e] transition-colors"
+            >
+              <Instagram className="w-3.5 h-3.5" />
+              Escribir por Instagram
+            </a>
           </div>
         </div>
       </div>

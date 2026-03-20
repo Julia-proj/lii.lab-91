@@ -45,57 +45,67 @@ export default function EstadisticasPage() {
         <p className="text-xs text-neutral-400 mt-0.5">Ingresos y citas por período</p>
       </div>
 
-      {/* Period cards */}
-      <div className="grid grid-cols-3 gap-2 sm:gap-3">
+      {/* Period cards — stacked on mobile, 3-col on sm+ */}
+      <div className="flex flex-col sm:grid sm:grid-cols-3 gap-2 sm:gap-3">
 
-        {/* HOY — plum suave */}
+        {/* HOY */}
         <div className="bg-plum/[0.13] dark:bg-plum/20 rounded-xl p-3 sm:p-4 border border-plum/25 dark:border-plum/35">
-          <div className="flex items-center justify-between mb-3">
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-plum/70 leading-none">Hoy</p>
-            <Clock className="w-3 h-3 text-plum/40 shrink-0" />
-          </div>
-          <p className="text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-plum leading-none">
-            {stats.incomeToday.toFixed(0)}
-            <span className="text-xs font-normal text-plum/45 ml-0.5">€</span>
-          </p>
-          <div className="mt-2.5 pt-2.5 border-t border-plum/15">
-            <p className="text-[11px] sm:text-xs text-plum/55 tabular-nums leading-none">
-              {stats.bookingsToday} cita{stats.bookingsToday !== 1 ? 's' : ''}
-            </p>
+          {/* Mobile: horizontal. sm+: vertical */}
+          <div className="flex items-center justify-between sm:block">
+            <div className="flex items-center gap-1.5 sm:flex sm:items-center sm:justify-between sm:mb-3">
+              <Clock className="w-3 h-3 text-plum/40 shrink-0 sm:hidden" />
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-plum/70 leading-none">Hoy</p>
+              <Clock className="w-3 h-3 text-plum/40 shrink-0 hidden sm:block" />
+            </div>
+            <div className="text-right sm:text-left">
+              <p className="text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-plum leading-none">
+                {stats.incomeToday.toFixed(0)}
+                <span className="text-xs font-normal text-plum/45 ml-0.5">€</span>
+              </p>
+              <p className="text-[10px] sm:text-[11px] text-plum/55 tabular-nums leading-none mt-0.5 sm:mt-2.5 sm:pt-2.5 sm:border-t sm:border-plum/15">
+                {stats.bookingsToday} cita{stats.bookingsToday !== 1 ? 's' : ''}
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* SEMANA — neutral limpia */}
+        {/* SEMANA */}
         <div className="bg-white dark:bg-[#1e1e24] rounded-xl p-3 sm:p-4 border border-neutral-100 dark:border-white/8">
-          <div className="flex items-center justify-between mb-3">
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-neutral-400 leading-none">Semana</p>
-            <CalendarDays className="w-3 h-3 text-neutral-300 dark:text-neutral-600 shrink-0" />
-          </div>
-          <p className="text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-neutral-800 dark:text-neutral-100 leading-none">
-            {stats.incomeThisWeek.toFixed(0)}
-            <span className="text-xs font-normal text-neutral-400 ml-0.5">€</span>
-          </p>
-          <div className="mt-2.5 pt-2.5 border-t border-neutral-100 dark:border-white/6">
-            <p className="text-[11px] sm:text-xs text-neutral-400 tabular-nums leading-none">
-              {stats.bookingsThisWeek} cita{stats.bookingsThisWeek !== 1 ? 's' : ''}
-            </p>
+          <div className="flex items-center justify-between sm:block">
+            <div className="flex items-center gap-1.5 sm:flex sm:items-center sm:justify-between sm:mb-3">
+              <CalendarDays className="w-3 h-3 text-neutral-300 dark:text-neutral-600 shrink-0 sm:hidden" />
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-neutral-400 leading-none">Semana</p>
+              <CalendarDays className="w-3 h-3 text-neutral-300 dark:text-neutral-600 shrink-0 hidden sm:block" />
+            </div>
+            <div className="text-right sm:text-left">
+              <p className="text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-neutral-800 dark:text-neutral-100 leading-none">
+                {stats.incomeThisWeek.toFixed(0)}
+                <span className="text-xs font-normal text-neutral-400 ml-0.5">€</span>
+              </p>
+              <p className="text-[10px] sm:text-[11px] text-neutral-400 tabular-nums leading-none mt-0.5 sm:mt-2.5 sm:pt-2.5 sm:border-t sm:border-neutral-100 dark:sm:border-white/6">
+                {stats.bookingsThisWeek} cita{stats.bookingsThisWeek !== 1 ? 's' : ''}
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* MES — tinte plum suave */}
+        {/* MES */}
         <div className="bg-plum/5 dark:bg-plum/10 rounded-xl p-3 sm:p-4 border border-plum/12 dark:border-plum/20">
-          <div className="flex items-center justify-between mb-3">
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-plum/55 dark:text-plum/70 leading-none">Mes</p>
-            <Calendar className="w-3 h-3 text-plum/35 shrink-0" />
-          </div>
-          <p className="text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-plum leading-none">
-            {stats.incomeThisMonth.toFixed(0)}
-            <span className="text-xs font-normal text-plum/45 ml-0.5">€</span>
-          </p>
-          <div className="mt-2.5 pt-2.5 border-t border-plum/10">
-            <p className="text-[11px] sm:text-xs text-plum/50 tabular-nums leading-none">
-              {stats.bookingsThisMonth} cita{stats.bookingsThisMonth !== 1 ? 's' : ''}
-            </p>
+          <div className="flex items-center justify-between sm:block">
+            <div className="flex items-center gap-1.5 sm:flex sm:items-center sm:justify-between sm:mb-3">
+              <Calendar className="w-3 h-3 text-plum/35 shrink-0 sm:hidden" />
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-plum/55 dark:text-plum/70 leading-none">Mes</p>
+              <Calendar className="w-3 h-3 text-plum/35 shrink-0 hidden sm:block" />
+            </div>
+            <div className="text-right sm:text-left">
+              <p className="text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-plum leading-none">
+                {stats.incomeThisMonth.toFixed(0)}
+                <span className="text-xs font-normal text-plum/45 ml-0.5">€</span>
+              </p>
+              <p className="text-[10px] sm:text-[11px] text-plum/50 tabular-nums leading-none mt-0.5 sm:mt-2.5 sm:pt-2.5 sm:border-t sm:border-plum/10">
+                {stats.bookingsThisMonth} cita{stats.bookingsThisMonth !== 1 ? 's' : ''}
+              </p>
+            </div>
           </div>
         </div>
 
@@ -103,7 +113,7 @@ export default function EstadisticasPage() {
 
       {/* Historical totals */}
       <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-4 sm:p-5">
-        <div className="flex items-center gap-2 mb-5">
+        <div className="flex items-center gap-2 mb-4 sm:mb-5">
           <TrendingUp className="w-3.5 h-3.5 text-neutral-300 dark:text-neutral-600" />
           <p className="text-[10px] font-semibold uppercase tracking-widest text-neutral-400">
             Histórico acumulado
