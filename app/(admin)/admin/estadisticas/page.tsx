@@ -48,23 +48,20 @@ export default function EstadisticasPage() {
       {/* Period cards */}
       <div className="grid grid-cols-3 gap-2 sm:gap-3">
 
-        {/* HOY — dark hero */}
-        <div className="bg-[#17141f] dark:bg-[#0f0d14] rounded-xl p-3 sm:p-4 border border-white/6 relative overflow-hidden">
-          <div className="absolute -top-6 -right-6 w-20 h-20 rounded-full bg-plum/15 blur-xl pointer-events-none" />
-          <div className="relative">
-            <div className="flex items-center justify-between mb-3">
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-white/35 leading-none">Hoy</p>
-              <Clock className="w-3 h-3 text-lavender/40 shrink-0" />
-            </div>
-            <p className="text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-white leading-none">
-              {stats.incomeToday.toFixed(0)}
-              <span className="text-xs font-normal text-white/30 ml-0.5">€</span>
+        {/* HOY — plum suave */}
+        <div className="bg-plum/[0.13] dark:bg-plum/20 rounded-xl p-3 sm:p-4 border border-plum/25 dark:border-plum/35">
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-plum/70 leading-none">Hoy</p>
+            <Clock className="w-3 h-3 text-plum/40 shrink-0" />
+          </div>
+          <p className="text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-plum leading-none">
+            {stats.incomeToday.toFixed(0)}
+            <span className="text-xs font-normal text-plum/45 ml-0.5">€</span>
+          </p>
+          <div className="mt-2.5 pt-2.5 border-t border-plum/15">
+            <p className="text-[11px] sm:text-xs text-plum/55 tabular-nums leading-none">
+              {stats.bookingsToday} cita{stats.bookingsToday !== 1 ? 's' : ''}
             </p>
-            <div className="mt-2.5 pt-2.5 border-t border-white/8">
-              <p className="text-[11px] sm:text-xs text-white/35 tabular-nums leading-none">
-                {stats.bookingsToday} cita{stats.bookingsToday !== 1 ? 's' : ''}
-              </p>
-            </div>
           </div>
         </div>
 
@@ -113,7 +110,7 @@ export default function EstadisticasPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-2 gap-2">
           {[
             {
               value: stats.totalBookings,
@@ -128,13 +125,6 @@ export default function EstadisticasPage() {
               numClass: 'text-plum',
               dotClass: 'bg-plum/60',
               bgClass: 'bg-plum/4 dark:bg-plum/10 border-plum/10 dark:border-plum/15',
-            },
-            {
-              value: stats.totalGuidesSold,
-              label: 'Guías',
-              numClass: 'text-[#B8870D] dark:text-yellow-400',
-              dotClass: 'bg-[#C89520]',
-              bgClass: 'bg-[#FEFCE8] dark:bg-yellow-400/8 border-[#F0D870]/40 dark:border-yellow-400/15',
             },
           ].map(({ value, label, numClass, dotClass, bgClass }) => (
             <div
