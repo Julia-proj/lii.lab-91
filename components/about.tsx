@@ -25,13 +25,13 @@ const advantages = [
 
 export function About() {
   return (
-    <section id="quien-soy" className="py-12 md:py-20 bg-quiensoy-bg">
+    <section id="quien-soy" className="py-16 md:py-20 bg-quiensoy-bg">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-12 md:items-start">
 
-          {/* Image Column */}
-          <div className="relative group">
-            <div className="relative w-full max-w-sm mx-auto md:max-w-none h-72 sm:h-80 md:h-[440px] overflow-hidden rounded-xl shadow-xl">
+          {/* Image Column — sticky on desktop */}
+          <div className="md:sticky md:top-[100px]">
+            <div className="relative group w-full overflow-hidden rounded-lg md:rounded-xl shadow-xl aspect-[4/3] md:aspect-[3/4]">
               <img
                 src="/images/Foto7.JPG"
                 alt="Lili"
@@ -67,18 +67,19 @@ export function About() {
               </p>
             </div>
 
-            <div className="space-y-2 md:space-y-3">
+            {/* Feature cards — 2×2 grid on desktop, single col on mobile */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3">
               {advantages.map(({ icon: Icon, title, desc }) => (
                 <div
                   key={title}
-                  className="flex gap-4 items-start p-4 md:p-5 rounded-xl bg-white hover:shadow-md transition-smooth"
+                  className="flex gap-3 items-start p-4 rounded-xl bg-white hover:shadow-md transition-smooth"
                 >
                   <div className="shrink-0 mt-0.5">
-                    <Icon size={20} className="text-plum" />
+                    <Icon size={24} className="text-plum" />
                   </div>
                   <div>
-                    <h3 className="font-sans font-semibold text-neutral-800 text-sm md:text-base mb-1">{title}</h3>
-                    <p className="text-neutral-500 text-sm md:text-sm leading-relaxed font-light">{desc}</p>
+                    <h3 className="font-sans font-semibold text-neutral-800 text-sm mb-0.5">{title}</h3>
+                    <p className="text-neutral-500 text-sm leading-relaxed font-light">{desc}</p>
                   </div>
                 </div>
               ))}
