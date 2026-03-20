@@ -163,11 +163,10 @@ module.exports = mod;
     ()=>authConfig
 ]);
 const authConfig = {
-    // Redirigir a /login cuando se necesita autenticacion
+    secret: process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET,
     pages: {
         signIn: '/login'
     },
-    // Usamos JWT (no sesiones en BD) para que funcione en edge y serverless
     session: {
         strategy: 'jwt'
     },
@@ -276,8 +275,6 @@ __turbopack_context__.s([
     ()=>signOut
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$2d$auth$40$5$2e$0$2e$0$2d$beta$2e$30_nex_0aeabd12ec5b08dde097f51b51f6e231$2f$node_modules$2f$next$2d$auth$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/next-auth@5.0.0-beta.30_nex_0aeabd12ec5b08dde097f51b51f6e231/node_modules/next-auth/index.js [app-route] (ecmascript) <locals>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$2d$auth$40$5$2e$0$2e$0$2d$beta$2e$30_nex_0aeabd12ec5b08dde097f51b51f6e231$2f$node_modules$2f$next$2d$auth$2f$providers$2f$google$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/next-auth@5.0.0-beta.30_nex_0aeabd12ec5b08dde097f51b51f6e231/node_modules/next-auth/providers/google.js [app-route] (ecmascript) <locals>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$providers$2f$google$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/@auth+core@0.41.0_nodemailer@8.0.2/node_modules/@auth/core/providers/google.js [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$2d$auth$40$5$2e$0$2e$0$2d$beta$2e$30_nex_0aeabd12ec5b08dde097f51b51f6e231$2f$node_modules$2f$next$2d$auth$2f$providers$2f$credentials$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/next-auth@5.0.0-beta.30_nex_0aeabd12ec5b08dde097f51b51f6e231/node_modules/next-auth/providers/credentials.js [app-route] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$providers$2f$credentials$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/@auth+core@0.41.0_nodemailer@8.0.2/node_modules/@auth/core/providers/credentials.js [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$config$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/auth.config.ts [app-route] (ecmascript)");
@@ -288,14 +285,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$User$2e$ts__$5b$ap
 ;
 ;
 ;
-;
 const { handlers, auth, signIn, signOut } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$2d$auth$40$5$2e$0$2e$0$2d$beta$2e$30_nex_0aeabd12ec5b08dde097f51b51f6e231$2f$node_modules$2f$next$2d$auth$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"])({
     ...__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$config$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["authConfig"],
     providers: [
-        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$providers$2f$google$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"])({
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET
-        }),
         (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$providers$2f$credentials$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"])({
             credentials: {
                 email: {
@@ -332,33 +324,6 @@ const { handlers, auth, signIn, signOut } = (0, __TURBOPACK__imported__module__$
             if (user) {
                 token.role = user.role || 'user';
                 token.id = user.id;
-            }
-            // On Google sign-in, upsert the user in MongoDB
-            if (account?.provider === 'google') {
-                await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["dbConnect"])();
-                const existing = await __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$User$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].findOne({
-                    email: token.email
-                });
-                if (!existing) {
-                    const newUser = await __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$User$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].create({
-                        name: token.name,
-                        email: token.email,
-                        googleId: account.providerAccountId,
-                        role: 'user',
-                        image: token.picture
-                    });
-                    token.id = newUser._id.toString();
-                    token.role = 'user';
-                } else {
-                    token.id = existing._id.toString();
-                    token.role = existing.role;
-                    // Update Google ID if missing
-                    if (!existing.googleId) {
-                        existing.googleId = account.providerAccountId;
-                        existing.image = token.picture || existing.image;
-                        await existing.save();
-                    }
-                }
             }
             // Re-read role from DB on every token refresh to prevent stale admin roles
             if (!user && !account && token.id) {

@@ -52,6 +52,7 @@ export function Course() {
               <img
                 src="/images/Foto2.JPG"
                 alt="Curso Manicura"
+                loading="lazy"
                 className="relative z-10 rounded-lg shadow-xl w-full object-cover object-top h-[420px] sm:h-[560px] lg:h-[620px] transition-all duration-500"
               />
             </div>
@@ -244,7 +245,8 @@ export function Course() {
               <div key={idx} className="aspect-square sm:aspect-[4/5] overflow-hidden rounded-lg group">
                 <img
                   src={src || "/placeholder.svg"}
-                  alt={`Gallery ${idx}`}
+                  alt={`Trabajo de manicura Lii.lab ${idx + 1}`}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </div>

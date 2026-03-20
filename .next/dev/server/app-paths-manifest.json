@@ -1,13 +1,4 @@
 {
-  "/(app)/booking/confirmation/[id]/page": "app/(app)/booking/confirmation/[id]/page.js",
-  "/(app)/booking/page": "app/(app)/booking/page.js",
-  "/(app)/dashboard/page": "app/(app)/dashboard/page.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
-  "/api/available-slots/route": "app/api/available-slots/route.js",
-  "/api/blocked-dates/route": "app/api/blocked-dates/route.js",
-  "/api/bookings/route": "app/api/bookings/route.js",
-  "/api/course-availability/route": "app/api/course-availability/route.js",
-  "/api/course-bookings/route": "app/api/course-bookings/route.js",
-  "/api/services/route": "app/api/services/route.js",
   "/page": "app/page.js"
 }

@@ -188,6 +188,14 @@ const CourseBookingSchema = new __TURBOPACK__imported__module__$5b$externals$5d2
             required: true
         }
     ],
+    courseType: {
+        type: String,
+        enum: [
+            'manic-0.0',
+            'perfeccionamiento'
+        ],
+        default: 'manic-0.0'
+    },
     status: {
         type: String,
         enum: [
@@ -347,11 +355,10 @@ module.exports = mod;
     ()=>authConfig
 ]);
 const authConfig = {
-    // Redirigir a /login cuando se necesita autenticacion
+    secret: process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET,
     pages: {
         signIn: '/login'
     },
-    // Usamos JWT (no sesiones en BD) para que funcione en edge y serverless
     session: {
         strategy: 'jwt'
     },
@@ -396,8 +403,6 @@ __turbopack_context__.s([
     ()=>signOut
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$2d$auth$40$5$2e$0$2e$0$2d$beta$2e$30_nex_0aeabd12ec5b08dde097f51b51f6e231$2f$node_modules$2f$next$2d$auth$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/next-auth@5.0.0-beta.30_nex_0aeabd12ec5b08dde097f51b51f6e231/node_modules/next-auth/index.js [app-route] (ecmascript) <locals>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$2d$auth$40$5$2e$0$2e$0$2d$beta$2e$30_nex_0aeabd12ec5b08dde097f51b51f6e231$2f$node_modules$2f$next$2d$auth$2f$providers$2f$google$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/next-auth@5.0.0-beta.30_nex_0aeabd12ec5b08dde097f51b51f6e231/node_modules/next-auth/providers/google.js [app-route] (ecmascript) <locals>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$providers$2f$google$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/@auth+core@0.41.0_nodemailer@8.0.2/node_modules/@auth/core/providers/google.js [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$2d$auth$40$5$2e$0$2e$0$2d$beta$2e$30_nex_0aeabd12ec5b08dde097f51b51f6e231$2f$node_modules$2f$next$2d$auth$2f$providers$2f$credentials$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/next-auth@5.0.0-beta.30_nex_0aeabd12ec5b08dde097f51b51f6e231/node_modules/next-auth/providers/credentials.js [app-route] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$providers$2f$credentials$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/@auth+core@0.41.0_nodemailer@8.0.2/node_modules/@auth/core/providers/credentials.js [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$config$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/auth.config.ts [app-route] (ecmascript)");
@@ -408,14 +413,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$User$2e$ts__$5b$ap
 ;
 ;
 ;
-;
 const { handlers, auth, signIn, signOut } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$2d$auth$40$5$2e$0$2e$0$2d$beta$2e$30_nex_0aeabd12ec5b08dde097f51b51f6e231$2f$node_modules$2f$next$2d$auth$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"])({
     ...__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$config$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["authConfig"],
     providers: [
-        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$providers$2f$google$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"])({
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET
-        }),
         (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$providers$2f$credentials$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"])({
             credentials: {
                 email: {
@@ -452,33 +452,6 @@ const { handlers, auth, signIn, signOut } = (0, __TURBOPACK__imported__module__$
             if (user) {
                 token.role = user.role || 'user';
                 token.id = user.id;
-            }
-            // On Google sign-in, upsert the user in MongoDB
-            if (account?.provider === 'google') {
-                await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["dbConnect"])();
-                const existing = await __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$User$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].findOne({
-                    email: token.email
-                });
-                if (!existing) {
-                    const newUser = await __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$User$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].create({
-                        name: token.name,
-                        email: token.email,
-                        googleId: account.providerAccountId,
-                        role: 'user',
-                        image: token.picture
-                    });
-                    token.id = newUser._id.toString();
-                    token.role = 'user';
-                } else {
-                    token.id = existing._id.toString();
-                    token.role = existing.role;
-                    // Update Google ID if missing
-                    if (!existing.googleId) {
-                        existing.googleId = account.providerAccountId;
-                        existing.image = token.picture || existing.image;
-                        await existing.save();
-                    }
-                }
             }
             // Re-read role from DB on every token refresh to prevent stale admin roles
             if (!user && !account && token.id) {
@@ -518,9 +491,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$CourseBooking$2e$t
 var __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$User$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/models/User.ts [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$GuideOrder$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/models/GuideOrder.ts [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/auth.ts [app-route] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$date$2d$fns$40$4$2e$1$2e$0$2f$node_modules$2f$date$2d$fns$2f$startOfMonth$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/date-fns@4.1.0/node_modules/date-fns/startOfMonth.js [app-route] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$date$2d$fns$40$4$2e$1$2e$0$2f$node_modules$2f$date$2d$fns$2f$endOfMonth$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/date-fns@4.1.0/node_modules/date-fns/endOfMonth.js [app-route] (ecmascript)");
-;
 ;
 ;
 ;
@@ -540,9 +510,11 @@ async function GET() {
         }
         await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["dbConnect"])();
         const now = new Date();
-        const monthStart = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$date$2d$fns$40$4$2e$1$2e$0$2f$node_modules$2f$date$2d$fns$2f$startOfMonth$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["startOfMonth"])(now).toISOString().split('T')[0];
-        const monthEnd = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$date$2d$fns$40$4$2e$1$2e$0$2f$node_modules$2f$date$2d$fns$2f$endOfMonth$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["endOfMonth"])(now).toISOString().split('T')[0];
-        const today = now.toISOString().split('T')[0];
+        const pad = (n)=>String(n).padStart(2, '0');
+        const y = now.getFullYear(), m = now.getMonth();
+        const monthStart = `${y}-${pad(m + 1)}-01`;
+        const monthEnd = `${y}-${pad(m + 1)}-${pad(new Date(y, m + 1, 0).getDate())}`;
+        const today = `${y}-${pad(m + 1)}-${pad(now.getDate())}`;
         // Aggregate ingresos (paidAmount) for today and this month
         const [totalBookings, bookingsThisMonth, bookingsToday, totalUsers, courseBookings, guidesSold, upcomingBookings, recentBookings, incomeTodayAgg, incomeThisMonthAgg] = await Promise.all([
             __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$Booking$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].countDocuments({

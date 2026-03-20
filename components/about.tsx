@@ -35,6 +35,7 @@ export function About() {
               <img
                 src="/images/Foto7.JPG"
                 alt="Lili"
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform"
                 style={{ objectPosition: "center 15%" }}
               />

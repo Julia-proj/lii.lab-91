@@ -498,6 +498,8 @@ async function GET(req) {
         const { searchParams } = new URL(req.url);
         const dateStr = searchParams.get('date');
         const serviceId = searchParams.get('serviceId');
+        const excludeId = searchParams.get('excludeId') // booking id to exclude from conflict check (reschedule)
+        ;
         if (!dateStr || !serviceId) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 error: 'Se requieren date y serviceId'
@@ -531,8 +533,8 @@ async function GET(req) {
                 blocked: true
             });
         }
-        // Get existing bookings for this date (only confirmed/pending ones)
-        const existingBookings = await __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$Booking$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].find({
+        // Get existing bookings for this date, excluding the current booking if rescheduling
+        const bookingFilter = {
             date: dateStr,
             status: {
                 $in: [
@@ -540,7 +542,13 @@ async function GET(req) {
                     'pendiente'
                 ]
             }
-        }).select('startTime endTime');
+        };
+        if (excludeId) {
+            bookingFilter._id = {
+                $ne: excludeId
+            };
+        }
+        const existingBookings = await __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$Booking$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].find(bookingFilter).select('startTime endTime');
         // Get blocked hours for this date — treat them as fake bookings so slots
         // that overlap with blocked hours are excluded
         const blockedHours = await __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$BlockedHour$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].find({

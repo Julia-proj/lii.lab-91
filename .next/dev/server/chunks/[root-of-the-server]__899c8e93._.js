@@ -482,6 +482,10 @@ const bookingSchema = __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
 });
 const courseBookingSchema = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$zod$40$3$2e$25$2e$76$2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].object({
     startDate: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$zod$40$3$2e$25$2e$76$2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Formato de fecha inválido'),
+    courseType: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$zod$40$3$2e$25$2e$76$2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].enum([
+        'manic-0.0',
+        'perfeccionamiento'
+    ]).default('manic-0.0'),
     notes: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$zod$40$3$2e$25$2e$76$2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].string().optional()
 });
 const blockedDateSchema = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$zod$40$3$2e$25$2e$76$2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].object({
@@ -844,7 +848,7 @@ function bookingConfirmationTemplate(data) {
         <p style="margin: 8px 0; font-size: 14px;"><strong>Servicio:</strong> ${data.serviceName}</p>
         <p style="margin: 8px 0; font-size: 14px; text-transform: capitalize;"><strong>Fecha:</strong> ${dateFormatted}</p>
         <p style="margin: 8px 0; font-size: 14px;"><strong>Hora:</strong> ${data.startTime} - ${data.endTime}</p>
-        <p style="margin: 8px 0; font-size: 14px;"><strong>Precio:</strong> ${data.price}€ (pago en el salón)</p>
+        <p style="margin: 8px 0; font-size: 14px;"><strong>Precio:</strong> ${data.price}€ (pago en el local)</p>
       </div>
       <p style="color: #525252; font-size: 14px; line-height: 1.6;">
         <strong>Dirección:</strong> Calle Narváez, 1, 28342, Valdemoro

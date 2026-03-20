@@ -62,6 +62,7 @@ export function Formacion() {
               <img
                 src="/images/Foto2.JPG"
                 alt="Curso MANIC 0.0"
+                loading="lazy"
                 className="w-full aspect-video object-cover"
                 style={{ objectPosition: "center 30%" }}
               />

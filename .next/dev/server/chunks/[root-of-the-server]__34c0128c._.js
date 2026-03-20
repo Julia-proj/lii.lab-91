@@ -145,6 +145,9 @@ const BookingSchema = new __TURBOPACK__imported__module__$5b$externals$5d2f$mong
     },
     paidAmount: {
         type: Number
+    },
+    adminNotes: {
+        type: String
     }
 }, {
     timestamps: true
@@ -193,11 +196,10 @@ module.exports = mod;
     ()=>authConfig
 ]);
 const authConfig = {
-    // Redirigir a /login cuando se necesita autenticacion
+    secret: process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET,
     pages: {
         signIn: '/login'
     },
-    // Usamos JWT (no sesiones en BD) para que funcione en edge y serverless
     session: {
         strategy: 'jwt'
     },
@@ -306,8 +308,6 @@ __turbopack_context__.s([
     ()=>signOut
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$2d$auth$40$5$2e$0$2e$0$2d$beta$2e$30_nex_0aeabd12ec5b08dde097f51b51f6e231$2f$node_modules$2f$next$2d$auth$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/next-auth@5.0.0-beta.30_nex_0aeabd12ec5b08dde097f51b51f6e231/node_modules/next-auth/index.js [app-route] (ecmascript) <locals>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$2d$auth$40$5$2e$0$2e$0$2d$beta$2e$30_nex_0aeabd12ec5b08dde097f51b51f6e231$2f$node_modules$2f$next$2d$auth$2f$providers$2f$google$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/next-auth@5.0.0-beta.30_nex_0aeabd12ec5b08dde097f51b51f6e231/node_modules/next-auth/providers/google.js [app-route] (ecmascript) <locals>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$providers$2f$google$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/@auth+core@0.41.0_nodemailer@8.0.2/node_modules/@auth/core/providers/google.js [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$2d$auth$40$5$2e$0$2e$0$2d$beta$2e$30_nex_0aeabd12ec5b08dde097f51b51f6e231$2f$node_modules$2f$next$2d$auth$2f$providers$2f$credentials$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/next-auth@5.0.0-beta.30_nex_0aeabd12ec5b08dde097f51b51f6e231/node_modules/next-auth/providers/credentials.js [app-route] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$providers$2f$credentials$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/@auth+core@0.41.0_nodemailer@8.0.2/node_modules/@auth/core/providers/credentials.js [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$config$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/auth.config.ts [app-route] (ecmascript)");
@@ -318,14 +318,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$User$2e$ts__$5b$ap
 ;
 ;
 ;
-;
 const { handlers, auth, signIn, signOut } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$2d$auth$40$5$2e$0$2e$0$2d$beta$2e$30_nex_0aeabd12ec5b08dde097f51b51f6e231$2f$node_modules$2f$next$2d$auth$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"])({
     ...__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$config$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["authConfig"],
     providers: [
-        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$providers$2f$google$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"])({
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET
-        }),
         (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$auth$2b$core$40$0$2e$41$2e$0_nodemailer$40$8$2e$0$2e$2$2f$node_modules$2f40$auth$2f$core$2f$providers$2f$credentials$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"])({
             credentials: {
                 email: {
@@ -362,33 +357,6 @@ const { handlers, auth, signIn, signOut } = (0, __TURBOPACK__imported__module__$
             if (user) {
                 token.role = user.role || 'user';
                 token.id = user.id;
-            }
-            // On Google sign-in, upsert the user in MongoDB
-            if (account?.provider === 'google') {
-                await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["dbConnect"])();
-                const existing = await __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$User$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].findOne({
-                    email: token.email
-                });
-                if (!existing) {
-                    const newUser = await __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$User$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].create({
-                        name: token.name,
-                        email: token.email,
-                        googleId: account.providerAccountId,
-                        role: 'user',
-                        image: token.picture
-                    });
-                    token.id = newUser._id.toString();
-                    token.role = 'user';
-                } else {
-                    token.id = existing._id.toString();
-                    token.role = existing.role;
-                    // Update Google ID if missing
-                    if (!existing.googleId) {
-                        existing.googleId = account.providerAccountId;
-                        existing.image = token.picture || existing.image;
-                        await existing.save();
-                    }
-                }
             }
             // Re-read role from DB on every token refresh to prevent stale admin roles
             if (!user && !account && token.id) {
@@ -630,7 +598,7 @@ function bookingConfirmationTemplate(data) {
         <p style="margin: 8px 0; font-size: 14px;"><strong>Servicio:</strong> ${data.serviceName}</p>
         <p style="margin: 8px 0; font-size: 14px; text-transform: capitalize;"><strong>Fecha:</strong> ${dateFormatted}</p>
         <p style="margin: 8px 0; font-size: 14px;"><strong>Hora:</strong> ${data.startTime} - ${data.endTime}</p>
-        <p style="margin: 8px 0; font-size: 14px;"><strong>Precio:</strong> ${data.price}€ (pago en el salón)</p>
+        <p style="margin: 8px 0; font-size: 14px;"><strong>Precio:</strong> ${data.price}€ (pago en el local)</p>
       </div>
       <p style="color: #525252; font-size: 14px; line-height: 1.6;">
         <strong>Dirección:</strong> Calle Narváez, 1, 28342, Valdemoro
@@ -934,7 +902,6 @@ async function GET(_req, { params }) {
                 status: 404
             });
         }
-        // Users can only see their own bookings, admins can see all
         if (session.user.role !== 'admin' && booking.user._id.toString() !== session.user.id) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 error: 'No autorizado'
@@ -965,32 +932,33 @@ async function PATCH(req, { params }) {
         const { id } = await params;
         const body = await req.json();
         await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["dbConnect"])();
-        const booking = await __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$Booking$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].findById(id);
-        if (!booking) {
+        // Fetch only what's needed for auth check (lean — fast, no mongoose overhead)
+        const existing = await __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$Booking$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].findById(id).select('user status').lean();
+        if (!existing) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 error: 'Reserva no encontrada'
             }, {
                 status: 404
             });
         }
-        // Users can only cancel their own bookings
-        if (session.user.role !== 'admin' && booking.user.toString() !== session.user.id) {
+        // Auth check: users can only touch their own bookings
+        if (session.user.role !== 'admin' && existing.user.toString() !== session.user.id) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 error: 'No autorizado'
             }, {
                 status: 403
             });
         }
-        // Admin can change any valid status, user can only cancel
+        // Build the $set payload
         const validStatuses = [
             'pendiente',
             'confirmada',
             'cancelada',
             'completada'
         ];
-        let changed = false;
+        const updateFields = {};
         if (session.user.role === 'admin') {
-            if (body.status) {
+            if (body.status !== undefined) {
                 if (!validStatuses.includes(body.status)) {
                     return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                         error: 'Estado no válido'
@@ -998,45 +966,111 @@ async function PATCH(req, { params }) {
                         status: 400
                     });
                 }
-                booking.status = body.status;
-                changed = true;
+                updateFields.status = body.status;
             }
             if (typeof body.paidAmount === 'number') {
-                booking.paidAmount = body.paidAmount;
-                changed = true;
+                updateFields.paidAmount = body.paidAmount;
             }
-        } else if (body.status === 'cancelada') {
-            booking.status = 'cancelada';
-            changed = true;
+            if (typeof body.adminNotes === 'string') {
+                updateFields.adminNotes = body.adminNotes;
+            }
+            // Reschedule: allow admin to change date and times
+            if (typeof body.date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(body.date)) {
+                updateFields.date = body.date;
+            }
+            if (typeof body.startTime === 'string' && /^\d{2}:\d{2}$/.test(body.startTime)) {
+                updateFields.startTime = body.startTime;
+            }
+            if (typeof body.endTime === 'string' && /^\d{2}:\d{2}$/.test(body.endTime)) {
+                updateFields.endTime = body.endTime;
+            }
+            // Conflict check when rescheduling
+            if (updateFields.date || updateFields.startTime || updateFields.endTime) {
+                const newDate = updateFields.date || existing.date;
+                const newStart = updateFields.startTime || existing.startTime;
+                const newEnd = updateFields.endTime || existing.endTime;
+                if (newDate && newStart && newEnd) {
+                    const conflict = await __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$Booking$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].findOne({
+                        _id: {
+                            $ne: id
+                        },
+                        date: newDate,
+                        status: {
+                            $nin: [
+                                'cancelada'
+                            ]
+                        },
+                        $or: [
+                            {
+                                startTime: {
+                                    $lt: newEnd
+                                },
+                                endTime: {
+                                    $gt: newStart
+                                }
+                            }
+                        ]
+                    }).lean();
+                    if (conflict) {
+                        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                            error: 'Ese horario ya está ocupado'
+                        }, {
+                            status: 409
+                        });
+                    }
+                }
+            }
         } else {
+            // Regular user: only allowed to cancel
+            if (body.status === 'cancelada') {
+                updateFields.status = 'cancelada';
+            } else {
+                return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                    error: 'Acción no permitida'
+                }, {
+                    status: 403
+                });
+            }
+        }
+        if (Object.keys(updateFields).length === 0) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: 'Acción no permitida'
+                error: 'Nada que actualizar'
             }, {
                 status: 400
             });
         }
-        if (changed) {
-            await booking.save();
+        // Use findByIdAndUpdate — avoids save() validation issues with legacy documents
+        const updated = await __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$Booking$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].findByIdAndUpdate(id, {
+            $set: updateFields
+        }, {
+            new: true,
+            runValidators: false
+        }).populate('services', 'name category price duration').populate('user', 'name email phone');
+        if (!updated) {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                error: 'Reserva no encontrada'
+            }, {
+                status: 404
+            });
         }
-        const populated = await __TURBOPACK__imported__module__$5b$project$5d2f$models$2f$Booking$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].findById(booking._id).populate('services', 'name category price duration').populate('user', 'name email phone');
-        // Send cancellation notification if status changed to cancelled
-        if (booking.status === 'cancelada' && populated?.user && populated?.services?.length > 0) {
-            const user = populated.user;
-            const svcList = populated.services;
-            const serviceNames = svcList.map((s)=>s.name).join(', ');
-            const totalPrice = svcList.reduce((sum, s)=>sum + s.price, 0);
-            (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$notifications$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["notifyCancellation"])({
-                clientName: user.name,
-                clientEmail: user.email,
-                clientPhone: user.phone,
-                serviceName: serviceNames,
-                date: booking.date,
-                startTime: booking.startTime,
-                endTime: booking.endTime,
-                price: totalPrice
-            }).catch((err)=>console.error('Cancellation notification error:', err));
+        // Fire cancellation notification (non-blocking)
+        if (updateFields.status === 'cancelada') {
+            const user = updated.user;
+            const svcList = updated.services;
+            if (user?.email && svcList?.length > 0) {
+                (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$notifications$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["notifyCancellation"])({
+                    clientName: user.name,
+                    clientEmail: user.email,
+                    clientPhone: user.phone,
+                    serviceName: svcList.map((s)=>s.name).join(', '),
+                    date: updated.date,
+                    startTime: updated.startTime,
+                    endTime: updated.endTime,
+                    price: svcList.reduce((sum, s)=>sum + s.price, 0)
+                }).catch((err)=>console.error('Cancellation notification error:', err));
+            }
         }
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(populated);
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(updated);
     } catch (error) {
         console.error('Error updating booking:', error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({

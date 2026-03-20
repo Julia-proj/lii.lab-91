@@ -153,6 +153,19 @@ const DAY_NAMES = [
     'Vie',
     'Sab'
 ];
+// 24h time slots every 15 min, 8:00–21:00
+const TIME_SLOTS = [];
+for(let h = 8; h <= 21; h++){
+    for (const m of [
+        0,
+        15,
+        30,
+        45
+    ]){
+        if (h === 21 && m > 0) break;
+        TIME_SLOTS.push(`${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`);
+    }
+}
 const DAY_NAMES_FULL = [
     'Domingo',
     'Lunes',
@@ -365,41 +378,58 @@ function AdminSchedulePage() {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "text-center py-12",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "w-6 h-6 border-2 border-neutral-200 border-t-[#CDB4DB] rounded-full animate-spin mx-auto"
+                className: "w-6 h-6 border-2 border-neutral-200 border-t-plum rounded-full animate-spin mx-auto"
             }, void 0, false, {
                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                lineNumber: 215,
+                lineNumber: 224,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-            lineNumber: 214,
+            lineNumber: 223,
             columnNumber: 7
         }, this);
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "space-y-5",
         children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                className: "font-serif text-2xl mb-6",
-                children: "Gestion de horario"
-            }, void 0, false, {
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                        className: "font-serif text-2xl text-neutral-900 dark:text-neutral-100",
+                        children: "Horario"
+                    }, void 0, false, {
+                        fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
+                        lineNumber: 232,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "text-xs text-neutral-400 mt-0.5",
+                        children: "Gestiona disponibilidad y bloqueos"
+                    }, void 0, false, {
+                        fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
+                        lineNumber: 233,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                lineNumber: 222,
+                lineNumber: 231,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "bg-white rounded-xl border border-neutral-200 p-4 mb-6",
+                className: "bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-4",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                        className: "font-medium mb-3 text-sm",
+                        className: "text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-3",
                         children: "Horario semanal"
                     }, void 0, false, {
                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                        lineNumber: 226,
+                        lineNumber: 238,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "grid grid-cols-7 gap-1 text-center text-xs",
+                        className: "grid grid-cols-4 sm:grid-cols-7 gap-1.5 text-center text-xs",
                         children: [
                             1,
                             2,
@@ -411,119 +441,123 @@ function AdminSchedulePage() {
                         ].map((dow)=>{
                             const day = __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$schedule$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["WEEK_SCHEDULE"][dow];
                             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: `rounded-lg p-2 ${day?.open ? 'bg-green-50' : 'bg-neutral-50'}`,
+                                className: `rounded-xl px-1.5 py-2.5 border ${day?.open ? 'bg-white dark:bg-emerald-900/20 border-emerald-100 dark:border-emerald-800/30' : 'bg-white dark:bg-white/4 border-neutral-100 dark:border-white/6'}`,
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "font-semibold mb-1",
+                                        className: `font-bold text-[11px] mb-1 ${day?.open ? 'text-neutral-700 dark:text-neutral-300' : 'text-neutral-300 dark:text-neutral-600'}`,
                                         children: DAY_NAMES[dow]
                                     }, void 0, false, {
                                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                        lineNumber: 232,
+                                        lineNumber: 248,
                                         columnNumber: 17
                                     }, this),
                                     day?.open ? day.blocks.map((b, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-green-700",
+                                            className: "text-[10px] text-emerald-600 dark:text-emerald-400 font-medium leading-tight",
                                             children: [
                                                 b.start,
-                                                "-",
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
+                                                    fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
+                                                    lineNumber: 251,
+                                                    columnNumber: 130
+                                                }, this),
                                                 b.end
                                             ]
                                         }, i, true, {
                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                            lineNumber: 235,
+                                            lineNumber: 251,
                                             columnNumber: 21
                                         }, this)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-neutral-400",
-                                        children: "Cerrado"
+                                        className: "text-[10px] text-neutral-200 dark:text-neutral-700 font-medium",
+                                        children: "—"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                        lineNumber: 238,
+                                        lineNumber: 254,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, dow, true, {
                                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                lineNumber: 231,
+                                lineNumber: 243,
                                 columnNumber: 15
                             }, this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                        lineNumber: 227,
+                        lineNumber: 239,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                lineNumber: 225,
+                lineNumber: 237,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "grid grid-cols-1 lg:grid-cols-2 gap-6",
+                className: "grid grid-cols-1 lg:grid-cols-2 gap-5",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "bg-white rounded-xl border border-neutral-200 p-4",
+                        className: "bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-4",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "flex items-center justify-between mb-4",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: prevMonth,
-                                        className: "p-1.5 hover:bg-neutral-100 rounded-lg transition-colors",
+                                        className: "p-2 hover:bg-neutral-100 dark:hover:bg-white/8 rounded-lg transition-colors",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$lucide$2d$react$40$0$2e$454$2e$0_react$40$19$2e$2$2e$0$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$left$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronLeft$3e$__["ChevronLeft"], {
-                                            className: "w-5 h-5"
+                                            className: "w-4 h-4 text-neutral-500 dark:text-neutral-400"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                            lineNumber: 251,
+                                            lineNumber: 267,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                        lineNumber: 250,
+                                        lineNumber: 266,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                        className: "font-serif text-base capitalize",
+                                        className: "font-serif text-base capitalize text-neutral-900 dark:text-neutral-100",
                                         children: monthName
                                     }, void 0, false, {
                                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                        lineNumber: 253,
+                                        lineNumber: 269,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: nextMonth,
-                                        className: "p-1.5 hover:bg-neutral-100 rounded-lg transition-colors",
+                                        className: "p-2 hover:bg-neutral-100 dark:hover:bg-white/8 rounded-lg transition-colors",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$lucide$2d$react$40$0$2e$454$2e$0_react$40$19$2e$2$2e$0$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
-                                            className: "w-5 h-5"
+                                            className: "w-4 h-4 text-neutral-500 dark:text-neutral-400"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                            lineNumber: 255,
+                                            lineNumber: 271,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                        lineNumber: 254,
+                                        lineNumber: 270,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                lineNumber: 249,
+                                lineNumber: 265,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "grid grid-cols-7 gap-1 text-center text-xs mb-1",
                                 children: DAY_NAMES.map((d)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "py-1 text-neutral-400 font-medium",
+                                        className: "py-1 text-neutral-400 dark:text-neutral-500 font-medium",
                                         children: d
                                     }, d, false, {
                                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                        lineNumber: 261,
+                                        lineNumber: 277,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                lineNumber: 259,
+                                lineNumber: 275,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -531,7 +565,7 @@ function AdminSchedulePage() {
                                 children: monthDays.map((day, i)=>{
                                     if (day === null) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {}, `e-${i}`, false, {
                                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                        lineNumber: 267,
+                                        lineNumber: 283,
                                         columnNumber: 40
                                     }, this);
                                     const dateStr = formatDateStr(currentYear, currentMonth, day);
@@ -542,62 +576,62 @@ function AdminSchedulePage() {
                                     const dayBlockedHours = getBlockedHoursForDate(dateStr);
                                     const isSelected = selectedDate === dateStr;
                                     const isToday = dateStr === now.toISOString().split('T')[0];
-                                    let bg = 'bg-white hover:bg-neutral-50';
-                                    if (isSelected) bg = 'bg-[#CDB4DB]/20 ring-2 ring-[#CDB4DB]';
-                                    else if (isBlocked) bg = 'bg-red-50 hover:bg-red-100';
-                                    else if (!isOpen) bg = 'bg-neutral-50';
+                                    let bg = 'bg-white dark:bg-transparent hover:bg-neutral-50 dark:hover:bg-white/5';
+                                    if (isSelected) bg = 'bg-plum/15 dark:bg-plum/25 ring-2 ring-plum/40';
+                                    else if (isBlocked) bg = 'bg-red-50/60 dark:bg-red-900/20 hover:bg-red-50 dark:hover:bg-red-900/30';
+                                    else if (!isOpen) bg = 'bg-white dark:bg-white/3 hover:bg-neutral-50 dark:hover:bg-white/5';
                                     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: ()=>setSelectedDate(dateStr),
-                                        className: `relative rounded-lg p-1.5 text-sm transition-all ${bg} ${!isOpen && !isBlocked ? 'text-neutral-300' : 'text-neutral-700'}`,
+                                        className: `relative rounded-lg p-1.5 text-sm transition-all ${bg} ${!isOpen && !isBlocked ? 'text-neutral-300 dark:text-neutral-600' : 'text-neutral-700 dark:text-neutral-300'}`,
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: `${isToday ? 'font-bold text-[#9b7fa8]' : ''}`,
+                                                className: `${isToday ? 'font-bold text-plum dark:text-lavender' : ''}`,
                                                 children: day
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                lineNumber: 288,
+                                                lineNumber: 304,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "flex items-center justify-center gap-0.5 mt-0.5",
                                                 children: [
                                                     dayBookings.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "w-1.5 h-1.5 rounded-full bg-[#CDB4DB]"
+                                                        className: "w-1.5 h-1.5 rounded-full bg-plum/60 dark:bg-lavender/70"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                        lineNumber: 291,
+                                                        lineNumber: 307,
                                                         columnNumber: 23
                                                     }, this),
                                                     dayBlockedHours.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         className: "w-1.5 h-1.5 rounded-full bg-orange-400"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                        lineNumber: 294,
+                                                        lineNumber: 310,
                                                         columnNumber: 23
                                                     }, this),
                                                     isBlocked && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         className: "w-1.5 h-1.5 rounded-full bg-red-400"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                        lineNumber: 297,
+                                                        lineNumber: 313,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                lineNumber: 289,
+                                                lineNumber: 305,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, dateStr, true, {
                                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                        lineNumber: 283,
+                                        lineNumber: 299,
                                         columnNumber: 17
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                lineNumber: 265,
+                                lineNumber: 281,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -607,17 +641,17 @@ function AdminSchedulePage() {
                                         className: "flex items-center gap-1",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "w-2 h-2 rounded-full bg-[#CDB4DB]"
+                                                className: "w-2 h-2 rounded-full bg-plum/60 dark:bg-lavender/70"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                lineNumber: 306,
+                                                lineNumber: 322,
                                                 columnNumber: 55
                                             }, this),
                                             " Citas"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                        lineNumber: 306,
+                                        lineNumber: 322,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -627,14 +661,14 @@ function AdminSchedulePage() {
                                                 className: "w-2 h-2 rounded-full bg-orange-400"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                lineNumber: 307,
+                                                lineNumber: 323,
                                                 columnNumber: 55
                                             }, this),
                                             " Horas bloq."
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                        lineNumber: 307,
+                                        lineNumber: 323,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -644,26 +678,26 @@ function AdminSchedulePage() {
                                                 className: "w-2 h-2 rounded-full bg-red-400"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                lineNumber: 308,
+                                                lineNumber: 324,
                                                 columnNumber: 55
                                             }, this),
-                                            " Dia bloq."
+                                            " Día bloq."
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                        lineNumber: 308,
+                                        lineNumber: 324,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                lineNumber: 305,
+                                lineNumber: 321,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                        lineNumber: 248,
+                        lineNumber: 264,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -671,64 +705,64 @@ function AdminSchedulePage() {
                         children: selectedDate ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "bg-white rounded-xl border border-neutral-200 p-4",
+                                    className: "bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-4",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                            className: "font-serif text-base mb-1 capitalize",
+                                            className: "font-serif text-base mb-1 capitalize text-neutral-900 dark:text-neutral-100",
                                             children: formatDateFull(selectedDate)
                                         }, void 0, false, {
                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                            lineNumber: 317,
+                                            lineNumber: 333,
                                             columnNumber: 17
                                         }, this),
                                         selectedDow !== null && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-xs text-neutral-400 mb-3",
-                                            children: selectedSchedule?.open ? `Horario: ${selectedSchedule.blocks.map((b)=>`${b.start} - ${b.end}`).join(', ')}` : 'Dia cerrado (sin horario)'
+                                            children: selectedSchedule?.open ? `Horario: ${selectedSchedule.blocks.map((b)=>`${b.start} - ${b.end}`).join(', ')}` : 'Día cerrado (sin horario)'
                                         }, void 0, false, {
                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                            lineNumber: 319,
+                                            lineNumber: 335,
                                             columnNumber: 19
                                         }, this),
                                         selectedIsBlocked ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "flex items-center justify-between bg-red-50 rounded-lg p-3",
+                                            className: "flex items-center justify-between bg-red-50 dark:bg-red-900/20 rounded-lg p-3",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                            className: "text-sm font-medium text-red-700",
-                                                            children: "Dia bloqueado"
+                                                            className: "text-sm font-medium text-red-700 dark:text-red-400",
+                                                            children: "Día bloqueado"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                            lineNumber: 331,
+                                                            lineNumber: 347,
                                                             columnNumber: 23
                                                         }, this),
                                                         selectedBlockedDateObj?.reason && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                            className: "text-xs text-red-500",
+                                                            className: "text-xs text-red-500 dark:text-red-500/80",
                                                             children: selectedBlockedDateObj.reason
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                            lineNumber: 333,
+                                                            lineNumber: 349,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                    lineNumber: 330,
+                                                    lineNumber: 346,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                     onClick: ()=>selectedBlockedDateObj && handleUnblockDate(selectedBlockedDateObj._id),
-                                                    className: "text-xs bg-white text-red-600 border border-red-200 rounded-full px-3 py-1 hover:bg-red-50 transition-colors",
+                                                    className: "text-xs bg-white dark:bg-white/10 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800/40 rounded-full px-3 py-1 hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors",
                                                     children: "Desbloquear"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                    lineNumber: 336,
+                                                    lineNumber: 352,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                            lineNumber: 329,
+                                            lineNumber: 345,
                                             columnNumber: 19
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "flex flex-col sm:flex-row gap-2",
@@ -738,10 +772,10 @@ function AdminSchedulePage() {
                                                     value: newDateReason,
                                                     onChange: (e)=>setNewDateReason(e.target.value),
                                                     placeholder: "Motivo (opcional)",
-                                                    className: "flex-1 rounded-lg border border-neutral-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#CDB4DB]"
+                                                    className: "flex-1 rounded-lg border border-neutral-200 dark:border-white/10 px-3 py-2 text-sm bg-white dark:bg-[#111115] dark:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-plum/30 placeholder:text-neutral-300 dark:placeholder:text-neutral-600"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                    lineNumber: 345,
+                                                    lineNumber: 361,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -753,189 +787,258 @@ function AdminSchedulePage() {
                                                             className: "w-3.5 h-3.5"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                            lineNumber: 357,
+                                                            lineNumber: 373,
                                                             columnNumber: 23
                                                         }, this),
-                                                        addingDate ? 'Bloqueando...' : 'Bloquear dia'
+                                                        addingDate ? 'Bloqueando...' : 'Bloquear día'
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                    lineNumber: 352,
+                                                    lineNumber: 368,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                            lineNumber: 344,
+                                            lineNumber: 360,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                    lineNumber: 316,
+                                    lineNumber: 332,
                                     columnNumber: 15
                                 }, this),
                                 !selectedIsBlocked && selectedSchedule?.open && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "bg-white rounded-xl border border-neutral-200 p-4",
+                                    className: "bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-4",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                            className: "font-medium text-sm mb-3 flex items-center gap-2",
+                                            className: "font-medium text-sm mb-3 flex items-center gap-2 text-neutral-900 dark:text-neutral-100",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$lucide$2d$react$40$0$2e$454$2e$0_react$40$19$2e$2$2e$0$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clock$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Clock$3e$__["Clock"], {
                                                     className: "w-4 h-4 text-orange-400"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                    lineNumber: 368,
+                                                    lineNumber: 384,
                                                     columnNumber: 21
                                                 }, this),
                                                 "Bloquear horas"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                            lineNumber: 367,
+                                            lineNumber: 383,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "flex flex-col sm:flex-row gap-2 mb-3",
+                                            className: "space-y-2 mb-3",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "flex items-center gap-1.5",
+                                                    className: "flex items-center gap-2",
                                                     children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                            type: "time",
-                                                            value: newHourStart,
-                                                            onChange: (e)=>setNewHourStart(e.target.value),
-                                                            className: "rounded-lg border border-neutral-200 px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#CDB4DB]"
-                                                        }, void 0, false, {
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "flex-1",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                    className: "text-[10px] uppercase tracking-wide text-neutral-400 mb-1",
+                                                                    children: "Desde"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
+                                                                    lineNumber: 390,
+                                                                    columnNumber: 25
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                                                                    value: newHourStart,
+                                                                    onChange: (e)=>setNewHourStart(e.target.value),
+                                                                    className: "w-full rounded-lg border border-neutral-200 dark:border-white/10 px-3 py-2 text-sm bg-white dark:bg-[#111115] dark:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-plum/30 cursor-pointer",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                                            value: "",
+                                                                            children: "— hora —"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
+                                                                            lineNumber: 396,
+                                                                            columnNumber: 27
+                                                                        }, this),
+                                                                        TIME_SLOTS.map((t)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                                                value: t,
+                                                                                children: t
+                                                                            }, t, false, {
+                                                                                fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
+                                                                                lineNumber: 398,
+                                                                                columnNumber: 29
+                                                                            }, this))
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
+                                                                    lineNumber: 391,
+                                                                    columnNumber: 25
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
                                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                            lineNumber: 373,
+                                                            lineNumber: 389,
                                                             columnNumber: 23
                                                         }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "text-neutral-400 text-xs",
-                                                            children: "a"
-                                                        }, void 0, false, {
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "flex-1",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                    className: "text-[10px] uppercase tracking-wide text-neutral-400 mb-1",
+                                                                    children: "Hasta"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
+                                                                    lineNumber: 403,
+                                                                    columnNumber: 25
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                                                                    value: newHourEnd,
+                                                                    onChange: (e)=>setNewHourEnd(e.target.value),
+                                                                    className: "w-full rounded-lg border border-neutral-200 dark:border-white/10 px-3 py-2 text-sm bg-white dark:bg-[#111115] dark:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-plum/30 cursor-pointer",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                                            value: "",
+                                                                            children: "— hora —"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
+                                                                            lineNumber: 409,
+                                                                            columnNumber: 27
+                                                                        }, this),
+                                                                        TIME_SLOTS.filter((t)=>!newHourStart || t > newHourStart).map((t)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                                                value: t,
+                                                                                children: t
+                                                                            }, t, false, {
+                                                                                fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
+                                                                                lineNumber: 411,
+                                                                                columnNumber: 29
+                                                                            }, this))
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
+                                                                    lineNumber: 404,
+                                                                    columnNumber: 25
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
                                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                            lineNumber: 379,
-                                                            columnNumber: 23
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                            type: "time",
-                                                            value: newHourEnd,
-                                                            onChange: (e)=>setNewHourEnd(e.target.value),
-                                                            className: "rounded-lg border border-neutral-200 px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#CDB4DB]"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                            lineNumber: 380,
+                                                            lineNumber: 402,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                    lineNumber: 372,
+                                                    lineNumber: 388,
                                                     columnNumber: 21
                                                 }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                    type: "text",
-                                                    value: newHourReason,
-                                                    onChange: (e)=>setNewHourReason(e.target.value),
-                                                    placeholder: "Motivo",
-                                                    className: "flex-1 rounded-lg border border-neutral-200 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#CDB4DB]"
-                                                }, void 0, false, {
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "flex gap-2",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                            type: "text",
+                                                            value: newHourReason,
+                                                            onChange: (e)=>setNewHourReason(e.target.value),
+                                                            placeholder: "Motivo (opcional)",
+                                                            className: "flex-1 rounded-lg border border-neutral-200 dark:border-white/10 px-3 py-2 text-sm bg-white dark:bg-[#111115] dark:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-plum/30 placeholder:text-neutral-300 dark:placeholder:text-neutral-600"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
+                                                            lineNumber: 417,
+                                                            columnNumber: 23
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                            onClick: handleBlockHour,
+                                                            disabled: !newHourStart || !newHourEnd || addingHour,
+                                                            className: "bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium py-2 px-4 rounded-full transition-colors disabled:opacity-50 shrink-0",
+                                                            children: addingHour ? '...' : 'Bloquear'
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
+                                                            lineNumber: 424,
+                                                            columnNumber: 23
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
                                                     fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                    lineNumber: 387,
-                                                    columnNumber: 21
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                    onClick: handleBlockHour,
-                                                    disabled: !newHourStart || !newHourEnd || addingHour,
-                                                    className: "bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium py-1.5 px-4 rounded-full transition-colors disabled:opacity-50",
-                                                    children: addingHour ? '...' : 'Bloquear'
-                                                }, void 0, false, {
-                                                    fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                    lineNumber: 394,
+                                                    lineNumber: 416,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                            lineNumber: 371,
+                                            lineNumber: 387,
                                             columnNumber: 19
                                         }, this),
                                         selectedBlockedHours.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "space-y-1.5",
                                             children: selectedBlockedHours.map((bh)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "flex items-center justify-between bg-orange-50 rounded-lg px-3 py-2",
+                                                    className: "flex items-center justify-between bg-orange-50 dark:bg-orange-900/20 rounded-lg px-3 py-2",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "text-sm font-medium text-orange-700",
+                                                                    className: "text-sm font-medium text-orange-700 dark:text-orange-400",
                                                                     children: [
                                                                         bh.startTime,
-                                                                        " - ",
+                                                                        " – ",
                                                                         bh.endTime
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                                    lineNumber: 408,
+                                                                    lineNumber: 439,
                                                                     columnNumber: 29
                                                                 }, this),
                                                                 bh.reason && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "text-xs text-orange-500 ml-2",
+                                                                    className: "text-xs text-orange-500 dark:text-orange-500/80 ml-2",
                                                                     children: bh.reason
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                                    lineNumber: 409,
+                                                                    lineNumber: 440,
                                                                     columnNumber: 43
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                            lineNumber: 407,
+                                                            lineNumber: 438,
                                                             columnNumber: 27
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                             onClick: ()=>handleUnblockHour(bh._id),
-                                                            className: "text-orange-400 hover:text-red-500 transition-colors",
+                                                            className: "text-orange-400 hover:text-red-500 transition-colors p-1",
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$lucide$2d$react$40$0$2e$454$2e$0_react$40$19$2e$2$2e$0$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
                                                                 className: "w-3.5 h-3.5"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                                lineNumber: 415,
+                                                                lineNumber: 446,
                                                                 columnNumber: 29
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                            lineNumber: 411,
+                                                            lineNumber: 442,
                                                             columnNumber: 27
                                                         }, this)
                                                     ]
                                                 }, bh._id, true, {
                                                     fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                    lineNumber: 406,
+                                                    lineNumber: 437,
                                                     columnNumber: 25
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                            lineNumber: 404,
+                                            lineNumber: 435,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                    lineNumber: 366,
+                                    lineNumber: 382,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "bg-white rounded-xl border border-neutral-200 p-4",
+                                    className: "bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-4",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                            className: "font-medium text-sm mb-3",
-                                            children: "Citas del dia"
+                                            className: "font-medium text-sm mb-3 text-neutral-900 dark:text-neutral-100",
+                                            children: "Citas del día"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                            lineNumber: 426,
+                                            lineNumber: 457,
                                             columnNumber: 17
                                         }, this),
                                         selectedBookings.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -943,25 +1046,25 @@ function AdminSchedulePage() {
                                             children: "No hay citas"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                            lineNumber: 428,
+                                            lineNumber: 459,
                                             columnNumber: 19
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "space-y-2",
                                             children: selectedBookings.sort((a, b)=>a.startTime.localeCompare(b.startTime)).map((b)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "flex items-center justify-between text-sm border-b border-neutral-50 pb-2 last:border-0",
+                                                    className: "flex items-center justify-between text-sm border-b border-neutral-50 dark:border-white/5 pb-2 last:border-0",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "font-medium",
+                                                                    className: "font-medium text-neutral-800 dark:text-neutral-200",
                                                                     children: [
                                                                         b.startTime,
-                                                                        " - ",
+                                                                        " – ",
                                                                         b.endTime
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                                    lineNumber: 436,
+                                                                    lineNumber: 467,
                                                                     columnNumber: 29
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -969,21 +1072,21 @@ function AdminSchedulePage() {
                                                                     children: "·"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                                    lineNumber: 437,
+                                                                    lineNumber: 468,
                                                                     columnNumber: 29
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "text-neutral-600",
+                                                                    className: "text-neutral-600 dark:text-neutral-400",
                                                                     children: (b.services || []).map((s)=>s.name).join(', ')
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                                    lineNumber: 438,
+                                                                    lineNumber: 469,
                                                                     columnNumber: 29
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                            lineNumber: 435,
+                                                            lineNumber: 466,
                                                             columnNumber: 27
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -991,89 +1094,105 @@ function AdminSchedulePage() {
                                                             children: [
                                                                 b.user?.name,
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: `ml-2 px-1.5 py-0.5 rounded-full text-[10px] ${b.status === 'confirmada' ? 'bg-green-50 text-green-600' : b.status === 'pendiente' ? 'bg-yellow-50 text-yellow-600' : 'bg-neutral-100 text-neutral-500'}`,
+                                                                    className: `ml-2 px-1.5 py-0.5 rounded-full text-[10px] ${b.status === 'confirmada' ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400' : b.status === 'pendiente' ? 'bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400' : 'bg-neutral-100 dark:bg-white/8 text-neutral-500 dark:text-neutral-400'}`,
                                                                     children: b.status
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                                    lineNumber: 442,
+                                                                    lineNumber: 473,
                                                                     columnNumber: 29
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                            lineNumber: 440,
+                                                            lineNumber: 471,
                                                             columnNumber: 27
                                                         }, this)
                                                     ]
                                                 }, b._id, true, {
                                                     fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                    lineNumber: 434,
+                                                    lineNumber: 465,
                                                     columnNumber: 25
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                            lineNumber: 430,
+                                            lineNumber: 461,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                    lineNumber: 425,
+                                    lineNumber: 456,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "bg-white rounded-xl border border-neutral-200 p-8 text-center text-neutral-400 text-sm",
-                            children: "Selecciona un dia en el calendario para ver detalles y bloquear fechas u horas"
-                        }, void 0, false, {
+                            className: "bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-8 text-center",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$lucide$2d$react$40$0$2e$454$2e$0_react$40$19$2e$2$2e$0$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2d$off$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CalendarOff$3e$__["CalendarOff"], {
+                                    className: "w-8 h-8 text-neutral-200 dark:text-neutral-700 mx-auto mb-3"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
+                                    lineNumber: 489,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-sm text-neutral-400",
+                                    children: "Selecciona un día para ver detalles y gestionar bloqueos"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
+                                    lineNumber: 490,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                            lineNumber: 457,
+                            lineNumber: 488,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                        lineNumber: 313,
+                        lineNumber: 329,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                lineNumber: 246,
+                lineNumber: 262,
                 columnNumber: 7
             }, this),
             blockedDates.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "bg-white rounded-xl border border-neutral-200 p-4 mt-6",
+                className: "bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-4",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                        className: "font-medium mb-3 text-sm flex items-center gap-2",
+                        className: "font-medium mb-3 text-sm flex items-center gap-2 text-neutral-900 dark:text-neutral-100",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$lucide$2d$react$40$0$2e$454$2e$0_react$40$19$2e$2$2e$0$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2d$off$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CalendarOff$3e$__["CalendarOff"], {
                                 className: "w-4 h-4 text-red-400"
                             }, void 0, false, {
                                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                lineNumber: 468,
+                                lineNumber: 500,
                                 columnNumber: 13
                             }, this),
                             "Todas las fechas bloqueadas"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                        lineNumber: 467,
+                        lineNumber: 499,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "space-y-1.5",
                         children: blockedDates.map((d)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center justify-between py-1.5 border-b border-neutral-50 last:border-0",
+                                className: "flex items-center justify-between py-1.5 border-b border-neutral-50 dark:border-white/5 last:border-0",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-sm font-medium capitalize",
+                                                className: "text-sm font-medium capitalize text-neutral-800 dark:text-neutral-200",
                                                 children: formatDateFull(d.date)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                lineNumber: 475,
+                                                lineNumber: 507,
                                                 columnNumber: 19
                                             }, this),
                                             d.reason && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1081,13 +1200,13 @@ function AdminSchedulePage() {
                                                 children: d.reason
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                                lineNumber: 476,
+                                                lineNumber: 508,
                                                 columnNumber: 32
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                        lineNumber: 474,
+                                        lineNumber: 506,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$6_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1097,35 +1216,35 @@ function AdminSchedulePage() {
                                             className: "w-3.5 h-3.5"
                                         }, void 0, false, {
                                             fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                            lineNumber: 482,
+                                            lineNumber: 514,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                        lineNumber: 478,
+                                        lineNumber: 510,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, d._id, true, {
                                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                                lineNumber: 473,
+                                lineNumber: 505,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                        lineNumber: 471,
+                        lineNumber: 503,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-                lineNumber: 466,
+                lineNumber: 498,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/(admin)/admin/schedule/page.tsx",
-        lineNumber: 221,
+        lineNumber: 230,
         columnNumber: 5
     }, this);
 }

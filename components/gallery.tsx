@@ -13,6 +13,7 @@ export function Gallery() {
           <img
             src={src}
             alt={`Lii.lab trabajo ${idx + 1}`}
+            loading="lazy"
             className="w-full h-full object-contain"
           />
         </div>
