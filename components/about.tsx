@@ -31,7 +31,7 @@ export function About() {
 
           {/* Image Column */}
           <div className="relative group">
-            <div className="relative w-full aspect-[3/2] md:h-[480px] md:aspect-auto overflow-hidden rounded-xl shadow-xl">
+            <div className="relative w-full max-w-sm mx-auto md:max-w-none h-72 sm:h-80 md:h-[440px] overflow-hidden rounded-xl shadow-xl">
               <img
                 src="/images/Foto7.JPG"
                 alt="Lili"
@@ -67,18 +67,18 @@ export function About() {
               </p>
             </div>
 
-            <div className="space-y-2 md:space-y-2.5">
+            <div className="space-y-2 md:space-y-3">
               {advantages.map(({ icon: Icon, title, desc }) => (
                 <div
                   key={title}
-                  className="flex gap-3.5 items-start p-3.5 md:p-4 rounded-xl bg-white hover:shadow-md transition-smooth"
+                  className="flex gap-4 items-start p-4 md:p-5 rounded-xl bg-white hover:shadow-md transition-smooth"
                 >
                   <div className="shrink-0 mt-0.5">
-                    <Icon size={18} className="text-plum" />
+                    <Icon size={20} className="text-plum" />
                   </div>
                   <div>
-                    <h3 className="font-sans font-semibold text-neutral-800 text-sm md:text-base mb-0.5">{title}</h3>
-                    <p className="text-neutral-500 text-xs md:text-sm leading-relaxed font-light">{desc}</p>
+                    <h3 className="font-sans font-semibold text-neutral-800 text-sm md:text-base mb-1">{title}</h3>
+                    <p className="text-neutral-500 text-sm md:text-sm leading-relaxed font-light">{desc}</p>
                   </div>
                 </div>
               ))}

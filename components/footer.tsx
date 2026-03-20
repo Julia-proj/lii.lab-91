@@ -8,7 +8,7 @@ export function Footer() {
         <div className="text-center md:text-left">
           {/* Corrected name */}
           <span className="font-serif text-2xl font-bold block mb-2 text-neutral-900">Lii.lab</span>
-          <p className="text-sm text-neutral-500">© 2025 Lili · Formación en manicura</p>
+          <p className="text-sm text-neutral-500">© 2026 Lili · Formación en manicura</p>
         </div>
 
         <Link

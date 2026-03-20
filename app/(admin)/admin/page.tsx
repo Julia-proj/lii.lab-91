@@ -198,7 +198,11 @@ function BookingCard({
   }
 
   return (
-    <div className={`rounded-xl border border-neutral-100 dark:border-white/8 border-l-4 ${S_BORDER[booking.status] || 'border-l-neutral-200'} bg-white dark:bg-[#1e1e24] overflow-hidden`}>
+    <div className={`rounded-xl border-l-4 overflow-hidden ${
+      booking.status === 'pendiente'
+        ? 'bg-amber-50/80 dark:bg-amber-900/15 border border-amber-100 dark:border-amber-800/25 border-l-amber-400'
+        : `bg-white dark:bg-[#1e1e24] border border-neutral-100 dark:border-white/8 ${S_BORDER[booking.status] || 'border-l-neutral-200'}`
+    }`}>
       <div className="px-4 py-3">
         {/* Top row: name + pay */}
         <div className="flex items-start justify-between gap-2">
@@ -234,7 +238,7 @@ function BookingCard({
         {/* More actions toggle */}
         <button
           onClick={() => setExpanded(!expanded)}
-          className="mt-2.5 text-[11px] text-neutral-400 hover:text-plum transition-colors"
+          className="mt-1 -mx-4 px-4 py-2 w-full text-left text-[11px] text-neutral-400 hover:text-plum transition-colors"
         >
           {expanded ? '▴ menos' : '▾ más opciones'}
         </button>
@@ -356,6 +360,83 @@ function BookingCard({
   )
 }
 
+// ── Day timeline ──────────────────────────────────────────────────────────────
+
+function DayTimeline({ bookings }: { bookings: Booking[] }) {
+  if (bookings.length === 0) return null
+
+  const toMin = (t: string) => {
+    const [h, m] = t.split(':').map(Number)
+    return h * 60 + m
+  }
+
+  const sorted = [...bookings].sort((a, b) => a.startTime.localeCompare(b.startTime))
+  const dayStart = Math.max(toMin(sorted[0].startTime) - 20, 8 * 60)
+  const dayEnd   = Math.min(toMin(sorted[sorted.length - 1].endTime) + 20, 21 * 60)
+  const totalSpan = dayEnd - dayStart
+
+  const STATUS_COLOR: Record<string, string> = {
+    pendiente:  'bg-amber-400',
+    confirmada: 'bg-emerald-400',
+    completada: 'bg-blue-400',
+  }
+
+  const gaps: { from: string; to: string; mins: number }[] = []
+  for (let i = 0; i < sorted.length - 1; i++) {
+    const gapMins = toMin(sorted[i + 1].startTime) - toMin(sorted[i].endTime)
+    if (gapMins > 0) gaps.push({ from: sorted[i].endTime, to: sorted[i + 1].startTime, mins: gapMins })
+  }
+
+  return (
+    <div className="bg-neutral-50 dark:bg-white/4 rounded-xl p-3 mb-3">
+      <p className="text-[10px] uppercase tracking-widest text-neutral-400 mb-2.5">Agenda visual</p>
+
+      {/* Bar */}
+      <div className="relative h-6 bg-neutral-100 dark:bg-white/8 rounded-md overflow-hidden">
+        {sorted.map((b) => {
+          const left  = ((toMin(b.startTime) - dayStart) / totalSpan) * 100
+          const width = ((toMin(b.endTime) - toMin(b.startTime)) / totalSpan) * 100
+          return (
+            <div
+              key={b._id}
+              className={`absolute top-0 h-full ${STATUS_COLOR[b.status] || 'bg-neutral-300'} opacity-80`}
+              style={{ left: `${left}%`, width: `${Math.max(width, 1)}%` }}
+              title={`${b.startTime}–${b.endTime} · ${b.user?.name}`}
+            />
+          )
+        })}
+      </div>
+
+      {/* Time ticks */}
+      <div className="relative h-4 mt-0.5">
+        {sorted.map((b) => {
+          const left = ((toMin(b.startTime) - dayStart) / totalSpan) * 100
+          return (
+            <span
+              key={b._id}
+              className="absolute text-[10px] text-neutral-400 -translate-x-1/2 top-0"
+              style={{ left: `${left}%` }}
+            >
+              {b.startTime}
+            </span>
+          )
+        })}
+      </div>
+
+      {/* Gaps */}
+      {gaps.length > 0 && (
+        <div className="flex flex-wrap gap-1.5 mt-2">
+          {gaps.map((g, i) => (
+            <span key={i} className="text-[10px] text-neutral-400 bg-white dark:bg-white/5 rounded-full px-2 py-0.5 border border-neutral-100 dark:border-white/8">
+              {g.from}→{g.to} · {g.mins}min libre
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 // ── Main Agenda page ──────────────────────────────────────────────────────────
 
 export default function AgendaPage() {
@@ -364,6 +445,7 @@ export default function AgendaPage() {
   const [currentMonth, setCurrentMonth] = useState(new Date())
   const [selectedDay, setSelectedDay] = useState<string>(() => new Date().toISOString().split('T')[0])
   const [stats, setStats] = useState({ todayCount: 0, pendingCount: 0, monthRevenue: 0 })
+  const [showPending, setShowPending] = useState(false)
 
   const load = async () => {
     try {
@@ -423,6 +505,26 @@ export default function AgendaPage() {
     })
   }, [selectedDay])
 
+  const todayStr = new Date().toISOString().split('T')[0]
+  const todayPrevistos = useMemo(() => {
+    return bookings
+      .filter((b) => b.date === todayStr && b.status !== 'cancelada')
+      .reduce((sum, b) => sum + (b.services || []).reduce((s, sv) => s + sv.price, 0), 0)
+  }, [bookings, todayStr])
+
+  const allPendingBookings = useMemo(() => {
+    return bookings
+      .filter((b) => b.status === 'pendiente')
+      .sort((a, b) => a.date.localeCompare(b.date) || a.startTime.localeCompare(b.startTime))
+  }, [bookings])
+
+  const upcomingBookings = useMemo(() => {
+    return bookings
+      .filter((b) => b.date >= todayStr && b.status !== 'cancelada')
+      .sort((a, b) => a.date.localeCompare(b.date) || a.startTime.localeCompare(b.startTime))
+      .slice(0, 6)
+  }, [bookings, todayStr])
+
   if (loading) return (
     <div className="flex items-center justify-center py-20">
       <div className="w-5 h-5 border-2 border-neutral-200 border-t-plum rounded-full animate-spin" />
@@ -433,45 +535,122 @@ export default function AgendaPage() {
     <div className="space-y-5">
 
       {/* Stats row */}
-      <div className="grid grid-cols-3 gap-3">
-        <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-4">
-          <p className="text-[10px] uppercase tracking-widest text-neutral-400 mb-1.5">Hoy</p>
-          <p className="text-2xl font-serif text-neutral-900 dark:text-neutral-100 leading-none">{stats.todayCount}</p>
-          <p className="text-xs text-neutral-400 mt-1">{stats.todayCount === 1 ? 'cita' : 'citas'}</p>
+      <div className="grid grid-cols-3 gap-2 sm:gap-3">
+        {/* Hoy - citas */}
+        <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-3 sm:p-4">
+          <p className="text-[10px] sm:text-xs uppercase tracking-widest text-neutral-400 mb-1.5 sm:mb-2">Hoy</p>
+          <p className="text-2xl sm:text-3xl font-bold tabular-nums text-neutral-900 dark:text-neutral-100 leading-none">{stats.todayCount}</p>
+          <p className="text-[11px] sm:text-xs text-neutral-400 mt-1 sm:mt-1.5">{stats.todayCount === 1 ? 'cita' : 'citas'}</p>
         </div>
-        <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-4">
-          <p className="text-[10px] uppercase tracking-widest text-neutral-400 mb-1.5">Pendientes</p>
-          <p className={`text-2xl font-serif leading-none ${stats.pendingCount > 0 ? 'text-amber-500' : 'text-neutral-900 dark:text-neutral-100'}`}>
+
+        {/* Pendientes — clickable, stylish gold */}
+        <button
+          onClick={() => setShowPending((v) => !v)}
+          className={`rounded-2xl border p-3 sm:p-4 text-left transition-all ${
+            showPending || stats.pendingCount > 0
+              ? 'bg-[#FEFCE8] dark:bg-yellow-400/8 border-[#F5D97A]/70 dark:border-yellow-400/20'
+              : 'bg-white dark:bg-[#1e1e24] border-neutral-100 dark:border-white/8'
+          } hover:opacity-90`}
+        >
+          <p className="text-[10px] sm:text-xs uppercase tracking-widest text-neutral-400 mb-1.5 sm:mb-2">Pendientes</p>
+          <p className={`text-2xl sm:text-3xl font-bold tabular-nums leading-none ${
+            stats.pendingCount > 0 ? 'text-[#B8870D] dark:text-yellow-400' : 'text-neutral-900 dark:text-neutral-100'
+          }`}>
             {stats.pendingCount}
           </p>
-          <p className="text-xs text-neutral-400 mt-1">sin confirmar</p>
-        </div>
-        <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-4">
-          <p className="text-[10px] uppercase tracking-widest text-neutral-400 mb-1.5">Cobrado</p>
-          <p className="text-2xl font-serif text-emerald-600 leading-none">{stats.monthRevenue}€</p>
-          <p className="text-xs text-neutral-400 mt-1">este mes</p>
+          <p className="text-[11px] sm:text-xs text-neutral-400 mt-1 sm:mt-1.5">
+            {showPending ? 'cerrar ×' : 'sin confirmar'}
+          </p>
+        </button>
+
+        {/* € previstos hoy — lila */}
+        <div className="bg-plum/5 dark:bg-plum/10 rounded-2xl border border-plum/15 dark:border-plum/20 p-3 sm:p-4">
+          <p className="text-[10px] sm:text-xs uppercase tracking-widest text-neutral-400 mb-1.5 sm:mb-2">Previstos</p>
+          <p className="text-2xl sm:text-3xl font-bold tabular-nums text-plum leading-none">{todayPrevistos}</p>
+          <p className="text-[11px] sm:text-xs text-neutral-400 mt-1 sm:mt-1.5">hoy · €</p>
         </div>
       </div>
 
+      {/* Próximas citas */}
+      {upcomingBookings.length > 0 && (
+        <div>
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-neutral-400">Próximas</p>
+            <span className="text-[10px] text-neutral-300 dark:text-neutral-600">{upcomingBookings.length} citas</span>
+          </div>
+          <div className="flex gap-2 overflow-x-auto pb-1 -mx-0.5 px-0.5 snap-x snap-mandatory">
+            {upcomingBookings.map((b) => {
+              const d = new Date(b.date + 'T00:00:00')
+              const dayLabel = d.toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' })
+              const svcName = b.services?.[0]?.name || '—'
+              const isSelectedDay = selectedDay === b.date
+              return (
+                <button
+                  key={b._id}
+                  onClick={() => {
+                    setSelectedDay(b.date)
+                    setCurrentMonth(d)
+                    setShowPending(false)
+                  }}
+                  className={`snap-start shrink-0 text-left rounded-xl border p-3 transition-all min-w-[148px] max-w-[148px] ${
+                    isSelectedDay
+                      ? 'bg-plum/8 border-plum/25 dark:bg-plum/15'
+                      : 'bg-white dark:bg-[#1e1e24] border-neutral-100 dark:border-white/8 hover:border-plum/25 hover:bg-plum/4'
+                  }`}
+                >
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${S_DOT[b.status] || 'bg-neutral-300'}`} />
+                    <p className="text-[10px] uppercase tracking-wider text-neutral-400 leading-none capitalize truncate">{dayLabel}</p>
+                  </div>
+                  <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 leading-tight truncate">{b.user?.name}</p>
+                  <p className="text-[11px] text-neutral-400 mt-0.5 truncate">{b.startTime} · {svcName}</p>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
       {/* Calendar + Day panel */}
-      <div className="grid lg:grid-cols-[1fr_340px] gap-5 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-4 sm:gap-5 items-start">
 
         {/* Month calendar */}
-        <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 overflow-hidden">
+        <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 overflow-hidden order-2 lg:order-1">
           {/* Month navigation */}
-          <div className="flex items-center justify-between px-5 py-4 border-b border-neutral-50 dark:border-white/5">
+          <div className="flex items-center justify-between px-4 sm:px-5 py-3 sm:py-4 border-b border-neutral-50 dark:border-white/5">
             <button
-              onClick={() => setCurrentMonth((m) => subMonths(m, 1))}
-              className="p-1.5 rounded-lg hover:bg-neutral-100 dark:hover:bg-white/8 transition-colors"
+              onClick={() => {
+                const prev = subMonths(currentMonth, 1)
+                setCurrentMonth(prev)
+                setSelectedDay(format(startOfMonth(prev), 'yyyy-MM-dd'))
+              }}
+              className="p-2 sm:p-1.5 rounded-lg hover:bg-neutral-100 dark:hover:bg-white/8 transition-colors"
             >
               <ChevronLeft className="w-4 h-4 text-neutral-500" />
             </button>
-            <h2 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 capitalize">
-              {format(currentMonth, 'MMMM yyyy', { locale: es })}
-            </h2>
+            <div className="flex items-center gap-3">
+              <h2 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 capitalize">
+                {format(currentMonth, 'MMMM yyyy', { locale: es })}
+              </h2>
+              <button
+                onClick={() => {
+                  const now = new Date()
+                  setCurrentMonth(now)
+                  setSelectedDay(now.toISOString().split('T')[0])
+                  setShowPending(false)
+                }}
+                className="text-[10px] font-medium text-plum/70 hover:text-plum border border-plum/20 hover:border-plum/40 rounded-md px-1.5 py-0.5 transition-colors"
+              >
+                Hoy
+              </button>
+            </div>
             <button
-              onClick={() => setCurrentMonth((m) => addMonths(m, 1))}
-              className="p-1.5 rounded-lg hover:bg-neutral-100 dark:hover:bg-white/8 transition-colors"
+              onClick={() => {
+                const next = addMonths(currentMonth, 1)
+                setCurrentMonth(next)
+                setSelectedDay(format(startOfMonth(next), 'yyyy-MM-dd'))
+              }}
+              className="p-2 sm:p-1.5 rounded-lg hover:bg-neutral-100 dark:hover:bg-white/8 transition-colors"
             >
               <ChevronRight className="w-4 h-4 text-neutral-500" />
             </button>
@@ -479,8 +658,8 @@ export default function AgendaPage() {
 
           {/* Weekday headers */}
           <div className="grid grid-cols-7 border-b border-neutral-50 dark:border-white/5">
-            {['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá', 'Do'].map((d) => (
-              <div key={d} className="py-2.5 text-center text-[10px] uppercase tracking-widest text-neutral-400 font-medium">{d}</div>
+            {['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá', 'Do'].map((d, i) => (
+              <div key={d} className={`py-2.5 text-center text-[10px] uppercase tracking-widest font-medium ${i >= 5 ? 'text-neutral-300 dark:text-neutral-600 bg-neutral-50/70 dark:bg-white/[0.025]' : 'text-neutral-400'}`}>{d}</div>
             ))}
           </div>
 
@@ -493,38 +672,36 @@ export default function AgendaPage() {
               const isSel  = selectedDay === dayStr
               const isT    = isToday(day)
               const hasPending = active.some((b) => b.status === 'pendiente')
+              const isWeekend = day.getDay() === 0 || day.getDay() === 6
 
               return (
                 <button
                   key={dayStr}
-                  onClick={() => setSelectedDay(dayStr)}
-                  className={`relative py-2 px-1 min-h-[56px] flex flex-col items-center gap-1 transition-colors border-b border-r border-neutral-50 dark:border-white/4 last:border-r-0 ${
+                  onClick={() => { setSelectedDay(dayStr); setShowPending(false) }}
+                  className={`relative py-1.5 sm:py-2 px-0.5 min-h-[40px] sm:min-h-[50px] flex flex-col items-center gap-0.5 transition-colors border-b border-r border-neutral-50 dark:border-white/4 last:border-r-0 ${
                     isSel
                       ? 'bg-plum/8 dark:bg-plum/15'
-                      : 'hover:bg-neutral-50 dark:hover:bg-white/4'
-                  } ${!inMonth ? 'opacity-25' : ''}`}
+                      : isWeekend
+                        ? 'bg-neutral-50/80 dark:bg-white/[0.04] hover:bg-neutral-100/70 dark:hover:bg-white/[0.07]'
+                        : 'hover:bg-neutral-50 dark:hover:bg-white/4'
+                  } ${!inMonth ? 'opacity-20' : ''}`}
                 >
-                  <span className={`text-xs font-medium w-6 h-6 flex items-center justify-center rounded-full ${
+                  <span className={`text-xs sm:text-sm font-semibold w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full transition-colors ${
                     isT
                       ? 'bg-plum text-white'
                       : isSel
-                        ? 'text-plum font-semibold'
+                        ? 'text-plum ring-1 ring-plum/30'
                         : 'text-neutral-700 dark:text-neutral-300'
                   }`}>
                     {format(day, 'd')}
                   </span>
                   {active.length > 0 && (
-                    <div className="flex gap-0.5 flex-wrap justify-center">
-                      {active.slice(0, 3).map((b, i) => (
-                        <span key={i} className={`w-1.5 h-1.5 rounded-full ${S_DOT[b.status] || 'bg-neutral-300'}`} />
-                      ))}
-                      {active.length > 3 && (
-                        <span className="text-[9px] text-neutral-400 leading-none">+{active.length - 3}</span>
-                      )}
-                    </div>
+                    <span className={`text-[10px] font-bold leading-none tabular-nums ${hasPending ? 'text-[#C89520]' : 'text-neutral-400 dark:text-neutral-500'}`}>
+                      {active.length}
+                    </span>
                   )}
                   {hasPending && (
-                    <span className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-amber-400" />
+                    <span className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-[#C89520]" />
                   )}
                 </button>
               )
@@ -533,22 +710,60 @@ export default function AgendaPage() {
         </div>
 
         {/* Day detail panel */}
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 capitalize">{selectedDayLabel}</p>
-            <span className="text-xs text-neutral-400">{selectedDayBookings.length} {selectedDayBookings.length === 1 ? 'cita' : 'citas'}</span>
-          </div>
-
-          {selectedDayBookings.length === 0 ? (
-            <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-10 text-center">
-              <p className="text-sm text-neutral-400">Día libre</p>
-            </div>
+        <div className="space-y-3 order-1 lg:order-2">
+          {showPending ? (
+            <>
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-semibold text-amber-600">Sin confirmar</p>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-neutral-400">{allPendingBookings.length} {allPendingBookings.length === 1 ? 'pendiente' : 'pendientes'}</span>
+                  <button
+                    onClick={() => setShowPending(false)}
+                    className="p-1 rounded-lg text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 dark:hover:bg-white/8 transition-colors"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+              {allPendingBookings.length === 0 ? (
+                <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-10 text-center">
+                  <p className="text-sm text-neutral-400">Sin pendientes</p>
+                </div>
+              ) : (
+                <div className="space-y-2.5">
+                  {allPendingBookings.map((b) => (
+                    <div key={b._id}>
+                      <p className="text-[10px] uppercase tracking-widest text-neutral-400 mb-1 px-1 capitalize">
+                        {new Date(b.date + 'T00:00:00').toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' })}
+                      </p>
+                      <BookingCard booking={b} onUpdate={handleUpdate} />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </>
           ) : (
-            <div className="space-y-2.5">
-              {selectedDayBookings.map((b) => (
-                <BookingCard key={b._id} booking={b} onUpdate={handleUpdate} />
-              ))}
-            </div>
+            <>
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 capitalize">{selectedDayLabel}</p>
+                <span className="text-xs text-neutral-400">{selectedDayBookings.length} {selectedDayBookings.length === 1 ? 'cita' : 'citas'}</span>
+              </div>
+
+              {selectedDayBookings.length === 0 ? (
+                <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-10 text-center">
+                  <p className="text-sm text-neutral-400">Día libre</p>
+                </div>
+              ) : (
+                <>
+                  <DayTimeline bookings={selectedDayBookings} />
+                  <div className="space-y-2.5">
+                    {selectedDayBookings.map((b) => (
+                      <BookingCard key={b._id} booking={b} onUpdate={handleUpdate} />
+                    ))}
+                  </div>
+                </>
+              )}
+            </>
           )}
         </div>
       </div>

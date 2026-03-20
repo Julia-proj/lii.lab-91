@@ -9,11 +9,11 @@ export function Gallery() {
   return (
     <section className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#dedad6]">
       {photos.map((src, idx) => (
-        <div key={idx} className="overflow-hidden bg-[#f7f5f2]">
+        <div key={idx} className="overflow-hidden bg-[#f7f5f2] aspect-[4/5]">
           <img
             src={src}
             alt={`Lii.lab trabajo ${idx + 1}`}
-            className="w-full h-auto block"
+            className="w-full h-full object-contain"
           />
         </div>
       ))}

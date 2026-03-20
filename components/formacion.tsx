@@ -162,6 +162,7 @@ export function Formacion() {
                 loop
                 muted
                 playsInline
+                poster="/images/Foto2.JPG"
                 className="w-full aspect-video object-cover"
               />
             </div>
@@ -228,6 +229,7 @@ export function Formacion() {
                 loop
                 muted
                 playsInline
+                poster="/images/Foto3.jpg"
                 className="w-full aspect-video object-cover"
               />
             </div>
@@ -252,10 +254,13 @@ export function Formacion() {
                 <Download className="w-3.5 h-3.5" /> Descarga digital · Pago único
               </div>
 
-              <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                 Perfecta si ya impartes cursos o quieres empezar — todo el método resumido
                 para ahorrar tiempo en la explicación teórica. Anatomía de la uña,
                 protocolos de higiene, técnicas de preparación y organización del trabajo.
+              </p>
+              <p className="text-xs font-medium text-plum/70 bg-plum/5 border border-plum/15 rounded-lg px-3 py-2 mb-6">
+                Si ya das cursos, esta guía te ahorra horas de preparación de material teórico.
               </p>
 
               <ul className="space-y-2.5 mb-8 flex-1">
@@ -291,41 +296,35 @@ export function Formacion() {
           </Card>
         </div>
 
-        {/* Bottom Banner */}
-        <div className="mt-10 rounded-2xl bg-gradient-to-br from-lavender/35 via-lavender/20 to-plum/10 border border-plum/20 overflow-hidden fade-in">
-          <div className="px-8 sm:px-12 py-10 sm:py-12">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-plum/60 mb-3 font-medium">
-              Formación privada · Empresas &amp; salones
-            </p>
-            <h3 className="text-2xl sm:text-3xl font-serif text-plum mb-3 leading-tight">
-              ¿Tienes un salón y quieres<br className="hidden sm:block" /> formar a tu equipo?
-            </h3>
-            <p className="text-sm sm:text-base text-plum/70 leading-relaxed mb-6 max-w-lg">
-              Formación presencial adaptada a tu equipo, tu ritmo y tus objetivos.
-              Precios especiales para grupos de 2 a 8 personas.
-            </p>
-            <div className="flex flex-wrap gap-4 sm:gap-8 mb-8">
-              {["Formación en tu local", "Grupos de 2 a 8 personas", "Precio adaptado al equipo"].map((item) => (
-                <div key={item} className="flex items-center gap-2 text-sm text-plum/75">
-                  <span className="w-1.5 h-1.5 rounded-full bg-plum/50 shrink-0" />
-                  {item}
-                </div>
-              ))}
+        {/* Bottom Banner — Formar tu equipo — quiet luxury */}
+        <div className="mt-10 rounded-2xl overflow-hidden fade-in relative bg-[#EDE8DF] border border-[#D4CAC0]/70">
+          {/* Fine rule at top */}
+          <div className="absolute top-0 left-10 right-10 h-px bg-gradient-to-r from-transparent via-[#C4B5A8]/50 to-transparent" />
+
+          <div className="relative px-8 sm:px-12 py-8 sm:py-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 sm:gap-10">
+            <div className="min-w-0">
+              <p className="text-[10px] tracking-[0.35em] uppercase text-[#9A8F84] mb-3 font-medium">
+                Formación privada
+              </p>
+              <h3 className="text-xl sm:text-2xl font-serif text-[#29231e] leading-tight">
+                ¿Tienes un salón y quieres<br className="hidden sm:block" /> formar a tu equipo?
+              </h3>
+              <p className="text-xs text-[#A8998E] mt-2.5 leading-relaxed tracking-wide">
+                Presencial en tu local &nbsp;·&nbsp; Grupos de 2–8 personas
+              </p>
             </div>
-            <Button
-              size="lg"
-              asChild
-              className="bg-plum text-white hover:bg-plum-hover transition-colors gap-2 shadow-sm"
-            >
+
+            <div className="shrink-0">
               <a
                 href="https://www.instagram.com/lii.lab/?hl=es"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-medium text-[#29231e] border border-[#29231e]/25 hover:border-[#29231e]/50 hover:bg-[#29231e]/5 rounded-lg px-4 py-2.5 transition-all"
               >
-                <Instagram className="w-4 h-4" />
-                Preguntar por Instagram
+                <Instagram className="w-3.5 h-3.5" />
+                Escribir por Instagram
               </a>
-            </Button>
+            </div>
           </div>
         </div>
       </div>

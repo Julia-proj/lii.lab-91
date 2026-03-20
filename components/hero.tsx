@@ -37,7 +37,7 @@ export function Hero() {
             <Button
               size="lg"
               asChild
-              className="bg-[#B09EC2] text-white hover:bg-[#9e8cb0] transition-colors"
+              className="bg-[#B09EC2] md:bg-[#A896BA] text-white hover:bg-[#9e8cb0] md:hover:bg-[#9888AC] transition-colors"
             >
               <a href="#formacion">Ver cursos</a>
             </Button>
@@ -45,10 +45,10 @@ export function Hero() {
               size="lg"
               variant="outline"
               asChild
-              className="gap-2 border-white/60 text-white bg-transparent hover:bg-white/10 hover:text-white hover:border-white/80 transition-colors backdrop-blur-sm"
+              className="gap-2 border-white/40 text-white/85 bg-transparent hover:bg-white/10 hover:text-white hover:border-white/70 transition-colors"
             >
               <a href="#formacion">
-                <Download className="w-4 h-4" />
+                <Download className="w-4 h-4 opacity-75" />
                 Guía Metodológica
               </a>
             </Button>

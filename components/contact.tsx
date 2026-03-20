@@ -6,9 +6,9 @@ export function Contact() {
   return (
     <section id="contacto" className="py-16 bg-white text-center border-t border-gray-100">
       <div className="container mx-auto px-6 max-w-2xl">
-        <h2 className="text-4xl md:text-5xl font-serif mb-6 text-neutral-900">Contacto</h2>
-        <p className="text-xl text-neutral-600 mb-8 font-light">
-          ¿Quieres reservar una cita o conseguir la Guía Metodológica? Elige lo que necesitas.
+        <h2 className="text-2xl md:text-3xl font-serif mb-3 text-neutral-900">Contacto</h2>
+        <p className="text-sm text-neutral-500 mb-8 font-light">
+          Reserva una cita o consigue la Guía Metodológica.
         </p>
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">

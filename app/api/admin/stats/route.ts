@@ -19,10 +19,17 @@ export async function GET() {
     const monthEnd = `${y}-${pad(m + 1)}-${pad(new Date(y, m + 1, 0).getDate())}`
     const today = `${y}-${pad(m + 1)}-${pad(now.getDate())}`
 
-    // Aggregate ingresos (paidAmount) for today and this month
+    // Week: Monday → Sunday
+    const dow = now.getDay() === 0 ? 6 : now.getDay() - 1 // 0=Mon
+    const weekStart = new Date(now); weekStart.setDate(now.getDate() - dow)
+    const weekEnd   = new Date(weekStart); weekEnd.setDate(weekStart.getDate() + 6)
+    const weekStartStr = `${weekStart.getFullYear()}-${pad(weekStart.getMonth()+1)}-${pad(weekStart.getDate())}`
+    const weekEndStr   = `${weekEnd.getFullYear()}-${pad(weekEnd.getMonth()+1)}-${pad(weekEnd.getDate())}`
+
     const [
       totalBookings,
       bookingsThisMonth,
+      bookingsThisWeek,
       bookingsToday,
       totalUsers,
       courseBookings,
@@ -30,11 +37,16 @@ export async function GET() {
       upcomingBookings,
       recentBookings,
       incomeTodayAgg,
+      incomeThisWeekAgg,
       incomeThisMonthAgg,
     ] = await Promise.all([
       Booking.countDocuments({ status: { $ne: 'cancelada' } }),
       Booking.countDocuments({
         date: { $gte: monthStart, $lte: monthEnd },
+        status: { $ne: 'cancelada' },
+      }),
+      Booking.countDocuments({
+        date: { $gte: weekStartStr, $lte: weekEndStr },
         status: { $ne: 'cancelada' },
       }),
       Booking.countDocuments({
@@ -59,30 +71,35 @@ export async function GET() {
         .sort({ createdAt: -1 })
         .limit(10)
         .lean(),
-      // Sum paidAmount for today
       Booking.aggregate([
         { $match: { date: today, status: { $ne: 'cancelada' } } },
         { $group: { _id: null, total: { $sum: { $ifNull: ['$paidAmount', 0] } } } },
       ]),
-      // Sum paidAmount for this month
+      Booking.aggregate([
+        { $match: { date: { $gte: weekStartStr, $lte: weekEndStr }, status: { $ne: 'cancelada' } } },
+        { $group: { _id: null, total: { $sum: { $ifNull: ['$paidAmount', 0] } } } },
+      ]),
       Booking.aggregate([
         { $match: { date: { $gte: monthStart, $lte: monthEnd }, status: { $ne: 'cancelada' } } },
         { $group: { _id: null, total: { $sum: { $ifNull: ['$paidAmount', 0] } } } },
       ]),
     ])
 
-    const incomeToday = incomeTodayAgg[0]?.total || 0;
-    const incomeThisMonth = incomeThisMonthAgg[0]?.total || 0;
+    const incomeToday     = incomeTodayAgg[0]?.total     || 0
+    const incomeThisWeek  = incomeThisWeekAgg[0]?.total  || 0
+    const incomeThisMonth = incomeThisMonthAgg[0]?.total || 0
 
     return NextResponse.json({
       stats: {
         totalBookings,
         bookingsThisMonth,
+        bookingsThisWeek,
         bookingsToday,
         totalUsers,
         totalCourseBookings: courseBookings,
         totalGuidesSold: guidesSold,
         incomeToday,
+        incomeThisWeek,
         incomeThisMonth,
       },
       upcomingBookings,

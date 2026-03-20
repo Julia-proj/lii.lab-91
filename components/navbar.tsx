@@ -80,7 +80,11 @@ export function Navbar() {
           {/* Reservar CTA */}
           <Link
             href="/booking"
-            className="text-sm font-medium bg-plum text-white px-5 py-2 rounded-md hover:bg-plum-hover transition-colors"
+            className={`text-sm font-medium px-5 py-2 rounded-md border transition-colors ${
+              isScrolled
+                ? "bg-plum border-transparent text-white hover:bg-plum-hover"
+                : "bg-white/15 border-white/40 text-white hover:bg-white/25"
+            }`}
           >
             Reservar cita
           </Link>
