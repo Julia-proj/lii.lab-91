@@ -2,13 +2,11 @@
 
 import { useState, Suspense } from 'react'
 import { signIn, getSession } from 'next-auth/react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 function LoginForm() {
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get('callbackUrl') || '/'
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -45,7 +43,7 @@ function LoginForm() {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-neutral-200 p-8">
+    <div className="bg-white rounded-2xl shadow-sm border border-neutral-200 p-6 sm:p-8">
       <h1 className="font-serif text-2xl text-center mb-6">Iniciar sesión</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">

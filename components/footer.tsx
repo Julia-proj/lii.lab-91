@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="bg-[#f5f5f5] py-8 border-t border-gray-200">
       <div className="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <div className="text-center md:text-left">
+        <div className="text-center sm:text-left">
           {/* Corrected name */}
           <span className="font-serif text-2xl font-bold block mb-2 text-neutral-900">Lii.lab</span>
           <p className="text-sm text-neutral-500">© 2026 Lili · Formación en manicura</p>
