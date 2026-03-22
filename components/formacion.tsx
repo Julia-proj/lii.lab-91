@@ -303,7 +303,7 @@ export function Formacion() {
           <img
             src="/images/form.jpg"
             alt="Salón de manicura profesional"
-            className="absolute inset-0 w-full h-full object-cover object-right"
+            className="absolute inset-0 w-full h-full object-cover object-right grayscale brightness-90"
           />
           {/* Overlay — más suave para imagen cálida */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-black/10" />
