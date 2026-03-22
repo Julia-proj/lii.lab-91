@@ -712,28 +712,34 @@ export default function AgendaPage() {
         {/* Day detail panel */}
         <div className="space-y-3 order-1 lg:order-2">
           {showPending ? (
-            <>
-              <div className="flex items-center justify-between">
-                <p className="text-sm font-semibold text-amber-600">Sin confirmar</p>
+            <div className="bg-amber-50/60 dark:bg-amber-900/10 rounded-2xl border border-amber-100 dark:border-amber-700/20 p-3">
+              {/* Pending header */}
+              <div className="flex items-center justify-between mb-3 px-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-neutral-400">{allPendingBookings.length} {allPendingBookings.length === 1 ? 'pendiente' : 'pendientes'}</span>
-                  <button
-                    onClick={() => setShowPending(false)}
-                    className="p-1 rounded-lg text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 dark:hover:bg-white/8 transition-colors"
-                  >
-                    <X className="w-3.5 h-3.5" />
-                  </button>
+                  <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                  <p className="text-sm font-semibold text-amber-700 dark:text-amber-400">Sin confirmar</p>
+                  {allPendingBookings.length > 0 && (
+                    <span className="text-[10px] font-semibold bg-amber-400 text-white rounded-full px-1.5 py-0.5 leading-none">
+                      {allPendingBookings.length}
+                    </span>
+                  )}
                 </div>
+                <button
+                  onClick={() => setShowPending(false)}
+                  className="p-1.5 rounded-lg text-amber-400 hover:text-amber-700 hover:bg-amber-100 dark:hover:bg-amber-800/20 transition-colors"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
               </div>
               {allPendingBookings.length === 0 ? (
-                <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-10 text-center">
+                <div className="bg-white/60 dark:bg-white/4 rounded-xl p-8 text-center">
                   <p className="text-sm text-neutral-400">Sin pendientes</p>
                 </div>
               ) : (
-                <div className="space-y-2.5">
+                <div className="space-y-2">
                   {allPendingBookings.map((b) => (
                     <div key={b._id}>
-                      <p className="text-[10px] uppercase tracking-widest text-neutral-400 mb-1 px-1 capitalize">
+                      <p className="text-[10px] uppercase tracking-widest text-amber-500/70 dark:text-amber-600 mb-1 px-1 capitalize">
                         {new Date(b.date + 'T00:00:00').toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' })}
                       </p>
                       <BookingCard booking={b} onUpdate={handleUpdate} />
@@ -741,7 +747,7 @@ export default function AgendaPage() {
                   ))}
                 </div>
               )}
-            </>
+            </div>
           ) : (
             <>
               <div className="flex items-center justify-between">

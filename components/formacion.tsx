@@ -301,7 +301,7 @@ export function Formacion() {
         <div className="mt-10 rounded-2xl fade-in relative overflow-hidden min-h-[220px] sm:min-h-[260px]">
           {/* Background photo */}
           <img
-            src="/images/form.PNG"
+            src="/images/form.jpg"
             alt="Cabina de manicura profesional"
             className="absolute inset-0 w-full h-full object-cover object-center"
           />

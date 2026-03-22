@@ -93,7 +93,6 @@ export default function AdminServicesPage() {
           ...form,
           price: Number(form.price),
           duration: Number(form.duration),
-          // Preserve current active state when editing, default true for new
           active: editingId ? editingActive : true,
         }),
       })
@@ -163,7 +162,7 @@ export default function AdminServicesPage() {
   if (loading) {
     return (
       <div className="text-center py-12">
-        <div className="w-6 h-6 border-2 border-neutral-200 border-t-[#CDB4DB] rounded-full animate-spin mx-auto" />
+        <div className="w-6 h-6 border-2 border-neutral-200 dark:border-white/10 border-t-plum rounded-full animate-spin mx-auto" />
       </div>
     )
   }
@@ -176,38 +175,38 @@ export default function AdminServicesPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="font-serif text-2xl">Servicios</h1>
+        <h1 className="font-serif text-2xl text-neutral-900 dark:text-neutral-100">Servicios</h1>
         <button
           onClick={() => { resetForm(); setShowForm(true) }}
-          className="inline-flex items-center gap-2 bg-[#B48EC5] hover:bg-[#a37ab5] text-white font-semibold py-2 px-4 rounded-full transition-colors text-sm shadow-sm"
+          className="inline-flex items-center gap-2 bg-plum hover:bg-plum-hover text-white font-semibold py-2 px-4 rounded-full transition-colors text-sm shadow-sm"
         >
           <Plus className="w-4 h-4" />
-          Anadir servicio
+          Añadir servicio
         </button>
       </div>
 
       {/* Form */}
       {showForm && (
-        <div className="bg-white rounded-xl border border-neutral-200 p-6 mb-6">
-          <h2 className="font-medium mb-4">
+        <div className="bg-white dark:bg-[#1e1e24] rounded-xl border border-neutral-200 dark:border-white/8 p-5 sm:p-6 mb-6">
+          <h2 className="font-medium mb-4 text-neutral-900 dark:text-neutral-100">
             {editingId ? 'Editar servicio' : 'Nuevo servicio'}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-neutral-700 mb-1">Nombre *</label>
+              <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-1">Nombre *</label>
               <input
                 type="text"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full rounded-lg border border-neutral-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#CDB4DB]"
+                className="w-full rounded-lg border border-neutral-200 dark:border-white/10 bg-white dark:bg-[#2a2a32] text-neutral-900 dark:text-neutral-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-plum/40 placeholder:text-neutral-300 dark:placeholder:text-neutral-600"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-neutral-700 mb-1">Categoria *</label>
+              <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-1">Categoría *</label>
               <select
                 value={form.category}
                 onChange={(e) => setForm({ ...form, category: e.target.value })}
-                className="w-full rounded-lg border border-neutral-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#CDB4DB]"
+                className="w-full rounded-lg border border-neutral-200 dark:border-white/10 bg-white dark:bg-[#2a2a32] text-neutral-900 dark:text-neutral-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-plum/40"
               >
                 {categories.map((c) => (
                   <option key={c} value={c}>{c}</option>
@@ -215,44 +214,44 @@ export default function AdminServicesPage() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-neutral-700 mb-1">Precio (€) *</label>
+              <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-1">Precio (€) *</label>
               <input
                 type="number"
                 min={0}
                 step={1}
                 value={form.price || ''}
                 onChange={(e) => setForm({ ...form, price: Number(e.target.value) })}
-                className="w-full rounded-lg border border-neutral-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#CDB4DB]"
+                className="w-full rounded-lg border border-neutral-200 dark:border-white/10 bg-white dark:bg-[#2a2a32] text-neutral-900 dark:text-neutral-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-plum/40"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-neutral-700 mb-1">Duracion (min) *</label>
+              <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-1">Duración (min) *</label>
               <input
                 type="number"
                 min={0}
                 step={5}
                 value={form.duration || ''}
                 onChange={(e) => setForm({ ...form, duration: Number(e.target.value) })}
-                className="w-full rounded-lg border border-neutral-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#CDB4DB]"
+                className="w-full rounded-lg border border-neutral-200 dark:border-white/10 bg-white dark:bg-[#2a2a32] text-neutral-900 dark:text-neutral-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-plum/40"
               />
             </div>
             <div className="sm:col-span-2">
-              <label className="block text-sm font-medium text-neutral-700 mb-1">Descripcion</label>
+              <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-1">Descripción</label>
               <textarea
                 value={form.description}
                 onChange={(e) => setForm({ ...form, description: e.target.value })}
                 rows={2}
-                className="w-full rounded-lg border border-neutral-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#CDB4DB] resize-none"
+                className="w-full rounded-lg border border-neutral-200 dark:border-white/10 bg-white dark:bg-[#2a2a32] text-neutral-900 dark:text-neutral-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-plum/40 resize-none placeholder:text-neutral-300 dark:placeholder:text-neutral-600"
               />
             </div>
             <div className="sm:col-span-2">
-              <label className="block text-sm font-medium text-neutral-700 mb-1">Incluye (para combos)</label>
+              <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-1">Incluye (para combos)</label>
               <input
                 type="text"
                 placeholder="Ej: Manicura Combinada Con Refuerzo, Pedicura Basica"
                 value={form.includes}
                 onChange={(e) => setForm({ ...form, includes: e.target.value })}
-                className="w-full rounded-lg border border-neutral-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#CDB4DB]"
+                className="w-full rounded-lg border border-neutral-200 dark:border-white/10 bg-white dark:bg-[#2a2a32] text-neutral-900 dark:text-neutral-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-plum/40 placeholder:text-neutral-300 dark:placeholder:text-neutral-600"
               />
             </div>
             <div className="sm:col-span-2">
@@ -261,11 +260,11 @@ export default function AdminServicesPage() {
                   type="checkbox"
                   checked={form.popular}
                   onChange={(e) => setForm({ ...form, popular: e.target.checked })}
-                  className="w-4 h-4 rounded accent-[#CDB4DB]"
+                  className="w-4 h-4 rounded accent-plum"
                 />
-                <span className="text-sm font-medium text-neutral-700 flex items-center gap-1.5">
-                  <Star className="w-3.5 h-3.5 text-[#CDB4DB]" />
-                  Mostrar en &quot;Servicios mas populares&quot;
+                <span className="text-sm font-medium text-neutral-600 dark:text-neutral-400 flex items-center gap-1.5">
+                  <Star className="w-3.5 h-3.5 text-plum/60" />
+                  Mostrar en &quot;Servicios más populares&quot;
                 </span>
               </label>
             </div>
@@ -274,13 +273,13 @@ export default function AdminServicesPage() {
             <button
               onClick={handleSave}
               disabled={saving}
-              className="bg-[#B48EC5] hover:bg-[#a37ab5] text-white font-semibold py-2 px-6 rounded-full transition-colors text-sm disabled:opacity-60 shadow-sm"
+              className="bg-plum hover:bg-plum-hover text-white font-semibold py-2 px-6 rounded-full transition-colors text-sm disabled:opacity-60 shadow-sm"
             >
               {saving ? 'Guardando...' : editingId ? 'Actualizar' : 'Crear'}
             </button>
             <button
               onClick={resetForm}
-              className="border border-neutral-200 text-neutral-600 font-medium py-2 px-6 rounded-full transition-colors text-sm hover:bg-neutral-50"
+              className="border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-400 font-medium py-2 px-6 rounded-full transition-colors text-sm hover:bg-neutral-50 dark:hover:bg-white/5"
             >
               Cancelar
             </button>
@@ -293,30 +292,34 @@ export default function AdminServicesPage() {
         if (items.length === 0) return null
         return (
           <div key={category} className="mb-8">
-            <h2 className="text-sm font-medium text-neutral-500 mb-3 flex items-center gap-2">
-              <Scissors className="w-4 h-4" />
+            <h2 className="text-xs font-semibold text-neutral-400 dark:text-neutral-500 mb-3 flex items-center gap-2 uppercase tracking-widest">
+              <Scissors className="w-3.5 h-3.5" />
               {category}
             </h2>
-            <div className="bg-white rounded-xl border border-neutral-200 overflow-hidden overflow-x-auto">
+            <div className="bg-white dark:bg-[#1e1e24] rounded-xl border border-neutral-100 dark:border-white/8 overflow-hidden overflow-x-auto">
               <table className="w-full text-sm min-w-[580px]">
-                <thead className="bg-neutral-50 border-b border-neutral-200">
+                <thead className="bg-neutral-50 dark:bg-white/[0.03] border-b border-neutral-100 dark:border-white/6">
                   <tr>
-                    <th className="text-left px-4 py-2.5 font-medium text-neutral-500">Servicio</th>
-                    <th className="text-left px-4 py-2.5 font-medium text-neutral-500 w-20">Precio</th>
-                    <th className="text-left px-4 py-2.5 font-medium text-neutral-500 w-24">Duracion</th>
-                    <th className="text-left px-4 py-2.5 font-medium text-neutral-500 w-24">Estado</th>
-                    <th className="text-center px-4 py-2.5 font-medium text-neutral-500 w-20">Popular</th>
-                    <th className="text-left px-4 py-2.5 font-medium text-neutral-500 w-24">Acciones</th>
+                    <th className="text-left px-4 py-2.5 font-medium text-neutral-400 dark:text-neutral-500 text-xs">Servicio</th>
+                    <th className="text-left px-4 py-2.5 font-medium text-neutral-400 dark:text-neutral-500 text-xs w-20">Precio</th>
+                    <th className="text-left px-4 py-2.5 font-medium text-neutral-400 dark:text-neutral-500 text-xs w-24">Duración</th>
+                    <th className="text-left px-4 py-2.5 font-medium text-neutral-400 dark:text-neutral-500 text-xs w-24">Estado</th>
+                    <th className="text-center px-4 py-2.5 font-medium text-neutral-400 dark:text-neutral-500 text-xs w-20">Popular</th>
+                    <th className="text-left px-4 py-2.5 font-medium text-neutral-400 dark:text-neutral-500 text-xs w-24">Acciones</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-neutral-50">
+                <tbody className="divide-y divide-neutral-50 dark:divide-white/5">
                   {items.map((s) => (
-                    <tr key={s._id} className={`hover:bg-neutral-50/50 ${!s.active ? 'opacity-50' : ''}`}>
-                      <td className="px-4 py-3 font-medium">{s.name}</td>
-                      <td className="px-4 py-3">{s.price}€</td>
-                      <td className="px-4 py-3 text-neutral-500">{formatDuration(s.duration)}</td>
+                    <tr key={s._id} className={`hover:bg-neutral-50/60 dark:hover:bg-white/[0.03] transition-colors ${!s.active ? 'opacity-40' : ''}`}>
+                      <td className="px-4 py-3 font-medium text-neutral-900 dark:text-neutral-200">{s.name}</td>
+                      <td className="px-4 py-3 text-neutral-700 dark:text-neutral-300">{s.price}€</td>
+                      <td className="px-4 py-3 text-neutral-400 dark:text-neutral-500">{formatDuration(s.duration)}</td>
                       <td className="px-4 py-3">
-                        <span className={`text-xs px-2 py-0.5 rounded-full ${s.active ? 'bg-green-50 text-green-700' : 'bg-neutral-100 text-neutral-500'}`}>
+                        <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                          s.active
+                            ? 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400'
+                            : 'bg-neutral-100 dark:bg-white/6 text-neutral-400 dark:text-neutral-500'
+                        }`}>
                           {s.active ? 'Activo' : 'Inactivo'}
                         </span>
                       </td>
@@ -326,8 +329,8 @@ export default function AdminServicesPage() {
                           title={s.popular ? 'Quitar de populares' : 'Marcar como popular'}
                           className={`inline-flex items-center justify-center w-7 h-7 rounded-full transition-colors ${
                             s.popular
-                              ? 'text-[#CDB4DB] bg-[#CDB4DB]/10'
-                              : 'text-neutral-300 hover:text-[#CDB4DB] hover:bg-[#CDB4DB]/10'
+                              ? 'text-plum bg-plum/10'
+                              : 'text-neutral-300 dark:text-neutral-600 hover:text-plum hover:bg-plum/10'
                           }`}
                         >
                           <Star className="w-4 h-4" fill={s.popular ? 'currentColor' : 'none'} />
@@ -337,7 +340,7 @@ export default function AdminServicesPage() {
                         <div className="flex items-center gap-1">
                           <button
                             onClick={() => handleEdit(s)}
-                            className="text-neutral-500 hover:text-neutral-800 p-1.5 rounded hover:bg-neutral-100 transition-colors"
+                            className="text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 p-1.5 rounded hover:bg-neutral-100 dark:hover:bg-white/8 transition-colors"
                             title="Editar"
                           >
                             <Pencil className="w-3.5 h-3.5" />
@@ -346,8 +349,8 @@ export default function AdminServicesPage() {
                             onClick={() => handleToggleActive(s._id, s.active)}
                             className={`p-1.5 rounded transition-colors ${
                               s.active
-                                ? 'text-neutral-500 hover:text-red-500 hover:bg-red-50'
-                                : 'text-neutral-500 hover:text-green-600 hover:bg-green-50'
+                                ? 'text-neutral-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20'
+                                : 'text-neutral-400 hover:text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-900/20'
                             }`}
                             title={s.active ? 'Desactivar' : 'Activar'}
                           >

@@ -38,6 +38,30 @@ export default function EstadisticasPage() {
 
   if (!stats) return null
 
+  const periods = [
+    {
+      label: 'Hoy',
+      icon: Clock,
+      income: stats.incomeToday,
+      bookings: stats.bookingsToday,
+      accent: true,
+    },
+    {
+      label: 'Semana',
+      icon: CalendarDays,
+      income: stats.incomeThisWeek,
+      bookings: stats.bookingsThisWeek,
+      accent: false,
+    },
+    {
+      label: 'Mes',
+      icon: Calendar,
+      income: stats.incomeThisMonth,
+      bookings: stats.bookingsThisMonth,
+      accent: false,
+    },
+  ]
+
   return (
     <div className="space-y-4 max-w-2xl">
       <div>
@@ -45,70 +69,38 @@ export default function EstadisticasPage() {
         <p className="text-xs text-neutral-400 mt-0.5">Ingresos y citas por período</p>
       </div>
 
-      {/* Period cards — stacked on mobile, 3-col on sm+ */}
+      {/* Period cards — stack on mobile, 3-col on sm+ */}
       <div className="flex flex-col sm:grid sm:grid-cols-3 gap-2 sm:gap-3">
-
-        {/* HOY */}
-        <div className="bg-plum/[0.13] dark:bg-plum/20 rounded-xl p-3 sm:p-4 border border-plum/25 dark:border-plum/35">
-          {/* Mobile: horizontal. sm+: vertical */}
-          <div className="flex items-center justify-between sm:block">
-            <div className="flex items-center gap-1.5 sm:flex sm:items-center sm:justify-between sm:mb-3">
-              <Clock className="w-3 h-3 text-plum/40 shrink-0 sm:hidden" />
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-plum/70 leading-none">Hoy</p>
-              <Clock className="w-3 h-3 text-plum/40 shrink-0 hidden sm:block" />
-            </div>
-            <div className="text-right sm:text-left">
-              <p className="text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-plum leading-none">
-                {stats.incomeToday.toFixed(0)}
-                <span className="text-xs font-normal text-plum/45 ml-0.5">€</span>
-              </p>
-              <p className="text-[10px] sm:text-[11px] text-plum/55 tabular-nums leading-none mt-0.5 sm:mt-2.5 sm:pt-2.5 sm:border-t sm:border-plum/15">
-                {stats.bookingsToday} cita{stats.bookingsToday !== 1 ? 's' : ''}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* SEMANA */}
-        <div className="bg-white dark:bg-[#1e1e24] rounded-xl p-3 sm:p-4 border border-neutral-100 dark:border-white/8">
-          <div className="flex items-center justify-between sm:block">
-            <div className="flex items-center gap-1.5 sm:flex sm:items-center sm:justify-between sm:mb-3">
-              <CalendarDays className="w-3 h-3 text-neutral-300 dark:text-neutral-600 shrink-0 sm:hidden" />
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-neutral-400 leading-none">Semana</p>
-              <CalendarDays className="w-3 h-3 text-neutral-300 dark:text-neutral-600 shrink-0 hidden sm:block" />
-            </div>
-            <div className="text-right sm:text-left">
-              <p className="text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-neutral-800 dark:text-neutral-100 leading-none">
-                {stats.incomeThisWeek.toFixed(0)}
-                <span className="text-xs font-normal text-neutral-400 ml-0.5">€</span>
-              </p>
-              <p className="text-[10px] sm:text-[11px] text-neutral-400 tabular-nums leading-none mt-0.5 sm:mt-2.5 sm:pt-2.5 sm:border-t sm:border-neutral-100 dark:sm:border-white/6">
-                {stats.bookingsThisWeek} cita{stats.bookingsThisWeek !== 1 ? 's' : ''}
-              </p>
+        {periods.map(({ label, icon: Icon, income, bookings, accent }) => (
+          <div
+            key={label}
+            className={`rounded-xl p-3 sm:p-4 border transition-colors ${
+              accent
+                ? 'bg-white dark:bg-[#1e1e24] border-plum/25 dark:border-plum/30 ring-1 ring-plum/10 dark:ring-plum/15'
+                : 'bg-white dark:bg-[#1e1e24] border-neutral-100 dark:border-white/8'
+            }`}
+          >
+            {/* Mobile: horizontal. sm+: vertical */}
+            <div className="flex items-center justify-between sm:block">
+              <div className="flex items-center gap-1.5 sm:flex sm:items-center sm:justify-between sm:mb-3">
+                <Icon className={`w-3 h-3 shrink-0 sm:hidden ${accent ? 'text-plum/50' : 'text-neutral-300 dark:text-neutral-600'}`} />
+                <p className={`text-[10px] font-semibold uppercase tracking-widest leading-none ${accent ? 'text-plum/70' : 'text-neutral-400'}`}>
+                  {label}
+                </p>
+                <Icon className={`w-3 h-3 shrink-0 hidden sm:block ${accent ? 'text-plum/40' : 'text-neutral-300 dark:text-neutral-600'}`} />
+              </div>
+              <div className="text-right sm:text-left">
+                <p className="text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-neutral-900 dark:text-neutral-100 leading-none">
+                  {income.toFixed(0)}
+                  <span className="text-xs font-normal text-neutral-400 ml-0.5">€</span>
+                </p>
+                <p className="text-[10px] sm:text-[11px] text-neutral-400 tabular-nums leading-none mt-0.5 sm:mt-2.5 sm:pt-2.5 sm:border-t sm:border-neutral-100 dark:sm:border-white/6">
+                  {bookings} cita{bookings !== 1 ? 's' : ''}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* MES */}
-        <div className="bg-plum/5 dark:bg-plum/10 rounded-xl p-3 sm:p-4 border border-plum/12 dark:border-plum/20">
-          <div className="flex items-center justify-between sm:block">
-            <div className="flex items-center gap-1.5 sm:flex sm:items-center sm:justify-between sm:mb-3">
-              <Calendar className="w-3 h-3 text-plum/35 shrink-0 sm:hidden" />
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-plum/55 dark:text-plum/70 leading-none">Mes</p>
-              <Calendar className="w-3 h-3 text-plum/35 shrink-0 hidden sm:block" />
-            </div>
-            <div className="text-right sm:text-left">
-              <p className="text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-plum leading-none">
-                {stats.incomeThisMonth.toFixed(0)}
-                <span className="text-xs font-normal text-plum/45 ml-0.5">€</span>
-              </p>
-              <p className="text-[10px] sm:text-[11px] text-plum/50 tabular-nums leading-none mt-0.5 sm:mt-2.5 sm:pt-2.5 sm:border-t sm:border-plum/10">
-                {stats.bookingsThisMonth} cita{stats.bookingsThisMonth !== 1 ? 's' : ''}
-              </p>
-            </div>
-          </div>
-        </div>
-
+        ))}
       </div>
 
       {/* Historical totals */}
