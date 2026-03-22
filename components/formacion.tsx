@@ -297,23 +297,32 @@ export function Formacion() {
           </Card>
         </div>
 
-        {/* Bottom Banner — Formar tu equipo — quiet luxury */}
-        <div className="mt-10 rounded-2xl fade-in bg-[#F5F0EA] border border-[#C8BEB2]/35">
-          <div className="px-8 sm:px-16 py-10 sm:py-14 text-center">
-            <p className="text-[9px] tracking-[0.45em] uppercase text-[#B0A598] mb-4 font-medium">
+        {/* Bottom Banner — Formar tu equipo — photo bg */}
+        <div className="mt-10 rounded-2xl fade-in relative overflow-hidden min-h-[220px] sm:min-h-[260px]">
+          {/* Background photo */}
+          <img
+            src="/images/form.PNG"
+            alt="Cabina de manicura profesional"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/25" />
+          {/* Content */}
+          <div className="relative px-8 sm:px-16 py-10 sm:py-14 text-center">
+            <p className="text-[9px] tracking-[0.45em] uppercase text-white/50 mb-4 font-medium">
               Formación privada
             </p>
-            <h3 className="text-2xl sm:text-3xl font-serif text-[#29231e] leading-tight mb-2">
+            <h3 className="text-2xl sm:text-3xl font-serif text-white leading-tight mb-2">
               ¿Tienes un salón y quieres<br />formar a tu equipo?
             </h3>
-            <p className="text-[11px] text-[#B0A598] tracking-wide mb-8">
+            <p className="text-[11px] text-white/50 tracking-wide mb-8">
               Presencial en tu local &nbsp;·&nbsp; Grupos de 2–8 personas
             </p>
             <a
               href="https://www.instagram.com/lii.lab/?hl=es"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-[#29231e] border-b border-[#29231e]/30 pb-px hover:border-[#29231e] transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-white/80 border-b border-white/30 pb-px hover:text-white hover:border-white transition-colors"
             >
               <Instagram className="w-3.5 h-3.5" />
               Escribir por Instagram

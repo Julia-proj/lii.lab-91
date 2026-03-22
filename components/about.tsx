@@ -4,12 +4,12 @@ const advantages = [
   {
     icon: BookOpen,
     title: "Formación continua",
-    desc: "Método propio creado después de años de práctica real en cabina.",
+    desc: "Método propio basado en práctica real.",
   },
   {
     icon: Target,
     title: "Precisión",
-    desc: "Técnica exacta y detallada que evita retrabajos y garantiza resultados limpios.",
+    desc: "Técnica precisa y detallada para lograr resultados limpios.",
   },
   {
     icon: Zap,
