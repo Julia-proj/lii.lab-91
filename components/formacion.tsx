@@ -302,11 +302,11 @@ export function Formacion() {
           {/* Background photo */}
           <img
             src="/images/form.jpg"
-            alt="Cabina de manicura profesional"
-            className="absolute inset-0 w-full h-full object-cover object-center"
+            alt="Salón de manicura profesional"
+            className="absolute inset-0 w-full h-full object-cover object-right"
           />
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/25" />
+          {/* Overlay — más suave para imagen cálida */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-black/10" />
           {/* Content */}
           <div className="relative px-8 sm:px-16 py-10 sm:py-14 text-center">
             <p className="text-[9px] tracking-[0.45em] uppercase text-white/50 mb-4 font-medium">
