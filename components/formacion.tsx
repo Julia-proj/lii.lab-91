@@ -275,9 +275,9 @@ export function Formacion() {
 
               <div className="mt-auto space-y-3">
                 <Button
-                  variant="link"
+                  size="lg"
                   asChild
-                  className="w-full justify-center p-0 h-auto text-sm underline underline-offset-4 text-plum hover:text-plum-hover"
+                  className="w-full bg-neutral-900 hover:bg-black text-white border-0 tracking-wide transition-colors"
                 >
                   <a
                     href={STRIPE_GUIDE_URL}
@@ -303,13 +303,13 @@ export function Formacion() {
           <img
             src="/images/salon-bg.jpg"
             alt="Salón de manicura profesional"
-            className="absolute inset-0 w-full h-full object-cover object-center"
+            className="absolute inset-0 w-full h-full object-cover object-center grayscale"
           />
           {/* Overlay — texto legible */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-black/55" />
           {/* Content */}
           <div className="relative px-8 sm:px-16 py-10 sm:py-14 text-center">
-            <p className="text-[9px] tracking-[0.45em] uppercase text-white/50 mb-4 font-medium">
+            <p className="text-[9px] tracking-[0.45em] uppercase text-white/70 mb-4 font-medium">
               Formación privada
             </p>
             <h3 className="text-2xl sm:text-3xl font-serif text-white leading-tight mb-2">
