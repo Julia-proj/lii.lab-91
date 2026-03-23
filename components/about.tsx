@@ -27,11 +27,11 @@ export function About() {
   return (
     <section id="quien-soy" className="py-16 md:py-20 bg-quiensoy-bg">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid md:grid-cols-2 gap-6 md:gap-12 md:items-start">
+        <div className="grid md:grid-cols-[5fr_7fr] gap-6 md:gap-14 lg:gap-20 md:items-start">
 
           {/* Image Column — sticky on desktop */}
           <div className="md:sticky md:top-[100px]">
-            <div className="relative group w-full overflow-hidden rounded-lg md:rounded-xl shadow-xl aspect-[4/3] md:aspect-[3/4]">
+            <div className="relative group w-full overflow-hidden rounded-lg md:rounded-xl shadow-xl aspect-[4/3] md:aspect-[4/5]">
               <img
                 src="/images/Foto7.JPG"
                 alt="Lili"
@@ -86,9 +86,8 @@ export function About() {
               ))}
             </div>
 
-            <p className="text-neutral-900 text-sm md:text-base leading-relaxed font-light pt-1">
-              Mi objetivo es ayudar a otras manicuristas a crecer, profesionalizarse y ofrecer servicios de alto
-              nivel.
+            <p className="text-neutral-900 text-sm md:text-base leading-relaxed font-light pt-1 text-balance">
+              Mi objetivo es ayudar a otras manicuristas a crecer, profesionalizarse y ofrecer servicios de alto nivel.
             </p>
           </div>
         </div>

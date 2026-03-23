@@ -22,9 +22,11 @@ export default async function AppLayout({ children }: { children: React.ReactNod
             <Link href="/booking" className="text-neutral-600 hover:text-neutral-900 transition-colors">
               Reservar
             </Link>
-            <Link href="/dashboard" className="text-neutral-600 hover:text-neutral-900 transition-colors">
-              Mi panel
-            </Link>
+            {session && (
+              <Link href="/dashboard" className="text-neutral-600 hover:text-neutral-900 transition-colors">
+                Mi panel
+              </Link>
+            )}
             {session?.user?.role === 'admin' && (
               <Link href="/admin" className="text-neutral-600 hover:text-neutral-900 transition-colors">
                 Admin

@@ -11,7 +11,6 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 export const metadata: Metadata = {
   title: "Lili · Formación en Manicura",
   description: "Formación profesional y guía metodológica para manicuristas.",
-  generator: 'v0.app'
 }
 
 export const viewport: Viewport = {

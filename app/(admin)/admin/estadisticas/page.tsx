@@ -40,25 +40,31 @@ export default function EstadisticasPage() {
 
   const periods = [
     {
-      label: 'Hoy',
-      icon: Clock,
-      income: stats.incomeToday,
-      bookings: stats.bookingsToday,
-      accent: true,
+      label: 'Hoy', icon: Clock,
+      income: stats.incomeToday, bookings: stats.bookingsToday,
+      cardClass: 'bg-plum/5 dark:bg-plum/10 border-plum/15 dark:border-plum/20',
+      labelClass: 'text-plum/60 dark:text-plum/50',
+      numClass:   'text-plum dark:text-lavender',
+      iconClass:  'text-plum/25 dark:text-plum/30',
+      divClass:   'border-plum/10 dark:border-plum/15',
     },
     {
-      label: 'Semana',
-      icon: CalendarDays,
-      income: stats.incomeThisWeek,
-      bookings: stats.bookingsThisWeek,
-      accent: false,
+      label: 'Semana', icon: CalendarDays,
+      income: stats.incomeThisWeek, bookings: stats.bookingsThisWeek,
+      cardClass: 'bg-stone-50/70 dark:bg-stone-900/20 border-stone-200/50 dark:border-stone-700/20',
+      labelClass: 'text-stone-400 dark:text-stone-500',
+      numClass:   'text-neutral-900 dark:text-neutral-100',
+      iconClass:  'text-stone-300 dark:text-stone-700',
+      divClass:   'border-stone-200/40 dark:border-stone-700/20',
     },
     {
-      label: 'Mes',
-      icon: Calendar,
-      income: stats.incomeThisMonth,
-      bookings: stats.bookingsThisMonth,
-      accent: false,
+      label: 'Mes', icon: Calendar,
+      income: stats.incomeThisMonth, bookings: stats.bookingsThisMonth,
+      cardClass: 'bg-white dark:bg-[#1e1e24] border-neutral-100 dark:border-white/8',
+      labelClass: 'text-neutral-400',
+      numClass:   'text-neutral-900 dark:text-neutral-100',
+      iconClass:  'text-neutral-300 dark:text-neutral-600',
+      divClass:   'border-neutral-100 dark:border-white/6',
     },
   ]
 
@@ -69,35 +75,23 @@ export default function EstadisticasPage() {
         <p className="text-xs text-neutral-400 mt-0.5">Ingresos y citas por período</p>
       </div>
 
-      {/* Period cards — stack on mobile, 3-col on sm+ */}
-      <div className="flex flex-col sm:grid sm:grid-cols-3 gap-2 sm:gap-3">
-        {periods.map(({ label, icon: Icon, income, bookings, accent }) => (
-          <div
-            key={label}
-            className={`rounded-xl p-3 sm:p-4 border transition-colors ${
-              accent
-                ? 'bg-white dark:bg-[#1e1e24] border-plum/25 dark:border-plum/30 ring-1 ring-plum/10 dark:ring-plum/15'
-                : 'bg-white dark:bg-[#1e1e24] border-neutral-100 dark:border-white/8'
-            }`}
-          >
-            {/* Mobile: horizontal. sm+: vertical */}
-            <div className="flex items-center justify-between sm:block">
-              <div className="flex items-center gap-1.5 sm:flex sm:items-center sm:justify-between sm:mb-3">
-                <Icon className={`w-3 h-3 shrink-0 sm:hidden ${accent ? 'text-plum/50' : 'text-neutral-300 dark:text-neutral-600'}`} />
-                <p className={`text-[10px] font-semibold uppercase tracking-widest leading-none ${accent ? 'text-plum/70' : 'text-neutral-400'}`}>
-                  {label}
-                </p>
-                <Icon className={`w-3 h-3 shrink-0 hidden sm:block ${accent ? 'text-plum/40' : 'text-neutral-300 dark:text-neutral-600'}`} />
-              </div>
-              <div className="text-right sm:text-left">
-                <p className="text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-neutral-900 dark:text-neutral-100 leading-none">
-                  {income.toFixed(0)}
-                  <span className="text-xs font-normal text-neutral-400 ml-0.5">€</span>
-                </p>
-                <p className="text-[10px] sm:text-[11px] text-neutral-400 tabular-nums leading-none mt-0.5 sm:mt-2.5 sm:pt-2.5 sm:border-t sm:border-neutral-100 dark:sm:border-white/6">
-                  {bookings} cita{bookings !== 1 ? 's' : ''}
-                </p>
-              </div>
+      {/* Period cards — always 3 columns */}
+      <div className="grid grid-cols-3 gap-2 sm:gap-3">
+        {periods.map(({ label, icon: Icon, income, bookings, cardClass, labelClass, numClass, iconClass, divClass }) => (
+          <div key={label} className={`rounded-xl sm:rounded-2xl p-3 sm:p-5 border flex flex-col gap-2 sm:gap-3 ${cardClass}`}>
+            <div className="flex items-center justify-between">
+              <p className={`text-[10px] sm:text-[11px] font-semibold uppercase tracking-widest leading-none ${labelClass}`}>
+                {label}
+              </p>
+              <Icon className={`w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 ${iconClass}`} />
+            </div>
+            <div>
+              <p className={`text-lg sm:text-2xl lg:text-3xl font-bold tabular-nums leading-none ${numClass}`}>
+                {income.toFixed(0)}<span className="text-[10px] sm:text-xs font-normal text-neutral-400 ml-0.5">€</span>
+              </p>
+              <p className={`text-[10px] sm:text-[11px] text-neutral-400 tabular-nums leading-none mt-1.5 pt-1.5 border-t ${divClass}`}>
+                {bookings} cita{bookings !== 1 ? 's' : ''}
+              </p>
             </div>
           </div>
         ))}
@@ -105,28 +99,28 @@ export default function EstadisticasPage() {
 
       {/* Historical totals */}
       <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-4 sm:p-5">
-        <div className="flex items-center gap-2 mb-4 sm:mb-5">
+        <div className="flex items-center gap-2 mb-4">
           <TrendingUp className="w-3.5 h-3.5 text-neutral-300 dark:text-neutral-600" />
           <p className="text-[10px] font-semibold uppercase tracking-widest text-neutral-400">
             Histórico acumulado
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-2 sm:gap-3">
           {[
             {
-              value: stats.totalBookings,
-              label: 'Citas',
+              value:    stats.totalBookings,
+              label:    'Citas',
               numClass: 'text-neutral-900 dark:text-neutral-100',
               dotClass: 'bg-neutral-300 dark:bg-neutral-600',
-              bgClass: 'bg-neutral-50 dark:bg-white/4 border-neutral-100 dark:border-white/6',
+              bgClass:  'bg-neutral-50 dark:bg-white/4 border-neutral-100 dark:border-white/6',
             },
             {
-              value: stats.totalCourseBookings,
-              label: 'Cursos',
+              value:    stats.totalCourseBookings,
+              label:    'Cursos',
               numClass: 'text-plum',
               dotClass: 'bg-plum/60',
-              bgClass: 'bg-plum/4 dark:bg-plum/10 border-plum/10 dark:border-plum/15',
+              bgClass:  'bg-plum/4 dark:bg-plum/10 border-plum/10 dark:border-plum/15',
             },
           ].map(({ value, label, numClass, dotClass, bgClass }) => (
             <div
@@ -134,15 +128,12 @@ export default function EstadisticasPage() {
               className={`flex flex-col items-center gap-1.5 rounded-xl border py-4 px-2 ${bgClass}`}
             >
               <span className={`w-1.5 h-1.5 rounded-full ${dotClass}`} />
-              <p className={`text-2xl sm:text-3xl font-bold tabular-nums leading-none ${numClass}`}>
-                {value}
-              </p>
+              <p className={`text-2xl sm:text-3xl font-bold tabular-nums leading-none ${numClass}`}>{value}</p>
               <p className="text-[10px] sm:text-xs text-neutral-400 leading-none">{label}</p>
             </div>
           ))}
         </div>
       </div>
-
     </div>
   )
 }

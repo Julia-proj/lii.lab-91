@@ -9,8 +9,8 @@ export interface IBookingDocument extends Document {
   endTime: string   // HH:mm
   status: 'pendiente' | 'confirmada' | 'cancelada' | 'completada'
   notes?: string
-  paidAmount?: number // Сумма, реально оплаченная клиентом (может редактировать только админ)
-  adminNotes?: string // Заметки админа (только для внутреннего использования)
+  paidAmount?: number // Actual amount paid by the client (admin-only editable)
+  adminNotes?: string // Internal admin notes (not visible to clients)
   createdAt: Date
   updatedAt: Date
 }

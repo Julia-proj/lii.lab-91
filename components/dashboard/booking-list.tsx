@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { BookingCard } from './booking-card'
-import { Calendar, Plus, X } from 'lucide-react'
+import { Calendar, Plus, GraduationCap, X, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { toast } from 'sonner'
 
@@ -25,10 +25,20 @@ interface CourseBookingData {
   notes?: string
 }
 
-const STATUS_COLORS: Record<string, string> = {
-  confirmada: 'bg-green-50 text-green-700 border-green-200',
-  pendiente: 'bg-yellow-50 text-yellow-700 border-yellow-200',
-  cancelada: 'bg-red-50 text-red-700 border-red-200',
+const COURSE_STATUS_BAR: Record<string, string> = {
+  confirmada: 'bg-emerald-400',
+  pendiente:  'bg-amber-400',
+  cancelada:  'bg-red-400',
+}
+const COURSE_STATUS_BADGE: Record<string, string> = {
+  confirmada: 'bg-emerald-50 text-emerald-700',
+  pendiente:  'bg-amber-50 text-amber-700',
+  cancelada:  'bg-red-50 text-red-600',
+}
+const COURSE_STATUS_LABEL: Record<string, string> = {
+  confirmada: 'Confirmada',
+  pendiente:  'Pendiente',
+  cancelada:  'Cancelada',
 }
 
 function CourseBookingCard({ booking, onCancel }: { booking: CourseBookingData; onCancel: (id: string) => void }) {
@@ -54,40 +64,65 @@ function CourseBookingCard({ booking, onCancel }: { booking: CourseBookingData; 
   }
 
   return (
-    <div className="bg-white rounded-xl border border-[#CDB4DB]/30 p-5">
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex-1">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-xs font-bold uppercase tracking-wide bg-[#CDB4DB]/20 text-[#7B4FAC] px-2 py-0.5 rounded-full">Curso</span>
-            <h3 className="font-medium">MANIC 0.0</h3>
-            <span className={`text-xs px-2 py-0.5 rounded-full border ${STATUS_COLORS[booking.status] || STATUS_COLORS.pendiente}`}>
-              {booking.status}
-            </span>
+    <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-neutral-100">
+      <div className={`h-[3px] w-full ${COURSE_STATUS_BAR[booking.status] || 'bg-neutral-200'}`} />
+      <div className="p-4 sm:p-5 flex gap-4">
+        {/* Icon block */}
+        <div className="shrink-0 flex flex-col items-center justify-center w-14 h-14 rounded-xl bg-lavender/10 border border-lavender/20">
+          <GraduationCap className="w-6 h-6 text-plum" />
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          <div className="flex items-start justify-between gap-2 mb-1.5">
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Curso</span>
+              <h3 className="font-semibold text-neutral-900 text-sm leading-tight">MANIC 0.0</h3>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              <span className={`text-[11px] px-2 py-0.5 rounded-full font-medium ${COURSE_STATUS_BADGE[booking.status] || COURSE_STATUS_BADGE.pendiente}`}>
+                {COURSE_STATUS_LABEL[booking.status] || booking.status}
+              </span>
+              {canCancel && (
+                <button
+                  onClick={handleCancel}
+                  disabled={cancelling}
+                  aria-label="Cancelar reserva"
+                  className="text-neutral-300 hover:text-red-400 transition-colors disabled:opacity-50"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
           </div>
-          <div className="space-y-1 text-sm text-neutral-500">
+
+          <div className="space-y-0.5">
             {booking.days.map((d, i) => (
-              <div key={i} className="flex items-center gap-2">
-                <Calendar className="w-3.5 h-3.5 text-[#CDB4DB] shrink-0" />
-                <span className="capitalize">Día {i + 1}: {fmt(d)}</span>
-              </div>
+              <p key={i} className="text-xs text-neutral-400 capitalize">
+                Día {i + 1}: {fmt(d)}
+              </p>
             ))}
           </div>
-          <p className="text-sm font-medium text-neutral-700 mt-2">800€ · Pago en local</p>
+          <p className="text-xs font-medium text-neutral-600 mt-1.5">800€ · Pago en local</p>
         </div>
-        {canCancel && (
-          <button onClick={handleCancel} disabled={cancelling} className="text-neutral-400 hover:text-red-500 transition-colors p-1">
-            <X className="w-5 h-5" />
-          </button>
-        )}
       </div>
     </div>
   )
 }
 
+function SectionHeader({ label, count }: { label: string; count: number }) {
+  return (
+    <div className="flex items-center gap-2 mb-3">
+      <span className="text-xs font-semibold uppercase tracking-widest text-neutral-400">{label}</span>
+      <span className="text-[11px] font-medium text-neutral-300 bg-neutral-100 px-1.5 py-0.5 rounded-full leading-none">{count}</span>
+    </div>
+  )
+}
+
 export function BookingList() {
-  const [bookings, setBookings] = useState<BookingData[]>([])
+  const [bookings, setBookings]             = useState<BookingData[]>([])
   const [courseBookings, setCourseBookings] = useState<CourseBookingData[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading]               = useState(true)
 
   useEffect(() => { fetchAll() }, [])
 
@@ -104,11 +139,10 @@ export function BookingList() {
   }
 
   const handleCancel = (id: string) => {
-    setBookings((prev) => prev.map((b) => (b._id === id ? { ...b, status: 'cancelada' } : b)))
+    setBookings((prev) => prev.map((b) => b._id === id ? { ...b, status: 'cancelada' } : b))
   }
-
   const handleCourseCancel = (id: string) => {
-    setCourseBookings((prev) => prev.map((b) => (b._id === id ? { ...b, status: 'cancelada' } : b)))
+    setCourseBookings((prev) => prev.map((b) => b._id === id ? { ...b, status: 'cancelada' } : b))
   }
 
   const upcoming = bookings.filter(
@@ -121,20 +155,27 @@ export function BookingList() {
 
   if (loading) {
     return (
-      <div className="text-center py-12">
-        <div className="w-6 h-6 border-2 border-neutral-200 border-t-[#CDB4DB] rounded-full animate-spin mx-auto" />
-        <p className="text-sm text-neutral-400 mt-2">Cargando reservas...</p>
+      <div className="text-center py-16">
+        <div className="w-6 h-6 border-2 border-neutral-200 border-t-plum rounded-full animate-spin mx-auto" />
+        <p className="text-sm text-neutral-400 mt-3">Cargando reservas...</p>
       </div>
     )
   }
 
   if (totalItems === 0) {
     return (
-      <div className="text-center py-12">
-        <Calendar className="w-12 h-12 text-neutral-300 mx-auto mb-3" />
-        <h3 className="font-medium text-neutral-700 mb-1">No tienes reservas</h3>
-        <p className="text-sm text-neutral-400 mb-4">Reserva tu primera cita en Lii.lab</p>
-        <Link href="/booking" className="inline-flex items-center gap-2 bg-[#CDB4DB] hover:bg-[#bda0cb] text-white font-medium py-2.5 px-6 rounded-full transition-colors text-sm">
+      <div className="flex flex-col items-center justify-center py-16 text-center">
+        <div className="w-16 h-16 rounded-2xl bg-neutral-100 flex items-center justify-center mb-4">
+          <Calendar className="w-7 h-7 text-neutral-300" />
+        </div>
+        <h3 className="font-serif text-lg text-neutral-800 mb-1">Sin reservas todavía</h3>
+        <p className="text-sm text-neutral-400 mb-6 max-w-[220px]">
+          Reserva tu primera cita y aparecerá aquí
+        </p>
+        <Link
+          href="/booking"
+          className="inline-flex items-center gap-2 bg-plum text-white font-medium py-3 px-6 rounded-2xl transition-colors hover:bg-plum-hover text-sm"
+        >
           <Plus className="w-4 h-4" />
           Reservar cita
         </Link>
@@ -143,18 +184,23 @@ export function BookingList() {
   }
 
   return (
-    <div>
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="font-serif text-lg">Mis reservas</h2>
-        <Link href="/booking" className="inline-flex items-center gap-1.5 bg-[#CDB4DB] hover:bg-[#bda0cb] text-white text-sm font-medium py-2 px-4 rounded-full transition-colors">
-          <Plus className="w-4 h-4" />
-          Nueva cita
-        </Link>
-      </div>
+    <div className="space-y-6">
+      {/* Nueva cita CTA */}
+      <Link
+        href="/booking"
+        className="flex items-center justify-between w-full bg-plum text-white rounded-2xl px-5 py-4 hover:bg-plum-hover transition-colors"
+      >
+        <div className="flex items-center gap-3">
+          <Plus className="w-5 h-5" />
+          <span className="font-medium text-sm">Nueva cita</span>
+        </div>
+        <ChevronRight className="w-4 h-4 opacity-60" />
+      </Link>
 
+      {/* Course bookings */}
       {courseBookings.length > 0 && (
-        <div className="mb-6">
-          <h3 className="text-sm font-medium text-neutral-500 mb-3">Cursos</h3>
+        <div>
+          <SectionHeader label="Cursos" count={courseBookings.length} />
           <div className="space-y-3">
             {courseBookings.map((cb) => (
               <CourseBookingCard key={cb._id} booking={cb} onCancel={handleCourseCancel} />
@@ -163,18 +209,20 @@ export function BookingList() {
         </div>
       )}
 
+      {/* Upcoming */}
       {upcoming.length > 0 && (
-        <div className="mb-6">
-          <h3 className="text-sm font-medium text-neutral-500 mb-3">Próximas citas</h3>
+        <div>
+          <SectionHeader label="Próximas" count={upcoming.length} />
           <div className="space-y-3">
             {upcoming.map((b) => <BookingCard key={b._id} booking={b} onCancel={handleCancel} />)}
           </div>
         </div>
       )}
 
+      {/* History */}
       {past.length > 0 && (
         <div>
-          <h3 className="text-sm font-medium text-neutral-500 mb-3">Historial</h3>
+          <SectionHeader label="Historial" count={past.length} />
           <div className="space-y-3">
             {past.map((b) => <BookingCard key={b._id} booking={b} onCancel={handleCancel} />)}
           </div>

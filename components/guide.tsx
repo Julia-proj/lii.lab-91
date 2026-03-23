@@ -1,7 +1,6 @@
 "use client"
 
 import { Check, Book, Instagram, ArrowRight, Sparkles } from "lucide-react"
-import Link from "next/link"
 
 const STRIPE_GUIDE_URL = "https://buy.stripe.com/7sYbIT592fFwbE34QS7EQ00"
 
@@ -68,9 +67,10 @@ export function Guide() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <Link
+            <a
               href={STRIPE_GUIDE_URL}
               target="_blank"
+              rel="noopener noreferrer"
               className="group w-full flex items-center justify-between px-7 py-5 rounded-2xl transition-all duration-300 shadow-md hover:shadow-lg active:scale-[0.99] bg-[#7B4FAC] hover:bg-[#6B3F9C] text-white"
               style={{ boxShadow: "0 4px 20px rgba(123,79,172,0.35)" }}
             >
@@ -82,15 +82,16 @@ export function Guide() {
                 </div>
               </div>
               <ArrowRight size={20} className="shrink-0 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link
+            </a>
+            <a
               href="https://www.instagram.com/lii.lab/?hl=es"
               target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 w-full px-7 py-4 border border-neutral-200 text-neutral-500 font-medium rounded-2xl hover:border-neutral-400 hover:text-neutral-900 hover:bg-neutral-50/50 transition-all duration-300"
             >
               <Instagram size={17} />
               <span className="text-sm">Preguntar por Instagram</span>
-            </Link>
+            </a>
           </div>
         </div>
       </div>

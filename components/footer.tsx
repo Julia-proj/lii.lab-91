@@ -14,7 +14,8 @@ export function Footer() {
         <Link
           href="https://www.instagram.com/lii.lab/?hl=es"
           target="_blank"
-          className="flex items-center gap-2 text-neutral-600 hover:text-[#CDB4DB] transition-colors group"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 text-neutral-600 hover:text-lavender transition-colors group"
         >
           <span className="text-sm font-medium">Sígueme en Instagram</span>
           <div className="p-2 bg-white rounded-full shadow-sm group-hover:shadow-md transition-all">

@@ -1,9 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import {
   Check, Instagram, Clock, Users, BookOpen, Download, Sparkles, ChevronDown,
-  Brush, Wand2, Package, Award, Zap, TrendingUp, CreditCard,
+  Brush, Wand2, Package, Award, Zap, TrendingUp, CreditCard, Play,
 } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -38,6 +38,18 @@ const guiaContents = [
 
 export function Formacion() {
   const [programaOpen, setProgramaOpen] = useState(false)
+  const [cursoPlaying, setCursoPlaying] = useState(false)
+  const [guiaPlaying, setGuiaPlaying]   = useState(false)
+  const cursoRef = useRef<HTMLVideoElement>(null)
+  const guiaRef  = useRef<HTMLVideoElement>(null)
+
+  // Mobile: autoplay both videos (no play button shown on mobile)
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      cursoRef.current?.play()
+      guiaRef.current?.play()
+    }
+  }, [])
 
   return (
     <section id="formacion" className="py-20 bg-warm-bg">
@@ -51,7 +63,7 @@ export function Formacion() {
         {/* Cards Grid */}
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-14">
           {/* Card 1 — MANIC 0.0 */}
-          <Card className="relative p-0 overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
+          <Card className="group relative p-0 overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
             <div className="absolute top-4 right-4 z-10">
               <Badge className="text-xs font-semibold tracking-wider border-0 px-3 py-1 bg-gold text-white">
                 MÁS POPULAR
@@ -63,7 +75,7 @@ export function Formacion() {
                 src="/images/Foto2.JPG"
                 alt="Curso MANIC 0.0"
                 loading="lazy"
-                className="w-full aspect-video object-cover"
+                className="w-full aspect-[3/2] object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform"
                 style={{ objectPosition: "center 30%" }}
               />
             </div>
@@ -144,6 +156,7 @@ export function Formacion() {
                     Reservar plaza
                   </Link>
                 </Button>
+                <div className="hidden md:block h-4" />
               </div>
             </div>
           </Card>
@@ -156,16 +169,28 @@ export function Formacion() {
               </Badge>
             </div>
 
-            <div className="overflow-hidden">
+            <div className="relative overflow-hidden">
               <video
+                ref={cursoRef}
                 src="/videos/curso.mp4"
-                autoPlay
                 loop
                 muted
                 playsInline
-                poster="/images/Foto2.JPG"
-                className="w-full aspect-video object-cover"
+                preload="metadata"
+                className="w-full aspect-[3/2] object-cover"
               />
+              {!cursoPlaying && (
+                <button
+                  onClick={() => { setCursoPlaying(true); cursoRef.current?.play() }}
+                  aria-label="Reproducir vídeo"
+                  className="absolute inset-0 hidden md:flex items-center justify-center group"
+                >
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
+                  <div className="relative w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200">
+                    <Play className="w-5 h-5 text-neutral-900 ml-0.5" fill="currentColor" />
+                  </div>
+                </button>
+              )}
             </div>
 
             <div className="p-6 md:p-8 flex flex-col flex-1">
@@ -205,7 +230,7 @@ export function Formacion() {
                 ))}
               </ul>
 
-              <div className="mt-auto">
+              <div className="mt-auto space-y-3">
                 <Button
                   size="lg"
                   variant="outline"
@@ -216,6 +241,7 @@ export function Formacion() {
                     Reservar plaza
                   </Link>
                 </Button>
+                <div className="hidden md:block h-4" />
               </div>
             </div>
           </Card>
@@ -223,16 +249,28 @@ export function Formacion() {
           {/* Card 3 — Guía Metodológica */}
           <Card className="relative p-0 overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
 
-            <div className="overflow-hidden">
+            <div className="relative overflow-hidden">
               <video
+                ref={guiaRef}
                 src="/videos/guia.mp4"
-                autoPlay
                 loop
                 muted
                 playsInline
-                poster="/images/Foto3.jpg"
-                className="w-full aspect-video object-cover"
+                preload="metadata"
+                className="w-full aspect-[3/2] object-cover"
               />
+              {!guiaPlaying && (
+                <button
+                  onClick={() => { setGuiaPlaying(true); guiaRef.current?.play() }}
+                  aria-label="Reproducir vídeo"
+                  className="absolute inset-0 hidden md:flex items-center justify-center group"
+                >
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
+                  <div className="relative w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200">
+                    <Play className="w-5 h-5 text-neutral-900 ml-0.5" fill="currentColor" />
+                  </div>
+                </button>
+              )}
             </div>
 
             <div className="p-6 md:p-8 flex flex-col flex-1">
@@ -298,15 +336,15 @@ export function Formacion() {
         </div>
 
         {/* Bottom Banner — Formar tu equipo — photo bg */}
-        <div className="mt-10 rounded-2xl fade-in relative overflow-hidden min-h-[220px] sm:min-h-[260px]">
+        <div className="mt-10 rounded-2xl fade-in relative overflow-hidden min-h-[260px] sm:min-h-[320px]">
           {/* Background photo */}
           <img
             src="/images/salon-bg.jpg"
             alt="Salón de manicura profesional"
+            loading="lazy"
             className="absolute inset-0 w-full h-full object-cover object-center grayscale"
           />
-          {/* Overlay — texto legible */}
-          <div className="absolute inset-0 bg-black/55" />
+          <div className="absolute inset-0 bg-black/50" />
           {/* Content */}
           <div className="relative px-8 sm:px-16 py-10 sm:py-14 text-center">
             <p className="text-[9px] tracking-[0.45em] uppercase text-white/70 mb-4 font-medium">
@@ -315,7 +353,7 @@ export function Formacion() {
             <h3 className="text-2xl sm:text-3xl font-serif text-white leading-tight mb-2">
               ¿Tienes un salón y quieres<br />formar a tu equipo?
             </h3>
-            <p className="text-[11px] text-white/50 tracking-wide mb-8">
+            <p className="text-[11px] text-white/70 tracking-wide mb-8">
               Presencial en tu local &nbsp;·&nbsp; Grupos de 2–8 personas
             </p>
             <a

@@ -228,6 +228,7 @@ function BookingCard({
             </button>
             <button
               onClick={() => handleStatus('cancelada')}
+              aria-label="Cancelar cita"
               className="flex items-center justify-center px-3 py-2 border border-neutral-200 dark:border-white/10 text-neutral-400 hover:text-red-500 hover:border-red-200 text-xs rounded-lg transition-colors"
             >
               <X className="w-3.5 h-3.5" />
@@ -525,6 +526,23 @@ export default function AgendaPage() {
       .slice(0, 6)
   }, [bookings, todayStr])
 
+  // Mobile: all upcoming grouped by date
+  const mobileUpcoming = useMemo(() => {
+    const future = bookings
+      .filter((b) => b.date >= todayStr && b.status !== 'cancelada')
+      .sort((a, b) => a.date.localeCompare(b.date) || a.startTime.localeCompare(b.startTime))
+    const groups = new Map<string, Booking[]>()
+    for (const b of future) {
+      if (!groups.has(b.date)) groups.set(b.date, [])
+      groups.get(b.date)!.push(b)
+    }
+    return Array.from(groups.entries()).map(([date, bkgs]) => ({
+      date,
+      label: new Date(date + 'T00:00:00').toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' }),
+      bkgs,
+    }))
+  }, [bookings, todayStr])
+
   if (loading) return (
     <div className="flex items-center justify-center py-20">
       <div className="w-5 h-5 border-2 border-neutral-200 border-t-plum rounded-full animate-spin" />
@@ -543,15 +561,22 @@ export default function AgendaPage() {
           <p className="text-[11px] sm:text-xs text-neutral-400 mt-1 sm:mt-1.5">{stats.todayCount === 1 ? 'cita' : 'citas'}</p>
         </div>
 
-        {/* Pendientes — clickable, stylish gold */}
+        {/* Pendientes — clickable */}
         <button
           onClick={() => setShowPending((v) => !v)}
-          className={`rounded-2xl border p-3 sm:p-4 text-left transition-all ${
-            showPending || stats.pendingCount > 0
-              ? 'bg-[#FEFCE8] dark:bg-yellow-400/8 border-[#F5D97A]/70 dark:border-yellow-400/20'
-              : 'bg-white dark:bg-[#1e1e24] border-neutral-100 dark:border-white/8'
-          } hover:opacity-90`}
+          className={`relative rounded-2xl border bg-amber-50/60 dark:bg-amber-900/10 border-amber-200/50 dark:border-amber-700/20 p-3 sm:p-4 text-left transition-all hover:opacity-90 ${
+            stats.pendingCount > 0 && !showPending
+              ? 'ring-2 ring-amber-300/50 dark:ring-amber-400/20 shadow-sm shadow-amber-100 dark:shadow-none'
+              : ''
+          }`}
         >
+          {/* Pulsing dot — only when there are pending bookings and panel is closed */}
+          {stats.pendingCount > 0 && !showPending && (
+            <span className="absolute top-2 right-2 flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-60" />
+              <span className="relative inline-flex h-3 w-3 rounded-full bg-amber-400" />
+            </span>
+          )}
           <p className="text-[10px] sm:text-xs uppercase tracking-widest text-neutral-400 mb-1.5 sm:mb-2">Pendientes</p>
           <p className={`text-2xl sm:text-3xl font-bold tabular-nums leading-none ${
             stats.pendingCount > 0 ? 'text-[#B8870D] dark:text-yellow-400' : 'text-neutral-900 dark:text-neutral-100'
@@ -559,7 +584,7 @@ export default function AgendaPage() {
             {stats.pendingCount}
           </p>
           <p className="text-[11px] sm:text-xs text-neutral-400 mt-1 sm:mt-1.5">
-            {showPending ? 'cerrar ×' : 'sin confirmar'}
+            {showPending ? 'cerrar ×' : stats.pendingCount > 0 ? 'ver →' : 'sin confirmar'}
           </p>
         </button>
 
@@ -679,11 +704,15 @@ export default function AgendaPage() {
                   key={dayStr}
                   onClick={() => { setSelectedDay(dayStr); setShowPending(false) }}
                   className={`relative py-1.5 sm:py-2 px-0.5 min-h-[40px] sm:min-h-[50px] flex flex-col items-center gap-0.5 transition-colors border-b border-r border-neutral-50 dark:border-white/4 last:border-r-0 ${
-                    isSel
-                      ? 'bg-plum/8 dark:bg-plum/15'
-                      : isWeekend
-                        ? 'bg-neutral-50/80 dark:bg-white/[0.04] hover:bg-neutral-100/70 dark:hover:bg-white/[0.07]'
-                        : 'hover:bg-neutral-50 dark:hover:bg-white/4'
+                    isSel && isT
+                      ? 'bg-plum/12 dark:bg-plum/22'
+                      : isSel
+                        ? 'bg-plum/8 dark:bg-plum/15'
+                        : isT
+                          ? 'bg-plum/5 dark:bg-plum/10'
+                          : isWeekend
+                            ? 'bg-neutral-50/80 dark:bg-white/[0.04] hover:bg-neutral-100/70 dark:hover:bg-white/[0.07]'
+                            : 'hover:bg-neutral-50 dark:hover:bg-white/4'
                   } ${!inMonth ? 'opacity-20' : ''}`}
                 >
                   <span className={`text-xs sm:text-sm font-semibold w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full transition-colors ${
@@ -756,7 +785,7 @@ export default function AgendaPage() {
               </div>
 
               {selectedDayBookings.length === 0 ? (
-                <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-10 text-center">
+                <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-dashed border-neutral-200 dark:border-white/10 py-6 text-center">
                   <p className="text-sm text-neutral-400">Día libre</p>
                 </div>
               ) : (

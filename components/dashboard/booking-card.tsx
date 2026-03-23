@@ -1,6 +1,6 @@
 'use client'
 
-import { Calendar, Clock, Euro } from 'lucide-react'
+import { Clock, Euro } from 'lucide-react'
 import { toast } from 'sonner'
 import { useState } from 'react'
 
@@ -27,11 +27,17 @@ interface BookingCardProps {
   onCancel: (id: string) => void
 }
 
-const statusColors: Record<string, string> = {
-  confirmada: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-  pendiente:  'bg-amber-50 text-amber-700 border-amber-200',
-  cancelada:  'bg-red-50 text-red-600 border-red-200',
-  completada: 'bg-neutral-50 text-neutral-500 border-neutral-200',
+const statusBarColor: Record<string, string> = {
+  confirmada: 'bg-emerald-400',
+  pendiente:  'bg-amber-400',
+  cancelada:  'bg-red-400',
+  completada: 'bg-neutral-200',
+}
+const statusBadge: Record<string, string> = {
+  confirmada: 'bg-emerald-50 text-emerald-700',
+  pendiente:  'bg-amber-50 text-amber-700',
+  cancelada:  'bg-red-50 text-red-600',
+  completada: 'bg-neutral-100 text-neutral-500',
 }
 const statusLabel: Record<string, string> = {
   confirmada: 'Confirmada',
@@ -44,15 +50,15 @@ export function BookingCard({ booking, onCancel }: BookingCardProps) {
   const [cancelling, setCancelling] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
 
-  const formatDate = (d: string) =>
-    new Date(d + 'T00:00:00').toLocaleDateString('es-ES', {
-      weekday: 'long', day: 'numeric', month: 'long',
-    })
+  const date = new Date(booking.date + 'T00:00:00')
+  const dayNum  = date.getDate()
+  const month   = date.toLocaleDateString('es-ES', { month: 'short' })
+  const weekday = date.toLocaleDateString('es-ES', { weekday: 'long' })
 
-  const services = booking.services || []
+  const services   = booking.services || []
   const totalPrice = services.reduce((s, sv) => s + sv.price, 0)
-  const isPast = new Date(booking.date + 'T' + booking.endTime) < new Date()
-  const canCancel = !isPast && (booking.status === 'confirmada' || booking.status === 'pendiente')
+  const isPast     = new Date(booking.date + 'T' + booking.endTime) < new Date()
+  const canCancel  = !isPast && (booking.status === 'confirmada' || booking.status === 'pendiente')
 
   const handleCancel = async () => {
     setCancelling(true)
@@ -78,53 +84,60 @@ export function BookingCard({ booking, onCancel }: BookingCardProps) {
   }
 
   return (
-    <div className="bg-white rounded-xl border border-neutral-200 overflow-hidden">
-      <div className="p-5">
-        {/* Header */}
-        <div className="flex items-start justify-between gap-3 mb-3">
-          <div>
+    <div className={`bg-white rounded-2xl overflow-hidden shadow-sm border border-neutral-100 ${isPast ? 'opacity-60' : ''}`}>
+      {/* Status accent bar */}
+      <div className={`h-[3px] w-full ${statusBarColor[booking.status] || 'bg-neutral-200'}`} />
+
+      <div className="p-4 sm:p-5 flex gap-4">
+        {/* Date block */}
+        <div className="shrink-0 flex flex-col items-center justify-center w-14 h-14 rounded-xl bg-neutral-50 border border-neutral-100">
+          <span className="text-xl font-bold text-neutral-900 leading-none">{dayNum}</span>
+          <span className="text-[10px] uppercase tracking-wider text-neutral-400 mt-0.5 capitalize">{month}</span>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          <div className="flex items-start justify-between gap-2 mb-1.5">
             <h3 className="font-semibold text-neutral-900 text-sm leading-tight">
               {services.length === 1
                 ? services[0].name
                 : services.map((s) => s.name).join(' + ')}
             </h3>
-            {services.length > 1 && (
-              <div className="mt-1 space-y-0.5">
-                {services.map((s, i) => (
-                  <p key={i} className="text-xs text-neutral-400">{s.name} — {s.price}€</p>
-                ))}
-              </div>
-            )}
+            <span className={`shrink-0 text-[11px] px-2 py-0.5 rounded-full font-medium ${statusBadge[booking.status] || statusBadge.pendiente}`}>
+              {statusLabel[booking.status] || booking.status}
+            </span>
           </div>
-          <span className={`shrink-0 text-xs px-2.5 py-1 rounded-full border font-medium ${statusColors[booking.status] || statusColors.pendiente}`}>
-            {statusLabel[booking.status] || booking.status}
-          </span>
-        </div>
 
-        {/* Info rows */}
-        <div className="space-y-1.5 text-sm text-neutral-500">
-          <div className="flex items-center gap-2">
-            <Calendar className="w-3.5 h-3.5 text-[#CDB4DB] shrink-0" />
-            <span className="capitalize">{formatDate(booking.date)}</span>
+          <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-neutral-400">
+            <span className="flex items-center gap-1 capitalize">
+              <Clock className="w-3 h-3" />
+              {weekday} · {booking.startTime}–{booking.endTime}
+            </span>
+            <span className="flex items-center gap-1 font-medium text-neutral-600">
+              <Euro className="w-3 h-3" />
+              {totalPrice}€
+            </span>
           </div>
-          <div className="flex items-center gap-2">
-            <Clock className="w-3.5 h-3.5 text-[#CDB4DB] shrink-0" />
-            <span>{booking.startTime} – {booking.endTime}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Euro className="w-3.5 h-3.5 text-[#CDB4DB] shrink-0" />
-            <span className="font-medium text-neutral-700">{totalPrice}€</span>
-          </div>
-        </div>
 
-        {booking.notes && (
-          <p className="mt-3 text-xs text-neutral-400 italic border-l-2 border-neutral-100 pl-2">{booking.notes}</p>
-        )}
+          {services.length > 1 && (
+            <div className="mt-2 flex flex-wrap gap-1">
+              {services.map((s, i) => (
+                <span key={i} className="text-[11px] text-neutral-400 bg-neutral-50 px-2 py-0.5 rounded-md border border-neutral-100">
+                  {s.name} · {s.price}€
+                </span>
+              ))}
+            </div>
+          )}
+
+          {booking.notes && (
+            <p className="mt-2 text-xs text-neutral-400 italic border-l-2 border-neutral-100 pl-2">{booking.notes}</p>
+          )}
+        </div>
       </div>
 
       {/* Cancel section */}
       {canCancel && (
-        <div className="border-t border-neutral-100 px-5 py-3">
+        <div className="border-t border-neutral-100 px-4 sm:px-5 py-3">
           {showConfirm ? (
             <div className="flex items-center gap-3">
               <p className="text-xs text-neutral-500 flex-1">¿Confirmar cancelación?</p>
