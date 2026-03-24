@@ -43,6 +43,7 @@ export function Navbar() {
   ]
 
   return (
+    <>
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out ${
         isVisible ? "translate-y-0" : "-translate-y-full"
@@ -167,77 +168,79 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 w-full bg-white z-50 flex flex-col overflow-y-auto">
-          {/* Header */}
-          <div className="flex items-center justify-between px-6 py-5 border-b border-neutral-100 shrink-0">
-            <Link href="/#hero" onClick={() => setIsMobileMenuOpen(false)} className="font-serif text-xl text-neutral-900 tracking-tight">Lii.lab</Link>
-            <button
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="p-2 text-neutral-400 hover:text-neutral-700 transition-colors"
-            >
-              <X size={22} />
-            </button>
-          </div>
-
-          {/* Nav links */}
-          <div className="flex-1 flex flex-col justify-center px-7 py-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="group flex items-center justify-between py-4 border-b border-neutral-100 last:border-0"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <span className={`text-3xl font-serif transition-colors duration-200 ${
-                  link.highlight
-                    ? "text-plum group-hover:text-plum-hover"
-                    : "text-neutral-900 group-hover:text-plum"
-                }`}>
-                  {link.name}
-                </span>
-                <ArrowRight size={16} className={`group-hover:translate-x-1 transition-all duration-200 ${
-                  link.highlight ? "text-plum" : "text-neutral-300 group-hover:text-plum"
-                }`} />
-              </Link>
-            ))}
-          </div>
-
-          {/* Bottom: Auth */}
-          <div className="px-6 pb-8 pt-2 space-y-2 shrink-0">
-            {session ? (
-              <>
-                <Link
-                  href={session.user?.role === "admin" ? "/admin" : "/dashboard"}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center justify-between w-full px-5 py-4 rounded-xl border border-neutral-200 text-neutral-700 font-medium text-sm hover:border-plum hover:text-plum transition-all duration-200"
-                >
-                  <span>{session.user?.role === "admin" ? "Panel de administración" : "Mi panel"}</span>
-                  <ArrowRight size={15} className="text-neutral-400" />
-                </Link>
-                <button
-                  onClick={() => { signOut({ callbackUrl: "/" }); setIsMobileMenuOpen(false) }}
-                  className="w-full px-5 py-3.5 rounded-xl border border-red-100 text-red-500 font-medium text-sm hover:bg-red-50 transition-all duration-200"
-                >
-                  Cerrar sesión
-                </button>
-              </>
-            ) : (
-              <div className="flex flex-col gap-2 pt-2 border-t border-neutral-100">
-                <p className="text-[10px] uppercase tracking-widest text-neutral-400 font-medium px-1 mb-1">Cuenta</p>
-                <Link
-                  href="/login"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center justify-center w-full px-5 py-4 rounded-xl bg-plum text-white font-semibold text-base hover:bg-plum-hover transition-all duration-200 shadow-sm"
-                >
-                  Iniciar sesión
-                </Link>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
     </header>
+
+    {/* Mobile Menu Overlay — outside <header> so fixed inset-0 works relative to viewport, not transformed parent */}
+    {isMobileMenuOpen && (
+      <div className="fixed inset-0 bg-white z-[60] flex flex-col overflow-y-auto">
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 py-5 border-b border-neutral-100 shrink-0">
+          <Link href="/#hero" onClick={() => setIsMobileMenuOpen(false)} className="font-serif text-xl text-neutral-900 tracking-tight">Lii.lab</Link>
+          <button
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="p-2 text-neutral-400 hover:text-neutral-700 transition-colors"
+          >
+            <X size={22} />
+          </button>
+        </div>
+
+        {/* Nav links */}
+        <div className="flex-1 flex flex-col justify-center px-7 py-4">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              className="group flex items-center justify-between py-4 border-b border-neutral-100 last:border-0"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <span className={`text-3xl font-serif transition-colors duration-200 ${
+                link.highlight
+                  ? "text-plum group-hover:text-plum-hover"
+                  : "text-neutral-900 group-hover:text-plum"
+              }`}>
+                {link.name}
+              </span>
+              <ArrowRight size={16} className={`group-hover:translate-x-1 transition-all duration-200 ${
+                link.highlight ? "text-plum" : "text-neutral-300 group-hover:text-plum"
+              }`} />
+            </Link>
+          ))}
+        </div>
+
+        {/* Bottom: Auth */}
+        <div className="px-6 pb-8 pt-2 space-y-2 shrink-0">
+          {session ? (
+            <>
+              <Link
+                href={session.user?.role === "admin" ? "/admin" : "/dashboard"}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center justify-between w-full px-5 py-4 rounded-xl border border-neutral-200 text-neutral-700 font-medium text-sm hover:border-plum hover:text-plum transition-all duration-200"
+              >
+                <span>{session.user?.role === "admin" ? "Panel de administración" : "Mi panel"}</span>
+                <ArrowRight size={15} className="text-neutral-400" />
+              </Link>
+              <button
+                onClick={() => { signOut({ callbackUrl: "/" }); setIsMobileMenuOpen(false) }}
+                className="w-full px-5 py-3.5 rounded-xl border border-red-100 text-red-500 font-medium text-sm hover:bg-red-50 transition-all duration-200"
+              >
+                Cerrar sesión
+              </button>
+            </>
+          ) : (
+            <div className="flex flex-col gap-2 pt-2 border-t border-neutral-100">
+              <p className="text-[10px] uppercase tracking-widest text-neutral-400 font-medium px-1 mb-1">Cuenta</p>
+              <Link
+                href="/login"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center justify-center w-full px-5 py-4 rounded-xl bg-plum text-white font-semibold text-base hover:bg-plum-hover transition-all duration-200 shadow-sm"
+              >
+                Iniciar sesión
+              </Link>
+            </div>
+          )}
+        </div>
+      </div>
+    )}
+  </>
   )
 }
