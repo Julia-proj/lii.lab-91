@@ -235,7 +235,8 @@ export default function AdminSchedulePage() {
       {/* Weekly schedule — responsive grid */}
       <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-4">
         <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-3">Horario semanal</h2>
-        <div className="grid grid-cols-7 gap-1 sm:gap-1.5 text-center text-xs">
+        <div className="overflow-x-auto -mx-1 px-1">
+        <div className="grid grid-cols-7 gap-1 sm:gap-1.5 text-center text-xs min-w-[320px]">
           {[1, 2, 3, 4, 5, 6, 0].map((dow) => {
             const day = WEEK_SCHEDULE[dow]
             return (
@@ -255,6 +256,7 @@ export default function AdminSchedulePage() {
               </div>
             )
           })}
+        </div>
         </div>
       </div>
 

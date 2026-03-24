@@ -75,23 +75,26 @@ export default function EstadisticasPage() {
         <p className="text-xs text-neutral-400 mt-0.5">Ingresos y citas por período</p>
       </div>
 
-      {/* Period cards — always 3 columns */}
-      <div className="grid grid-cols-3 gap-2 sm:gap-3">
+      {/* Period cards — stacked on mobile, 3-col on sm+ */}
+      <div className="flex flex-col sm:grid sm:grid-cols-3 gap-2 sm:gap-3">
         {periods.map(({ label, icon: Icon, income, bookings, cardClass, labelClass, numClass, iconClass, divClass }) => (
-          <div key={label} className={`rounded-xl sm:rounded-2xl p-3 sm:p-5 border flex flex-col gap-2 sm:gap-3 ${cardClass}`}>
-            <div className="flex items-center justify-between">
-              <p className={`text-[10px] sm:text-[11px] font-semibold uppercase tracking-widest leading-none ${labelClass}`}>
-                {label}
-              </p>
-              <Icon className={`w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 ${iconClass}`} />
-            </div>
-            <div>
-              <p className={`text-lg sm:text-2xl lg:text-3xl font-bold tabular-nums leading-none ${numClass}`}>
-                {income.toFixed(0)}<span className="text-[10px] sm:text-xs font-normal text-neutral-400 ml-0.5">€</span>
-              </p>
-              <p className={`text-[10px] sm:text-[11px] text-neutral-400 tabular-nums leading-none mt-1.5 pt-1.5 border-t ${divClass}`}>
-                {bookings} cita{bookings !== 1 ? 's' : ''}
-              </p>
+          <div key={label} className={`rounded-xl sm:rounded-2xl p-3 sm:p-5 border ${cardClass}`}>
+            {/* Mobile: horizontal label↔number. sm+: vertical stack */}
+            <div className="flex items-center justify-between sm:flex-col sm:items-start sm:gap-3">
+              <div className="flex items-center gap-1.5">
+                <Icon className={`w-3.5 h-3.5 shrink-0 ${iconClass}`} />
+                <p className={`text-xs font-semibold uppercase tracking-widest leading-none ${labelClass}`}>
+                  {label}
+                </p>
+              </div>
+              <div className="text-right sm:text-left">
+                <p className={`text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums leading-none ${numClass}`}>
+                  {income.toFixed(0)}<span className="text-[10px] sm:text-xs font-normal text-neutral-400 ml-0.5">€</span>
+                </p>
+                <p className={`text-[11px] text-neutral-400 tabular-nums leading-none mt-0.5`}>
+                  {bookings} cita{bookings !== 1 ? 's' : ''}
+                </p>
+              </div>
             </div>
           </div>
         ))}
