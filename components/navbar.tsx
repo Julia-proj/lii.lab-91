@@ -169,9 +169,9 @@ export function Navbar() {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 w-full h-screen bg-white z-50 flex flex-col">
+        <div className="fixed inset-0 w-full bg-white z-50 flex flex-col overflow-y-auto">
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-5 border-b border-neutral-100">
+          <div className="flex items-center justify-between px-6 py-5 border-b border-neutral-100 shrink-0">
             <Link href="/#hero" onClick={() => setIsMobileMenuOpen(false)} className="font-serif text-xl text-neutral-900 tracking-tight">Lii.lab</Link>
             <button
               onClick={() => setIsMobileMenuOpen(false)}
@@ -182,12 +182,12 @@ export function Navbar() {
           </div>
 
           {/* Nav links */}
-          <div className="flex-1 flex flex-col justify-center px-7">
+          <div className="flex-1 flex flex-col justify-center px-7 py-4">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="group flex items-center justify-between py-5 border-b border-neutral-100 last:border-0"
+                className="group flex items-center justify-between py-4 border-b border-neutral-100 last:border-0"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <span className={`text-3xl font-serif transition-colors duration-200 ${
@@ -205,7 +205,7 @@ export function Navbar() {
           </div>
 
           {/* Bottom: Auth */}
-          <div className="px-6 pb-10 space-y-2">
+          <div className="px-6 pb-8 pt-2 space-y-2 shrink-0">
             {session ? (
               <>
                 <Link
