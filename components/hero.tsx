@@ -52,7 +52,7 @@ export function Hero() {
       </div>
 
       {/* ── Slides 1–4: atmospheric — mobile full, desktop right panel ── */}
-      {ATMOSPHERIC.map(({ src, pos, bg }, i) => {
+      {ATMOSPHERIC.map(({ src, pos }, i) => {
         const idx = i + 1
         const active = current === idx
         return (
@@ -71,8 +71,14 @@ export function Hero() {
               className="md:hidden w-full h-full object-cover object-center"
             />
 
-            {/* Desktop: editorial right panel */}
-            <div className="hidden md:block absolute right-0 top-0 h-full w-[68%]">
+            {/* Desktop: editorial right panel — mask creates soft left edge without color dependency */}
+            <div
+              className="hidden md:block absolute right-0 top-0 h-full w-[72%]"
+              style={{
+                WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 22%)",
+                maskImage: "linear-gradient(to right, transparent 0%, black 22%)",
+              }}
+            >
               <img
                 src={src}
                 alt="Lii.lab"
@@ -80,11 +86,6 @@ export function Hero() {
                 decoding="async"
                 className="w-full h-full object-cover"
                 style={{ objectPosition: pos }}
-              />
-              {/* Soft left-edge blend into ambient bg — fades with photo (intentional) */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{ background: `linear-gradient(to right, ${bg} 0%, ${bg}aa 8%, ${bg}44 20%, transparent 38%)` }}
               />
             </div>
 
