@@ -5,8 +5,8 @@ import { Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const ATMOSPHERIC = [
-  { src: "/images/Foto5.JPG", bg: "#3e4449", pos: "center 28%" }, // девушка с лаком — выше
-  { src: "/images/Foto4.JPG", bg: "#2a2d32", pos: "center 22%" }, // лак на перчатке — выше
+  { src: "/images/Foto5.JPG", bg: "#3e4449", pos: "center 65%" }, // девушка — руки с лаком
+  { src: "/images/Foto4.JPG", bg: "#2a2d32", pos: "center 50%" }, // перчатка — целиком
   { src: "/images/Foto6.jpg", bg: "#7a5f55", pos: "center 50%" }, // ногти — по центру
   { src: "/images/Foto3.jpg", bg: "#1a1a1e", pos: "center 28%" }, // джинсы — карман в кадре
 ]
@@ -71,8 +71,8 @@ export function Hero() {
               className="md:hidden w-full h-full object-cover object-center"
             />
 
-            {/* Desktop: editorial right panel — 62% width, per-photo positioning */}
-            <div className="hidden md:block absolute right-0 top-0 h-full w-[62%]">
+            {/* Desktop: editorial right panel */}
+            <div className="hidden md:block absolute right-0 top-0 h-full w-[68%]">
               <img
                 src={src}
                 alt="Lii.lab"
@@ -81,23 +81,24 @@ export function Hero() {
                 className="w-full h-full object-cover"
                 style={{ objectPosition: pos }}
               />
-              {/* Left-edge blend: photo fades into ambient bg color seamlessly */}
+              {/* Soft left-edge blend into ambient bg — fades with photo (intentional) */}
               <div
                 className="absolute inset-0 pointer-events-none"
-                style={{ background: `linear-gradient(to right, ${bg} 0%, ${bg}cc 5%, ${bg}55 15%, transparent 32%)` }}
+                style={{ background: `linear-gradient(to right, ${bg} 0%, ${bg}aa 8%, ${bg}44 20%, transparent 38%)` }}
               />
             </div>
 
             {/* Mobile overlay */}
             <div className="md:hidden absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/10" />
-            {/* Desktop overlay — wide smooth gradient so text area stays solid */}
-            <div
-              className="hidden md:block absolute inset-0"
-              style={{ background: "linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.80) 28%, rgba(0,0,0,0.35) 50%, transparent 72%)" }}
-            />
           </div>
         )
       })}
+
+      {/* Permanent desktop gradient — always visible, no flicker during transitions */}
+      <div
+        className="hidden md:block absolute inset-0 z-[1] pointer-events-none"
+        style={{ background: "linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.78) 28%, rgba(0,0,0,0.30) 50%, transparent 68%)" }}
+      />
 
       {/* Badge — top left, below navbar */}
       <div className="absolute top-[72px] sm:top-[80px] left-0 right-0 z-10 container mx-auto px-6">
