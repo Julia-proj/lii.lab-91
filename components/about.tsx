@@ -25,8 +25,8 @@ const advantages = [
 
 export function About() {
   return (
-    <section id="quien-soy" className="py-16 md:py-20 bg-quiensoy-bg">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="quien-soy" className="py-20 md:py-28 bg-quiensoy-bg">
+      <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-[5fr_7fr] gap-6 md:gap-14 lg:gap-20 md:items-start">
 
           {/* Image Column — sticky on desktop */}
@@ -86,9 +86,11 @@ export function About() {
               ))}
             </div>
 
-            <p className="text-neutral-900 text-sm md:text-base leading-relaxed font-light pt-1 text-balance">
-              Mi objetivo es ayudar a otras manicuristas a crecer, profesionalizarse y ofrecer servicios de alto nivel.
-            </p>
+            <blockquote className="border-l-2 border-plum/40 pl-4 pt-1">
+              <p className="text-neutral-500 text-sm md:text-base leading-relaxed font-light italic">
+                Mi objetivo es ayudar a otras manicuristas a crecer, profesionalizarse y ofrecer servicios de alto nivel.
+              </p>
+            </blockquote>
           </div>
         </div>
       </div>

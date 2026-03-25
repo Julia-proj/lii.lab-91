@@ -4,43 +4,84 @@ import { useState, useEffect } from "react"
 import { Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-const SLIDES = [
-  { src: "/images/Hero.JPG",  fit: "object-cover object-[center_20%] md:object-[center_28%]" },
-  { src: "/images/Foto5.JPG", fit: "object-cover md:object-contain" },
-  { src: "/images/Foto4.JPG", fit: "object-cover md:object-contain" },
-  { src: "/images/Foto6.jpg", fit: "object-cover md:object-contain" },
-  { src: "/images/Foto3.jpg", fit: "object-cover md:object-contain" },
+const ATMOSPHERIC = [
+  "/images/Foto5.JPG",
+  "/images/Foto4.JPG",
+  "/images/Foto6.jpg",
+  "/images/Foto3.jpg",
 ]
+
+const TOTAL = ATMOSPHERIC.length + 1
 
 export function Hero() {
   const [current, setCurrent] = useState(0)
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % SLIDES.length)
+      setCurrent((prev) => (prev + 1) % TOTAL)
     }, 5500)
     return () => clearInterval(timer)
   }, [])
 
+  const isHero = current === 0
+
   return (
-    <section id="hero" className="relative h-svh sm:min-h-screen overflow-hidden">
-      {/* Slideshow background */}
-      <div className="absolute inset-0 z-0 bg-neutral-950">
-        {SLIDES.map((slide, i) => (
-          <img
-            key={slide.src}
-            src={slide.src}
-            alt="Lii.lab beauty studio"
-            fetchPriority={i === 0 ? "high" : undefined}
-            decoding="async"
-            loading={i === 0 ? undefined : "lazy"}
-            className={`absolute inset-0 w-full h-full ${slide.fit} transition-opacity duration-[2000ms] ease-in-out ${
-              i === current ? "opacity-100" : "opacity-0"
-            }`}
-          />
-        ))}
+    <section id="hero" className="relative h-svh sm:min-h-screen overflow-hidden bg-neutral-950">
+
+      {/* ── Slide 0: Hero.JPG — full screen as always ── */}
+      <div
+        className={`absolute inset-0 z-0 transition-opacity duration-[2000ms] ease-in-out ${
+          isHero ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <img
+          src="/images/Hero.JPG"
+          alt="Lii.lab beauty studio"
+          fetchPriority="high"
+          decoding="async"
+          className="w-full h-full object-cover object-[center_20%] md:object-[center_28%]"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/10 md:bg-gradient-to-r md:from-black/65 md:via-black/30 md:to-transparent" />
       </div>
+
+      {/* ── Slides 1–4: atmospheric — mobile full, desktop right panel ── */}
+      {ATMOSPHERIC.map((src, i) => {
+        const idx = i + 1
+        const active = current === idx
+        return (
+          <div
+            key={src}
+            className={`absolute inset-0 z-0 transition-opacity duration-[2000ms] ease-in-out ${
+              active ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            {/* Mobile: full-screen cover */}
+            <img
+              src={src}
+              alt="Lii.lab"
+              loading="lazy"
+              decoding="async"
+              className="md:hidden w-full h-full object-cover object-center"
+            />
+
+            {/* Desktop: editorial right panel — 62% width, object-cover, no zoom */}
+            <div className="hidden md:block absolute right-0 top-0 h-full w-[62%]">
+              <img
+                src={src}
+                alt="Lii.lab"
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
+
+            {/* Mobile overlay */}
+            <div className="md:hidden absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/10" />
+            {/* Desktop overlay — dark left, fades to transparent at photo */}
+            <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-black/90 via-black/55 to-transparent" />
+          </div>
+        )
+      })}
 
       {/* Badge — top left, below navbar */}
       <div className="absolute top-[72px] sm:top-[80px] left-0 right-0 z-10 container mx-auto px-6">
@@ -49,17 +90,15 @@ export function Hero() {
         </span>
       </div>
 
-      {/* Content — pinned to bottom so face stays visible */}
+      {/* Content — pinned to bottom-left */}
       <div className="absolute bottom-0 left-0 right-0 z-10 container mx-auto px-4 sm:px-6 pb-12 sm:pb-16 md:pb-20">
         <div className="max-w-xl text-white">
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif leading-[1.1] mb-3 sm:mb-5 md:mb-6 text-white">
             Formación profesional<br /> en manicura
           </h1>
-
           <p className="text-sm sm:text-base md:text-lg text-gray-200/90 mb-6 sm:mb-8 max-w-sm md:max-w-lg leading-relaxed font-light">
             Formación y guía metodológica para manicuristas que quieren trabajar con precisión, rapidez y método.
           </p>
-
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Button
               size="lg"
