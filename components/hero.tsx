@@ -5,10 +5,10 @@ import { Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const ATMOSPHERIC = [
-  { src: "/images/Foto5.JPG", bg: "#3e4449", pos: "center 65%" }, // девушка — руки с лаком
-  { src: "/images/Foto4.JPG", bg: "#2a2d32", pos: "center 50%" }, // перчатка — целиком
-  { src: "/images/Foto6.jpg", bg: "#7a5f55", pos: "center 50%" }, // ногти — по центру
-  { src: "/images/Foto3.jpg", bg: "#1a1a1e", pos: "center 28%" }, // джинсы — карман в кадре
+  { src: "/images/Foto5.JPG", bg: "#3e4449", pos: "center 65%", scale: 1 },    // руки с лаком
+  { src: "/images/Foto4.JPG", bg: "#2a2d32", pos: "center 50%", scale: 0.88 }, // перчатка — отдалить чтобы лак влезал
+  { src: "/images/Foto6.jpg", bg: "#7a5f55", pos: "center 50%", scale: 1 },    // ногти
+  { src: "/images/Foto3.jpg", bg: "#1a1a1e", pos: "center 28%", scale: 1 },    // джинсы
 ]
 
 const TOTAL = ATMOSPHERIC.length + 1
@@ -52,7 +52,7 @@ export function Hero() {
       </div>
 
       {/* ── Slides 1–4: atmospheric — mobile full, desktop right panel ── */}
-      {ATMOSPHERIC.map(({ src, pos }, i) => {
+      {ATMOSPHERIC.map(({ src, pos, scale }, i) => {
         const idx = i + 1
         const active = current === idx
         return (
@@ -71,7 +71,7 @@ export function Hero() {
               className="md:hidden w-full h-full object-cover object-center"
             />
 
-            {/* Desktop: editorial right panel — mask creates soft left edge without color dependency */}
+            {/* Desktop: editorial right panel — mask = soft left edge, overlay = premium dark tone */}
             <div
               className="hidden md:block absolute right-0 top-0 h-full w-[72%]"
               style={{
@@ -85,12 +85,14 @@ export function Hero() {
                 loading="lazy"
                 decoding="async"
                 className="w-full h-full object-cover"
-                style={{ objectPosition: pos }}
+                style={{ objectPosition: pos, transform: `scale(${scale})` }}
               />
+              {/* Subtle dark overlay for premium moodboard feel */}
+              <div className="absolute inset-0 bg-black/25 pointer-events-none" />
             </div>
 
-            {/* Mobile overlay */}
-            <div className="md:hidden absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/10" />
+            {/* Mobile overlay — slightly richer dark for same premium tone */}
+            <div className="md:hidden absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20" />
           </div>
         )
       })}
