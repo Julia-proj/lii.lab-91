@@ -5,11 +5,11 @@ import { Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const SLIDES = [
-  { src: "/images/Hero.JPG",  position: "object-[center_20%] md:object-[center_28%]" },
-  { src: "/images/Foto5.JPG", position: "object-center" },
-  { src: "/images/Foto4.JPG", position: "object-center" },
-  { src: "/images/Foto6.jpg", position: "object-center" },
-  { src: "/images/Foto3.jpg", position: "object-center" },
+  { src: "/images/Hero.JPG",  fit: "object-cover object-[center_20%] md:object-[center_28%]" },
+  { src: "/images/Foto5.JPG", fit: "object-cover md:object-contain" },
+  { src: "/images/Foto4.JPG", fit: "object-cover md:object-contain" },
+  { src: "/images/Foto6.jpg", fit: "object-cover md:object-contain" },
+  { src: "/images/Foto3.jpg", fit: "object-cover md:object-contain" },
 ]
 
 export function Hero() {
@@ -25,7 +25,7 @@ export function Hero() {
   return (
     <section id="hero" className="relative h-svh sm:min-h-screen overflow-hidden">
       {/* Slideshow background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 bg-neutral-950">
         {SLIDES.map((slide, i) => (
           <img
             key={slide.src}
@@ -34,7 +34,7 @@ export function Hero() {
             fetchPriority={i === 0 ? "high" : undefined}
             decoding="async"
             loading={i === 0 ? undefined : "lazy"}
-            className={`absolute inset-0 w-full h-full object-cover ${slide.position} transition-opacity duration-[2000ms] ease-in-out ${
+            className={`absolute inset-0 w-full h-full ${slide.fit} transition-opacity duration-[2000ms] ease-in-out ${
               i === current ? "opacity-100" : "opacity-0"
             }`}
           />
