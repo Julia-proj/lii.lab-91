@@ -52,9 +52,9 @@ export function About() {
 
           {/* Text Column */}
           <div className="space-y-5 md:space-y-7">
-            <h2 className="text-3xl md:text-5xl font-serif text-neutral-950 tracking-tight">Quién soy</h2>
+            <h2 className="fade-up text-3xl md:text-5xl font-serif text-neutral-950 tracking-tight">Quién soy</h2>
 
-            <div className="text-neutral-600 leading-relaxed font-light text-sm md:text-base space-y-3">
+            <div className="fade-up text-neutral-600 leading-relaxed font-light text-sm md:text-base space-y-3" data-delay="100">
               <p>
                 Soy Lili, manicurista con más de{" "}
                 <span className="font-semibold text-neutral-900">10 años de experiencia</span> dedicada a formar y
@@ -70,10 +70,11 @@ export function About() {
 
             {/* Feature cards — 2×2 grid on desktop, single col on mobile */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3">
-              {advantages.map(({ icon: Icon, title, desc }) => (
+              {advantages.map(({ icon: Icon, title, desc }, idx) => (
                 <div
                   key={title}
-                  className="flex gap-3 items-start p-4 rounded-xl bg-white hover:shadow-md transition-smooth"
+                  className="fade-up flex gap-3 items-start p-4 rounded-xl bg-white hover:shadow-md transition-smooth"
+                  data-delay={String((idx + 2) * 100)}
                 >
                   <div className="shrink-0 mt-0.5">
                     <Icon size={24} className="text-plum" />
@@ -86,7 +87,7 @@ export function About() {
               ))}
             </div>
 
-            <blockquote className="border-l-2 border-plum/40 pl-4 pt-1">
+            <blockquote className="fade-up border-l-2 border-plum/40 pl-4 pt-1" data-delay="400">
               <p className="text-neutral-500 text-sm md:text-base leading-relaxed font-light italic">
                 Mi objetivo es ayudar a otras manicuristas a crecer, profesionalizarse y ofrecer servicios de alto nivel.
               </p>

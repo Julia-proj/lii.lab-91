@@ -3,7 +3,7 @@ import { Instagram } from "lucide-react"
 export function FormacionPrivadaBanner() {
   return (
     <div className="px-4 sm:px-6 max-w-6xl mx-auto py-8 md:py-12">
-      <div className="rounded-2xl fade-in relative overflow-hidden min-h-[260px] sm:min-h-[320px]">
+      <div className="fade-up rounded-2xl relative overflow-hidden min-h-[260px] sm:min-h-[320px]">
         <img
           src="/images/salon-bg.jpg"
           alt="Salón de manicura profesional"

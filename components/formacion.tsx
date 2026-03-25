@@ -55,7 +55,7 @@ export function Formacion() {
     <section id="formacion" className="py-20 bg-warm-bg">
       <div className="container mx-auto px-4">
         {/* Section Title */}
-        <div className="text-center mb-14 fade-in">
+        <div className="fade-up text-center mb-14">
           <h2 className="text-4xl md:text-5xl font-serif mb-3">Formaciones</h2>
           <div className="w-16 h-[2px] mx-auto bg-gold" />
         </div>
@@ -63,7 +63,7 @@ export function Formacion() {
         {/* Cards Grid */}
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-14">
           {/* Card 1 — MANIC 0.0 */}
-          <Card className="group relative p-0 overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
+          <Card className="fade-up group relative p-0 overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
             <div className="absolute top-4 right-4 z-10">
               <Badge className="text-xs font-semibold tracking-wider border-0 px-3 py-1 bg-gold text-white">
                 MÁS POPULAR
@@ -162,7 +162,7 @@ export function Formacion() {
           </Card>
 
           {/* Card 2 — Subida de Cualificación */}
-          <Card className="relative p-0 overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
+          <Card className="fade-up relative p-0 overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col" data-delay="100">
             <div className="absolute top-4 right-4 z-10">
               <Badge className="text-xs font-semibold tracking-wider border-0 px-3 py-1 bg-rose-accent text-white">
                 NUEVO
@@ -247,7 +247,7 @@ export function Formacion() {
           </Card>
 
           {/* Card 3 — Guía Metodológica */}
-          <Card className="relative p-0 overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
+          <Card className="fade-up relative p-0 overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col" data-delay="200">
 
             <div className="relative overflow-hidden">
               <video

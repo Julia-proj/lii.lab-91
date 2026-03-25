@@ -6,12 +6,12 @@ export function Contact() {
   return (
     <section id="contacto" className="py-16 bg-white text-center border-t border-gray-100">
       <div className="container mx-auto px-6 max-w-2xl">
-        <h2 className="text-2xl md:text-3xl font-serif mb-3 text-neutral-900">Contacto</h2>
-        <p className="text-sm text-neutral-500 mb-8 font-light">
+        <h2 className="fade-up text-2xl md:text-3xl font-serif mb-3 text-neutral-900">Contacto</h2>
+        <p className="fade-up text-sm text-neutral-500 mb-8 font-light" data-delay="100">
           Reserva una cita o consigue la Guía Metodológica.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
+        <div className="fade-up flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4" data-delay="200">
           <Button
             size="lg"
             asChild

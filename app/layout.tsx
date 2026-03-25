@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
 import { SessionProvider } from "next-auth/react"
 import { Toaster } from "sonner"
+import { ScrollReveal } from "@/components/scroll-reveal"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
@@ -29,6 +30,7 @@ export default function RootLayout({
     <html lang="es" className="scroll-smooth">
       <body className={`${inter.variable} ${playfair.variable} font-sans bg-white text-neutral-900`}>
         <SessionProvider>
+          <ScrollReveal />
           {children}
           <Toaster position="top-right" richColors />
         </SessionProvider>

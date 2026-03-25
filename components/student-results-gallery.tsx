@@ -82,7 +82,7 @@ export function StudentResultsGallery() {
     <section className="pt-4 pb-12 md:pt-6 md:pb-16">
       <div className="px-6 max-w-6xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-10 sm:mb-14 fade-in">
+        <div className="fade-up text-center mb-10 sm:mb-14">
           <p className="text-[10px] tracking-[0.4em] uppercase text-neutral-400 font-medium mb-3">
             Trabajo real
           </p>
