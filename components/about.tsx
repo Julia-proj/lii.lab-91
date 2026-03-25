@@ -31,7 +31,7 @@ export function About() {
 
           {/* Image Column — sticky on desktop */}
           <div className="md:sticky md:top-[100px]">
-            <div className="relative group w-full overflow-hidden rounded-lg md:rounded-xl shadow-xl aspect-[3/4] md:aspect-[4/5]">
+            <div className="relative group w-full overflow-hidden rounded-lg md:rounded-xl shadow-xl aspect-square md:aspect-[4/5]">
               <img
                 src="/images/Foto7.JPG"
                 alt="Lili"
