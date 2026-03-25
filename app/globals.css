@@ -237,4 +237,13 @@
       transition: none;
     }
   }
+
+  /* ── Swipe hint arrow ── */
+  @keyframes swipeHint {
+    0%, 100% { transform: translateX(0px); opacity: 0.45; }
+    55%       { transform: translateX(7px); opacity: 1;    }
+  }
+  .swipe-hint-arrow {
+    animation: swipeHint 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
 }

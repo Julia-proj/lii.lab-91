@@ -68,6 +68,7 @@ function BeforeAfterCard({ pair }: { pair: Pair }) {
 
 export function StudentResultsGallery() {
   const [activeTab, setActiveTab] = useState<"subida" | "iniciacion">("subida")
+  const [hasScrolled, setHasScrolled] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const scrollCarousel = (dir: "prev" | "next") => {
@@ -134,6 +135,7 @@ export function StudentResultsGallery() {
           {/* Carousel — shared mobile + desktop */}
           <div
             ref={scrollRef}
+            onScroll={() => setHasScrolled(true)}
             className="flex overflow-x-auto snap-x snap-mandatory gap-3 pb-3 scrollbar-hide"
           >
             {subidaPhotos.map((photo, i) => (
@@ -160,6 +162,12 @@ export function StudentResultsGallery() {
           >
             <ChevronRight className="w-4 h-4" />
           </button>
+
+          {/* Swipe hint — mobile only, disappears on first scroll */}
+          <div className={`md:hidden flex items-center justify-center gap-2 mt-4 transition-opacity duration-500 ${hasScrolled ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+            <span className="text-[9px] uppercase tracking-[0.35em] text-neutral-400 font-medium">Desliza</span>
+            <span className="swipe-hint-arrow text-neutral-400 text-xs">→</span>
+          </div>
         </div>
       )}
 
