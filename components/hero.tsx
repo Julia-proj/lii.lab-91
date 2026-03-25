@@ -5,10 +5,10 @@ import { Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const ATMOSPHERIC = [
-  { src: "/images/Foto5.JPG", bg: "#3e4449" }, // серо-синий студийный
-  { src: "/images/Foto4.JPG", bg: "#2a2d32" }, // тёмный серый студийный
-  { src: "/images/Foto6.jpg", bg: "#7a5f55" }, // тёплый blush/кожа
-  { src: "/images/Foto3.jpg", bg: "#1a1a1e" }, // почти чёрный (ч/б джинсы)
+  { src: "/images/Foto5.JPG", bg: "#3e4449", pos: "center 42%" }, // девушка с лаком
+  { src: "/images/Foto4.JPG", bg: "#2a2d32", pos: "center 35%" }, // лак на перчатке — выше
+  { src: "/images/Foto6.jpg", bg: "#7a5f55", pos: "center 50%" }, // ногти — по центру
+  { src: "/images/Foto3.jpg", bg: "#1a1a1e", pos: "center 28%" }, // джинсы — карман в кадре
 ]
 
 const TOTAL = ATMOSPHERIC.length + 1
@@ -52,7 +52,7 @@ export function Hero() {
       </div>
 
       {/* ── Slides 1–4: atmospheric — mobile full, desktop right panel ── */}
-      {ATMOSPHERIC.map(({ src }, i) => {
+      {ATMOSPHERIC.map(({ src, pos }, i) => {
         const idx = i + 1
         const active = current === idx
         return (
@@ -71,21 +71,25 @@ export function Hero() {
               className="md:hidden w-full h-full object-cover object-center"
             />
 
-            {/* Desktop: editorial right panel — 62% width, object-cover, no zoom */}
+            {/* Desktop: editorial right panel — 62% width, per-photo positioning */}
             <div className="hidden md:block absolute right-0 top-0 h-full w-[62%]">
               <img
                 src={src}
                 alt="Lii.lab"
                 loading="lazy"
                 decoding="async"
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-cover"
+                style={{ objectPosition: pos }}
               />
             </div>
 
             {/* Mobile overlay */}
             <div className="md:hidden absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/10" />
-            {/* Desktop overlay — dark left, fades to transparent at photo */}
-            <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-black/90 via-black/55 to-transparent" />
+            {/* Desktop overlay — wide smooth gradient so text area stays solid */}
+            <div
+              className="hidden md:block absolute inset-0"
+              style={{ background: "linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.80) 28%, rgba(0,0,0,0.35) 50%, transparent 72%)" }}
+            />
           </div>
         )
       })}
