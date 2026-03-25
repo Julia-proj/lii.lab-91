@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { dbConnect } from '@/lib/db'
 import Booking from '@/models/Booking'
 import { auth } from '@/lib/auth'
-import { notifyCancellation } from '@/lib/notifications'
+import { notifyCancellation, notifyAdminConfirmation } from '@/lib/notifications'
 
 export async function GET(
   _req: NextRequest,
@@ -133,12 +133,14 @@ export async function PATCH(
       return NextResponse.json({ error: 'Reserva no encontrada' }, { status: 404 })
     }
 
-    // Fire cancellation notification (non-blocking)
-    if (updateFields.status === 'cancelada') {
+    // Fire notifications on status change (non-blocking)
+    if (updateFields.status === 'cancelada' || updateFields.status === 'confirmada') {
       const user = updated.user as { name: string; email: string; phone?: string }
       const svcList = updated.services as { name: string; price: number }[]
+      const wasAlreadyConfirmed = existing.status === 'confirmada'
+
       if (user?.email && svcList?.length > 0) {
-        notifyCancellation({
+        const notifPayload = {
           clientName: user.name,
           clientEmail: user.email,
           clientPhone: user.phone,
@@ -147,7 +149,14 @@ export async function PATCH(
           startTime: updated.startTime,
           endTime: updated.endTime,
           price: svcList.reduce((sum, s) => sum + s.price, 0),
-        }).catch((err) => console.error('Cancellation notification error:', err))
+        }
+        if (updateFields.status === 'cancelada') {
+          notifyCancellation(notifPayload)
+            .catch((err) => console.error('Cancellation notification error:', err))
+        } else if (updateFields.status === 'confirmada' && !wasAlreadyConfirmed) {
+          notifyAdminConfirmation(notifPayload)
+            .catch((err) => console.error('Confirmation notification error:', err))
+        }
       }
     }
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Search, Trash2, StickyNote, Check, Pencil, CalendarClock, ChevronDown, Calendar } from 'lucide-react'
+import { Search, Trash2, StickyNote, Check, Pencil, CalendarClock, ChevronDown, Calendar, Bell } from 'lucide-react'
 import { toast } from 'sonner'
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -547,6 +547,19 @@ export default function AdminBookingsPage() {
     }
   }
 
+  const handleConfirmDirect = async (id: string) => {
+    try {
+      const res = await fetch(`/api/bookings/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'confirmada' }),
+      })
+      if (!res.ok) { toast.error('Error al confirmar'); return }
+      handleUpdate(id, { status: 'confirmada' })
+      toast.success('Cita confirmada · Cliente notificado')
+    } catch { toast.error('Error de conexión') }
+  }
+
   const todayStr = new Date().toISOString().split('T')[0]
   const weekStart = (() => {
     const d = new Date(); const day = d.getDay()
@@ -613,6 +626,42 @@ export default function AdminBookingsPage() {
 
       {tab === 'citas' && (
         <div className="space-y-3">
+
+          {/* ── Pendientes banner ── */}
+          {bookings.filter((b) => b.status === 'pendiente').length > 0 && (
+            <div className="rounded-xl border border-amber-200 bg-amber-50 dark:bg-amber-500/8 dark:border-amber-500/20 p-4">
+              <div className="flex items-center gap-2 mb-3">
+                <Bell className="w-4 h-4 text-amber-500" />
+                <p className="text-sm font-semibold text-amber-800 dark:text-amber-400">
+                  {bookings.filter((b) => b.status === 'pendiente').length} pendiente{bookings.filter((b) => b.status === 'pendiente').length !== 1 ? 's' : ''} de confirmación
+                </p>
+              </div>
+              <div className="space-y-2">
+                {bookings
+                  .filter((b) => b.status === 'pendiente')
+                  .sort((a, b) => a.date.localeCompare(b.date))
+                  .map((b) => (
+                    <div key={b._id} className="flex items-center justify-between bg-white dark:bg-[#1e1e24] rounded-lg px-3 py-2.5 border border-amber-100 dark:border-white/6">
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100 truncate">{b.user?.name}</p>
+                        <p className="text-[11px] text-neutral-400">
+                          {new Date(b.date + 'T00:00:00').toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' })} · {b.startTime}
+                          {b.services?.length > 0 && ` · ${b.services.map(s => s.name).join(', ')}`}
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => handleConfirmDirect(b._id)}
+                        className="ml-3 shrink-0 flex items-center gap-1.5 text-xs bg-plum hover:bg-plum-hover text-white font-medium px-3 py-1.5 rounded-full transition-colors"
+                      >
+                        <Check className="w-3 h-3" />
+                        Confirmar
+                      </button>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )}
+
           {/* Search */}
           <div className="relative">
             <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />

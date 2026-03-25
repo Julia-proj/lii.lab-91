@@ -4,7 +4,7 @@ import '@/models/Service'
 import { auth } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
-import { Calendar, Clock, Euro, CheckCircle } from 'lucide-react'
+import { Calendar, Clock, Euro, CheckCircle, Hourglass } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
@@ -77,11 +77,26 @@ export default async function ConfirmationPage({
   return (
     <div className="max-w-md mx-auto text-center">
       <div className="mb-6">
-        <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-        <h1 className="font-serif text-2xl mb-2">¡Reserva confirmada!</h1>
-        <p className="text-neutral-500 text-sm">
-          Te hemos enviado un email con los detalles de tu cita.
-        </p>
+        {booking.status === 'confirmada' ? (
+          <>
+            <CheckCircle className="w-16 h-16 text-emerald-500 mx-auto mb-4" />
+            <h1 className="font-serif text-2xl mb-2">¡Cita confirmada!</h1>
+            <p className="text-neutral-500 text-sm">
+              Lili ha confirmado tu cita. Te esperamos.
+            </p>
+          </>
+        ) : (
+          <>
+            <Hourglass className="w-16 h-16 text-amber-400 mx-auto mb-4" />
+            <h1 className="font-serif text-2xl mb-2">¡Reserva recibida!</h1>
+            <p className="text-neutral-500 text-sm">
+              Tu solicitud está pendiente de confirmación.{' '}
+              <span className="font-medium text-neutral-700">
+                Cuando Lili la confirme recibirás un email o WhatsApp.
+              </span>
+            </p>
+          </>
+        )}
       </div>
 
       <div className="bg-white rounded-xl border border-neutral-200 p-6 text-left">

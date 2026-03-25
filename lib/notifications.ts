@@ -4,6 +4,7 @@ import { bookingConfirmationTemplate } from './email-templates/booking-confirmat
 import { bookingCancellationTemplate } from './email-templates/booking-cancellation'
 import { bookingReminderTemplate } from './email-templates/booking-reminder'
 import { guidePurchaseTemplate } from './email-templates/guide-purchase'
+import { bookingConfirmedByAdminTemplate } from './email-templates/booking-confirmed-by-admin'
 
 // Estructura de datos que necesitamos para enviar cualquier notificación
 interface BookingInfo {
@@ -80,6 +81,47 @@ export async function notifyNewBooking(info: BookingInfo) {
   results.forEach((r, i) => {
     if (r.status === 'rejected') {
       console.error(`Error al enviar notificacion (canal ${i}):`, r.reason)
+    }
+  })
+}
+
+/**
+ * Notifica al cliente que el ADMIN ha CONFIRMADO su reserva.
+ * Solo va al cliente (el admin ya sabe que confirmó).
+ */
+export async function notifyAdminConfirmation(info: BookingInfo) {
+  const html = bookingConfirmedByAdminTemplate({
+    clientName: info.clientName,
+    serviceName: info.serviceName,
+    date: info.date,
+    startTime: info.startTime,
+    endTime: info.endTime,
+    price: info.price,
+  })
+
+  const dateFormatted = new Date(info.date + 'T00:00:00').toLocaleDateString('es-ES', {
+    day: '2-digit',
+    month: '2-digit',
+  })
+
+  const clientWhatsappMsg =
+    `✅ Lii.lab: Tu cita ha sido confirmada!\n\n` +
+    `${info.serviceName}\n` +
+    `${dateFormatted} a las ${info.startTime}\n\n` +
+    `Te esperamos en Calle Narváez, 1, Valdemoro.`
+
+  const promises: Promise<unknown>[] = []
+
+  if (info.clientPhone) {
+    promises.push(sendWhatsApp(info.clientPhone, clientWhatsappMsg))
+  } else {
+    promises.push(sendEmail(info.clientEmail, '✅ Cita confirmada - Lii.lab', html))
+  }
+
+  const results = await Promise.allSettled(promises)
+  results.forEach((r, i) => {
+    if (r.status === 'rejected') {
+      console.error(`Error notifyAdminConfirmation (canal ${i}):`, r.reason)
     }
   })
 }
