@@ -6,7 +6,15 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 
 // ─── Data ───────────────────────────────────────────────────────────────────
 
-const subidaPhotos = Array.from({ length: 14 }, (_, i) => `master${i + 1}.jpeg`)
+// master10 первой, master1 в середине (позиция 8)
+const subidaPhotos = [
+  "master10.jpeg",
+  "master2.jpeg", "master3.jpeg", "master4.jpeg", "master5.jpeg",
+  "master6.jpeg", "master7.jpeg",
+  "master1.jpeg",
+  "master8.jpeg", "master9.jpeg", "master11.jpeg",
+  "master12.jpeg", "master13.jpeg", "master14.jpeg",
+]
 
 type Pair = { id: number; before: string; after: string }
 
