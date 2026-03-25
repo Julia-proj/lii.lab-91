@@ -5,8 +5,8 @@ import { Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const ATMOSPHERIC = [
-  { src: "/images/Foto5.JPG", bg: "#3e4449", pos: "center 42%" }, // девушка с лаком
-  { src: "/images/Foto4.JPG", bg: "#2a2d32", pos: "center 35%" }, // лак на перчатке — выше
+  { src: "/images/Foto5.JPG", bg: "#3e4449", pos: "center 28%" }, // девушка с лаком — выше
+  { src: "/images/Foto4.JPG", bg: "#2a2d32", pos: "center 22%" }, // лак на перчатке — выше
   { src: "/images/Foto6.jpg", bg: "#7a5f55", pos: "center 50%" }, // ногти — по центру
   { src: "/images/Foto3.jpg", bg: "#1a1a1e", pos: "center 28%" }, // джинсы — карман в кадре
 ]
@@ -52,7 +52,7 @@ export function Hero() {
       </div>
 
       {/* ── Slides 1–4: atmospheric — mobile full, desktop right panel ── */}
-      {ATMOSPHERIC.map(({ src, pos }, i) => {
+      {ATMOSPHERIC.map(({ src, pos, bg }, i) => {
         const idx = i + 1
         const active = current === idx
         return (
@@ -80,6 +80,11 @@ export function Hero() {
                 decoding="async"
                 className="w-full h-full object-cover"
                 style={{ objectPosition: pos }}
+              />
+              {/* Left-edge blend: photo fades into ambient bg color seamlessly */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{ background: `linear-gradient(to right, ${bg} 0%, ${bg}cc 5%, ${bg}55 15%, transparent 32%)` }}
               />
             </div>
 
