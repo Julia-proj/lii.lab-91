@@ -5,10 +5,10 @@ import { Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const ATMOSPHERIC = [
-  "/images/Foto5.JPG",
-  "/images/Foto4.JPG",
-  "/images/Foto6.jpg",
-  "/images/Foto3.jpg",
+  { src: "/images/Foto5.JPG", bg: "#3e4449" }, // серо-синий студийный
+  { src: "/images/Foto4.JPG", bg: "#2a2d32" }, // тёмный серый студийный
+  { src: "/images/Foto6.jpg", bg: "#7a5f55" }, // тёплый blush/кожа
+  { src: "/images/Foto3.jpg", bg: "#1a1a1e" }, // почти чёрный (ч/б джинсы)
 ]
 
 const TOTAL = ATMOSPHERIC.length + 1
@@ -26,7 +26,14 @@ export function Hero() {
   const isHero = current === 0
 
   return (
-    <section id="hero" className="relative h-svh sm:min-h-screen overflow-hidden bg-neutral-950">
+    <section
+      id="hero"
+      className="relative h-svh sm:min-h-screen overflow-hidden"
+      style={{
+        backgroundColor: isHero ? "#0a0a0a" : ATMOSPHERIC[current - 1].bg,
+        transition: "background-color 2000ms ease-in-out",
+      }}
+    >
 
       {/* ── Slide 0: Hero.JPG — full screen as always ── */}
       <div
@@ -45,7 +52,7 @@ export function Hero() {
       </div>
 
       {/* ── Slides 1–4: atmospheric — mobile full, desktop right panel ── */}
-      {ATMOSPHERIC.map((src, i) => {
+      {ATMOSPHERIC.map(({ src }, i) => {
         const idx = i + 1
         const active = current === idx
         return (
