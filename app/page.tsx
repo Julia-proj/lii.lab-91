@@ -1,11 +1,11 @@
 import { Navbar } from "@/components/navbar"
 import { Hero } from "@/components/hero"
+import { BrandAtmosphere } from "@/components/brand-atmosphere"
 import { About } from "@/components/about"
 import { Formacion } from "@/components/formacion"
 import { StudentResultsGallery } from "@/components/student-results-gallery"
 import { FormacionPrivadaBanner } from "@/components/formacion-privada-banner"
 import { Contact } from "@/components/contact"
-import { Gallery } from "@/components/gallery"
 import { Footer } from "@/components/footer"
 
 export default function Home() {
@@ -13,11 +13,11 @@ export default function Home() {
     <main className="min-h-screen">
       <Navbar />
       <Hero />
+      <BrandAtmosphere />
       <About />
       <Formacion />
       <StudentResultsGallery />
       <FormacionPrivadaBanner />
-      <Gallery />
       <Contact />
       <Footer />
     </main>
