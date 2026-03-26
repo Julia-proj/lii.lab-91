@@ -247,7 +247,7 @@ export function Formacion() {
           </Card>
 
           {/* Card 3 — Guía Metodológica */}
-          <Card className="fade-up relative p-0 overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col" data-delay="200">
+          <Card id="guia" className="fade-up relative p-0 overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col" data-delay="200">
 
             <div className="relative overflow-hidden">
               <video
