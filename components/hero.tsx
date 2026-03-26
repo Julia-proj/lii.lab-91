@@ -5,10 +5,10 @@ import { Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const ATMOSPHERIC = [
-  { src: "/images/Foto5.JPG", bg: "#3e4449", pos: "center 65%", scale: 1 },    // руки с лаком
-  { src: "/images/Foto4.JPG", bg: "#2a2d32", pos: "55% 40%",    scale: 1 },    // перчатка — смещение вправо-вверх чтобы лак влез
-  { src: "/images/Foto6.jpg", bg: "#7a5f55", pos: "center 50%", scale: 1 },    // ногти
-  { src: "/images/Foto3.jpg", bg: "#1a1a1e", pos: "center 28%", scale: 1 },    // джинсы
+  { src: "/images/Foto5.JPG", bg: "#3e4449", pos: "center 65%", mobilePos: "center 30%", scale: 1 }, // руки с лаком — мобиль выше чтобы руки над текстом
+  { src: "/images/Foto4.JPG", bg: "#2a2d32", pos: "55% 40%",    mobilePos: "center 50%", scale: 1 }, // перчатка
+  { src: "/images/Foto6.jpg", bg: "#7a5f55", pos: "center 50%", mobilePos: "center 50%", scale: 1 }, // ногти
+  { src: "/images/Foto3.jpg", bg: "#1a1a1e", pos: "center 28%", mobilePos: "center 28%", scale: 1 }, // джинсы
 ]
 
 const TOTAL = ATMOSPHERIC.length + 1
@@ -53,7 +53,7 @@ export function Hero() {
       </div>
 
       {/* ── Slides 1–4: atmospheric — mobile full, desktop right panel ── */}
-      {ATMOSPHERIC.map(({ src, pos, scale }, i) => {
+      {ATMOSPHERIC.map(({ src, pos, mobilePos, scale }, i) => {
         const idx = i + 1
         const active = current === idx
         return (
@@ -69,7 +69,8 @@ export function Hero() {
               alt="Lii.lab"
               loading="lazy"
               decoding="async"
-              className="md:hidden w-full h-full object-cover object-center"
+              className="md:hidden w-full h-full object-cover"
+              style={{ objectPosition: mobilePos }}
             />
 
             {/* Desktop: editorial right panel — mask = soft left edge, overlay = premium dark tone */}
