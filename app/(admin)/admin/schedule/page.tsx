@@ -305,7 +305,7 @@ export default function AdminSchedulePage() {
                   <span className={`${isToday ? 'font-bold text-plum dark:text-lavender' : ''}`}>{day}</span>
                   <div className="flex items-center justify-center gap-0.5 mt-0.5">
                     {dayBookings.length > 0 && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-plum/60 dark:bg-lavender/70" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                     )}
                     {dayBlockedHours.length > 0 && (
                       <span className="w-1.5 h-1.5 rounded-full bg-orange-400" />
@@ -320,7 +320,7 @@ export default function AdminSchedulePage() {
           </div>
 
           <div className="flex items-center gap-4 mt-4 text-[10px] text-neutral-400">
-            <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-plum/60 dark:bg-lavender/70" /> Citas</span>
+            <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-400" /> Citas</span>
             <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-orange-400" /> Horas bloq.</span>
             <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-400" /> Día bloq.</span>
           </div>

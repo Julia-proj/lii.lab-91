@@ -72,7 +72,7 @@ export default function EstadisticasPage() {
     <div className="space-y-4 max-w-2xl">
       <div>
         <h1 className="font-serif text-2xl text-neutral-900 dark:text-neutral-100">Estadísticas</h1>
-        <p className="text-xs text-neutral-400 mt-0.5">Ingresos y citas por período</p>
+        <p className="text-xs text-neutral-400 mt-0.5">Los ingresos reflejan citas <span className="font-medium">completadas</span>. El total de citas incluye todos los estados.</p>
       </div>
 
       {/* Period cards — always 3 columns */}

@@ -5,7 +5,7 @@ import { Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const ATMOSPHERIC = [
-  { src: "/images/Foto5.JPG", bg: "#3e4449", pos: "center 65%", mobilePos: "center 30%", scale: 1 }, // руки с лаком — мобиль выше чтобы руки над текстом
+  { src: "/images/Foto5.JPG", bg: "#3e4449", pos: "center 42%", mobilePos: "center 30%", scale: 1 }, // руки с лаком — мобиль выше чтобы руки над текстом
   { src: "/images/Foto4.JPG", bg: "#2a2d32", pos: "55% 40%",    mobilePos: "center 50%", scale: 1 }, // перчатка
   { src: "/images/Foto6.jpg", bg: "#7a5f55", pos: "center 50%", mobilePos: "center 50%", scale: 1 }, // ногти
   { src: "/images/Foto3.jpg", bg: "#1a1a1e", pos: "center 28%", mobilePos: "center 28%", scale: 1 }, // джинсы

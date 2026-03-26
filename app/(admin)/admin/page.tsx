@@ -32,14 +32,14 @@ interface Booking {
 
 const S_DOT: Record<string, string> = {
   pendiente:  'bg-amber-400',
-  confirmada: 'bg-emerald-400',
+  confirmada: 'bg-emerald-300',
   completada: 'bg-blue-400',
   cancelada:  'bg-neutral-300',
 }
 
 const S_BORDER: Record<string, string> = {
   pendiente:  'border-l-amber-400',
-  confirmada: 'border-l-emerald-400',
+  confirmada: 'border-l-emerald-300',
   completada: 'border-l-blue-400',
   cancelada:  'border-l-neutral-200 dark:border-l-white/15',
 }
@@ -221,7 +221,7 @@ function BookingCard({
           <div className="flex gap-2 mt-3">
             <button
               onClick={() => handleStatus('confirmada')}
-              className="flex-1 flex items-center justify-center gap-1.5 py-2 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-semibold rounded-lg transition-colors"
+              className="flex-1 flex items-center justify-center gap-1.5 py-2 bg-emerald-400 hover:bg-emerald-500 text-white text-xs font-semibold rounded-lg transition-colors"
             >
               <Check className="w-3.5 h-3.5" />
               Confirmar
@@ -378,7 +378,7 @@ function DayTimeline({ bookings }: { bookings: Booking[] }) {
 
   const STATUS_COLOR: Record<string, string> = {
     pendiente:  'bg-amber-400',
-    confirmada: 'bg-emerald-400',
+    confirmada: 'bg-emerald-300',
     completada: 'bg-blue-400',
   }
 
@@ -519,30 +519,6 @@ export default function AgendaPage() {
       .sort((a, b) => a.date.localeCompare(b.date) || a.startTime.localeCompare(b.startTime))
   }, [bookings])
 
-  const upcomingBookings = useMemo(() => {
-    return bookings
-      .filter((b) => b.date >= todayStr && b.status !== 'cancelada')
-      .sort((a, b) => a.date.localeCompare(b.date) || a.startTime.localeCompare(b.startTime))
-      .slice(0, 6)
-  }, [bookings, todayStr])
-
-  // Mobile: all upcoming grouped by date
-  const mobileUpcoming = useMemo(() => {
-    const future = bookings
-      .filter((b) => b.date >= todayStr && b.status !== 'cancelada')
-      .sort((a, b) => a.date.localeCompare(b.date) || a.startTime.localeCompare(b.startTime))
-    const groups = new Map<string, Booking[]>()
-    for (const b of future) {
-      if (!groups.has(b.date)) groups.set(b.date, [])
-      groups.get(b.date)!.push(b)
-    }
-    return Array.from(groups.entries()).map(([date, bkgs]) => ({
-      date,
-      label: new Date(date + 'T00:00:00').toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' }),
-      bkgs,
-    }))
-  }, [bookings, todayStr])
-
   if (loading) return (
     <div className="flex items-center justify-center py-20">
       <div className="w-5 h-5 border-2 border-neutral-200 border-t-plum rounded-full animate-spin" />
@@ -595,46 +571,6 @@ export default function AgendaPage() {
           <p className="text-[11px] sm:text-xs text-neutral-400 mt-1 sm:mt-1.5">hoy · €</p>
         </div>
       </div>
-
-      {/* Próximas citas */}
-      {upcomingBookings.length > 0 && (
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-neutral-400">Próximas</p>
-            <span className="text-[10px] text-neutral-300 dark:text-neutral-600">{upcomingBookings.length} citas</span>
-          </div>
-          <div className="flex gap-2 overflow-x-auto pb-1 -mx-0.5 px-0.5 snap-x snap-mandatory">
-            {upcomingBookings.map((b) => {
-              const d = new Date(b.date + 'T00:00:00')
-              const dayLabel = d.toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' })
-              const svcName = b.services?.[0]?.name || '—'
-              const isSelectedDay = selectedDay === b.date
-              return (
-                <button
-                  key={b._id}
-                  onClick={() => {
-                    setSelectedDay(b.date)
-                    setCurrentMonth(d)
-                    setShowPending(false)
-                  }}
-                  className={`snap-start shrink-0 text-left rounded-xl border p-3 transition-all min-w-[148px] max-w-[148px] ${
-                    isSelectedDay
-                      ? 'bg-plum/8 border-plum/25 dark:bg-plum/15'
-                      : 'bg-white dark:bg-[#1e1e24] border-neutral-100 dark:border-white/8 hover:border-plum/25 hover:bg-plum/4'
-                  }`}
-                >
-                  <div className="flex items-center gap-1.5 mb-1.5">
-                    <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${S_DOT[b.status] || 'bg-neutral-300'}`} />
-                    <p className="text-[10px] uppercase tracking-wider text-neutral-400 leading-none capitalize truncate">{dayLabel}</p>
-                  </div>
-                  <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 leading-tight truncate">{b.user?.name}</p>
-                  <p className="text-[11px] text-neutral-400 mt-0.5 truncate">{b.startTime} · {svcName}</p>
-                </button>
-              )
-            })}
-          </div>
-        </div>
-      )}
 
       {/* Calendar + Day panel */}
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-4 sm:gap-5 items-start">
