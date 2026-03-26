@@ -4,9 +4,11 @@ import Booking from '@/models/Booking'
 import { sendBookingReminder } from '@/lib/notifications'
 import { addDays, format } from 'date-fns'
 
+type UserPopulated = { name: string; email: string; phone?: string }
+type ServicePopulated = { name: string; price: number }
+
 export async function GET(req: NextRequest) {
   try {
-    // Verify cron secret to prevent unauthorized calls
     const authHeader = req.headers.get('authorization')
     if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -14,7 +16,6 @@ export async function GET(req: NextRequest) {
 
     await dbConnect()
 
-    // Find bookings for tomorrow
     const tomorrow = addDays(new Date(), 1)
     const tomorrowStr = format(tomorrow, 'yyyy-MM-dd')
 
@@ -30,8 +31,8 @@ export async function GET(req: NextRequest) {
     let failed = 0
 
     for (const booking of bookings) {
-      const user = booking.user as unknown as { name: string; email: string; phone?: string }
-      const svcList = (booking.services || []) as unknown as { name: string; price: number }[]
+      const user = booking.user as unknown as UserPopulated
+      const svcList = (booking.services || []) as unknown as ServicePopulated[]
 
       if (!user || svcList.length === 0) continue
 

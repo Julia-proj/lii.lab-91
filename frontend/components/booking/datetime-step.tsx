@@ -232,11 +232,11 @@ export function DateTimeStep() {
           <DayPicker
             mode="single"
             selected={selectedDate}
-            onSelect={handleDateSelect}
+            onSelect={(date) => handleDateSelect(date)}
             disabled={isDisabled}
             locale={es}
             showOutsideDays={false}
-            components={{ DayButton: CalendarDayButton as React.ComponentType<React.ComponentProps<'button'>> }}
+            components={{ DayButton: CalendarDayButton as unknown as React.ComponentType<React.ComponentProps<'button'>> }}
             className="bg-white rounded-xl border border-neutral-200 p-4 shadow-sm"
             classNames={{
               month_caption: 'font-serif text-base mb-3 text-center capitalize',

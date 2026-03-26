@@ -49,7 +49,7 @@ export const BookingService = {
     const booking = await bookingRepository.create({
       user: userId as unknown as import('mongoose').Types.ObjectId,
       services: serviceIds as unknown as import('mongoose').Types.ObjectId[],
-      quantities: Object.keys(quantities).length > 0 ? quantities : undefined,
+      quantities: Object.keys(quantities).length > 0 ? new Map(Object.entries(quantities)) : undefined,
       date,
       startTime,
       endTime,
