@@ -212,7 +212,7 @@ function BookingCard({
           </div>
           <div className="text-right shrink-0">
             <p className="text-[10px] text-neutral-300 mb-0.5">{totalPrice}€</p>
-            <PayCell booking={booking} onUpdate={onUpdate} />
+            {!isPending && <PayCell booking={booking} onUpdate={onUpdate} />}
           </div>
         </div>
 
