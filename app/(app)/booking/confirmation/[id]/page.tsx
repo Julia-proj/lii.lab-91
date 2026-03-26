@@ -4,7 +4,7 @@ import '@/models/Service'
 import { auth } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
-import { Calendar, Clock, Euro, CheckCircle, Hourglass } from 'lucide-react'
+import { Calendar, Clock, Euro, CheckCircle, CalendarClock, Check } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
@@ -74,31 +74,74 @@ export default async function ConfirmationPage({
     return `${h}h ${m}min`
   }
 
+  const isPending = booking.status === 'pendiente'
+  const isConfirmed = booking.status === 'confirmada'
+
   return (
     <div className="max-w-md mx-auto text-center">
-      <div className="mb-6">
-        {booking.status === 'confirmada' ? (
-          <>
-            <CheckCircle className="w-16 h-16 text-emerald-500 mx-auto mb-4" />
-            <h1 className="font-serif text-2xl mb-2">¡Cita confirmada!</h1>
-            <p className="text-neutral-500 text-sm">
-              Lili ha confirmado tu cita. Te esperamos.
-            </p>
-          </>
-        ) : (
-          <>
-            <Hourglass className="w-16 h-16 text-amber-400 mx-auto mb-4" />
-            <h1 className="font-serif text-2xl mb-2">¡Reserva recibida!</h1>
-            <p className="text-neutral-500 text-sm">
-              Tu solicitud está pendiente de confirmación.{' '}
-              <span className="font-medium text-neutral-700">
-                Cuando Lili la confirme recibirás un email o WhatsApp.
-              </span>
-            </p>
-          </>
-        )}
-      </div>
 
+      {isConfirmed ? (
+        /* ── Confirmed state ── */
+        <div className="mb-6">
+          <CheckCircle className="w-16 h-16 text-emerald-500 mx-auto mb-4" />
+          <h1 className="font-serif text-2xl mb-2">¡Cita confirmada!</h1>
+          <p className="text-neutral-500 text-sm">
+            Lili ha confirmado tu cita. Te esperamos.
+          </p>
+        </div>
+      ) : (
+        /* ── Pending state — reassuring UX ── */
+        <div className="mb-6">
+
+          {/* Icon: soft lavender circle */}
+          <div className="w-20 h-20 rounded-full bg-[#CDB4DB]/10 flex items-center justify-center mx-auto mb-5">
+            <div className="w-14 h-14 rounded-full bg-[#CDB4DB]/20 flex items-center justify-center">
+              <CalendarClock className="w-7 h-7 text-[#CDB4DB]" />
+            </div>
+          </div>
+
+          <h1 className="font-serif text-2xl mb-2">¡Solicitud enviada!</h1>
+          <p className="text-neutral-500 text-sm leading-relaxed">
+            Tu solicitud ha llegado a Lili.<br />
+            En cuanto la revise, te confirmamos la cita.
+          </p>
+
+          {/* Progress steps */}
+          <div className="flex items-start justify-center gap-0 mt-6">
+            {/* Step 1: done */}
+            <div className="flex flex-col items-center gap-1.5 w-20">
+              <div className="w-7 h-7 rounded-full bg-[#CDB4DB] flex items-center justify-center shadow-sm">
+                <Check className="w-3.5 h-3.5 text-white" />
+              </div>
+              <span className="text-[11px] font-medium text-[#CDB4DB]">Enviada</span>
+            </div>
+
+            {/* Connector */}
+            <div className="w-10 h-px bg-neutral-200 mt-3.5" />
+
+            {/* Step 2: in progress */}
+            <div className="flex flex-col items-center gap-1.5 w-20">
+              <div className="w-7 h-7 rounded-full border-2 border-neutral-200 flex items-center justify-center">
+                <div className="w-2.5 h-2.5 rounded-full bg-neutral-200 animate-pulse" />
+              </div>
+              <span className="text-[11px] text-neutral-400">Confirmando</span>
+            </div>
+
+            {/* Connector */}
+            <div className="w-10 h-px bg-neutral-100 mt-3.5" />
+
+            {/* Step 3: future */}
+            <div className="flex flex-col items-center gap-1.5 w-20">
+              <div className="w-7 h-7 rounded-full border-2 border-neutral-100 flex items-center justify-center">
+                <Check className="w-3.5 h-3.5 text-neutral-200" />
+              </div>
+              <span className="text-[11px] text-neutral-300">Lista</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Booking details card */}
       <div className="bg-white rounded-xl border border-neutral-200 p-6 text-left">
         {services.length === 1 ? (
           <h3 className="font-medium text-lg mb-4">{services[0].name}</h3>
@@ -118,30 +161,52 @@ export default async function ConfirmationPage({
 
         <div className="space-y-3 text-sm">
           <div className="flex items-center gap-3 text-neutral-600">
-            <Calendar className="w-4 h-4 text-[#CDB4DB]" />
+            <Calendar className="w-4 h-4 text-[#CDB4DB] shrink-0" />
             <span className="capitalize">{formatDate(booking.date)}</span>
           </div>
           <div className="flex items-center gap-3 text-neutral-600">
-            <Clock className="w-4 h-4 text-[#CDB4DB]" />
-            <span>{booking.startTime} - {booking.endTime} · {formatDuration(booking.startTime, booking.endTime)}</span>
+            <Clock className="w-4 h-4 text-[#CDB4DB] shrink-0" />
+            <span>{booking.startTime} – {booking.endTime} · {formatDuration(booking.startTime, booking.endTime)}</span>
           </div>
           <div className="flex items-center gap-3 text-neutral-600">
-            <Euro className="w-4 h-4 text-[#CDB4DB]" />
+            <Euro className="w-4 h-4 text-[#CDB4DB] shrink-0" />
             <span>{totalPrice}€ · Pago en local</span>
           </div>
         </div>
       </div>
 
+      {/* Pending: what happens next */}
+      {isPending && (
+        <div className="mt-4 bg-neutral-50 rounded-xl border border-neutral-100 p-4 text-left">
+          <p className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2.5">¿Qué pasa ahora?</p>
+          <ul className="space-y-2">
+            <li className="flex items-start gap-2 text-sm text-neutral-500">
+              <span className="text-[#CDB4DB] font-bold mt-px">·</span>
+              Recibirás un <span className="font-medium text-neutral-700 mx-1">email o WhatsApp</span> cuando Lili confirme tu cita.
+            </li>
+            <li className="flex items-start gap-2 text-sm text-neutral-500">
+              <span className="text-[#CDB4DB] font-bold mt-px">·</span>
+              Si hubiera algún cambio en el horario, Lili te <span className="font-medium text-neutral-700 mx-1">contactará directamente.</span>
+            </li>
+            <li className="flex items-start gap-2 text-sm text-neutral-500">
+              <span className="text-[#CDB4DB] font-bold mt-px">·</span>
+              Suele confirmarse en <span className="font-medium text-neutral-700 mx-1">menos de 24 h.</span>
+            </li>
+          </ul>
+        </div>
+      )}
+
+      {/* CTAs */}
       <div className="mt-6 flex flex-col gap-3">
         <Link
           href="/dashboard"
           className="bg-[#CDB4DB] hover:bg-[#bda0cb] text-white font-medium py-3 rounded-full transition-colors text-center"
         >
-          Ver mis reservas
+          {isPending ? 'Seguir el estado de mi reserva' : 'Ver mis reservas'}
         </Link>
         <Link
           href="/"
-          className="text-sm text-neutral-500 hover:text-neutral-700"
+          className="text-sm text-neutral-400 hover:text-neutral-600 transition-colors"
         >
           Volver al inicio
         </Link>
