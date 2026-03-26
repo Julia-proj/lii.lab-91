@@ -50,7 +50,7 @@ export default async function ConfirmationPage({
     )
   }
 
-  const services = (booking.services || []) as ServiceData[]
+  const services = (booking.services || []) as unknown as ServiceData[]
   const totalPrice = services.reduce((sum, s) => sum + s.price, 0)
 
   const formatDate = (dateStr: string) => {
