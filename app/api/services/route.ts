@@ -9,8 +9,19 @@ export async function GET(req: NextRequest) {
     await dbConnect()
     const { searchParams } = new URL(req.url)
     const category = searchParams.get('category')
+    const all = searchParams.get('all')
 
-    const filter: Record<string, unknown> = { active: true }
+    // ?all=true requires admin session — returns all services incl. inactive
+    const filter: Record<string, unknown> = {}
+    if (all === 'true') {
+      const session = await auth()
+      if (!session || session.user.role !== 'admin') {
+        filter.active = true
+      }
+    } else {
+      filter.active = true
+    }
+
     if (category) filter.category = category
     const popular = searchParams.get('popular')
     if (popular === 'true') filter.popular = true

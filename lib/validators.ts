@@ -40,6 +40,7 @@ export const serviceSchema = z.object({
   active: z.boolean().default(true),
   popular: z.boolean().default(false),
   includes: z.string().optional(),
+  image: z.string().optional(),
 })
 
 export const profileSchema = z.object({
