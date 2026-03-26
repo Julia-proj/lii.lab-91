@@ -28,8 +28,9 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen overflow-hidden"
+      className="relative h-screen overflow-hidden"
       style={{
+        height: '100svh',
         backgroundColor: isHero ? "#0a0a0a" : ATMOSPHERIC[current - 1].bg,
         transition: "background-color 2000ms ease-in-out",
       }}
