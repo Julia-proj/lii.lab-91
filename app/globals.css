@@ -215,6 +215,16 @@
   }
 
 
+  /* ── Hero slow zoom (Ken Burns) ── */
+  @keyframes heroZoom {
+    from { transform: scale(1);    }
+    to   { transform: scale(1.07); }
+  }
+  .hero-zoom {
+    animation: heroZoom 20s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
   /* ── Swipe hint arrow ── */
   @keyframes swipeHint {
     0%, 100% { transform: translateX(0px); opacity: 0.45; }

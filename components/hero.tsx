@@ -47,7 +47,7 @@ export function Hero() {
           alt="Lii.lab beauty studio"
           fetchPriority="high"
           decoding="async"
-          className="w-full h-full object-cover object-[center_20%] md:object-[center_28%]"
+          className="w-full h-full object-cover object-[center_20%] md:object-[center_28%] hero-zoom"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/10 md:bg-gradient-to-r md:from-black/65 md:via-black/30 md:to-transparent" />
       </div>
