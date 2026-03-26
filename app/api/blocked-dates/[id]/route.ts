@@ -1,29 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { dbConnect } from '@/lib/db'
-import BlockedDate from '@/models/BlockedDate'
 import { auth } from '@/lib/auth'
+import { ScheduleService } from '@/backend/services/schedule.service'
 
 export async function DELETE(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const session = await auth()
+  if (!session || session.user.role !== 'admin') {
+    return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
+  }
+
+  const { id } = await params
   try {
-    const session = await auth()
-    if (!session || session.user.role !== 'admin') {
-      return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
-    }
-
-    const { id } = await params
-    await dbConnect()
-
-    const blocked = await BlockedDate.findByIdAndDelete(id)
-    if (!blocked) {
-      return NextResponse.json({ error: 'Fecha bloqueada no encontrada' }, { status: 404 })
-    }
-
+    await ScheduleService.unblockDate(id)
     return NextResponse.json({ message: 'Fecha desbloqueada' })
-  } catch (error) {
-    console.error('Error unblocking date:', error)
-    return NextResponse.json({ error: 'Error al desbloquear fecha' }, { status: 500 })
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : 'Error al desbloquear fecha'
+    return NextResponse.json({ error: msg }, { status: 404 })
   }
 }

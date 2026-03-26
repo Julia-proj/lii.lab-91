@@ -1,144 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { dbConnect } from '@/lib/db'
-import CourseBooking from '@/models/CourseBooking'
-import User from '@/models/User'
-import BlockedDate from '@/models/BlockedDate'
 import { auth } from '@/lib/auth'
 import { courseBookingSchema } from '@/lib/validators'
-import { getCourseDays } from '@/lib/course-availability'
-import { isSameDay, startOfDay, addDays } from 'date-fns'
-import { sendWhatsAppToAdmin } from '@/lib/whatsapp'
+import { CourseService } from '@/backend/services/course.service'
 
 export async function GET() {
+  const session = await auth()
+  if (!session) return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
+
   try {
-    const session = await auth()
-    if (!session) {
-      return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
-    }
-
-    await dbConnect()
-
-    // Admin sees all, user sees only their own
-    const filter =
-      session.user.role === 'admin' ? {} : { user: session.user.id }
-
-    const bookings = await CourseBooking.find(filter)
-      .populate('user', 'name email phone')
-      .sort({ startDate: -1 })
-      .lean()
-
+    const bookings = await CourseService.getAll(session.user.id, session.user.role)
     return NextResponse.json(bookings)
-  } catch (error) {
-    console.error('Error fetching course bookings:', error)
-    return NextResponse.json(
-      { error: 'Error al obtener reservas de curso' },
-      { status: 500 }
-    )
+  } catch {
+    return NextResponse.json({ error: 'Error al obtener reservas de curso' }, { status: 500 })
   }
 }
 
 export async function POST(req: NextRequest) {
+  const session = await auth()
+  if (!session) return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
+
+  const parsed = courseBookingSchema.safeParse(await req.json())
+  if (!parsed.success) return NextResponse.json({ error: parsed.error.errors[0].message }, { status: 400 })
+
   try {
-    const session = await auth()
-    if (!session) {
-      return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
-    }
-
-    const body = await req.json()
-    const parsed = courseBookingSchema.safeParse(body)
-    if (!parsed.success) {
-      return NextResponse.json(
-        { error: parsed.error.errors[0].message },
-        { status: 400 }
-      )
-    }
-
-    await dbConnect()
-
-    const startDate = new Date(parsed.data.startDate + 'T00:00:00')
-    const courseType = parsed.data.courseType || 'manic-0.0'
-
-    // Compute course days: 3 for manic-0.0, 1 for perfeccionamiento
-    let courseDays: Date[]
-    if (courseType === 'perfeccionamiento') {
-      const dow = startDate.getDay()
-      if (dow === 0 || dow === 6) {
-        return NextResponse.json(
-          { error: 'La fecha seleccionada debe ser un día laborable' },
-          { status: 400 }
-        )
-      }
-      courseDays = [startDate]
-    } else {
-      courseDays = getCourseDays(startDate)
-      if (courseDays.length !== 3) {
-        return NextResponse.json(
-          { error: 'La fecha seleccionada no permite 3 días laborables consecutivos' },
-          { status: 400 }
-        )
-      }
-    }
-
-    // Double-check availability (race condition protection)
-    const blockedDocs = await BlockedDate.find().lean()
-    const blockedDates = blockedDocs.map((b) => new Date(b.date))
-
-    const activeCourses = await CourseBooking.find({
-      status: { $in: ['confirmada', 'pendiente'] },
-    }).lean()
-    const existingCourseDays = activeCourses.flatMap((c) =>
-      c.days.map((d: string | Date) => new Date(d))
-    )
-
-    // Check none of our days are blocked or taken
-    for (const day of courseDays) {
-      if (blockedDates.some((bd) => isSameDay(bd, day))) {
-        return NextResponse.json(
-          { error: 'Una de las fechas está bloqueada. Por favor, elige otra fecha.' },
-          { status: 409 }
-        )
-      }
-      if (existingCourseDays.some((cd) => isSameDay(cd, day))) {
-        return NextResponse.json(
-          { error: 'Una de las fechas ya tiene un curso reservado. Por favor, elige otra fecha.' },
-          { status: 409 }
-        )
-      }
-    }
-
-    const courseBooking = await CourseBooking.create({
-      user: session.user.id,
-      startDate: parsed.data.startDate,
-      days: courseDays.map((d) => d.toISOString().split('T')[0]),
-      courseType,
-      status: 'confirmada',
-      notes: parsed.data.notes || '',
-    })
-
-    // Notify admin via WhatsApp (fire and forget)
-    try {
-      const user = await User.findById(session.user.id).select('name email phone').lean() as { name?: string; email?: string; phone?: string } | null
-      const daysFormatted = courseDays.map((d, i) =>
-        `Día ${i + 1}: ${d.toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' })}`
-      ).join('\n')
-      const msg =
-        `Nueva reserva de CURSO Lii.lab:\n` +
-        `${user?.name || 'Cliente'}\n` +
-        `${user?.email || ''}\n` +
-        (user?.phone ? `${user.phone}\n` : '') +
-        `${courseType === 'perfeccionamiento' ? 'Perfeccionamiento · 349,99€' : 'MANIC 0.0 · 749,99€'}\n` +
-        `${daysFormatted}`
-      sendWhatsAppToAdmin(msg).catch((e) => console.error('WhatsApp course notification error:', e))
-    } catch (e) {
-      console.error('Course notification error:', e)
-    }
-
-    return NextResponse.json(courseBooking, { status: 201 })
-  } catch (error) {
-    console.error('Error creating course booking:', error)
-    return NextResponse.json(
-      { error: 'Error al crear reserva de curso' },
-      { status: 500 }
-    )
+    const booking = await CourseService.create(parsed.data, session.user.id)
+    return NextResponse.json(booking, { status: 201 })
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : 'Error al crear reserva de curso'
+    return NextResponse.json({ error: msg }, { status: msg.includes('bloqueada') || msg.includes('reservado') ? 409 : 400 })
   }
 }

@@ -1,30 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { dbConnect } from '@/lib/db'
-import CourseBooking from '@/models/CourseBooking'
 import { auth } from '@/lib/auth'
+import { CourseService } from '@/backend/services/course.service'
 
 export async function GET(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const session = await auth()
+  if (!session) return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
+
+  const { id } = await params
   try {
-    const session = await auth()
-    if (!session) {
-      return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
-    }
-
-    const { id } = await params
-    await dbConnect()
-
-    const booking = await CourseBooking.findById(id).populate('user', 'name email phone').lean()
-    if (!booking) {
-      return NextResponse.json({ error: 'Reserva no encontrada' }, { status: 404 })
-    }
-
+    const booking = await CourseService.getById(id)
     return NextResponse.json(booking)
-  } catch (error) {
-    console.error('Error fetching course booking:', error)
-    return NextResponse.json({ error: 'Error al obtener reserva' }, { status: 500 })
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : 'Error al obtener reserva'
+    return NextResponse.json({ error: msg }, { status: 404 })
   }
 }
 
@@ -32,40 +23,17 @@ export async function PATCH(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const session = await auth()
+  if (!session) return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
+
+  const { id } = await params
   try {
-    const session = await auth()
-    if (!session) {
-      return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
-    }
-
-    const { id } = await params
-    const body = await req.json()
-
-    await dbConnect()
-
-    const booking = await CourseBooking.findById(id)
-    if (!booking) {
-      return NextResponse.json({ error: 'Reserva no encontrada' }, { status: 404 })
-    }
-
-    // Only owner or admin can cancel
-    if (booking.user.toString() !== session.user.id && session.user.role !== 'admin') {
-      return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
-    }
-
-    const allowedStatuses = ['pendiente', 'confirmada', 'cancelada']
-    if (body.status && allowedStatuses.includes(body.status)) {
-      // Admin can set any status; regular user can only cancel
-      if (session.user.role === 'admin' || body.status === 'cancelada') {
-        booking.status = body.status
-        await booking.save()
-      }
-    }
-
+    const booking = await CourseService.update(id, await req.json(), session.user.id, session.user.role)
     return NextResponse.json(booking)
-  } catch (error) {
-    console.error('Error updating course booking:', error)
-    return NextResponse.json({ error: 'Error al actualizar reserva' }, { status: 500 })
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : 'Error al actualizar reserva'
+    const status = msg === 'No autorizado' ? 403 : msg.includes('no encontrada') ? 404 : 400
+    return NextResponse.json({ error: msg }, { status })
   }
 }
 
@@ -73,19 +41,16 @@ export async function DELETE(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const session = await auth()
+  if (!session || session.user.role !== 'admin') {
+    return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
+  }
+
+  const { id } = await params
   try {
-    const session = await auth()
-    if (!session || session.user.role !== 'admin') {
-      return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
-    }
-
-    const { id } = await params
-    await dbConnect()
-
-    await CourseBooking.findByIdAndDelete(id)
+    await CourseService.remove(id)
     return NextResponse.json({ ok: true })
-  } catch (error) {
-    console.error('Error deleting course booking:', error)
+  } catch {
     return NextResponse.json({ error: 'Error al eliminar reserva' }, { status: 500 })
   }
 }
