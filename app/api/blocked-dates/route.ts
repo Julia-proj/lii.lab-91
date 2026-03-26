@@ -1,49 +1,31 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { dbConnect } from '@/lib/db'
-import BlockedDate from '@/models/BlockedDate'
 import { auth } from '@/lib/auth'
 import { blockedDateSchema } from '@/lib/validators'
+import { ScheduleService } from '@/backend/services/schedule.service'
 
 export async function GET() {
   try {
-    await dbConnect()
-    const blocked = await BlockedDate.find().sort({ date: 1 })
+    const blocked = await ScheduleService.getAllBlockedDates()
     return NextResponse.json(blocked)
-  } catch (error) {
-    console.error('Error fetching blocked dates:', error)
+  } catch {
     return NextResponse.json({ error: 'Error al obtener fechas bloqueadas' }, { status: 500 })
   }
 }
 
 export async function POST(req: NextRequest) {
+  const session = await auth()
+  if (!session || session.user.role !== 'admin') {
+    return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
+  }
+
+  const parsed = blockedDateSchema.safeParse(await req.json())
+  if (!parsed.success) return NextResponse.json({ error: parsed.error.errors[0].message }, { status: 400 })
+
   try {
-    const session = await auth()
-    if (!session || session.user.role !== 'admin') {
-      return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
-    }
-
-    const body = await req.json()
-    const parsed = blockedDateSchema.safeParse(body)
-    if (!parsed.success) {
-      return NextResponse.json({ error: parsed.error.errors[0].message }, { status: 400 })
-    }
-
-    await dbConnect()
-
-    const existing = await BlockedDate.findOne({ date: parsed.data.date })
-    if (existing) {
-      return NextResponse.json({ error: 'Esta fecha ya está bloqueada' }, { status: 409 })
-    }
-
-    const blocked = await BlockedDate.create({
-      date: parsed.data.date,
-      reason: parsed.data.reason,
-      blockedBy: session.user.id,
-    })
-
+    const blocked = await ScheduleService.blockDate(parsed.data.date, parsed.data.reason, session.user.id)
     return NextResponse.json(blocked, { status: 201 })
-  } catch (error) {
-    console.error('Error blocking date:', error)
-    return NextResponse.json({ error: 'Error al bloquear fecha' }, { status: 500 })
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : 'Error al bloquear fecha'
+    return NextResponse.json({ error: msg }, { status: msg.includes('ya está') ? 409 : 500 })
   }
 }

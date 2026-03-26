@@ -1,24 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { dbConnect } from '@/lib/db'
-import Service from '@/models/Service'
 import { auth } from '@/lib/auth'
 import { serviceSchema } from '@/lib/validators'
+import { NailServiceService } from '@/backend/services/nail-service.service'
 
 export async function GET(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params
   try {
-    const { id } = await params
-    await dbConnect()
-    const service = await Service.findById(id)
-    if (!service) {
-      return NextResponse.json({ error: 'Servicio no encontrado' }, { status: 404 })
-    }
+    const service = await NailServiceService.getById(id)
     return NextResponse.json(service)
-  } catch (error) {
-    console.error('Error fetching service:', error)
-    return NextResponse.json({ error: 'Error al obtener servicio' }, { status: 500 })
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : 'Error al obtener servicio'
+    return NextResponse.json({ error: msg }, { status: 404 })
   }
 }
 
@@ -26,28 +21,21 @@ export async function PUT(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const session = await auth()
+  if (!session || session.user.role !== 'admin') {
+    return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
+  }
+
+  const parsed = serviceSchema.partial().safeParse(await req.json())
+  if (!parsed.success) return NextResponse.json({ error: parsed.error.errors[0].message }, { status: 400 })
+
+  const { id } = await params
   try {
-    const session = await auth()
-    if (!session || session.user.role !== 'admin') {
-      return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
-    }
-
-    const { id } = await params
-    const body = await req.json()
-    const parsed = serviceSchema.partial().safeParse(body)
-    if (!parsed.success) {
-      return NextResponse.json({ error: parsed.error.errors[0].message }, { status: 400 })
-    }
-
-    await dbConnect()
-    const service = await Service.findByIdAndUpdate(id, parsed.data, { new: true })
-    if (!service) {
-      return NextResponse.json({ error: 'Servicio no encontrado' }, { status: 404 })
-    }
+    const service = await NailServiceService.update(id, parsed.data)
     return NextResponse.json(service)
-  } catch (error) {
-    console.error('Error updating service:', error)
-    return NextResponse.json({ error: 'Error al actualizar servicio' }, { status: 500 })
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : 'Error al actualizar servicio'
+    return NextResponse.json({ error: msg }, { status: 404 })
   }
 }
 
@@ -55,21 +43,17 @@ export async function DELETE(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  try {
-    const session = await auth()
-    if (!session || session.user.role !== 'admin') {
-      return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
-    }
+  const session = await auth()
+  if (!session || session.user.role !== 'admin') {
+    return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
+  }
 
-    const { id } = await params
-    await dbConnect()
-    const service = await Service.findByIdAndUpdate(id, { active: false }, { new: true })
-    if (!service) {
-      return NextResponse.json({ error: 'Servicio no encontrado' }, { status: 404 })
-    }
+  const { id } = await params
+  try {
+    await NailServiceService.deactivate(id)
     return NextResponse.json({ message: 'Servicio desactivado' })
-  } catch (error) {
-    console.error('Error deleting service:', error)
-    return NextResponse.json({ error: 'Error al eliminar servicio' }, { status: 500 })
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : 'Error al eliminar servicio'
+    return NextResponse.json({ error: msg }, { status: 404 })
   }
 }

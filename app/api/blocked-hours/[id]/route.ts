@@ -1,28 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { dbConnect } from '@/lib/db'
-import BlockedHour from '@/models/BlockedHour'
 import { auth } from '@/lib/auth'
+import { ScheduleService } from '@/backend/services/schedule.service'
 
 export async function DELETE(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const session = await auth()
+  if (!session || session.user.role !== 'admin') {
+    return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
+  }
+
+  const { id } = await params
   try {
-    const session = await auth()
-    if (!session || session.user.role !== 'admin') {
-      return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
-    }
-
-    const { id } = await params
-    await dbConnect()
-    const deleted = await BlockedHour.findByIdAndDelete(id)
-    if (!deleted) {
-      return NextResponse.json({ error: 'No encontrado' }, { status: 404 })
-    }
-
+    await ScheduleService.unblockHour(id)
     return NextResponse.json({ success: true })
-  } catch (error) {
-    console.error('Error unblocking hour:', error)
-    return NextResponse.json({ error: 'Error al desbloquear hora' }, { status: 500 })
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : 'Error al desbloquear hora'
+    return NextResponse.json({ error: msg }, { status: 404 })
   }
 }
