@@ -19,7 +19,7 @@ export function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % TOTAL)
-    }, 5500)
+    }, 4000)
     return () => clearInterval(timer)
   }, [])
 
