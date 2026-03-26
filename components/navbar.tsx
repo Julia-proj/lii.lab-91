@@ -155,7 +155,7 @@ export function Navbar() {
             Reservar cita
           </Link>
           <button
-            className="p-2"
+            className="p-2.5 -mr-1"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >

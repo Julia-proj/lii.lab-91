@@ -5,7 +5,7 @@ import { useSession, signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useBooking, getTotalDuration, getTotalPrice } from './booking-context'
 import type { IService } from '@/types'
-import { Clock, ChevronDown, Star, ImageIcon, LogIn, Plus, X, Check, Minus } from 'lucide-react'
+import { Clock, ChevronDown, Star, LogIn, Plus, X, Check, Minus } from 'lucide-react'
 
 interface CategorySection {
   id: string
@@ -283,21 +283,23 @@ export function CategoryStep() {
                         }`}
                       >
                         <div className="flex gap-3">
-                          {/* Photo */}
-                          <div className="w-16 h-16 shrink-0 rounded-lg bg-neutral-100 flex items-center justify-center overflow-hidden">
-                            {(service.image || SERVICE_IMAGE_FALLBACK[service.name]) ? (
-                              <img
-                                src={`/images/services/${service.image || SERVICE_IMAGE_FALLBACK[service.name]}`}
-                                alt={service.name}
-                                className="w-full h-full object-cover"
-                                onError={(e) => {
-                                  ;(e.currentTarget as HTMLImageElement).style.display = 'none'
-                                  ;(e.currentTarget.nextSibling as HTMLElement | null)?.removeAttribute('hidden')
-                                }}
-                              />
-                            ) : null}
-                            <ImageIcon className={`w-5 h-5 text-neutral-300 ${(service.image || SERVICE_IMAGE_FALLBACK[service.name]) ? 'hidden' : ''}`} />
-                          </div>
+                          {/* Photo — only render if image exists */}
+                          {(() => {
+                            const imgSrc = service.image
+                              ? service.image
+                              : SERVICE_IMAGE_FALLBACK[service.name]
+                                ? `/images/services/${SERVICE_IMAGE_FALLBACK[service.name]}`
+                                : null
+                            return imgSrc ? (
+                              <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden">
+                                <img
+                                  src={imgSrc}
+                                  alt={service.name}
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                            ) : null
+                          })()}
 
                           {/* Info */}
                           <div className="flex-1 min-w-0">

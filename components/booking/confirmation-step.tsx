@@ -128,7 +128,7 @@ export function ConfirmationStep() {
       }
 
       localStorage.removeItem('liilab-booking-state')
-      toast.success('Reserva confirmada!')
+      toast.success('¡Solicitud enviada!')
       router.push(`/booking/confirmation/${data._id}`)
     } catch {
       toast.error('Error de conexion')

@@ -350,12 +350,11 @@ export default function AdminServicesPage() {
                   className={`bg-white dark:bg-[#1e1e24] rounded-xl border border-neutral-100 dark:border-white/8 p-3 flex gap-3 ${!s.active ? 'opacity-50' : ''}`}
                 >
                   {/* Thumbnail */}
-                  <div className="w-14 h-14 rounded-lg overflow-hidden bg-neutral-100 dark:bg-white/5 shrink-0">
-                    {s.image
-                      ? <img src={s.image} alt={s.name} className="w-full h-full object-cover" />
-                      : <div className="w-full h-full flex items-center justify-center"><Scissors className="w-5 h-5 text-neutral-300" /></div>
-                    }
-                  </div>
+                  {s.image && (
+                    <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0">
+                      <img src={s.image} alt={s.name} className="w-full h-full object-cover" />
+                    </div>
+                  )}
 
                   {/* Info */}
                   <div className="flex-1 min-w-0">
@@ -424,12 +423,11 @@ export default function AdminServicesPage() {
                   {items.map((s) => (
                     <tr key={s._id} className={`hover:bg-neutral-50/60 dark:hover:bg-white/[0.03] transition-colors ${!s.active ? 'opacity-40' : ''}`}>
                       <td className="px-4 py-3">
-                        <div className="w-9 h-9 rounded-lg overflow-hidden bg-neutral-100 dark:bg-white/5 shrink-0">
-                          {s.image
-                            ? <img src={s.image} alt="" className="w-full h-full object-cover" />
-                            : <div className="w-full h-full flex items-center justify-center"><Scissors className="w-3.5 h-3.5 text-neutral-300" /></div>
-                          }
-                        </div>
+                        {s.image && (
+                          <div className="w-9 h-9 rounded-lg overflow-hidden">
+                            <img src={s.image} alt="" className="w-full h-full object-cover" />
+                          </div>
+                        )}
                       </td>
                       <td className="px-4 py-3 font-medium text-neutral-900 dark:text-neutral-200">{s.name}</td>
                       <td className="px-4 py-3 text-neutral-700 dark:text-neutral-300">{s.price}€</td>

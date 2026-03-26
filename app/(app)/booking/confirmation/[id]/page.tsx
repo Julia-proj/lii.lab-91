@@ -175,9 +175,9 @@ export default async function ConfirmationPage({
         </div>
       </div>
 
-      {/* Pending: what happens next */}
+      {/* Pending: what happens next — desktop only */}
       {isPending && (
-        <div className="mt-4 bg-neutral-50 rounded-xl border border-neutral-100 p-4 text-left">
+        <div className="hidden sm:block mt-4 bg-neutral-50 rounded-xl border border-neutral-100 p-4 text-left">
           <p className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2.5">¿Qué pasa ahora?</p>
           <ul className="space-y-2">
             <li className="flex items-start gap-2 text-sm text-neutral-500">
