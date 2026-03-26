@@ -106,7 +106,7 @@ export async function POST(req: NextRequest) {
       date,
       startTime,
       endTime,
-      status: 'confirmada',
+      status: 'pendiente',
       notes: notes || undefined,
     })
 

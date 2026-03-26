@@ -361,15 +361,17 @@ function BookingCard({
   )
 }
 
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+const toMin = (t: string) => {
+  const [h, m] = t.split(':').map(Number)
+  return h * 60 + m
+}
+
 // ── Day timeline ──────────────────────────────────────────────────────────────
 
 function DayTimeline({ bookings }: { bookings: Booking[] }) {
   if (bookings.length === 0) return null
-
-  const toMin = (t: string) => {
-    const [h, m] = t.split(':').map(Number)
-    return h * 60 + m
-  }
 
   const sorted = [...bookings].sort((a, b) => a.startTime.localeCompare(b.startTime))
   const dayStart = Math.max(toMin(sorted[0].startTime) - 20, 8 * 60)
@@ -393,7 +395,8 @@ function DayTimeline({ bookings }: { bookings: Booking[] }) {
       <p className="text-[10px] uppercase tracking-widest text-neutral-400 mb-2.5">Agenda visual</p>
 
       {/* Bar */}
-      <div className="relative h-6 bg-neutral-100 dark:bg-white/8 rounded-md overflow-hidden">
+      <div className="relative h-7 bg-neutral-100 dark:bg-white/8 rounded-md overflow-hidden">
+        {/* Booking segments */}
         {sorted.map((b) => {
           const left  = ((toMin(b.startTime) - dayStart) / totalSpan) * 100
           const width = ((toMin(b.endTime) - toMin(b.startTime)) / totalSpan) * 100
@@ -404,6 +407,23 @@ function DayTimeline({ bookings }: { bookings: Booking[] }) {
               style={{ left: `${left}%`, width: `${Math.max(width, 1)}%` }}
               title={`${b.startTime}–${b.endTime} · ${b.user?.name}`}
             />
+          )
+        })}
+        {/* Gap segments */}
+        {gaps.map((g, i) => {
+          const left  = ((toMin(g.from) - dayStart) / totalSpan) * 100
+          const width = ((toMin(g.to) - toMin(g.from)) / totalSpan) * 100
+          return (
+            <div
+              key={i}
+              className="absolute top-0 h-full flex items-center justify-center border-x border-dashed border-neutral-300/70 dark:border-white/20 bg-white/60 dark:bg-white/5"
+              style={{ left: `${left}%`, width: `${Math.max(width, 0.5)}%` }}
+              title={`Libre: ${g.from}–${g.to} · ${g.mins}min`}
+            >
+              {width > 7 && (
+                <span className="text-[9px] text-neutral-400 dark:text-neutral-500 font-medium leading-none">{g.mins}m</span>
+              )}
+            </div>
           )
         })}
       </div>
@@ -423,17 +443,6 @@ function DayTimeline({ bookings }: { bookings: Booking[] }) {
           )
         })}
       </div>
-
-      {/* Gaps */}
-      {gaps.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 mt-2">
-          {gaps.map((g, i) => (
-            <span key={i} className="text-[10px] text-neutral-400 bg-white dark:bg-white/5 rounded-full px-2 py-0.5 border border-neutral-100 dark:border-white/8">
-              {g.from}→{g.to} · {g.mins}min libre
-            </span>
-          ))}
-        </div>
-      )}
     </div>
   )
 }
@@ -727,10 +736,25 @@ export default function AgendaPage() {
               ) : (
                 <>
                   <DayTimeline bookings={selectedDayBookings} />
-                  <div className="space-y-2.5">
-                    {selectedDayBookings.map((b) => (
-                      <BookingCard key={b._id} booking={b} onUpdate={handleUpdate} />
-                    ))}
+                  <div className="space-y-1">
+                    {selectedDayBookings.map((b, i) => {
+                      const next = selectedDayBookings[i + 1]
+                      const gapMins = next ? toMin(next.startTime) - toMin(b.endTime) : 0
+                      return (
+                        <div key={b._id}>
+                          <BookingCard booking={b} onUpdate={handleUpdate} />
+                          {gapMins > 0 && (
+                            <div className="flex items-center gap-2 px-1 py-2">
+                              <div className="flex-1 border-t border-dashed border-neutral-200 dark:border-white/8" />
+                              <span className="text-[11px] text-neutral-400 font-medium whitespace-nowrap">
+                                {b.endTime} → {next.startTime} · {gapMins}min libre
+                              </span>
+                              <div className="flex-1 border-t border-dashed border-neutral-200 dark:border-white/8" />
+                            </div>
+                          )}
+                        </div>
+                      )
+                    })}
                   </div>
                 </>
               )}
