@@ -60,8 +60,8 @@ export const BookingService = {
     const populated = await bookingRepository.findById(booking._id.toString())
 
     if (populated?.user && populated?.services?.length > 0) {
-      const user = populated.user as { name: string; email: string; phone?: string }
-      const svcList = populated.services as { name: string; price: number }[]
+      const user = populated.user as unknown as { name: string; email: string; phone?: string }
+      const svcList = populated.services as unknown as { name: string; price: number }[]
       const totalPrice = svcList.reduce((sum, s, i) => {
         const qty = quantities[serviceIds[i]] ?? 1
         return sum + s.price * qty
@@ -120,8 +120,8 @@ export const BookingService = {
     if (!updated) throw new Error('Reserva no encontrada')
 
     if (updateFields.status === 'cancelada' || updateFields.status === 'confirmada') {
-      const user = updated.user as { name: string; email: string; phone?: string }
-      const svcList = updated.services as { name: string; price: number }[]
+      const user = updated.user as unknown as { name: string; email: string; phone?: string }
+      const svcList = updated.services as unknown as { name: string; price: number }[]
       const wasConfirmed = existing.status === 'confirmada'
       if (user?.email && svcList?.length > 0) {
         const payload = {

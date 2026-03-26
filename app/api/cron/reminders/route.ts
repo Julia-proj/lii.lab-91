@@ -30,8 +30,8 @@ export async function GET(req: NextRequest) {
     let failed = 0
 
     for (const booking of bookings) {
-      const user = booking.user as { name: string; email: string; phone?: string }
-      const svcList = (booking.services || []) as { name: string; price: number }[]
+      const user = booking.user as unknown as { name: string; email: string; phone?: string }
+      const svcList = (booking.services || []) as unknown as { name: string; price: number }[]
 
       if (!user || svcList.length === 0) continue
 
