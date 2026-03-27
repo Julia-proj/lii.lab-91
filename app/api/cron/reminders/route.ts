@@ -22,10 +22,10 @@ export async function GET(req: NextRequest) {
     const bookings = await Booking.find({
       date: tomorrowStr,
       status: { $in: ['confirmada', 'pendiente'] },
+      reminderSent: { $ne: true },
     })
       .populate('services', 'name price duration')
       .populate('user', 'name email phone')
-      .lean()
 
     let sent = 0
     let failed = 0
@@ -50,6 +50,7 @@ export async function GET(req: NextRequest) {
           endTime: booking.endTime,
           price: totalPrice,
         })
+        await Booking.updateOne({ _id: booking._id }, { reminderSent: true })
         sent++
       } catch (err) {
         console.error(`Reminder failed for booking ${booking._id}:`, err)
