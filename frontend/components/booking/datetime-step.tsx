@@ -1,24 +1,12 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import type { ComponentProps } from 'react'
 import { useBooking, getTotalDuration } from './booking-context'
 import { DayPicker } from 'react-day-picker'
+import type { DayButtonProps } from 'react-day-picker'
 import { es } from 'date-fns/locale'
 import { format, isBefore, startOfDay } from 'date-fns'
 import { WEEK_SCHEDULE } from '@/lib/schedule'
-
-type Modifiers = {
-  selected?: boolean
-  today?: boolean
-  disabled?: boolean
-  outside?: boolean
-  [key: string]: boolean | undefined
-}
-type DayButtonProps = ComponentProps<'button'> & {
-  day?: unknown
-  modifiers: Modifiers
-}
 
 function CalendarDayButton({ day: _day, modifiers, ...props }: DayButtonProps) {
   const base =
@@ -236,7 +224,7 @@ export function DateTimeStep() {
             disabled={isDisabled}
             locale={es}
             showOutsideDays={false}
-            components={{ DayButton: CalendarDayButton as unknown as React.ComponentType<React.ComponentProps<'button'>> }}
+            components={{ DayButton: CalendarDayButton }}
             className="bg-white rounded-xl border border-neutral-200 p-4 shadow-sm"
             classNames={{
               month_caption: 'font-serif text-base mb-3 text-center capitalize',
