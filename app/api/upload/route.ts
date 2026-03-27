@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
   const dir = join(process.cwd(), 'public', 'images', 'services')
 
   await mkdir(dir, { recursive: true })
-  await writeFile(join(dir, filename), Buffer.from(await file.arrayBuffer()))
+  await writeFile(join(dir, filename), new Uint8Array(await file.arrayBuffer()))
 
   return NextResponse.json({ path: `/images/services/${filename}` })
 }
