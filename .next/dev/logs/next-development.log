@@ -1,12 +1,3208 @@
-[00:01:10.386] Server  LOG     ○ Compiling middleware ...
-[00:01:25.734] Server  WARN    ⚠ Minimum recommended TypeScript version is v5.1.0, older versions can potentially be incompatible with Next.js. Detected: 5.0.2
-[00:01:25.836] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:01:35.637] Server  LOG     ✓ Ready in 82.7s
-[00:01:38.674] Server  LOG     ○ Compiling / ...
-[00:02:34.789] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:38.615] Server  LOG     ○ Compiling /api/auth/[...nextauth] ...
-[00:06:41.414] Server  LOG     ✓ Compiled in 52.5s
-[00:07:24.746] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:30:09.401] Server  LOG     ✓ Compiled in 630ms
-[00:30:14.569] Server  LOG     ✓ Compiled in 603ms
-[00:30:19.730] Server  LOG     ✓ Compiled in 1019ms
+[00:01:40.045] Server  LOG     ○ Compiling middleware ...
+[00:01:52.962] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:02:05.824] Server  LOG     ✓ Ready in 105.1s
+[00:02:08.894] Server  LOG     ○ Compiling / ...
+[00:03:01.448] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:05.016] Server  LOG     ○ Compiling /api/auth/[...nextauth] ...
+[00:13:07.993] Server  LOG     ○ Compiling /admin ...
+[00:13:33.509] Server  LOG     ✓ Finished writing to filesystem cache in 20.0s
+[00:14:53.397] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:14:56.395] Server  LOG     ○ Compiling /api/bookings ...
+[00:16:25.595] Server  LOG     ✓ Compiled in 5.4s
+[00:16:45.849] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:46.058] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:46.062] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:46.065] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:47.332] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:47.340] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:47.344] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:47.347] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:47.352] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:47.359] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:47.365] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:47.377] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:47.382] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:47.391] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:47.397] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:47.402] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:47.408] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:47.410] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:47.413] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:47.416] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:48.116] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:48.133] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:48.158] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:48.162] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:48.175] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:48.181] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:48.191] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:48.195] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:16:48.198] Server  LOG     ✓ Compiled in 14s
+[00:16:49.042] Browser ERROR   ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:17:25.352] Server  LOG     ✓ Finished filesystem cache database compaction in 33.1s
+[00:17:43.732] Browser ERROR   ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:18:25.548] Browser ERROR   ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:18:25.663] Browser ERROR   ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:18:30.827] Browser ERROR   ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:18:31.934] Browser ERROR   ./frontend/components/reviews-carousel.tsx:5:1
+Module not found: Can't resolve '@/lib/data/reviews'
+  3 | import { useMemo } from "react"
+  4 | import { Star } from "lucide-react"
+> 5 | import { reviews } from "@/lib/data/reviews"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export const ReviewsCarousel = () => {
+  8 |   // Для эффекта бесконечного скролла нам нужно продублировать массив
+
+Import map: aliased to relative './backend/lib/data/reviews' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:18:38.986] Server  LOG     ✓ Compiled in 533ms
+[00:20:43.930] Server  LOG     ✓ Compiled in 2.3s
+[00:21:23.490] Server  LOG     ✓ Compiled in 583ms
+[00:21:29.020] Browser WARN    Image with src "/images/review2.PNG" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:24:29.609] Server  LOG     ✓ Compiled in 2.4s
+[00:38:41.714] Server  LOG     ✓ Compiled in 585ms
+[00:40:56.959] Server  LOG     ✓ Compiled in 1293ms
+[00:41:16.511] Server  LOG     ○ Compiling /_not-found/page ...
+[00:41:22.827] Browser WARN    Image with src "/images/fotoreview18.1.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:41:26.005] Browser WARN    Image with src "/images/fotoreview18.2.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:41:28.278] Browser WARN    Image with src "/images/fotoreview18.3.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:41:31.971] Server  ERROR   ⨯ "The requested resource isn't a valid image for" "/images/fotoreview2.jpeg" "received" null
+[00:44:02.571] Server  LOG     ✓ Compiled in 520ms
+[00:44:18.424] Server  LOG     ✓ Compiled in 3s
+[00:50:33.046] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:50:33.046] Browser ERROR   unhandledRejection: AbortError: The play() request was interrupted because video-only background media was paused to save power. https://goo.gl/LdLk22
+[00:52:09.502] Server  LOG     ✓ Finished writing to filesystem cache in 79s
+[00:59:50.138] Server  LOG     ✓ Compiled in 15s
+[01:00:43.648] Server  LOG     ✓ Compiled in 1491ms
+[01:01:13.538] Server  LOG     ✓ Compiled in 17.2s
+[01:01:14.885] Browser WARN    Image with src "/images/fotoreview1.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:01:59.265] Server  LOG     ✓ Finished writing to filesystem cache in 16.9s
+[01:02:12.496] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:04:19.882] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:19.998] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.155] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.166] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.178] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.266] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.273] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.288] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.370] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.383] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.387] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.397] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.403] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.406] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.502] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.506] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.518] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.661] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.666] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.669] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.673] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.683] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.686] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.692] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.700] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.703] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.712] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.756] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.767] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.895] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.899] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.904] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.915] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.919] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.922] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.933] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:20.995] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:21.001] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:21.004] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:21.013] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:21.020] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:21.026] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:21.036] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:21.039] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:21.052] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:21.055] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:21.066] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:21.069] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:21.072] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:21.083] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:21.086] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:21.089] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:21.100] Server  LOG     ✓ Compiled in 10.1s
+[01:04:22.379] Browser ERROR   ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[01:04:25.453] Browser ERROR   ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[01:04:26.208] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:26.216] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:26.223] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:26.229] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.046] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.052] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.055] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.059] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.062] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.067] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.070] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.072] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.076] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.082] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.085] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.088] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.092] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.094] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.098] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.102] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.107] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.110] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.112] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.117] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.121] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.124] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.126] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.130] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.134] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.137] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.253] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.258] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.262] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.265] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.268] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.271] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.275] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.278] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.285] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.289] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.292] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.295] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.298] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.301] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.306] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.309] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.311] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.314] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.320] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.324] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.326] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.329] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.332] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.335] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.339] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.342] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.345] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.347] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.352] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.355] Server  ERROR   ⨯ ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:04:27.358] Server  LOG     ✓ Compiled in 5.2s
+[01:04:27.467] Browser ERROR   ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[01:04:28.368] Browser ERROR   ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[01:04:55.256] Browser ERROR   ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[01:04:55.380] Browser ERROR   ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[01:06:17.460] Browser ERROR   ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[01:06:18.373] Browser ERROR   ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[01:06:30.883] Browser ERROR   ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[01:06:31.460] Browser ERROR   ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[01:07:06.376] Browser ERROR   ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[01:07:06.407] Browser ERROR   ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[01:07:06.496] Browser ERROR   ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[01:07:07.532] Browser ERROR   ./frontend/components/reviews-carousel.tsx:8:1
+Module not found: Can't resolve 'embla-carousel-auto-scroll'
+   6 | import { reviews } from "@/components/data/reviews"
+   7 | import useEmblaCarousel from "embla-carousel-react"
+>  8 | import AutoScroll from "embla-carousel-auto-scroll"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | export const ReviewsCarousel = () => {
+  11 |   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
+
+Import trace:
+  Server Component:
+    ./frontend/components/reviews-carousel.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[01:07:21.682] Server  LOG     ✓ Compiled in 15.3s
+[01:07:29.241] Server  LOG     ✓ Compiled in 14ms
+[01:07:36.344] Server  ERROR   ⨯ "The requested resource isn't a valid image for" "/images/fotoreview2.jpeg" "received" null
+[01:07:52.648] Server  LOG     ✓ Compiled in 3.5s
+[01:08:05.471] Server  LOG     ✓ Finished filesystem cache database compaction in 6.6min
+[01:08:06.688] Server  LOG     ✓ Finished writing to filesystem cache in 6.5min
+[01:08:30.180] Server  LOG     ✓ Finished writing to filesystem cache in 23.4s
+[01:09:38.085] Server  LOG     ✓ Finished filesystem cache database compaction in 68s
+[01:11:40.929] Browser ERROR   {"kind":"error","name":"ClientFetchError","type":"AuthError"}
+[01:12:29.131] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

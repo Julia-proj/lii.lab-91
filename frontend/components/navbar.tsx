@@ -39,6 +39,8 @@ export function Navbar() {
   const navLinks = [
     { name: "Quién soy", href: "#quien-soy" },
     { name: "Formaciones", href: "#formacion" },
+    { name: "Resultados", href: "#resultados" },
+    { name: "Opiniones", href: "#opiniones" },
     { name: "Reservar cita", href: "/booking", highlight: true },
   ]
 
@@ -143,24 +145,27 @@ export function Navbar() {
 
         {/* Mobile: Reservar pill + hamburger */}
         <div className="md:hidden flex items-center gap-2">
+          {/* Резервировать кнопку для мобильного делаем компактнее, чтобы не перегружать хедер */}
           <Link
             href="/booking"
             onClick={() => setIsMobileMenuOpen(false)}
-            className={`text-xs font-semibold px-4 py-2 rounded-md border transition-all duration-300 ${
+            className={`text-[11px] uppercase tracking-wider font-semibold px-3 py-1.5 rounded-full border transition-all duration-300 ${
               isScrolled
-                ? "bg-transparent border-neutral-300 text-neutral-600 hover:bg-neutral-100"
-                : "bg-white/15 backdrop-blur-sm border-white/40 text-white hover:bg-white/25"
+                ? "bg-neutral-900 border-neutral-900 text-white"
+                : "bg-white/15 backdrop-blur-md border-white/40 text-white hover:bg-white/25"
             }`}
           >
-            Reservar cita
+            Reservar
           </Link>
           <button
-            className="p-2.5 -mr-1"
+            className={`p-2 rounded-full transition-colors flex items-center justify-center ${
+              isScrolled ? "text-neutral-900 hover:bg-neutral-100" : "text-white hover:bg-white/10"
+            }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
-              <X className={isScrolled ? "text-neutral-900" : "text-white"} />
+              <X className="w-5 h-5" />
             ) : (
               <Menu className={isScrolled ? "text-neutral-900" : "text-white"} />
             )}
