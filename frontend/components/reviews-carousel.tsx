@@ -42,7 +42,7 @@ export const ReviewsCarousel = () => {
   }
 
   return (
-    <section id="opiniones" className="py-16 md:py-32 bg-stone-50 overflow-hidden select-none group">
+    <section id="opiniones" className="pt-16 pb-8 md:pt-32 md:pb-16 bg-stone-50 overflow-hidden select-none group">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
         <div className="text-center mb-16 relative">
           <h2 className="text-4xl md:text-5xl font-serif text-stone-900 mb-3 tracking-tight">
