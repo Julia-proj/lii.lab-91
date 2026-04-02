@@ -30,6 +30,9 @@ export function Hero() {
       id="hero"
       className="relative h-[100dvh] overflow-hidden"
       style={{
+        backgroundColor: isHero ? "#0a0a0a" : ATMOSPHERIC[current - 1].bg,
+        transition: "background-color 2000ms ease-in-out",
+      }}
     >
 
       {/* ── Slide 0: Hero.JPG — full screen as always ── */}

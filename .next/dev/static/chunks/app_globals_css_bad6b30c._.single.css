@@ -1190,6 +1190,10 @@
     height: 3px;
   }
 
+  .h-\[100dvh\] {
+    height: 100dvh;
+  }
+
   .h-\[350px\] {
     height: 350px;
   }
@@ -3273,6 +3277,10 @@
 
   .pt-5 {
     padding-top: calc(var(--spacing) * 5);
+  }
+
+  .pt-8 {
+    padding-top: calc(var(--spacing) * 8);
   }
 
   .pt-16 {
@@ -6071,6 +6079,12 @@
   @media (min-width: 48rem) {
     .md\:pt-6 {
       padding-top: calc(var(--spacing) * 6);
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:pt-16 {
+      padding-top: calc(var(--spacing) * 16);
     }
   }
 
