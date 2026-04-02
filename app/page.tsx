@@ -15,9 +15,9 @@ export default function Home() {
       <Hero />
       <About />
       <Formacion />
+      <FormacionPrivadaBanner />
       <StudentResultsGallery />
       <ReviewsCarousel />
-      <FormacionPrivadaBanner />
       <Contact />
       <Footer />
     </main>

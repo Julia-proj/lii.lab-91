@@ -15,41 +15,56 @@ export const ReviewsCarousel = () => {
       AutoScroll({
         playOnInit: true,
         stopOnInteraction: false, // Продолжать после взаимодействия
-        stopOnMouseEnter: true,   // Останавливать при наведении (на компьютере)
-        // Для мобилок он остановится, когда вы прикоснётесь пальцем
+        stopOnMouseEnter: false,  // НЕ останавливать наведение мышью (запрос UX)
         speed: 0.8, // Плавность как было
-      })
+      }) as any // Исправление ошибки типов Embla plugin
     ]
   )
 
   // Для эффекта бесконечного скролла нам нужно продублировать массив
   const duplicatedReviews = useMemo(() => [...reviews, ...reviews, ...reviews], [])
 
-  const scrollPrev = () => emblaApi && emblaApi.scrollPrev()
-  const scrollNext = () => emblaApi && emblaApi.scrollNext()
+  const handlePrev = () => {
+    if (emblaApi) {
+      emblaApi.scrollPrev()
+      // Перезапускаем автоскролл после ручного клика, если он остановился
+      const autoScroll = emblaApi.plugins().autoScroll as any
+      if (autoScroll) autoScroll.play()
+    }
+  }
+
+  const handleNext = () => {
+    if (emblaApi) {
+      emblaApi.scrollNext()
+      const autoScroll = emblaApi.plugins().autoScroll as any
+      if (autoScroll) autoScroll.play()
+    }
+  }
 
   return (
-    <section id="opiniones" className="py-24 bg-stone-50 overflow-hidden select-none">
+    <section id="opiniones" className="py-16 md:py-32 bg-stone-50 overflow-hidden select-none group">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
         <div className="text-center mb-16 relative">
-          <h2 className="text-4xl md:text-5xl font-serif text-stone-900 mb-4 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-serif text-stone-900 mb-3 tracking-tight">
             Opiniones
           </h2>
+          <div className="w-16 h-[2px] mx-auto bg-gold mb-6" />
           <p className="text-lg text-stone-500 max-w-2xl mx-auto font-light">
-            Lo que dicen nuestras clientas.
+            Lo que dicen mis clientas.
           </p>
         </div>
       </div>
 
       {/* Контейнер карусели */}
-      <div className="relative w-full mask-fade-edges pb-10" ref={emblaRef}>
-        <div className="flex touch-pan-y items-stretch">
-          {duplicatedReviews.map((review, idx) => (
-            <div 
-              key={`${review.id}-${idx}`}
-              // Карточка отзыва: адаптивно под все экраны (w-[280px] для старых айфонов, w-[85vw] для средних, и 400px+ для десктопа)
-              className="w-[85vw] max-w-[320px] sm:max-w-none sm:w-[380px] md:w-[420px] mx-3 sm:mx-4 p-5 sm:p-6 bg-white border border-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-lg transition-shadow duration-300 flex-shrink-0 flex flex-col h-auto"
-            >
+      <div className="relative w-full max-w-[1800px] mx-auto">
+        <div className="relative w-full mask-fade-edges pb-10" ref={emblaRef}>
+          <div className="flex touch-pan-y items-stretch">
+            {duplicatedReviews.map((review, idx) => (
+              <div 
+                key={`${review.id}-${idx}`}
+                // Карточка отзыва: адаптивно под все экраны
+                className="w-[85vw] max-w-[320px] sm:max-w-none sm:w-[380px] md:w-[420px] mx-3 sm:mx-4 p-5 sm:p-6 bg-white border border-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-lg transition-shadow duration-300 flex-shrink-0 flex flex-col h-auto cursor-grab active:cursor-grabbing"
+              >
               <div className="flex justify-between items-start gap-4 mb-4">
                 <div className="flex items-center gap-3">
                   <div className="w-11 h-11 rounded-full bg-stone-900 flex items-center justify-center text-white font-medium text-lg">
@@ -110,6 +125,24 @@ export const ReviewsCarousel = () => {
           ))}
         </div>
       </div>
+
+      {/* Элементы управления (показываются при наведении на десктопе) */}
+      <button 
+        onClick={handlePrev}
+        className="hidden md:flex absolute left-4 lg:left-12 top-[60%] -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm border border-stone-200 shadow-md items-center justify-center text-stone-500 hover:text-stone-900 hover:scale-105 opacity-0 group-hover:opacity-100 transition-all duration-300"
+        aria-label="Anterior opinión"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+
+      <button 
+        onClick={handleNext}
+        className="hidden md:flex absolute right-4 lg:right-12 top-[60%] -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm border border-stone-200 shadow-md items-center justify-center text-stone-500 hover:text-stone-900 hover:scale-105 opacity-0 group-hover:opacity-100 transition-all duration-300"
+        aria-label="Siguiente opinión"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </button>
+    </div>
       
       {/* Стили для маски и анимации (лучше вынести в globals.css) */}
       <style jsx global>{`

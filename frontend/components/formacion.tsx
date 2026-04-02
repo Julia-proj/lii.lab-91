@@ -52,8 +52,8 @@ export function Formacion() {
   }, [])
 
   return (
-    <section id="formacion" className="py-20 bg-warm-bg">
-      <div className="container mx-auto px-4">
+    <section id="formacion" className="pt-24 md:pt-32 pb-8 bg-warm-bg relative">
+      <div className="container mx-auto px-4 max-w-[1400px]">
         {/* Section Title */}
         <div className="fade-up text-center mb-14">
           <h2 className="text-4xl md:text-5xl font-serif mb-3">Formaciones</h2>
