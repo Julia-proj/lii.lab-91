@@ -55,6 +55,12 @@ export async function dbConnect(): Promise<typeof mongoose> {
   if (!cached.promise) {
     cached.promise = mongoose.connect(MONGO_URI, {
       bufferCommands: false, // Desactiva el buffer para fallar rapido si no hay conexion
+      maxPoolSize: 10,              // Vercel serverless — pool pequeño por instancia
+      minPoolSize: 0,               // Dejar que las conexiones inactivas se cierren
+      maxIdleTimeMS: 10_000,        // Cerrar conexiones idle tras 10s (evita stale sockets)
+      serverSelectionTimeoutMS: 5_000, // Fallar rapido si el servidor no responde
+      socketTimeoutMS: 45_000,      // Timeout general de socket
+      heartbeatFrequencyMS: 30_000, // Reducir tráfico de heartbeat en serverless
     })
   }
 

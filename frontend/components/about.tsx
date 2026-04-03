@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { BookOpen, Target, Zap, ClipboardList } from "lucide-react"
 
 const advantages = [
@@ -32,11 +33,13 @@ export function About() {
           {/* Image Column — sticky on desktop */}
           <div className="md:sticky md:top-[100px]">
             <div className="relative group w-full overflow-hidden rounded-lg md:rounded-xl shadow-xl aspect-square md:aspect-[4/5]">
-              <img
+              <Image
                 src="/images/Foto7.JPG"
                 alt="Lili"
+                fill
                 loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform"
+                sizes="(max-width: 768px) 100vw, 42vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform"
                 style={{ objectPosition: "center 15%" }}
               />
               <div className="absolute inset-0 flex flex-col justify-end p-5 md:p-8 bg-gradient-to-t from-black/60 via-transparent to-transparent">

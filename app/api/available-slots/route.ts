@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { ScheduleService } from '@/backend/services/schedule.service'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const dateStr = searchParams.get('date')

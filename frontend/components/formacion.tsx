@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
+import Image from "next/image"
 
 const STRIPE_GUIDE_URL = "https://buy.stripe.com/7sYbIT592fFwbE34QS7EQ00"
 
@@ -70,12 +71,14 @@ export function Formacion() {
               </Badge>
             </div>
 
-            <div className="overflow-hidden">
-              <img
+            <div className="overflow-hidden relative aspect-[3/2]">
+              <Image
                 src="/images/Foto2.JPG"
                 alt="Curso MANIC 0.0"
+                fill
                 loading="lazy"
-                className="w-full aspect-[3/2] object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform"
                 style={{ objectPosition: "center 30%" }}
               />
             </div>

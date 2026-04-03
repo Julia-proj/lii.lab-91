@@ -3,6 +3,8 @@ import { auth } from '@/lib/auth'
 import { serviceSchema } from '@/lib/validators'
 import { NailServiceService } from '@/backend/services/nail-service.service'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const category = searchParams.get('category') ?? undefined

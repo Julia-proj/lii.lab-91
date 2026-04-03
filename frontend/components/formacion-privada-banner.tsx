@@ -1,57 +1,60 @@
+import Image from "next/image"
 import { Instagram } from "lucide-react"
 
 export function FormacionPrivadaBanner() {
   return (
-    <section className="bg-warm-bg pb-16 md:pb-24 pt-4 md:pt-6 relative rounded-b-[2rem] sm:rounded-b-[4rem] z-10 shadow-[0_4px_20px_rgb(0,0,0,0.02)]">
-      <div className="px-4 sm:px-6 max-w-[1200px] mx-auto">
-        <div className="fade-up bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_4px_30px_rgb(0,0,0,0.04)] flex flex-col md:flex-row border border-neutral-100/60">
-          
-          {/* Left: Clean pristine image without messy overlays */}
-          <div className="relative w-full md:w-1/2 aspect-[4/3] md:aspect-auto">
-            <img
+    <section className="w-full py-20 md:py-28 bg-[#FAF9F6]">
+      <div className="mx-auto px-4 sm:px-6 max-w-[1400px]">
+        <div className="relative overflow-hidden group cursor-pointer lg:rounded-none rounded-xl">
+
+          {/* Image container — responsive height to prevent text overflow on mobile */}
+          <div className="relative w-full h-[380px] sm:h-[450px] md:h-[500px] lg:h-auto lg:aspect-[16/6] bg-stone-900">
+            <Image
               src="/images/salon-bg.jpg"
-              alt="Salón de manicura"
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover object-[center_30%]"
+              alt="Formación privada de manicura profesional"
+              fill
+              className="object-cover object-center grayscale-[80%] transition-all duration-1000 ease-out group-hover:grayscale-0 group-hover:scale-[1.04]"
+              sizes="(max-width: 768px) 100vw, 1400px"
+              priority
             />
+            {/* Gradient overlay — darker at bottom for seamless merge */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/70" />
+
+            {/* Tag top-left */}
+            <div className="absolute top-6 left-6 sm:top-10 sm:left-10">
+              <span className="inline-block text-[9px] sm:text-[10px] tracking-[0.4em] uppercase text-white/60 font-medium border border-white/20 px-4 py-1.5 backdrop-blur-sm">
+                Formación privada
+              </span>
+            </div>
+
+            {/* Headline anchored to bottom of image — overlaps into dark zone */}
+            <div className="absolute bottom-0 left-0 right-0 px-8 sm:px-14 pb-10 sm:pb-14">
+              <h2 className="text-3xl sm:text-4xl md:text-[3.25rem] font-serif text-white leading-[1.08] tracking-tight max-w-3xl">
+                ¿Tienes un salón y quieres{" "}
+                <span className="italic font-light text-white/70">formar a tu equipo?</span>
+              </h2>
+            </div>
           </div>
 
-          {/* Right: Crisp, perfect typography on pure white solid background */}
-          <div className="w-full md:w-1/2 p-8 sm:p-12 lg:p-16 flex flex-col justify-center items-center md:items-start text-center md:text-left bg-white">
-            
-            <p className="text-[10px] tracking-[0.4em] uppercase text-neutral-400 font-semibold mb-4 lg:mb-5">
-              Servicio Exclusivo
+          {/* Bottom bar */}
+          <div className="bg-stone-900 px-8 sm:px-14 py-6 sm:py-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+            <p className="text-[13px] sm:text-sm text-white/50 tracking-wide font-light">
+              Presencial en tu local &nbsp;·&nbsp; Grupos de 2–8 personas
             </p>
-            
-            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-neutral-900 leading-tight mb-2">
-              Formación Privada
-            </h3>
-            
-            <p className="font-serif italic text-neutral-400 text-xl sm:text-2xl lg:text-3xl mb-6">
-              para salones
-            </p>
-            
-            <p className="text-sm text-neutral-500 font-light leading-relaxed mb-6 max-w-md">
-              Eleva el nivel de tu equipo con un curso intensivo y personalizado. Optimizamos los tiempos y perfeccionamos la técnica directamente en tu propio local.
-            </p>
-            
-            <div className="flex items-center gap-3 text-[10px] sm:text-[11px] text-neutral-800 tracking-[0.15em] uppercase mb-8 font-medium bg-neutral-50 px-4 py-2 rounded-lg">
-              <span>Presencial</span>
-              <span className="w-1 h-1 rounded-full bg-neutral-300"></span>
-              <span>Grupos 2–8 px</span>
-            </div>
 
             <a
               href="https://www.instagram.com/lii.lab/?hl=es"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-3 text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white bg-neutral-950 px-8 py-3.5 sm:py-4 transition-all duration-300 hover:bg-neutral-800 hover:scale-[1.02] shadow-xl w-full sm:w-auto rounded-sm"
+              className="group/btn inline-flex items-center gap-2.5 text-white/80 hover:text-white transition-colors duration-300"
             >
-              Escribir por Instagram
-              <Instagram className="w-4 h-4 transition-transform group-hover:scale-110" />
+              <Instagram className="w-4 h-4" />
+              <span className="text-sm font-medium tracking-wide border-b border-white/20 pb-px group-hover/btn:border-white/60 transition-colors duration-300">
+                Escribir por Instagram
+              </span>
             </a>
           </div>
-          
+
         </div>
       </div>
     </section>

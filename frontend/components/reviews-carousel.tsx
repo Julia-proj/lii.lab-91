@@ -1,13 +1,22 @@
 "use client"
 
-import { useMemo } from "react"
-import { Star, ChevronLeft, ChevronRight } from "lucide-react"
+import { useMemo, useState, useCallback } from "react"
+import { Star, ChevronLeft, ChevronRight, X } from "lucide-react"
 import Image from "next/image"
 import { reviews } from "@/components/data/reviews"
 import useEmblaCarousel from "embla-carousel-react"
 import AutoScroll from "embla-carousel-auto-scroll"
 
 export const ReviewsCarousel = () => {
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null)
+
+  const openLightbox = useCallback((src: string) => {
+    setLightboxSrc(src)
+  }, [])
+
+  const closeLightbox = useCallback(() => {
+    setLightboxSrc(null)
+  }, [])
   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: "start", dragFree: true },
@@ -100,14 +109,18 @@ export const ReviewsCarousel = () => {
               {review.attachedImages && review.attachedImages.length > 0 && (
                 <div className="mt-auto mb-5 flex flex-wrap gap-2">
                   {review.attachedImages.map((img, i) => (
-                    <div key={i} className="relative w-20 h-20 rounded-lg overflow-hidden border border-stone-200/60 bg-stone-50 shrink-0">
+                    <button
+                      key={i}
+                      onClick={(e) => { e.stopPropagation(); openLightbox(img); }}
+                      className="relative w-20 h-20 rounded-lg overflow-hidden border border-stone-200/60 bg-stone-50 shrink-0 cursor-zoom-in hover:scale-105 hover:shadow-md transition-all duration-200"
+                    >
                       <Image 
                         src={img} 
                         alt="Trabajo realizado en Lii Lab" 
                         fill
                         className="object-cover"
                       />
-                    </div>
+                    </button>
                   ))}
                 </div>
               )}
@@ -162,6 +175,31 @@ export const ReviewsCarousel = () => {
           animation-play-state: paused !important;
         }
       `}</style>
+
+      {/* Lightbox modal */}
+      {lightboxSrc && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 cursor-zoom-out"
+          onClick={closeLightbox}
+        >
+          <button
+            onClick={closeLightbox}
+            className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+            aria-label="Cerrar"
+          >
+            <X className="w-5 h-5" />
+          </button>
+          <div className="relative w-full max-w-lg max-h-[80vh] aspect-auto">
+            <Image
+              src={lightboxSrc}
+              alt="Detalle del trabajo"
+              fill
+              className="object-contain rounded-lg"
+              sizes="(max-width: 768px) 95vw, 512px"
+            />
+          </div>
+        </div>
+      )}
     </section>
   )
 }

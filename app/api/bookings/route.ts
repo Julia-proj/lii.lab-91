@@ -3,6 +3,8 @@ import { auth } from '@/lib/auth'
 import { bookingSchema } from '@/lib/validators'
 import { BookingService } from '@/backend/services/booking.service'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   const session = await auth()
   if (!session) return NextResponse.json({ error: 'No autorizado' }, { status: 401 })

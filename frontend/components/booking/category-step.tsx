@@ -285,11 +285,10 @@ export function CategoryStep() {
                         <div className="flex gap-3">
                           {/* Photo — only render if image exists */}
                           {(() => {
-                            const imgSrc = service.image
-                              ? service.image
-                              : SERVICE_IMAGE_FALLBACK[service.name]
-                                ? `/images/services/${SERVICE_IMAGE_FALLBACK[service.name]}`
-                                : null
+                            const raw = service.image || SERVICE_IMAGE_FALLBACK[service.name]
+                            const imgSrc = raw
+                              ? (raw.startsWith('/') ? raw : `/images/services/${raw}`)
+                              : null
                             return imgSrc ? (
                               <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden">
                                 <img

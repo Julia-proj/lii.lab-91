@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
+import Image from "next/image"
 import { Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -15,6 +16,20 @@ const TOTAL = ATMOSPHERIC.length + 1
 
 export function Hero() {
   const [current, setCurrent] = useState(0)
+  const sectionRef = useRef<HTMLElement>(null)
+
+  // Lock hero height on mount to prevent mobile address-bar resize bounce
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+    const setHeight = () => {
+      el.style.height = `${window.innerHeight}px`
+    }
+    setHeight()
+    // Only resize on orientation change, NOT on scroll (prevents bounce)
+    window.addEventListener("orientationchange", setHeight)
+    return () => window.removeEventListener("orientationchange", setHeight)
+  }, [])
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -27,9 +42,11 @@ export function Hero() {
 
   return (
     <section
+      ref={sectionRef}
       id="hero"
-      className="relative h-[100dvh] overflow-hidden"
+      className="relative overflow-hidden"
       style={{
+        height: '100dvh',
         backgroundColor: isHero ? "#0a0a0a" : ATMOSPHERIC[current - 1].bg,
         transition: "background-color 2000ms ease-in-out",
       }}
@@ -41,12 +58,13 @@ export function Hero() {
           isHero ? "opacity-100" : "opacity-0"
         }`}
       >
-        <img
+        <Image
           src="/images/Hero.JPG"
           alt="Lii.lab beauty studio"
-          fetchPriority="high"
-          decoding="async"
-          className="w-full h-full object-cover object-[center_20%] md:object-[center_28%] hero-zoom"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[center_20%] md:object-[center_28%] hero-zoom"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/10 md:bg-gradient-to-r md:from-black/65 md:via-black/30 md:to-transparent" />
       </div>
@@ -63,12 +81,13 @@ export function Hero() {
             }`}
           >
             {/* Mobile: full-screen cover */}
-            <img
+            <Image
               src={src}
               alt="Lii.lab"
+              fill
               loading="lazy"
-              decoding="async"
-              className="md:hidden w-full h-full object-cover"
+              sizes="100vw"
+              className="md:hidden object-cover"
               style={{ objectPosition: mobilePos, transform: `scale(${mobileScale})`, transformOrigin: mobilePos }}
             />
 
@@ -80,12 +99,13 @@ export function Hero() {
                 maskImage: "linear-gradient(to right, transparent 0%, black 22%)",
               }}
             >
-              <img
+              <Image
                 src={src}
                 alt="Lii.lab"
+                fill
                 loading="lazy"
-                decoding="async"
-                className="w-full h-full object-cover"
+                sizes="72vw"
+                className="object-cover"
                 style={{ objectPosition: pos, transform: `scale(${scale})` }}
               />
               {/* Subtle dark overlay for premium moodboard feel */}

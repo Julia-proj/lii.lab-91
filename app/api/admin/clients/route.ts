@@ -3,6 +3,8 @@ import { dbConnect } from '@/lib/db'
 import { User, Booking } from '@/models'
 import { auth } from '@/lib/auth'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   try {
     const session = await auth()
