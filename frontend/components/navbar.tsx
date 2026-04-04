@@ -149,13 +149,13 @@ export function Navbar() {
           <Link
             href="/booking"
             onClick={() => setIsMobileMenuOpen(false)}
-            className={`text-[11px] uppercase tracking-wider font-semibold px-3 py-1.5 rounded-full border transition-all duration-300 ${
+            className={`text-[11px] uppercase tracking-wider font-semibold px-4 py-1.5 rounded-full border transition-all duration-300 ${
               isScrolled
                 ? "bg-neutral-900 border-neutral-900 text-white"
                 : "bg-white/15 backdrop-blur-md border-white/40 text-white hover:bg-white/25"
             }`}
           >
-            Reservar
+            Reservar cita
           </Link>
           <button
             className={`p-2 rounded-full transition-colors flex items-center justify-center ${
@@ -191,8 +191,11 @@ export function Navbar() {
 
         {/* Nav links */}
         <div className="flex-1 flex flex-col justify-center px-7 py-4">
-          {navLinks.map((link) => (
-            <Link
+          {navLinks.map((link) => {
+            const isHash = link.href.startsWith("#")
+            const Tag = isHash ? "a" : Link
+            return (
+            <Tag
               key={link.name}
               href={link.href}
               className="group flex items-center justify-between py-4 border-b border-neutral-100 last:border-0"
@@ -208,8 +211,9 @@ export function Navbar() {
               <ArrowRight size={16} className={`group-hover:translate-x-1 transition-all duration-200 ${
                 link.highlight ? "text-plum" : "text-neutral-300 group-hover:text-plum"
               }`} />
-            </Link>
-          ))}
+            </Tag>
+            )
+          })}
         </div>
 
         {/* Bottom: Auth */}

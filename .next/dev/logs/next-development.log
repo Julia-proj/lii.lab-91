@@ -8,3 +8,20 @@
 [00:26:00.239] Server  LOG     ○ Compiling /admin ...
 [00:27:39.584] Server  LOG     ✓ Finished writing to filesystem cache in 44s
 [00:31:40.303] Server  LOG     ✓ Finished writing to filesystem cache in 14.2s
+[00:37:38.657] Server  LOG     ○ Compiling / ...
+[00:38:17.165] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:38:23.393] Server  LOG     ○ Compiling /api/auth/[...nextauth] ...
+[22:46:44.365] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[22:55:09.648] Server  LOG     ○ Compiling / ...
+[22:58:59.401] Browser WARN    Image with src "/images/fotoreview1.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[22:59:06.595] Browser WARN    Image with src "/images/fotoreview3.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[22:59:13.805] Browser WARN    Image with src "/images/fotoreview18.1.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[22:59:15.628] Browser WARN    Image with src "/images/fotoreview18.2.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[22:59:17.410] Browser WARN    Image with src "/images/fotoreview18.3.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[22:59:21.375] Browser WARN    Image with src "/images/fotoreview17.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[22:59:28.130] Browser WARN    Image with src "/images/fotoreview8.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[22:59:35.440] Browser WARN    Image with src "/images/fotoreview13.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[22:59:43.292] Browser WARN    Image with src "/images/fotoreview14.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[22:59:54.509] Browser WARN    Image with src "/images/fotoreview19.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[23:09:18.653] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[23:09:21.536] Server  LOG     ○ Compiling /api/bookings ...

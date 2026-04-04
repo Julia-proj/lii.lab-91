@@ -88,7 +88,7 @@ export function StudentResultsGallery() {
   }
 
   return (
-    <section className="pt-16 pb-16 md:pt-32 md:pb-28 bg-white relative z-0">
+    <section id="resultados" className="pt-16 pb-16 md:pt-32 md:pb-28 bg-white relative z-0">
       <div className="px-6 max-w-[1400px] mx-auto">
         {/* Section header */}
         <div className="fade-up text-center mb-10 sm:mb-16">

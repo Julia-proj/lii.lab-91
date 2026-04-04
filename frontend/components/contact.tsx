@@ -28,10 +28,10 @@ export function Contact() {
             asChild
             className="gap-2 border-plum text-plum hover:bg-plum hover:text-white transition-colors"
           >
-            <Link href="#guia">
+            <a href="#guia">
               <Download className="w-4 h-4" />
               Conseguir la guía
-            </Link>
+            </a>
           </Button>
         </div>
       </div>
