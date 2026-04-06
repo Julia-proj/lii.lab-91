@@ -10,13 +10,6 @@ import AutoScroll from "embla-carousel-auto-scroll"
 export const ReviewsCarousel = () => {
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null)
 
-  const openLightbox = useCallback((src: string) => {
-    setLightboxSrc(src)
-  }, [])
-
-  const closeLightbox = useCallback(() => {
-    setLightboxSrc(null)
-  }, [])
   // Настройка Embla - бесконечная прокрутка (AutoScroll) с возможностью остановить пальцем/свайпом
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: "start", dragFree: true },
@@ -29,6 +22,15 @@ export const ReviewsCarousel = () => {
       }) as any // Исправление ошибки типов Embla plugin
     ]
   )
+
+  const openLightbox = useCallback((src: string) => {
+    if (emblaApi && !emblaApi.clickAllowed()) return
+    setLightboxSrc(src)
+  }, [emblaApi])
+
+  const closeLightbox = useCallback(() => {
+    setLightboxSrc(null)
+  }, [])
 
   // Для эффекта бесконечного скролла нам нужно продублировать массив
   const duplicatedReviews = useMemo(() => [...reviews, ...reviews, ...reviews], [])
