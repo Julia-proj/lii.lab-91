@@ -127,7 +127,7 @@ export function DateTimeStep() {
     <div>
       {!state.date ? (
         <div className="hidden md:flex h-full items-center justify-center py-12">
-          <p className="text-sm text-neutral-400 text-center">Selecciona una fecha<br />para ver los horarios disponibles</p>
+          <p className="text-sm text-neutral-500 text-center">Selecciona una fecha<br />para ver los horarios disponibles</p>
         </div>
       ) : (
         <div>
@@ -147,7 +147,7 @@ export function DateTimeStep() {
             <div className="space-y-5">
               {morningSlots.length > 0 && (
                 <div>
-                  <h3 className="text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-widest">Mañana</h3>
+                  <h3 className="text-xs font-semibold text-neutral-500 mb-2 uppercase tracking-widest">Mañana</h3>
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 gap-2">
                     {morningSlots.map((slot) => {
                       const end = computeEndTime(slot, totalDuration)
@@ -162,7 +162,7 @@ export function DateTimeStep() {
                           }`}
                         >
                           <span>{slot}</span>
-                          <span className={`text-[10px] block ${state.timeSlot === slot ? 'text-white/70' : 'text-neutral-400'}`}>
+                          <span className={`text-xs block ${state.timeSlot === slot ? 'text-white/70' : 'text-neutral-500'}`}>
                             — {end}
                           </span>
                         </button>
@@ -173,7 +173,7 @@ export function DateTimeStep() {
               )}
               {afternoonSlots.length > 0 && (
                 <div>
-                  <h3 className="text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-widest">Tarde</h3>
+                  <h3 className="text-xs font-semibold text-neutral-500 mb-2 uppercase tracking-widest">Tarde</h3>
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 gap-2">
                     {afternoonSlots.map((slot) => {
                       const end = computeEndTime(slot, totalDuration)
@@ -188,7 +188,7 @@ export function DateTimeStep() {
                           }`}
                         >
                           <span>{slot}</span>
-                          <span className={`text-[10px] block ${state.timeSlot === slot ? 'text-white/70' : 'text-neutral-400'}`}>
+                          <span className={`text-xs block ${state.timeSlot === slot ? 'text-white/70' : 'text-neutral-500'}`}>
                             — {end}
                           </span>
                         </button>
@@ -232,7 +232,7 @@ export function DateTimeStep() {
               chevron: 'fill-[#CDB4DB]',
               day: 'text-center',
               weeks: 'mt-1',
-              weekdays: 'text-xs text-neutral-400',
+              weekdays: 'text-xs text-neutral-500',
               weekday: 'w-10 text-center pb-1 font-normal',
             }}
           />

@@ -1,27 +1,4 @@
-[00:04:42.785] Server  LOG     ○ Compiling middleware ...
-[00:05:31.109] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:05:51.536] Server  LOG     ✓ Ready in 219.3s
-[00:09:29.028] Server  LOG     ✓ Finished writing to filesystem cache in 12.5s
-[00:18:25.092] Server  LOG     ✓ Finished filesystem cache database compaction in 8.9min
-[00:18:29.210] Server  LOG     ✓ Finished writing to filesystem cache in 7.2min
-[00:19:10.923] Server  LOG     ✓ Finished writing to filesystem cache in 42s
-[00:26:00.239] Server  LOG     ○ Compiling /admin ...
-[00:27:39.584] Server  LOG     ✓ Finished writing to filesystem cache in 44s
-[00:31:40.303] Server  LOG     ✓ Finished writing to filesystem cache in 14.2s
-[00:37:38.657] Server  LOG     ○ Compiling / ...
-[00:38:17.165] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:38:23.393] Server  LOG     ○ Compiling /api/auth/[...nextauth] ...
-[22:46:44.365] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[22:55:09.648] Server  LOG     ○ Compiling / ...
-[22:58:59.401] Browser WARN    Image with src "/images/fotoreview1.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[22:59:06.595] Browser WARN    Image with src "/images/fotoreview3.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[22:59:13.805] Browser WARN    Image with src "/images/fotoreview18.1.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[22:59:15.628] Browser WARN    Image with src "/images/fotoreview18.2.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[22:59:17.410] Browser WARN    Image with src "/images/fotoreview18.3.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[22:59:21.375] Browser WARN    Image with src "/images/fotoreview17.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[22:59:28.130] Browser WARN    Image with src "/images/fotoreview8.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[22:59:35.440] Browser WARN    Image with src "/images/fotoreview13.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[22:59:43.292] Browser WARN    Image with src "/images/fotoreview14.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[22:59:54.509] Browser WARN    Image with src "/images/fotoreview19.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[23:09:18.653] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[23:09:21.536] Server  LOG     ○ Compiling /api/bookings ...
+[00:00:02.726] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:03.178] Server  LOG     ✓ Ready in 2.4s
+[00:00:08.939] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:27.033] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

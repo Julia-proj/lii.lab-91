@@ -92,7 +92,7 @@ export function BookingCard({ booking, onCancel }: BookingCardProps) {
         {/* Date block */}
         <div className="shrink-0 flex flex-col items-center justify-center w-14 h-14 rounded-xl bg-neutral-50 border border-neutral-100">
           <span className="text-xl font-bold text-neutral-900 leading-none">{dayNum}</span>
-          <span className="text-[10px] uppercase tracking-wider text-neutral-400 mt-0.5 capitalize">{month}</span>
+          <span className="text-xs uppercase tracking-wider text-neutral-500 mt-0.5 capitalize">{month}</span>
         </div>
 
         {/* Content */}
@@ -103,12 +103,12 @@ export function BookingCard({ booking, onCancel }: BookingCardProps) {
                 ? services[0].name
                 : services.map((s) => s.name).join(' + ')}
             </h3>
-            <span className={`shrink-0 text-[11px] px-2 py-0.5 rounded-full font-medium ${statusBadge[booking.status] || statusBadge.pendiente}`}>
+            <span className={`shrink-0 text-xs px-2 py-0.5 rounded-full font-medium ${statusBadge[booking.status] || statusBadge.pendiente}`}>
               {statusLabel[booking.status] || booking.status}
             </span>
           </div>
 
-          <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-neutral-400">
+          <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-neutral-500">
             <span className="flex items-center gap-1 capitalize">
               <Clock className="w-3 h-3" />
               {weekday} · {booking.startTime}–{booking.endTime}
@@ -122,7 +122,7 @@ export function BookingCard({ booking, onCancel }: BookingCardProps) {
           {services.length > 1 && (
             <div className="mt-2 flex flex-wrap gap-1">
               {services.map((s, i) => (
-                <span key={i} className="text-[11px] text-neutral-400 bg-neutral-50 px-2 py-0.5 rounded-md border border-neutral-100">
+                <span key={i} className="text-xs text-neutral-500 bg-neutral-50 px-2 py-0.5 rounded-md border border-neutral-100">
                   {s.name} · {s.price}€
                 </span>
               ))}
@@ -130,7 +130,7 @@ export function BookingCard({ booking, onCancel }: BookingCardProps) {
           )}
 
           {booking.notes && (
-            <p className="mt-2 text-xs text-neutral-400 italic border-l-2 border-neutral-100 pl-2">{booking.notes}</p>
+            <p className="mt-2 text-xs text-neutral-500 italic border-l-2 border-neutral-100 pl-2">{booking.notes}</p>
           )}
         </div>
       </div>
@@ -150,7 +150,7 @@ export function BookingCard({ booking, onCancel }: BookingCardProps) {
               </button>
               <button
                 onClick={() => setShowConfirm(false)}
-                className="text-xs text-neutral-400 hover:text-neutral-600 px-2 py-1.5 rounded-lg hover:bg-neutral-50 transition-colors"
+                className="text-xs text-neutral-500 hover:text-neutral-600 px-2 py-1.5 rounded-lg hover:bg-neutral-50 transition-colors"
               >
                 Volver
               </button>
@@ -158,7 +158,7 @@ export function BookingCard({ booking, onCancel }: BookingCardProps) {
           ) : (
             <button
               onClick={() => setShowConfirm(true)}
-              className="text-xs text-neutral-400 hover:text-red-500 transition-colors font-medium"
+              className="text-xs text-neutral-500 hover:text-red-500 transition-colors font-medium"
             >
               Cancelar cita
             </button>

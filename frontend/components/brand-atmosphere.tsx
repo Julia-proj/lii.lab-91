@@ -65,7 +65,7 @@ export function BrandAtmosphere() {
     <section className="py-16 md:py-24 px-4 sm:px-6 overflow-hidden bg-white">
       {/* Eyebrow */}
       <div className="text-center mb-10 md:mb-16">
-        <p className="text-[9px] tracking-[0.55em] uppercase text-neutral-300 font-medium">
+        <p className="text-[11px] tracking-[0.55em] uppercase text-neutral-300 font-medium">
           Lii · lab
         </p>
       </div>

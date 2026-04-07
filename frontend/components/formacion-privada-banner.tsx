@@ -22,7 +22,7 @@ export function FormacionPrivadaBanner() {
 
             {/* Tag top-left */}
             <div className="absolute top-6 left-6 sm:top-10 sm:left-10">
-              <span className="inline-block text-[9px] sm:text-[10px] tracking-[0.4em] uppercase text-white/60 font-medium border border-white/20 px-4 py-1.5 backdrop-blur-sm">
+              <span className="inline-block text-[11px] sm:text-xs tracking-[0.4em] uppercase text-white/60 font-medium border border-white/20 px-4 py-1.5 backdrop-blur-sm">
                 Formación privada
               </span>
             </div>

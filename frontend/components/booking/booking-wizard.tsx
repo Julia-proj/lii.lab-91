@@ -34,19 +34,19 @@ function SelectedServicesSidebar() {
     <div className="hidden lg:block w-72 shrink-0">
       <div className="sticky top-24 bg-white rounded-2xl border border-neutral-200 overflow-hidden shadow-sm">
         <div className="px-5 py-4 border-b border-neutral-100">
-          <p className="text-xs font-semibold text-neutral-400 uppercase tracking-widest">Tu selección</p>
+          <p className="text-xs font-semibold text-neutral-500 uppercase tracking-widest">Tu selección</p>
         </div>
 
         <div className="px-5 py-4 min-h-[120px]">
           {state.services.length === 0 ? (
-            <p className="text-sm text-neutral-400 text-center py-4">Selecciona un servicio</p>
+            <p className="text-sm text-neutral-500 text-center py-4">Selecciona un servicio</p>
           ) : (
             <ul className="space-y-2">
               {state.services.map((s) => (
                 <li key={s._id} className="flex items-start justify-between gap-2">
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-neutral-800 leading-snug">{s.name}</p>
-                    <p className="text-xs text-neutral-400 flex items-center gap-1 mt-0.5">
+                    <p className="text-xs text-neutral-500 flex items-center gap-1 mt-0.5">
                       <Clock className="w-3 h-3" />
                       {formatDuration(s.duration)}
                       {(state.quantities[s._id] ?? 1) > 1 && (

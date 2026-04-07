@@ -22,14 +22,14 @@ export function StepIndicator({ currentStep, steps }: StepIndicatorProps) {
                     ? 'bg-[#CDB4DB] text-white'
                     : isCompleted
                     ? 'bg-[#CDB4DB]/30 text-[#8e7f97]'
-                    : 'bg-neutral-200 text-neutral-400'
+                    : 'bg-neutral-200 text-neutral-500'
                 }`}
               >
                 {isCompleted ? '✓' : stepNum}
               </div>
               <span
                 className={`text-xs mt-1 ${
-                  isActive ? 'text-neutral-900 font-medium' : 'text-neutral-400'
+                  isActive ? 'text-neutral-900 font-medium' : 'text-neutral-500'
                 }`}
               >
                 {label}

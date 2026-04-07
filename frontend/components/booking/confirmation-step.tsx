@@ -239,7 +239,7 @@ export function ConfirmationStep() {
           </button>
         )}
 
-        <p className="text-xs text-neutral-400 text-center mt-3">El pago se realiza en local</p>
+        <p className="text-xs text-neutral-500 text-center mt-3">El pago se realiza en local</p>
       </div>
 
       <div className="flex justify-center gap-6 mt-6">

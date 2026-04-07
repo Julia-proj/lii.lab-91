@@ -166,7 +166,7 @@ export function CourseBookingForm() {
                   }
                   <p className="font-semibold text-sm text-neutral-900">{c.label}</p>
                 </div>
-                <p className="text-xs text-neutral-400">{c.days} día{c.days > 1 ? 's' : ''} · {c.price}</p>
+                <p className="text-xs text-neutral-500">{c.days} día{c.days > 1 ? 's' : ''} · {c.price}</p>
               </button>
             )
           })}
@@ -184,7 +184,7 @@ export function CourseBookingForm() {
               </span>
               <div>
                 <p className="text-neutral-700">{day.desc}</p>
-                <p className="text-neutral-400 text-xs">{day.time}</p>
+                <p className="text-neutral-500 text-xs">{day.time}</p>
               </div>
             </div>
           ))}
@@ -209,12 +209,12 @@ export function CourseBookingForm() {
         {loading ? (
           <div className="text-center py-8">
             <div className="w-6 h-6 border-2 border-neutral-200 border-t-[#CDB4DB] rounded-full animate-spin mx-auto" />
-            <p className="text-sm text-neutral-400 mt-2">Cargando disponibilidad...</p>
+            <p className="text-sm text-neutral-500 mt-2">Cargando disponibilidad...</p>
           </div>
         ) : availableDates.length === 0 ? (
           <div className="text-center py-8">
             <p className="text-neutral-500">No hay fechas disponibles en las próximas semanas.</p>
-            <p className="text-sm text-neutral-400 mt-1">
+            <p className="text-sm text-neutral-500 mt-1">
               Contacta con nosotros por Instagram para más información.
             </p>
           </div>
@@ -236,11 +236,11 @@ export function CourseBookingForm() {
                 >
                   <p className="font-medium text-sm capitalize">{formatDateFull(dateStr)}</p>
                   {config.days > 1 ? (
-                    <p className="text-xs text-neutral-400 mt-1">
+                    <p className="text-xs text-neutral-500 mt-1">
                       3 días: {days.map((d) => formatDate(d)).join(' → ')}
                     </p>
                   ) : (
-                    <p className="text-xs text-neutral-400 mt-1">1 día intensivo</p>
+                    <p className="text-xs text-neutral-500 mt-1">1 día intensivo</p>
                   )}
                 </button>
               )
@@ -264,7 +264,7 @@ export function CourseBookingForm() {
                   Día {i + 1}
                 </span>
                 <span className="capitalize">{formatDateFull(d)}</span>
-                <span className="text-neutral-400">{config.schedule[i]?.time}</span>
+                <span className="text-neutral-500">{config.schedule[i]?.time}</span>
               </div>
             ))}
           </div>
@@ -291,7 +291,7 @@ export function CourseBookingForm() {
             {submitting ? 'Reservando...' : 'Confirmar reserva del curso'}
           </button>
 
-          <p className="text-xs text-neutral-400 text-center mt-3">
+          <p className="text-xs text-neutral-500 text-center mt-3">
             El pago de {config.price} se realiza en el salón
           </p>
         </div>

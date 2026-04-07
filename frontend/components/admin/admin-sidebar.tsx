@@ -56,7 +56,7 @@ export function AdminSidebar() {
     <nav className="flex-1 space-y-2 lg:space-y-4">
       {navGroups.map((group) => (
         <div key={group.label}>
-          <p className="px-3 mb-1 text-[10px] font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-600">
+          <p className="px-3 mb-1 text-xs font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-600">
             {group.label}
           </p>
           <ul className="space-y-0.5">
@@ -71,10 +71,10 @@ export function AdminSidebar() {
                     className={`flex items-center gap-3 px-3 py-2.5 lg:py-2.5 rounded-lg text-sm font-medium transition-all duration-150 ${
                       active
                         ? 'bg-white shadow-sm text-neutral-900 dark:bg-white/10 dark:text-white'
-                        : 'text-neutral-500 hover:bg-white/60 hover:text-neutral-800 dark:text-neutral-400 dark:hover:bg-white/6 dark:hover:text-neutral-100'
+                        : 'text-neutral-500 hover:bg-white/60 hover:text-neutral-800 dark:text-neutral-500 dark:hover:bg-white/6 dark:hover:text-neutral-100'
                     }`}
                   >
-                    <Icon className={`w-4 h-4 ${active ? 'text-plum' : 'text-neutral-400 dark:text-neutral-500'}`} />
+                    <Icon className={`w-4 h-4 ${active ? 'text-plum' : 'text-neutral-500 dark:text-neutral-500'}`} />
                     <span className="text-sm">{item.label}</span>
                     {active && (
                       <span className="ml-auto w-1.5 h-1.5 rounded-full bg-plum/60" />
@@ -95,12 +95,12 @@ export function AdminSidebar() {
       <div className="px-4 py-3 lg:py-5 border-b border-neutral-200 dark:border-white/8 flex items-center justify-between">
         <Link href="/" className="block">
           <span className="font-serif text-xl tracking-wide text-neutral-900 dark:text-white">Lii.lab</span>
-          <p className="text-[10px] text-neutral-400 mt-0.5 tracking-widest uppercase">Administración</p>
+          <p className="text-xs text-neutral-500 mt-0.5 tracking-widest uppercase">Administración</p>
         </Link>
         <button
           onClick={() => setMobileOpen(false)}
           aria-label="Cerrar menú"
-          className="lg:hidden p-2 rounded-lg text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-white/8 transition-colors"
+          className="lg:hidden p-2 rounded-lg text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-white/8 transition-colors"
         >
           <X className="w-4 h-4" />
         </button>
@@ -121,7 +121,7 @@ export function AdminSidebar() {
           </div>
           <div className="min-w-0">
             <p className="text-sm font-medium text-neutral-800 dark:text-neutral-200 truncate">{session.user?.name}</p>
-            <p className="text-[11px] text-neutral-400 truncate">{session.user?.email}</p>
+            <p className="text-xs text-neutral-500 truncate">{session.user?.email}</p>
           </div>
         </div>
 

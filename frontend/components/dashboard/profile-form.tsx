@@ -62,14 +62,14 @@ export function ProfileForm() {
         </div>
         <div className="min-w-0">
           <p className="font-semibold text-neutral-900 text-base truncate">{session?.user?.name || '—'}</p>
-          <p className="text-sm text-neutral-400 truncate">{email}</p>
+          <p className="text-sm text-neutral-500 truncate">{email}</p>
         </div>
       </div>
 
       {/* Form card */}
       <div className="bg-white rounded-2xl border border-neutral-100 shadow-sm overflow-hidden">
         <div className="px-5 pt-5 pb-1">
-          <p className="text-[11px] uppercase tracking-[0.15em] text-neutral-400 font-medium">
+          <p className="text-xs uppercase tracking-[0.15em] text-neutral-500 font-medium">
             Datos personales
           </p>
         </div>
@@ -85,11 +85,11 @@ export function ProfileForm() {
                 type="email"
                 disabled
                 value={email}
-                className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm bg-neutral-50 text-neutral-400 pr-10"
+                className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm bg-neutral-50 text-neutral-500 pr-10"
               />
               <Lock className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-neutral-300" />
             </div>
-            <p className="text-[11px] text-neutral-300 mt-1">No se puede cambiar</p>
+            <p className="text-xs text-neutral-300 mt-1">No se puede cambiar</p>
           </div>
 
           {/* Name */}

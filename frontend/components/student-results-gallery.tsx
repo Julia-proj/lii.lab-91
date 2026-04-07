@@ -61,12 +61,12 @@ function BeforeAfterCard({ pair }: { pair: Pair }) {
 
       {/* Mobile overlay — "Toca para ver" when showing before */}
       <div className={`md:hidden absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/50 to-transparent p-4 transition-opacity duration-200 pointer-events-none ${showAfter ? "opacity-0" : "opacity-100"}`}>
-        <p className="text-[9px] uppercase tracking-[0.3em] font-medium text-white/80 text-center">Toca para ver</p>
+        <p className="text-[11px] uppercase tracking-[0.3em] font-medium text-white/80 text-center">Toca para ver</p>
       </div>
 
       {/* Desktop overlay — "Ver resultado" fades on hover */}
       <div className="hidden md:block absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/45 to-transparent p-4 transition-opacity duration-300 opacity-100 group-hover:opacity-0 pointer-events-none">
-        <p className="text-[9px] uppercase tracking-[0.3em] font-medium text-white/75 text-center">Ver resultado</p>
+        <p className="text-[11px] uppercase tracking-[0.3em] font-medium text-white/75 text-center">Ver resultado</p>
       </div>
     </div>
   )
@@ -92,7 +92,7 @@ export function StudentResultsGallery() {
       <div className="px-6 max-w-[1400px] mx-auto">
         {/* Section header */}
         <div className="fade-up text-center mb-10 sm:mb-16">
-          <p className="text-[10px] tracking-[0.4em] uppercase text-neutral-400 font-medium mb-3">
+          <p className="text-xs tracking-[0.4em] uppercase text-neutral-500 font-medium mb-3">
             Trabajo real
           </p>
           <h2 className="text-4xl md:text-5xl font-serif text-neutral-900 leading-tight">
@@ -109,7 +109,7 @@ export function StudentResultsGallery() {
               className={`px-3 sm:px-5 py-2.5 rounded-lg text-xs sm:text-sm tracking-wide transition-all duration-200 whitespace-nowrap ${
                 activeTab === "subida"
                   ? "bg-white shadow-sm text-neutral-900 font-medium"
-                  : "text-neutral-400 hover:text-neutral-600"
+                  : "text-neutral-500 hover:text-neutral-600"
               }`}
             >
               Subida de Cualificación
@@ -119,7 +119,7 @@ export function StudentResultsGallery() {
               className={`px-3 sm:px-5 py-2.5 rounded-lg text-xs sm:text-sm tracking-wide transition-all duration-200 whitespace-nowrap ${
                 activeTab === "iniciacion"
                   ? "bg-white shadow-sm text-neutral-900 font-medium"
-                  : "text-neutral-400 hover:text-neutral-600"
+                  : "text-neutral-500 hover:text-neutral-600"
               }`}
             >
               Curso de Iniciación
@@ -173,8 +173,8 @@ export function StudentResultsGallery() {
 
           {/* Swipe hint — mobile only, disappears on first scroll */}
           <div className={`md:hidden flex items-center justify-center gap-2 mt-4 transition-opacity duration-500 ${hasScrolled ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
-            <span className="text-[9px] uppercase tracking-[0.35em] text-neutral-400 font-medium">Desliza</span>
-            <span className="swipe-hint-arrow text-neutral-400 text-xs">→</span>
+            <span className="text-[11px] uppercase tracking-[0.35em] text-neutral-500 font-medium">Desliza</span>
+            <span className="swipe-hint-arrow text-neutral-500 text-xs">→</span>
           </div>
         </div>
       )}
@@ -182,7 +182,7 @@ export function StudentResultsGallery() {
       {/* ── Tab 2: Curso de Iniciación ── */}
       {activeTab === "iniciacion" && (
         <div className="px-6 max-w-6xl mx-auto">
-          <p className="text-center text-xs text-neutral-400 mb-5 md:hidden">
+          <p className="text-center text-xs text-neutral-500 mb-5 md:hidden">
             Toca cada foto para ver el resultado
           </p>
           {/* 2-col mobile, 6-col desktop */}

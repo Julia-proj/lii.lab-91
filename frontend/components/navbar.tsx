@@ -111,7 +111,7 @@ export function Navbar() {
                 <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-lg border border-neutral-200 py-2 z-50">
                   <div className="px-4 py-2 border-b border-neutral-100">
                     <p className="text-sm font-medium truncate">{session.user?.name}</p>
-                    <p className="text-xs text-neutral-400 truncate">{session.user?.email}</p>
+                    <p className="text-xs text-neutral-500 truncate">{session.user?.email}</p>
                   </div>
                   {session.user?.role === "admin" ? (
                     <Link href="/admin" className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-600 hover:bg-neutral-50">
@@ -149,7 +149,7 @@ export function Navbar() {
           <Link
             href="/booking"
             onClick={() => setIsMobileMenuOpen(false)}
-            className={`text-[11px] uppercase tracking-wider font-semibold px-4 py-1.5 rounded-full border transition-all duration-300 ${
+            className={`text-xs uppercase tracking-wider font-semibold px-4 py-1.5 rounded-full border transition-all duration-300 ${
               isScrolled
                 ? "bg-neutral-900 border-neutral-900 text-white"
                 : "bg-white/15 backdrop-blur-md border-white/40 text-white hover:bg-white/25"
@@ -183,7 +183,7 @@ export function Navbar() {
           <Link href="/#hero" onClick={() => setIsMobileMenuOpen(false)} className="font-serif text-xl text-neutral-900 tracking-tight">Lii.lab</Link>
           <button
             onClick={() => setIsMobileMenuOpen(false)}
-            className="p-2 text-neutral-400 hover:text-neutral-700 transition-colors"
+            className="p-2 text-neutral-500 hover:text-neutral-700 transition-colors"
           >
             <X size={22} />
           </button>
@@ -226,7 +226,7 @@ export function Navbar() {
                 className="flex items-center justify-between w-full px-5 py-4 rounded-xl border border-neutral-200 text-neutral-700 font-medium text-sm hover:border-plum hover:text-plum transition-all duration-200"
               >
                 <span>{session.user?.role === "admin" ? "Panel de administración" : "Mi panel"}</span>
-                <ArrowRight size={15} className="text-neutral-400" />
+                <ArrowRight size={15} className="text-neutral-500" />
               </Link>
               <button
                 onClick={() => { signOut({ callbackUrl: "/" }); setIsMobileMenuOpen(false) }}
@@ -237,7 +237,7 @@ export function Navbar() {
             </>
           ) : (
             <div className="flex flex-col gap-2 pt-2 border-t border-neutral-100">
-              <p className="text-[10px] uppercase tracking-widest text-neutral-400 font-medium px-1 mb-1">Cuenta</p>
+              <p className="text-xs uppercase tracking-widest text-neutral-500 font-medium px-1 mb-1">Cuenta</p>
               <Link
                 href="/login"
                 onClick={() => setIsMobileMenuOpen(false)}

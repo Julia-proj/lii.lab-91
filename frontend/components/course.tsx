@@ -76,7 +76,7 @@ export function Course() {
                   key={idx}
                   className="flex flex-row items-center gap-2 p-3 rounded-lg bg-neutral-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-[#CDB4DB]/30"
                 >
-                  <item.icon size={18} className="text-neutral-400 shrink-0" />
+                  <item.icon size={18} className="text-neutral-500 shrink-0" />
                   <span className="font-medium text-neutral-800 text-xs sm:text-sm leading-tight">{item.title}</span>
                 </div>
               ))}

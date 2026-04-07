@@ -31,17 +31,17 @@ interface Booking {
 // ── Status styles ─────────────────────────────────────────────────────────────
 
 const S_DOT: Record<string, string> = {
-  pendiente:  'bg-amber-400',
-  confirmada: 'bg-emerald-300',
-  completada: 'bg-blue-400',
-  cancelada:  'bg-neutral-300',
+  pendiente:  'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]',
+  confirmada: 'bg-plum shadow-[0_0_8px_rgba(110,60,150,0.5)]',
+  completada: 'bg-emerald-500/60 shadow-[0_0_8px_rgba(16,185,129,0.3)]',
+  cancelada:  'bg-neutral-300 dark:bg-neutral-600',
 }
 
 const S_BORDER: Record<string, string> = {
-  pendiente:  'border-l-amber-400',
-  confirmada: 'border-l-emerald-300',
-  completada: 'border-l-blue-400',
-  cancelada:  'border-l-neutral-200 dark:border-l-white/15',
+  pendiente:  'border-l-amber-500/50',
+  confirmada: 'border-l-plum/60',
+  completada: 'border-l-emerald-500/20',
+  cancelada:  'border-l-neutral-200 dark:border-l-white/5',
 }
 
 // ── PayCell ───────────────────────────────────────────────────────────────────
@@ -198,11 +198,11 @@ function BookingCard({
   }
 
   return (
-    <div className={`rounded-xl border-l-4 overflow-hidden ${
-      booking.status === 'pendiente'
-        ? 'bg-amber-50/80 dark:bg-amber-900/15 border border-amber-100 dark:border-amber-800/25 border-l-amber-400'
-        : `bg-white dark:bg-[#1e1e24] border border-neutral-100 dark:border-white/8 ${S_BORDER[booking.status] || 'border-l-neutral-200'}`
-    }`}>
+    <div className={`overflow-hidden rounded-2xl transition-all duration-300 ${
+        booking.status === 'pendiente'
+          ? 'bg-amber-500/10 dark:bg-amber-500/5 border border-amber-500/20 dark:border-amber-500/20 border-l-[3px] border-l-amber-500 shadow-[0_4px_16px_rgba(245,158,11,0.05)]'
+          : `bg-[#FFFFFF] dark:bg-[#121214] shadow-[0_2px_8px_rgba(0,0,0,0.02)] border border-black/[0.04] dark:border-white/5 border-l-[3px] ${S_BORDER[booking.status] || 'border-l-neutral-200'}`
+      } ${booking.status === 'cancelada' ? 'opacity-50 grayscale hover:opacity-100 hover:grayscale-0' : ''} ${booking.status === 'completada' ? 'bg-[#FAFAFA] dark:bg-[#0D0D0F]' : ''}`}>
       <div className="px-4 py-3">
         {/* Top row: name + pay */}
         <div className="flex items-start justify-between gap-2">
@@ -221,7 +221,7 @@ function BookingCard({
           <div className="flex gap-2 mt-3">
             <button
               onClick={() => handleStatus('confirmada')}
-              className="flex-1 flex items-center justify-center gap-1.5 py-2 bg-emerald-400 hover:bg-emerald-500 text-white text-xs font-semibold rounded-lg transition-colors"
+              className="flex-1 flex items-center justify-center gap-1.5 py-2 bg-plum hover:bg-plum-hover text-white transition-all hover:shadow-md text-xs font-semibold rounded-lg transition-colors"
             >
               <Check className="w-3.5 h-3.5" />
               Confirmar
@@ -380,8 +380,9 @@ function DayTimeline({ bookings }: { bookings: Booking[] }) {
 
   const STATUS_COLOR: Record<string, string> = {
     pendiente:  'bg-amber-400',
-    confirmada: 'bg-emerald-300',
-    completada: 'bg-blue-400',
+    confirmada: 'bg-plum',
+    completada: 'bg-emerald-500/40',
+    cancelada:  'bg-neutral-200 dark:bg-neutral-800',
   }
 
   const gaps: { from: string; to: string; mins: number }[] = []
@@ -540,7 +541,7 @@ export default function AgendaPage() {
       {/* Stats row */}
       <div className="grid grid-cols-3 gap-2 sm:gap-3">
         {/* Hoy - citas */}
-        <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-3 sm:p-4">
+        <div className="bg-[#FFFFFF] dark:bg-[#121214] shadow-[0_2px_8px_rgba(0,0,0,0.02)] rounded-2xl border border-black/[0.04] dark:border-white/5 p-3 sm:p-4">
           <p className="text-[10px] sm:text-xs uppercase tracking-widest text-neutral-400 mb-1.5 sm:mb-2">Hoy</p>
           <p className="text-2xl sm:text-3xl font-bold tabular-nums text-neutral-900 dark:text-neutral-100 leading-none">{stats.todayCount}</p>
           <p className="text-[11px] sm:text-xs text-neutral-400 mt-1 sm:mt-1.5">{stats.todayCount === 1 ? 'cita' : 'citas'}</p>
@@ -585,7 +586,7 @@ export default function AgendaPage() {
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-4 sm:gap-5 items-start">
 
         {/* Month calendar */}
-        <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 overflow-hidden order-2 lg:order-1">
+        <div className="bg-[#FFFFFF] dark:bg-[#121214] shadow-[0_2px_8px_rgba(0,0,0,0.02)] rounded-2xl border border-black/[0.04] dark:border-white/5 overflow-hidden order-2 lg:order-1">
           {/* Month navigation */}
           <div className="flex items-center justify-between px-4 sm:px-5 py-3 sm:py-4 border-b border-neutral-50 dark:border-white/5">
             <button
@@ -730,7 +731,7 @@ export default function AgendaPage() {
               </div>
 
               {selectedDayBookings.length === 0 ? (
-                <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-dashed border-neutral-200 dark:border-white/10 py-6 text-center">
+                <div className="bg-[#FFFFFF] dark:bg-[#121214] shadow-[0_2px_8px_rgba(0,0,0,0.02)] rounded-2xl border border-dashed border-black/[0.04] dark:border-white/10 py-6 text-center">
                   <p className="text-sm text-neutral-400">Día libre</p>
                 </div>
               ) : (

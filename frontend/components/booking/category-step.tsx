@@ -239,7 +239,7 @@ export function CategoryStep() {
   return (
     <div className="pb-28">
       <h2 className="font-serif text-xl mb-2 text-center">Elige tus servicios</h2>
-      <p className="text-xs text-neutral-400 mb-6 text-center">Puedes seleccionar uno o varios servicios</p>
+      <p className="text-xs text-neutral-500 mb-6 text-center">Puedes seleccionar uno o varios servicios</p>
 
       <div className="space-y-3">
         {sections.map((section) => {
@@ -260,9 +260,9 @@ export function CategoryStep() {
                 <div className="flex items-center gap-2.5">
                   {isPopular && <Star className="w-4 h-4 text-[#CDB4DB]" />}
                   <span className="font-medium text-neutral-900">{section.label}</span>
-                  <span className="text-xs text-neutral-400">({section.services.length})</span>
+                  <span className="text-xs text-neutral-500">({section.services.length})</span>
                 </div>
-                <ChevronDown className={`w-4 h-4 text-neutral-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-4 h-4 text-neutral-500 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {isOpen && (
@@ -317,12 +317,12 @@ export function CategoryStep() {
                             )}
                             <div className="flex items-center justify-between mt-1.5">
                               <div className="flex items-center gap-3">
-                                <span className="flex items-center gap-1 text-xs text-neutral-400">
+                                <span className="flex items-center gap-1 text-xs text-neutral-500">
                                   <Clock className="w-3 h-3" />
                                   {formatDuration(service.duration)}
                                 </span>
                                 {service.includes && (
-                                  <span className="text-xs text-neutral-400">
+                                  <span className="text-xs text-neutral-500">
                                     Incluye: {service.includes}
                                   </span>
                                 )}
@@ -375,7 +375,7 @@ export function CategoryStep() {
                                     <Plus className="w-3 h-3" />
                                   </button>
                                 </div>
-                                <span className="text-xs text-neutral-400 ml-auto">
+                                <span className="text-xs text-neutral-500 ml-auto">
                                   {(state.quantities[service._id] ?? 1) * service.price}\u20AC
                                 </span>
                               </div>
@@ -410,7 +410,7 @@ export function CategoryStep() {
             <div className="flex items-center justify-between">
               <div className="text-sm">
                 <span className="font-semibold">{totalPrice}&euro;</span>
-                <span className="text-neutral-400 mx-1.5">&middot;</span>
+                <span className="text-neutral-500 mx-1.5">&middot;</span>
                 <span className="text-neutral-500">{formatDuration(totalDuration)}</span>
               </div>
               <button

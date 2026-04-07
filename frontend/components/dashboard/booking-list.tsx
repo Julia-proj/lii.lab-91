@@ -76,11 +76,11 @@ function CourseBookingCard({ booking, onCancel }: { booking: CourseBookingData; 
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2 mb-1.5">
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Curso</span>
+              <span className="text-xs font-bold uppercase tracking-widest text-neutral-500">Curso</span>
               <h3 className="font-semibold text-neutral-900 text-sm leading-tight">MANIC 0.0</h3>
             </div>
             <div className="flex items-center gap-2 shrink-0">
-              <span className={`text-[11px] px-2 py-0.5 rounded-full font-medium ${COURSE_STATUS_BADGE[booking.status] || COURSE_STATUS_BADGE.pendiente}`}>
+              <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${COURSE_STATUS_BADGE[booking.status] || COURSE_STATUS_BADGE.pendiente}`}>
                 {COURSE_STATUS_LABEL[booking.status] || booking.status}
               </span>
               {canCancel && (
@@ -98,7 +98,7 @@ function CourseBookingCard({ booking, onCancel }: { booking: CourseBookingData; 
 
           <div className="space-y-0.5">
             {booking.days.map((d, i) => (
-              <p key={i} className="text-xs text-neutral-400 capitalize">
+              <p key={i} className="text-xs text-neutral-500 capitalize">
                 Día {i + 1}: {fmt(d)}
               </p>
             ))}
@@ -113,8 +113,8 @@ function CourseBookingCard({ booking, onCancel }: { booking: CourseBookingData; 
 function SectionHeader({ label, count }: { label: string; count: number }) {
   return (
     <div className="flex items-center gap-2 mb-3">
-      <span className="text-xs font-semibold uppercase tracking-widest text-neutral-400">{label}</span>
-      <span className="text-[11px] font-medium text-neutral-300 bg-neutral-100 px-1.5 py-0.5 rounded-full leading-none">{count}</span>
+      <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500">{label}</span>
+      <span className="text-xs font-medium text-neutral-300 bg-neutral-100 px-1.5 py-0.5 rounded-full leading-none">{count}</span>
     </div>
   )
 }
@@ -157,7 +157,7 @@ export function BookingList() {
     return (
       <div className="text-center py-16">
         <div className="w-6 h-6 border-2 border-neutral-200 border-t-plum rounded-full animate-spin mx-auto" />
-        <p className="text-sm text-neutral-400 mt-3">Cargando reservas...</p>
+        <p className="text-sm text-neutral-500 mt-3">Cargando reservas...</p>
       </div>
     )
   }
@@ -169,7 +169,7 @@ export function BookingList() {
           <Calendar className="w-7 h-7 text-neutral-300" />
         </div>
         <h3 className="font-serif text-lg text-neutral-800 mb-1">Sin reservas todavía</h3>
-        <p className="text-sm text-neutral-400 mb-6 max-w-[220px]">
+        <p className="text-sm text-neutral-500 mb-6 max-w-[220px]">
           Reserva tu primera cita y aparecerá aquí
         </p>
         <Link

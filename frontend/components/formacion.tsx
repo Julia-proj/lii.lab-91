@@ -139,7 +139,7 @@ export function Formacion() {
                         { day: "Día 3", title: "Perfeccionamiento",    items: ["10:00 – fin: Trabajo con modelo final", "Entrega de diploma y asesoría Instagram"] },
                       ].map(({ day, title, items }) => (
                         <div key={day} className="p-3 rounded-lg bg-white border border-neutral-100">
-                          <p className="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-0.5">{day}</p>
+                          <p className="text-xs font-bold text-neutral-500 uppercase tracking-wider mb-0.5">{day}</p>
                           <p className="font-semibold text-neutral-900 text-sm mb-1.5">{title}</p>
                           <ul className="space-y-1 ml-2 border-l border-neutral-200 pl-3">
                             {items.map((it) => <li key={it} className="text-xs text-neutral-600">{it}</li>)}
@@ -329,7 +329,7 @@ export function Formacion() {
                   </a>
                 </Button>
 
-                <div className="flex items-center justify-center gap-1.5 text-[11px] text-muted-foreground/50">
+                <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground/50">
                   <CreditCard className="w-3 h-3" />
                   <span>Pago seguro · Apple Pay · Tarjeta</span>
                 </div>

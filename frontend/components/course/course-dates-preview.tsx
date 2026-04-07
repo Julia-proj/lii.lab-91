@@ -34,7 +34,7 @@ export function CourseDatesPreview() {
 
   return (
     <div className="mt-6 pt-5 border-t border-neutral-200/60">
-      <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-3 flex items-center gap-1.5">
+      <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-3 flex items-center gap-1.5">
         <Calendar size={12} />
         Próximas fechas disponibles
       </p>
@@ -46,7 +46,7 @@ export function CourseDatesPreview() {
           ))}
         </div>
       ) : dates.length === 0 ? (
-        <p className="text-sm text-neutral-400">Consultar disponibilidad</p>
+        <p className="text-sm text-neutral-500">Consultar disponibilidad</p>
       ) : (
         <div className="flex flex-wrap gap-2">
           {dates.map((d) => (
@@ -60,7 +60,7 @@ export function CourseDatesPreview() {
           ))}
           <Link
             href="/booking/course"
-            className="text-xs font-medium px-3 py-1.5 rounded-lg text-neutral-400 hover:text-neutral-600 transition-colors flex items-center gap-1"
+            className="text-xs font-medium px-3 py-1.5 rounded-lg text-neutral-500 hover:text-neutral-600 transition-colors flex items-center gap-1"
           >
             Ver más <ArrowRight size={11} />
           </Link>

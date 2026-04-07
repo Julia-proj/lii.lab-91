@@ -19,6 +19,11 @@ interface ServiceData {
 
 const categories = ['Manicura', 'Pedicura', 'Reconstruccion', 'Retirado', 'Combo']
 
+const resolveImg = (img?: string) => {
+  if (!img) return ''
+  return img.startsWith('/') || img.startsWith('http') ? img : `/images/services/${img}`
+}
+
 const EMPTY_FORM = {
   name: '',
   category: 'Manicura',
@@ -115,7 +120,7 @@ export default function AdminServicesPage() {
           price:    Number(form.price),
           duration: Number(form.duration),
           active:   editingId ? editingActive : true,
-          image:    form.image || undefined,
+          image:    form.image || '',
         }),
       })
       if (!res.ok) {
@@ -204,7 +209,7 @@ export default function AdminServicesPage() {
             <div className="flex items-center gap-3">
               {form.image ? (
                 <div className="relative w-20 h-20 rounded-lg overflow-hidden border border-neutral-200 dark:border-white/10 shrink-0">
-                  <img src={form.image} alt="" className="w-full h-full object-cover" />
+                  <img src={resolveImg(form.image)} alt="" className="w-full h-full object-cover" />
                   <button
                     onClick={() => setForm((p) => ({ ...p, image: '' }))}
                     className="absolute top-0.5 right-0.5 w-5 h-5 bg-black/60 rounded-full flex items-center justify-center hover:bg-black/80 transition-colors"
@@ -352,7 +357,7 @@ export default function AdminServicesPage() {
                   {/* Thumbnail */}
                   {s.image && (
                     <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0">
-                      <img src={s.image} alt={s.name} className="w-full h-full object-cover" />
+                      <img src={resolveImg(s.image)} alt={s.name} className="w-full h-full object-cover" />
                     </div>
                   )}
 
@@ -410,7 +415,7 @@ export default function AdminServicesPage() {
               <table className="w-full text-sm">
                 <thead className="bg-neutral-50 dark:bg-white/[0.03] border-b border-neutral-100 dark:border-white/6">
                   <tr>
-                    <th className="text-left px-4 py-2.5 font-medium text-neutral-400 dark:text-neutral-500 text-xs w-12" />
+                    <th className="text-left px-4 py-2.5 font-medium text-neutral-400 dark:text-neutral-500 text-xs w-12">Foto</th>
                     <th className="text-left px-4 py-2.5 font-medium text-neutral-400 dark:text-neutral-500 text-xs">Servicio</th>
                     <th className="text-left px-4 py-2.5 font-medium text-neutral-400 dark:text-neutral-500 text-xs w-20">Precio</th>
                     <th className="text-left px-4 py-2.5 font-medium text-neutral-400 dark:text-neutral-500 text-xs w-24">Duración</th>
@@ -425,7 +430,7 @@ export default function AdminServicesPage() {
                       <td className="px-4 py-3">
                         {s.image && (
                           <div className="w-9 h-9 rounded-lg overflow-hidden">
-                            <img src={s.image} alt="" className="w-full h-full object-cover" />
+                            <img src={resolveImg(s.image)} alt="" className="w-full h-full object-cover" />
                           </div>
                         )}
                       </td>
