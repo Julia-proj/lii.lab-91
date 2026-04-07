@@ -8,6 +8,8 @@ import { findAvailableCourseWindows, findAvailableSingleDays } from '@/lib/cours
 import { addDays, startOfDay } from 'date-fns'
 import type { IBlockedDateDocument } from '@/models/BlockedDate'
 import type { IBlockedHourDocument } from '@/models/BlockedHour'
+import Settings from '@/models/Settings'
+import type { WeekSchedule } from '@/types'
 
 export const ScheduleService = {
   async getAvailableSlots(dateStr: string, serviceId: string, options?: { duration?: number; excludeId?: string }) {
@@ -35,7 +37,12 @@ export const ScheduleService = {
 
     const effectiveDuration = options?.duration ?? service.duration
     const date = new Date(dateStr + 'T00:00:00')
-    let slots = generateAvailableSlots({ date, serviceDuration: effectiveDuration, existingBookings: allBlocked })
+
+    // Load dynamic schedule from DB (falls back to static if not set)
+    const settingsDoc = await Settings.findOne({ key: 'weekSchedule' }).lean()
+    const dynamicSchedule = settingsDoc?.value as WeekSchedule | undefined
+
+    let slots = generateAvailableSlots({ date, serviceDuration: effectiveDuration, existingBookings: allBlocked, schedule: dynamicSchedule })
 
     const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Madrid' }))
     const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`

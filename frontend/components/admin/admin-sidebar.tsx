@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useSession, signOut } from 'next-auth/react'
-import { CalendarDays, Scissors, Menu, X, ArrowLeft, LogOut, Sun, Moon, BarChart2, CalendarOff } from 'lucide-react'
+import { CalendarDays, Scissors, Menu, X, ArrowLeft, LogOut, Sun, Moon, BarChart2, CalendarOff, ClipboardList, Users } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 const navGroups = [
@@ -12,6 +12,8 @@ const navGroups = [
     items: [
       { href: '/admin',              label: 'Agenda',       icon: CalendarDays },
       { href: '/admin/estadisticas', label: 'Estadísticas', icon: BarChart2 },
+      { href: '/admin/bookings',     label: 'Reservas',     icon: ClipboardList },
+      { href: '/admin/clients',      label: 'Clientes',     icon: Users },
     ],
   },
   {

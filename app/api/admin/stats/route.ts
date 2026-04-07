@@ -15,16 +15,17 @@ export async function GET() {
 
     await dbConnect()
 
-    const now = new Date()
+    // All date calculations in Spain timezone (Europe/Madrid) to match booking creation logic
     const pad = (n: number) => String(n).padStart(2, '0')
-    const y = now.getFullYear(), m = now.getMonth()
+    const nowMadrid = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Madrid' }))
+    const y = nowMadrid.getFullYear(), m = nowMadrid.getMonth()
     const monthStart = `${y}-${pad(m + 1)}-01`
     const monthEnd = `${y}-${pad(m + 1)}-${pad(new Date(y, m + 1, 0).getDate())}`
-    const today = `${y}-${pad(m + 1)}-${pad(now.getDate())}`
+    const today = `${y}-${pad(m + 1)}-${pad(nowMadrid.getDate())}`
 
-    // Week: Monday → Sunday
-    const dow = now.getDay() === 0 ? 6 : now.getDay() - 1 // 0=Mon
-    const weekStart = new Date(now); weekStart.setDate(now.getDate() - dow)
+    // Week: Monday → Sunday (Spain timezone)
+    const dow = nowMadrid.getDay() === 0 ? 6 : nowMadrid.getDay() - 1 // 0=Mon
+    const weekStart = new Date(nowMadrid); weekStart.setDate(nowMadrid.getDate() - dow)
     const weekEnd   = new Date(weekStart); weekEnd.setDate(weekStart.getDate() + 6)
     const weekStartStr = `${weekStart.getFullYear()}-${pad(weekStart.getMonth()+1)}-${pad(weekStart.getDate())}`
     const weekEndStr   = `${weekEnd.getFullYear()}-${pad(weekEnd.getMonth()+1)}-${pad(weekEnd.getDate())}`

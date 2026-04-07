@@ -210,6 +210,45 @@ export async function sendBookingReminder(info: BookingInfo) {
 }
 
 /**
+ * Notifica al cliente que el ADMIN ha MOVIDO su cita a otra fecha/hora.
+ */
+export async function notifyReschedule(info: BookingInfo) {
+  const dateFormatted = new Date(info.date + 'T00:00:00').toLocaleDateString('es-ES', {
+    day: '2-digit',
+    month: '2-digit',
+  })
+
+  const clientWhatsappMsg =
+    `📅 Lii.lab: Tu cita ha sido reagendada.\n\n` +
+    `${info.serviceName}\n` +
+    `Nueva fecha: ${dateFormatted} a las ${info.startTime}\n\n` +
+    `Si tienes alguna duda, contáctanos.`
+
+  const html = bookingConfirmedByAdminTemplate({
+    clientName: info.clientName,
+    serviceName: info.serviceName,
+    date: info.date,
+    startTime: info.startTime,
+    endTime: info.endTime,
+    price: info.price,
+  })
+
+  const promises: Promise<unknown>[] = []
+  if (info.clientPhone) {
+    promises.push(sendWhatsApp(info.clientPhone, clientWhatsappMsg))
+  } else {
+    promises.push(sendEmail(info.clientEmail, '📅 Tu cita ha sido reagendada - Lii.lab', html))
+  }
+
+  const results = await Promise.allSettled(promises)
+  results.forEach((r, i) => {
+    if (r.status === 'rejected') {
+      console.error(`Error notifyReschedule (canal ${i}):`, r.reason)
+    }
+  })
+}
+
+/**
  * Notifica cuando alguien compra una GUIA metodologica.
  * Siempre por email porque el enlace de descarga va en el cuerpo del correo.
  */

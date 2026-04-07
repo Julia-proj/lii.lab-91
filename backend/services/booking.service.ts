@@ -1,6 +1,6 @@
 import { bookingRepository } from '@/backend/repositories/booking.repository'
 import { nailServiceRepository } from '@/backend/repositories/nail-service.repository'
-import { notifyNewBooking, notifyCancellation, notifyAdminConfirmation } from '@/lib/notifications'
+import { notifyNewBooking, notifyCancellation, notifyAdminConfirmation, notifyReschedule } from '@/lib/notifications'
 import { parseTimeToMinutes, minutesToTime } from '@/lib/schedule'
 import type { BookingInput } from '@/lib/validators'
 
@@ -119,23 +119,29 @@ export const BookingService = {
     const updated = await bookingRepository.update(id, updateFields)
     if (!updated) throw new Error('Reserva no encontrada')
 
-    if (updateFields.status === 'cancelada' || updateFields.status === 'confirmada') {
-      const user = updated.user as unknown as { name: string; email: string; phone?: string }
-      const svcList = updated.services as unknown as { name: string; price: number }[]
-      const wasConfirmed = existing.status === 'confirmada'
-      if (user?.email && svcList?.length > 0) {
-        const payload = {
-          clientName: user.name,
-          clientEmail: user.email,
-          clientPhone: user.phone,
-          serviceName: svcList.map((s) => s.name).join(', '),
-          date: updated.date,
-          startTime: updated.startTime,
-          endTime: updated.endTime,
-          price: svcList.reduce((sum, s) => sum + s.price, 0),
-        }
-        if (updateFields.status === 'cancelada') notifyCancellation(payload).catch(() => undefined)
-        else if (!wasConfirmed) notifyAdminConfirmation(payload).catch(() => undefined)
+    const user = updated.user as unknown as { name: string; email: string; phone?: string }
+    const svcList = updated.services as unknown as { name: string; price: number }[]
+
+    if (user?.email && svcList?.length > 0) {
+      const payload = {
+        clientName: user.name,
+        clientEmail: user.email,
+        clientPhone: user.phone,
+        serviceName: svcList.map((s) => s.name).join(', '),
+        date: updated.date,
+        startTime: updated.startTime,
+        endTime: updated.endTime,
+        price: svcList.reduce((sum, s) => sum + s.price, 0),
+      }
+
+      if (updateFields.status === 'cancelada') {
+        notifyCancellation(payload).catch(() => undefined)
+      } else if (updateFields.status === 'confirmada') {
+        const wasConfirmed = existing.status === 'confirmada'
+        if (!wasConfirmed) notifyAdminConfirmation(payload).catch(() => undefined)
+      } else if (updateFields.date || updateFields.startTime || updateFields.endTime) {
+        // Admin moved the booking — notify the client of the new date/time
+        notifyReschedule(payload).catch(() => undefined)
       }
     }
 

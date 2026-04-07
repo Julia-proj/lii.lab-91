@@ -10,12 +10,14 @@
  */
 
 import { getBlocksForDay, isDayOpen, parseTimeToMinutes, minutesToTime } from './schedule'
+import type { WeekSchedule } from '@/types'
 
 /** Parametros necesarios para calcular los slots disponibles */
 interface SlotParams {
   date: Date
   serviceDuration: number // duracion del servicio en minutos
   existingBookings: Array<{ startTime: string; endTime: string }> // reservas ya existentes ese dia
+  schedule?: WeekSchedule // horario dinamico (si no se pasa, se usa el estatico WEEK_SCHEDULE)
 }
 
 /**
@@ -23,14 +25,15 @@ interface SlotParams {
  * Devuelve un array de strings "HH:mm" que representan las horas de inicio disponibles.
  */
 export function generateAvailableSlots(params: SlotParams): string[] {
-  const { date, serviceDuration, existingBookings } = params
+  const { date, serviceDuration, existingBookings, schedule } = params
   const dayOfWeek = date.getDay() // 0=Domingo ... 6=Sabado
 
   // Si el dia esta cerrado (ej: domingo), no hay slots disponibles
-  if (!isDayOpen(dayOfWeek)) return []
+  const isOpen  = schedule ? (schedule[dayOfWeek]?.open ?? false) : isDayOpen(dayOfWeek)
+  if (!isOpen) return []
 
   // Obtenemos los bloques de trabajo del dia (ej: [{start:'10:00', end:'14:00'}, ...])
-  const blocks = getBlocksForDay(dayOfWeek)
+  const blocks = schedule ? (schedule[dayOfWeek]?.blocks ?? []) : getBlocksForDay(dayOfWeek)
   const slots: string[] = []
 
   // Recorremos cada bloque horario del dia

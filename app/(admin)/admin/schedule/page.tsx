@@ -1,9 +1,10 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { CalendarOff, Clock, Trash2, ChevronLeft, ChevronRight } from 'lucide-react'
+import { CalendarOff, Clock, Trash2, ChevronLeft, ChevronRight, Pencil, Plus, Check, X } from 'lucide-react'
 import { toast } from 'sonner'
 import { WEEK_SCHEDULE } from '@/lib/schedule'
+import type { WeekSchedule } from '@/types'
 
 interface BlockedDateData {
   _id: string
@@ -74,21 +75,33 @@ export default function AdminSchedulePage() {
   const [newHourReason, setNewHourReason] = useState('')
   const [addingHour, setAddingHour] = useState(false)
 
+  // Week schedule editor
+  const [weekSchedule, setWeekSchedule] = useState<WeekSchedule>(WEEK_SCHEDULE)
+  const [editingSchedule, setEditingSchedule] = useState(false)
+  const [draftSchedule, setDraftSchedule] = useState<WeekSchedule>(WEEK_SCHEDULE)
+  const [savingSchedule, setSavingSchedule] = useState(false)
+
   const fetchAll = useCallback(async () => {
     try {
-      const [datesRes, hoursRes, bookingsRes] = await Promise.all([
+      const [datesRes, hoursRes, bookingsRes, scheduleRes] = await Promise.all([
         fetch('/api/blocked-dates'),
         fetch('/api/blocked-hours'),
         fetch('/api/bookings'),
+        fetch('/api/admin/week-schedule'),
       ])
-      const [datesData, hoursData, bookingsData] = await Promise.all([
+      const [datesData, hoursData, bookingsData, scheduleData] = await Promise.all([
         datesRes.json(),
         hoursRes.json(),
         bookingsRes.json(),
+        scheduleRes.json(),
       ])
       setBlockedDates(datesData)
       setBlockedHours(hoursData)
       setBookings(Array.isArray(bookingsData) ? bookingsData : [])
+      if (scheduleData?.schedule) {
+        setWeekSchedule(scheduleData.schedule)
+        setDraftSchedule(scheduleData.schedule)
+      }
     } catch {
       toast.error('Error al cargar datos')
     } finally {
@@ -191,6 +204,72 @@ export default function AdminSchedulePage() {
     }
   }
 
+  // ------- Week schedule editor -------
+  const startEditSchedule = () => {
+    setDraftSchedule(JSON.parse(JSON.stringify(weekSchedule)))
+    setEditingSchedule(true)
+  }
+
+  const cancelEditSchedule = () => {
+    setDraftSchedule(JSON.parse(JSON.stringify(weekSchedule)))
+    setEditingSchedule(false)
+  }
+
+  const toggleDraftDay = (dow: number) => {
+    setDraftSchedule((prev) => ({
+      ...prev,
+      [dow]: {
+        open: !prev[dow].open,
+        blocks: prev[dow].open ? [] : [{ start: '09:00', end: '14:00' }],
+      },
+    }))
+  }
+
+  const updateDraftBlock = (dow: number, idx: number, field: 'start' | 'end', val: string) => {
+    setDraftSchedule((prev) => {
+      const blocks = [...prev[dow].blocks]
+      blocks[idx] = { ...blocks[idx], [field]: val }
+      return { ...prev, [dow]: { ...prev[dow], blocks } }
+    })
+  }
+
+  const addDraftBlock = (dow: number) => {
+    setDraftSchedule((prev) => ({
+      ...prev,
+      [dow]: { ...prev[dow], blocks: [...prev[dow].blocks, { start: '15:00', end: '19:00' }] },
+    }))
+  }
+
+  const removeDraftBlock = (dow: number, idx: number) => {
+    setDraftSchedule((prev) => {
+      const blocks = prev[dow].blocks.filter((_, i) => i !== idx)
+      return { ...prev, [dow]: { ...prev[dow], blocks, open: blocks.length > 0 } }
+    })
+  }
+
+  const saveSchedule = async () => {
+    setSavingSchedule(true)
+    try {
+      const res = await fetch('/api/admin/week-schedule', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ schedule: draftSchedule }),
+      })
+      if (!res.ok) {
+        const data = await res.json()
+        toast.error(data.error || 'Error al guardar')
+        return
+      }
+      setWeekSchedule(draftSchedule)
+      setEditingSchedule(false)
+      toast.success('Horario guardado')
+    } catch {
+      toast.error('Error de conexión')
+    } finally {
+      setSavingSchedule(false)
+    }
+  }
+
   // ------- Calendar nav -------
   const prevMonth = () => {
     if (currentMonth === 0) { setCurrentMonth(11); setCurrentYear(currentYear - 1) }
@@ -232,32 +311,136 @@ export default function AdminSchedulePage() {
         <p className="text-xs text-neutral-400 mt-0.5">Gestiona disponibilidad y bloqueos</p>
       </div>
 
-      {/* Weekly schedule — responsive grid */}
+      {/* Weekly schedule — view or edit */}
       <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-4">
-        <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-3">Horario semanal</h2>
-        <div className="overflow-x-auto -mx-1 px-1">
-        <div className="grid grid-cols-7 gap-1 sm:gap-1.5 text-center text-xs min-w-[320px]">
-          {[1, 2, 3, 4, 5, 6, 0].map((dow) => {
-            const day = WEEK_SCHEDULE[dow]
-            return (
-              <div key={dow} className={`rounded-xl px-1.5 py-2.5 border ${
-                day?.open
-                  ? 'bg-white dark:bg-emerald-900/20 border-emerald-100 dark:border-emerald-800/30'
-                  : 'bg-white dark:bg-white/4 border-neutral-100 dark:border-white/6'
-              }`}>
-                <p className={`font-bold text-[11px] mb-1 ${day?.open ? 'text-neutral-700 dark:text-neutral-300' : 'text-neutral-300 dark:text-neutral-600'}`}>{DAY_NAMES[dow]}</p>
-                {day?.open ? (
-                  day.blocks.map((b, i) => (
-                    <p key={i} className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium leading-tight">{b.start}<br />{b.end}</p>
-                  ))
-                ) : (
-                  <p className="text-[10px] text-neutral-200 dark:text-neutral-700 font-medium">—</p>
-                )}
-              </div>
-            )
-          })}
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400">Horario semanal</h2>
+          {!editingSchedule ? (
+            <button
+              onClick={startEditSchedule}
+              className="flex items-center gap-1.5 text-xs text-neutral-500 hover:text-plum dark:hover:text-lavender transition-colors px-2.5 py-1.5 rounded-lg hover:bg-plum/5"
+            >
+              <Pencil className="w-3 h-3" />
+              Editar
+            </button>
+          ) : (
+            <div className="flex items-center gap-2">
+              <button
+                onClick={cancelEditSchedule}
+                className="flex items-center gap-1 text-xs text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 px-2.5 py-1.5 rounded-lg hover:bg-neutral-100 dark:hover:bg-white/8 transition-colors"
+              >
+                <X className="w-3 h-3" />
+                Cancelar
+              </button>
+              <button
+                onClick={saveSchedule}
+                disabled={savingSchedule}
+                className="flex items-center gap-1 text-xs bg-plum text-white px-3 py-1.5 rounded-lg hover:bg-plum/90 transition-colors disabled:opacity-50"
+              >
+                <Check className="w-3 h-3" />
+                {savingSchedule ? 'Guardando...' : 'Guardar'}
+              </button>
+            </div>
+          )}
         </div>
-        </div>
+
+        {!editingSchedule ? (
+          /* View mode */
+          <div className="overflow-x-auto -mx-1 px-1">
+            <div className="grid grid-cols-7 gap-1 sm:gap-1.5 text-center text-xs min-w-[320px]">
+              {[1, 2, 3, 4, 5, 6, 0].map((dow) => {
+                const day = weekSchedule[dow]
+                return (
+                  <div key={dow} className={`rounded-xl px-1.5 py-2.5 border ${
+                    day?.open
+                      ? 'bg-white dark:bg-emerald-900/20 border-emerald-100 dark:border-emerald-800/30'
+                      : 'bg-white dark:bg-white/4 border-neutral-100 dark:border-white/6'
+                  }`}>
+                    <p className={`font-bold text-[11px] mb-1 ${day?.open ? 'text-neutral-700 dark:text-neutral-300' : 'text-neutral-300 dark:text-neutral-600'}`}>
+                      {DAY_NAMES[dow]}
+                    </p>
+                    {day?.open ? (
+                      day.blocks.map((b, i) => (
+                        <p key={i} className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium leading-tight">{b.start}<br />{b.end}</p>
+                      ))
+                    ) : (
+                      <p className="text-[10px] text-neutral-200 dark:text-neutral-700 font-medium">—</p>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        ) : (
+          /* Edit mode */
+          <div className="space-y-2">
+            {[1, 2, 3, 4, 5, 6, 0].map((dow) => {
+              const day = draftSchedule[dow]
+              return (
+                <div key={dow} className={`rounded-xl border p-3 transition-colors ${
+                  day?.open
+                    ? 'border-emerald-100 dark:border-emerald-800/30 bg-emerald-50/30 dark:bg-emerald-900/10'
+                    : 'border-neutral-100 dark:border-white/6 bg-neutral-50/50 dark:bg-white/2'
+                }`}>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2.5">
+                      {/* Toggle open/closed */}
+                      <button
+                        onClick={() => toggleDraftDay(dow)}
+                        className={`relative w-9 h-5 rounded-full transition-colors ${day?.open ? 'bg-emerald-400' : 'bg-neutral-200 dark:bg-neutral-700'}`}
+                      >
+                        <span className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform ${day?.open ? 'translate-x-4' : ''}`} />
+                      </button>
+                      <span className={`text-sm font-medium ${day?.open ? 'text-neutral-800 dark:text-neutral-200' : 'text-neutral-400 dark:text-neutral-600'}`}>
+                        {DAY_NAMES[dow]}
+                      </span>
+                      <span className={`text-[10px] ${day?.open ? 'text-emerald-600 dark:text-emerald-400' : 'text-neutral-300 dark:text-neutral-600'}`}>
+                        {day?.open ? 'Abierto' : 'Cerrado'}
+                      </span>
+                    </div>
+                    {day?.open && (
+                      <button
+                        onClick={() => addDraftBlock(dow)}
+                        className="flex items-center gap-1 text-[10px] text-neutral-400 hover:text-plum dark:hover:text-lavender transition-colors"
+                      >
+                        <Plus className="w-3 h-3" />
+                        Añadir bloque
+                      </button>
+                    )}
+                  </div>
+
+                  {day?.open && (
+                    <div className="space-y-1.5 ml-11">
+                      {day.blocks.map((block, idx) => (
+                        <div key={idx} className="flex items-center gap-2">
+                          <input
+                            type="time"
+                            value={block.start}
+                            onChange={(e) => updateDraftBlock(dow, idx, 'start', e.target.value)}
+                            className="w-24 rounded-lg border border-neutral-200 dark:border-white/10 px-2 py-1 text-xs bg-white dark:bg-[#111115] dark:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-plum/30"
+                          />
+                          <span className="text-xs text-neutral-400">—</span>
+                          <input
+                            type="time"
+                            value={block.end}
+                            onChange={(e) => updateDraftBlock(dow, idx, 'end', e.target.value)}
+                            className="w-24 rounded-lg border border-neutral-200 dark:border-white/10 px-2 py-1 text-xs bg-white dark:bg-[#111115] dark:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-plum/30"
+                          />
+                          <button
+                            onClick={() => removeDraftBlock(dow, idx)}
+                            className="text-neutral-300 hover:text-red-400 dark:text-neutral-600 dark:hover:text-red-400 transition-colors p-1"
+                          >
+                            <Trash2 className="w-3 h-3" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
