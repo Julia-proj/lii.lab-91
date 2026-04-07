@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState, useCallback } from "react"
+import { useMemo, useState, useCallback, useRef } from "react"
 import { Star, ChevronLeft, ChevronRight, X } from "lucide-react"
 import Image from "next/image"
 import { reviews } from "@/components/data/reviews"
@@ -23,10 +23,26 @@ export const ReviewsCarousel = () => {
     ]
   )
 
+  const pointerDown = useRef(false)
+  const dragged = useRef(false)
+
+  const onPointerDown = useCallback(() => {
+    pointerDown.current = true
+    dragged.current = false
+  }, [])
+
+  const onPointerMove = useCallback(() => {
+    if (pointerDown.current) dragged.current = true
+  }, [])
+
+  const onPointerUp = useCallback(() => {
+    pointerDown.current = false
+  }, [])
+
   const openLightbox = useCallback((src: string) => {
-    if (emblaApi && !emblaApi.clickAllowed()) return
+    if (dragged.current) return
     setLightboxSrc(src)
-  }, [emblaApi])
+  }, [])
 
   const closeLightbox = useCallback(() => {
     setLightboxSrc(null)
@@ -68,7 +84,7 @@ export const ReviewsCarousel = () => {
 
       {/* Контейнер карусели */}
       <div className="relative w-full max-w-[1800px] mx-auto">
-        <div className="relative w-full mask-fade-edges pb-10" ref={emblaRef}>
+        <div className="relative w-full mask-fade-edges pb-10" ref={emblaRef} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp}>
           <div className="flex touch-pan-y items-stretch">
             {duplicatedReviews.map((review, idx) => (
               <div 
