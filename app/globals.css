@@ -91,8 +91,8 @@
   --gold: 43 60% 62%;
   --gold-light: 43 25% 22%;
   --rose-accent: 350 40% 67%;
-  --warm-bg: 38 8% 15%;
-  --quiensoy-bg: 38 6% 17%;
+  --warm-bg: #292723;
+  --quiensoy-bg: #2E2C29;
 }
 
 @theme inline {
@@ -144,8 +144,8 @@
   --color-gold: hsl(var(--gold));
   --color-gold-light: hsl(var(--gold-light));
   --color-rose-accent: hsl(var(--rose-accent));
-  --color-warm-bg: hsl(var(--warm-bg));
-  --color-quiensoy-bg: hsl(var(--quiensoy-bg));
+  --color-warm-bg: var(--warm-bg);
+  --color-quiensoy-bg: var(--quiensoy-bg);
 }
 
 @layer base {

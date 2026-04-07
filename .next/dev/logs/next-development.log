@@ -1,4 +1,91 @@
-[00:00:02.726] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:03.178] Server  LOG     ✓ Ready in 2.4s
-[00:00:08.939] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:27.033] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:03.668] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:04.464] Server  LOG     ✓ Ready in 3.2s
+[00:00:07.631] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:07.689] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:29.843] Server  LOG     ✓ Finished filesystem cache database compaction in 22.1s
+[00:00:30.034] Server  LOG     ✓ Finished writing to filesystem cache in 17.8s
+[00:00:36.310] Browser ERROR   unhandledRejection: AbortError: The play() request was interrupted because video-only background media was paused to save power. https://goo.gl/LdLk22
+[00:00:36.310] Browser ERROR   unhandledRejection: AbortError: The play() request was interrupted because video-only background media was paused to save power. https://goo.gl/LdLk22
+[00:00:37.754] Browser WARN    Image with src "/images/fotoreview1.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:37.754] Browser WARN    Image with src "/images/fotoreview3.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:37.754] Browser WARN    Image with src "/images/fotoreview18.1.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:37.754] Browser WARN    Image with src "/images/fotoreview18.2.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:37.754] Browser WARN    Image with src "/images/fotoreview18.3.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:37.754] Browser WARN    Image with src "/images/fotoreview17.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:37.754] Browser WARN    Image with src "/images/fotoreview8.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:37.754] Browser WARN    Image with src "/images/fotoreview13.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:37.754] Browser WARN    Image with src "/images/fotoreview14.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:37.754] Browser WARN    Image with src "/images/fotoreview19.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:37.754] Browser WARN    Image with src "/images/fotoreview20.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:37.754] Browser WARN    Image with src "/images/fotoreview21.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:37.754] Browser WARN    Image with src "/images/fotoreview22.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:51.274] Server  LOG     ✓ Compiled in 2.3s
+[00:00:51.483] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:00:51.484] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:00:53.070] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:53.118] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:57.317] Browser ERROR   {"kind":"error","name":"ClientFetchError","type":"AuthError"}
+[00:00:58.344] Browser ERROR   unhandledRejection: AbortError: The play() request was interrupted because video-only background media was paused to save power. https://goo.gl/LdLk22
+[00:00:58.344] Browser ERROR   unhandledRejection: AbortError: The play() request was interrupted because video-only background media was paused to save power. https://goo.gl/LdLk22
+[00:01:06.311] Browser WARN    Image with src "/images/fotoreview1.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:06.311] Browser WARN    Image with src "/images/fotoreview3.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:06.311] Browser WARN    Image with src "/images/fotoreview18.1.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:06.311] Browser WARN    Image with src "/images/fotoreview18.2.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:06.311] Browser WARN    Image with src "/images/fotoreview18.3.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:06.311] Browser WARN    Image with src "/images/fotoreview17.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:06.311] Browser WARN    Image with src "/images/fotoreview8.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:06.311] Browser WARN    Image with src "/images/fotoreview13.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:06.311] Browser WARN    Image with src "/images/fotoreview14.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:06.311] Browser WARN    Image with src "/images/fotoreview19.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:06.311] Browser WARN    Image with src "/images/fotoreview20.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:06.311] Browser WARN    Image with src "/images/fotoreview21.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:06.311] Browser WARN    Image with src "/images/fotoreview22.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:13.664] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:01:13.665] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:01:16.111] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:18.586] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:22.307] Browser ERROR   unhandledRejection: AbortError: The play() request was interrupted because video-only background media was paused to save power. https://goo.gl/LdLk22
+[00:01:22.307] Browser ERROR   unhandledRejection: AbortError: The play() request was interrupted because video-only background media was paused to save power. https://goo.gl/LdLk22
+[00:01:22.307] Browser WARN    Image with src "/images/fotoreview1.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:22.307] Browser WARN    Image with src "/images/fotoreview3.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:22.307] Browser WARN    Image with src "/images/fotoreview18.1.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:22.307] Browser WARN    Image with src "/images/fotoreview18.2.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:22.307] Browser WARN    Image with src "/images/fotoreview18.3.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:22.307] Browser WARN    Image with src "/images/fotoreview17.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:22.307] Browser WARN    Image with src "/images/fotoreview8.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:22.307] Browser WARN    Image with src "/images/fotoreview13.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:22.307] Browser WARN    Image with src "/images/fotoreview14.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:22.307] Browser WARN    Image with src "/images/fotoreview19.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:22.307] Browser WARN    Image with src "/images/fotoreview20.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:22.307] Browser WARN    Image with src "/images/fotoreview21.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:22.307] Browser WARN    Image with src "/images/fotoreview22.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:27.532] Server  LOG     ✓ Compiled in 111ms
+[00:01:27.593] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:01:27.594] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:01:30.067] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:30.069] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:32.313] Browser WARN    Image with src "/images/fotoreview1.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:32.313] Browser WARN    Image with src "/images/fotoreview3.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:32.313] Browser WARN    Image with src "/images/fotoreview18.1.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:32.313] Browser WARN    Image with src "/images/fotoreview18.2.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:32.313] Browser WARN    Image with src "/images/fotoreview18.3.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:32.313] Browser WARN    Image with src "/images/fotoreview17.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:32.313] Browser WARN    Image with src "/images/fotoreview13.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:32.313] Browser WARN    Image with src "/images/fotoreview8.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:32.313] Browser WARN    Image with src "/images/fotoreview14.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:32.313] Browser WARN    Image with src "/images/fotoreview19.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:32.313] Browser WARN    Image with src "/images/fotoreview20.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:32.313] Browser ERROR   unhandledRejection: AbortError: The play() request was interrupted because video-only background media was paused to save power. https://goo.gl/LdLk22
+[00:01:32.313] Browser ERROR   unhandledRejection: AbortError: The play() request was interrupted because video-only background media was paused to save power. https://goo.gl/LdLk22
+[00:01:32.313] Browser WARN    Image with src "/images/fotoreview21.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:32.313] Browser WARN    Image with src "/images/fotoreview22.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:04:46.024] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:49.568] Browser WARN    Image with src "/images/fotoreview1.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:04:49.568] Browser WARN    Image with src "/images/fotoreview3.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:04:52.825] Browser WARN    Image with src "/images/fotoreview18.1.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:04:54.658] Browser WARN    Image with src "/images/fotoreview18.2.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:04:55.187] Server  LOG     ○ Compiling /booking ...
+[00:04:56.669] Browser WARN    Image with src "/images/fotoreview18.3.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:04:56.669] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:04:59.885] Server  LOG     ○ Compiling /api/services ...
+[00:06:26.183] Server  LOG     ✓ Finished filesystem cache database compaction in 65s

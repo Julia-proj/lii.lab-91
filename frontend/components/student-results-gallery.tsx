@@ -149,8 +149,12 @@ export function StudentResultsGallery() {
             {subidaPhotos.map((photo, i) => (
               <div
                 key={photo}
-                className="shrink-0 w-[62vw] md:w-[calc(25%-9px)] snap-start aspect-[4/5] rounded-2xl overflow-hidden group"
+                className="relative shrink-0 w-[62vw] md:w-[calc(25%-9px)] snap-start aspect-[4/5] rounded-2xl overflow-hidden group"
               >
+                {/* Silent Luxury Filter for warmth correction, visible on mobile too */}
+                <div className="absolute inset-0 bg-[#A6B8CE] opacity-[0.14] mix-blend-color z-10 pointer-events-none group-hover:opacity-0 transition-opacity duration-700" />
+                <div className="absolute inset-0 bg-[#D4E0ED] opacity-[0.06] mix-blend-overlay z-10 pointer-events-none group-hover:opacity-0 transition-opacity duration-700" />
+
                 <Image
                   src={`/images/${photo}`}
                   alt={`Resultado subida de cualificación ${i + 1}`}

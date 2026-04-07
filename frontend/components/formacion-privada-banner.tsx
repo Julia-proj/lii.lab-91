@@ -10,7 +10,7 @@ export function FormacionPrivadaBanner() {
           {/* Image container — responsive height to prevent text overflow on mobile */}
           <div className="relative w-full h-[380px] sm:h-[450px] md:h-[500px] lg:h-auto lg:aspect-[16/6] bg-stone-900">
             <Image
-              src="/images/salon-bg.jpg"
+              src="/images/form.jpg"
               alt="Formación privada de manicura profesional"
               fill
               className="object-cover object-center grayscale-[80%] transition-all duration-1000 ease-out group-hover:grayscale-0 group-hover:scale-[1.04]"
