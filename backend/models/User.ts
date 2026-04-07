@@ -9,6 +9,8 @@ export interface IUserDocument extends Document {
   role: 'user' | 'admin'
   googleId?: string
   image?: string
+  resetToken?: string
+  resetTokenExpiry?: Date
   createdAt: Date
   updatedAt: Date
   comparePassword(candidate: string): Promise<boolean>
@@ -23,6 +25,8 @@ const UserSchema = new Schema(
     role: { type: String, enum: ['user', 'admin'], default: 'user' },
     googleId: { type: String, sparse: true },
     image: { type: String },
+    resetToken: { type: String },
+    resetTokenExpiry: { type: Date },
   },
   { timestamps: true }
 )

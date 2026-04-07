@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
-import { writeFile, mkdir } from 'fs/promises'
-import { join } from 'path'
+import { put } from '@vercel/blob'
 
 const ALLOWED = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
 const MAX_SIZE = 5 * 1024 * 1024 // 5 MB
@@ -19,11 +18,12 @@ export async function POST(req: NextRequest) {
   if (file.size > MAX_SIZE) return NextResponse.json({ error: 'Archivo demasiado grande (máx 5 MB)' }, { status: 400 })
 
   const ext = file.name.split('.').pop()?.toLowerCase() || 'jpg'
-  const filename = `${Date.now()}.${ext}`
-  const dir = join(process.cwd(), 'public', 'images', 'services')
+  const filename = `services/${Date.now()}.${ext}`
 
-  await mkdir(dir, { recursive: true })
-  await writeFile(join(dir, filename), new Uint8Array(await file.arrayBuffer()))
+  const blob = await put(filename, file, {
+    access: 'public',
+    contentType: file.type,
+  })
 
-  return NextResponse.json({ path: `/images/services/${filename}` })
+  return NextResponse.json({ path: blob.url })
 }
