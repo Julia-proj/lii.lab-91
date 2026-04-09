@@ -4,13 +4,13 @@ import { StripeService } from '@/backend/services/stripe.service'
 
 export async function POST() {
   const session = await auth()
-  if (!session) return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
+  if (!session) return NextResponse.json({ success: false, error: 'No autorizado' }, { status: 401 })
 
   try {
     const url = await StripeService.createCheckoutSession(session.user.id, session.user.email ?? null)
-    return NextResponse.json({ url })
+    return NextResponse.json({ success: true, data: { url } })
   } catch (e) {
     const msg = e instanceof Error ? e.message : 'Error al crear sesión de pago'
-    return NextResponse.json({ error: msg }, { status: 500 })
+    return NextResponse.json({ success: false, error: msg }, { status: 500 })
   }
 }

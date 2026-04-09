@@ -11,17 +11,17 @@ export async function GET() {
   try {
     const session = await auth()
     if (!session || session.user.role !== 'admin') {
-      return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
+      return NextResponse.json({ success: false, error: 'No autorizado' }, { status: 403 })
     }
 
     await dbConnect()
     const doc = await Settings.findOne({ key: 'weekSchedule' }).lean()
     const schedule = (doc?.value as WeekSchedule) ?? WEEK_SCHEDULE
 
-    return NextResponse.json({ schedule })
+    return NextResponse.json({ success: true, data: { schedule } })
   } catch (error) {
     console.error('Error fetching week schedule:', error)
-    return NextResponse.json({ error: 'Error al obtener horario' }, { status: 500 })
+    return NextResponse.json({ success: false, error: 'Error al obtener horario' }, { status: 500 })
   }
 }
 
@@ -29,7 +29,7 @@ export async function PUT(req: NextRequest) {
   try {
     const session = await auth()
     if (!session || session.user.role !== 'admin') {
-      return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
+      return NextResponse.json({ success: false, error: 'No autorizado' }, { status: 403 })
     }
 
     const body = await req.json()
@@ -37,12 +37,12 @@ export async function PUT(req: NextRequest) {
 
     // Basic validation
     if (!schedule || typeof schedule !== 'object') {
-      return NextResponse.json({ error: 'Datos de horario inválidos' }, { status: 400 })
+      return NextResponse.json({ success: false, error: 'Datos de horario inválidos' }, { status: 400 })
     }
     for (let dow = 0; dow <= 6; dow++) {
       const day = schedule[dow]
       if (!day || typeof day.open !== 'boolean' || !Array.isArray(day.blocks)) {
-        return NextResponse.json({ error: `Datos inválidos para el día ${dow}` }, { status: 400 })
+        return NextResponse.json({ success: false, error: `Datos inválidos para el día ${dow}` }, { status: 400 })
       }
       for (const block of day.blocks) {
         if (
@@ -52,7 +52,7 @@ export async function PUT(req: NextRequest) {
           !/^\d{2}:\d{2}$/.test(block.end) ||
           block.start >= block.end
         ) {
-          return NextResponse.json({ error: 'Formato de hora inválido en un bloque' }, { status: 400 })
+          return NextResponse.json({ success: false, error: 'Formato de hora inválido en un bloque' }, { status: 400 })
         }
       }
     }
@@ -64,9 +64,9 @@ export async function PUT(req: NextRequest) {
       { upsert: true, new: true }
     )
 
-    return NextResponse.json({ ok: true })
+    return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Error saving week schedule:', error)
-    return NextResponse.json({ error: 'Error al guardar horario' }, { status: 500 })
+    return NextResponse.json({ success: false, error: 'Error al guardar horario' }, { status: 500 })
   }
 }

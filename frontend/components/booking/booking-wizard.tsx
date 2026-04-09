@@ -7,19 +7,12 @@ import { CategoryStep } from './category-step'
 import { DateTimeStep } from './datetime-step'
 import { ConfirmationStep } from './confirmation-step'
 import { X, Clock } from 'lucide-react'
+import { formatDuration } from '@/lib/format'
 
 const STEPS = ['Servicio', 'Fecha y hora', 'Confirmar']
 
 function SelectedServicesSidebar() {
   const { state, dispatch } = useBooking()
-
-  const formatDuration = (min: number) => {
-    const h = Math.floor(min / 60)
-    const m = min % 60
-    if (h === 0) return `${m}min`
-    if (m === 0) return `${h}h`
-    return `${h}h ${m}min`
-  }
 
   const totalDuration = getTotalDuration(state.services, state.quantities)
   const totalPrice = getTotalPrice(state.services, state.quantities)
@@ -79,7 +72,7 @@ function SelectedServicesSidebar() {
             </div>
             <button
               onClick={handleContinue}
-              className="w-full bg-[#B48EC5] hover:bg-[#a37ab5] text-white font-semibold py-3 rounded-xl transition-colors text-sm shadow-sm"
+              className="w-full bg-plum hover:bg-plum-hover text-white font-semibold py-3 rounded-xl transition-colors text-sm shadow-sm"
             >
               Continuar →
             </button>
@@ -120,7 +113,7 @@ export function BookingWizard() {
   return (
     <Suspense fallback={
       <div className="flex justify-center py-12">
-        <div className="animate-spin w-8 h-8 border-2 border-[#CDB4DB] border-t-transparent rounded-full" />
+        <div className="animate-spin w-8 h-8 border-2 border-lavender border-t-transparent rounded-full" />
       </div>
     }>
       <BookingProvider>

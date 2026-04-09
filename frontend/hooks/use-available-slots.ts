@@ -22,9 +22,9 @@ export function useAvailableSlots(date: string | null, serviceId: string | null)
           `/api/available-slots?date=${encodeURIComponent(date)}&serviceId=${encodeURIComponent(serviceId)}`
         )
         if (!res.ok) throw new Error('Error al cargar horarios')
-        const data = await res.json()
-        setSlots(data.slots || [])
-        setBlocked(data.blocked || false)
+        const json = await res.json()
+        setSlots(json.data?.slots ?? [])
+        setBlocked(json.data?.blocked ?? false)
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Error desconocido')
         setSlots([])

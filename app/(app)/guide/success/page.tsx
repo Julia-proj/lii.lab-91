@@ -12,14 +12,14 @@ export default function GuideSuccessPage() {
       </p>
 
       <div className="bg-white rounded-xl border border-neutral-200 p-6 mb-6">
-        <Download className="w-8 h-8 text-[#CDB4DB] mx-auto mb-3" />
+        <Download className="w-8 h-8 text-lavender mx-auto mb-3" />
         <h3 className="font-medium mb-2">Guía Metodológica Lii.lab</h3>
         <p className="text-sm text-neutral-400 mb-4">
           Revisa tu email para el enlace de descarga.
         </p>
         <Link
           href="/dashboard"
-          className="inline-block bg-[#CDB4DB] hover:bg-[#bda0cb] text-white font-medium py-2.5 px-6 rounded-full transition-colors text-sm"
+          className="inline-block bg-lavender hover:bg-plum text-white font-medium py-2.5 px-6 rounded-full transition-colors text-sm"
         >
           Ir a mi panel
         </Link>

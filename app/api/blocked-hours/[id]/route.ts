@@ -8,7 +8,7 @@ export async function DELETE(
 ) {
   const session = await auth()
   if (!session || session.user.role !== 'admin') {
-    return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
+    return NextResponse.json({ success: false, error: 'No autorizado' }, { status: 403 })
   }
 
   const { id } = await params
@@ -17,6 +17,6 @@ export async function DELETE(
     return NextResponse.json({ success: true })
   } catch (e) {
     const msg = e instanceof Error ? e.message : 'Error al desbloquear hora'
-    return NextResponse.json({ error: msg }, { status: 404 })
+    return NextResponse.json({ success: false, error: msg }, { status: 404 })
   }
 }

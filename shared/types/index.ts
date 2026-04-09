@@ -56,12 +56,16 @@ export interface IService {
 export interface IBooking {
   _id: string
   user: string | IUser
-  service: string | IService
+  services: (string | IService)[]
+  quantities?: Record<string, number> // serviceId -> quantity
   date: string // YYYY-MM-DD
   startTime: string // "HH:mm"
   endTime: string   // "HH:mm"
   status: BookingStatus
   notes?: string
+  paidAmount?: number
+  adminNotes?: string
+  reminderSent?: boolean
   createdAt: Date
   updatedAt: Date
 }

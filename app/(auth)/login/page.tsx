@@ -1,31 +1,34 @@
 'use client'
 
-import { useState, Suspense } from 'react'
+import { Suspense } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { signIn, getSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { loginSchema, type LoginInput } from '@/shared/validators'
 
 function LoginForm() {
   const router = useRouter()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginInput>({
+    resolver: zodResolver(loginSchema),
+  })
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError('')
-    setLoading(true)
-
+  const onSubmit = async (data: LoginInput) => {
     try {
       const res = await signIn('credentials', {
-        email,
-        password,
+        email: data.email,
+        password: data.password,
         redirect: false,
       })
 
       if (res?.error) {
-        setError('Email o contraseña incorrectos')
+        setError('root', { message: 'Email o contraseña incorrectos' })
       } else {
         const session = await getSession()
         if (session?.user?.role === 'admin') {
@@ -36,9 +39,7 @@ function LoginForm() {
         router.refresh()
       }
     } catch {
-      setError('Error al iniciar sesión')
-    } finally {
-      setLoading(false)
+      setError('root', { message: 'Error al iniciar sesión' })
     }
   }
 
@@ -46,10 +47,10 @@ function LoginForm() {
     <div className="bg-white rounded-2xl shadow-sm border border-neutral-200 p-6 sm:p-8">
       <h1 className="font-serif text-2xl text-center mb-6">Iniciar sesión</h1>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {error && (
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        {errors.root && (
           <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg px-4 py-3">
-            {error}
+            {errors.root.message}
           </div>
         )}
 
@@ -60,12 +61,11 @@ function LoginForm() {
           <input
             id="email"
             type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            {...register('email')}
             className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-plum focus:border-transparent"
             placeholder="tu@email.com"
           />
+          {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email.message}</p>}
         </div>
 
         <div>
@@ -80,20 +80,19 @@ function LoginForm() {
           <input
             id="password"
             type="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            {...register('password')}
             className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-plum focus:border-transparent"
             placeholder="••••••"
           />
+          {errors.password && <p className="text-xs text-red-500 mt-1">{errors.password.message}</p>}
         </div>
 
         <button
           type="submit"
-          disabled={loading}
+          disabled={isSubmitting}
           className="w-full bg-plum hover:bg-plum-hover text-white font-semibold py-3 rounded-lg transition-colors disabled:opacity-60"
         >
-          {loading ? 'Iniciando sesión...' : 'Iniciar sesión'}
+          {isSubmitting ? 'Iniciando sesión...' : 'Iniciar sesión'}
         </button>
       </form>
 

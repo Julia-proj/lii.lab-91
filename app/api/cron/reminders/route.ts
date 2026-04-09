@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
   try {
     const authHeader = req.headers.get('authorization')
     if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+      return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 401 })
     }
 
     await dbConnect()
@@ -59,13 +59,16 @@ export async function GET(req: NextRequest) {
     }
 
     return NextResponse.json({
-      message: `Reminders processed: ${sent} sent, ${failed} failed out of ${bookings.length} bookings`,
-      sent,
-      failed,
-      total: bookings.length,
+      success: true,
+      data: {
+        message: `Reminders processed: ${sent} sent, ${failed} failed out of ${bookings.length} bookings`,
+        sent,
+        failed,
+        total: bookings.length,
+      },
     })
   } catch (error) {
     console.error('Cron reminders error:', error)
-    return NextResponse.json({ error: 'Error processing reminders' }, { status: 500 })
+    return NextResponse.json({ success: false, error: 'Error processing reminders' }, { status: 500 })
   }
 }

@@ -1,14 +1,23 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useSession } from 'next-auth/react'
 import { toast } from 'sonner'
 import { Lock, Phone, User } from 'lucide-react'
+import { profileSchema, type ProfileInput } from '@/shared/validators'
 
 export function ProfileForm() {
   const { data: session, update } = useSession()
-  const [form, setForm]     = useState({ name: '', phone: '' })
-  const [loading, setLoading] = useState(false)
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ProfileInput>({
+    resolver: zodResolver(profileSchema),
+  })
 
   useEffect(() => {
     if (session?.user) fetchProfile()
@@ -18,34 +27,31 @@ export function ProfileForm() {
     try {
       const res = await fetch('/api/auth/profile')
       if (res.ok) {
-        const data = await res.json()
-        setForm({ name: data.name || '', phone: data.phone || '' })
+        const json = await res.json()
+        const data = json.data
+        reset({ name: data?.name || '', phone: data?.phone || '' })
       }
     } catch {
-      setForm({ name: session?.user?.name || '', phone: '' })
+      reset({ name: session?.user?.name || '', phone: '' })
     }
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
+  const onSubmit = async (data: ProfileInput) => {
     try {
       const res = await fetch('/api/auth/profile', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify(data),
       })
       if (!res.ok) {
-        const data = await res.json()
-        toast.error(data.error || 'Error al actualizar perfil')
+        const json = await res.json()
+        toast.error(json.error || 'Error al actualizar perfil')
         return
       }
       toast.success('Perfil actualizado')
       update()
     } catch {
       toast.error('Error de conexión')
-    } finally {
-      setLoading(false)
     }
   }
 
@@ -74,12 +80,10 @@ export function ProfileForm() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="px-5 pt-4 pb-5 space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="px-5 pt-4 pb-5 space-y-4">
           {/* Email — locked */}
           <div>
-            <label className="block text-xs font-medium text-neutral-500 mb-1.5">
-              Email
-            </label>
+            <label className="block text-xs font-medium text-neutral-500 mb-1.5">Email</label>
             <div className="relative">
               <input
                 type="email"
@@ -101,14 +105,13 @@ export function ProfileForm() {
               <input
                 id="name"
                 type="text"
-                required
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                {...register('name')}
                 placeholder="Tu nombre"
                 className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-plum/30 focus:border-plum/40 transition-all pr-10"
               />
               <User className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-neutral-300" />
             </div>
+            {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name.message}</p>}
           </div>
 
           {/* Phone */}
@@ -120,21 +123,21 @@ export function ProfileForm() {
               <input
                 id="phone"
                 type="tel"
-                value={form.phone}
-                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                {...register('phone')}
                 placeholder="+34 600 000 000"
                 className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-plum/30 focus:border-plum/40 transition-all pr-10"
               />
               <Phone className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-neutral-300" />
             </div>
+            {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone.message}</p>}
           </div>
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={isSubmitting}
             className="w-full bg-plum hover:bg-plum-hover text-white font-semibold py-3.5 rounded-xl transition-colors text-sm disabled:opacity-60 mt-2"
           >
-            {loading ? 'Guardando...' : 'Guardar cambios'}
+            {isSubmitting ? 'Guardando...' : 'Guardar cambios'}
           </button>
         </form>
       </div>

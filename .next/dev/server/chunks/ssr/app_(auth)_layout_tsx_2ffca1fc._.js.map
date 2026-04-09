@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Julee/Desktop/projects%28post-grad-bootcamp%29/Lili-lab/lii.lab-91/app/%28auth%29/layout.tsx"],"sourcesContent":["export default function AuthLayout({ children }: { children: React.ReactNode }) {\r\n  return (\r\n    <div className=\"min-h-screen flex items-center justify-center bg-[#fafafa] px-4 py-12\">\r\n      <div className=\"w-full max-w-md\">\r\n        <div className=\"text-center mb-8\">\r\n          <a href=\"/\" className=\"font-serif text-3xl tracking-wide text-neutral-900\">\r\n            Lii.lab\r\n          </a>\r\n        </div>\r\n        {children}\r\n      </div>\r\n    </div>\r\n  )\r\n}\r\n"],"names":[],"mappings":";;;;;;AAAe,SAAS,WAAW,EAAE,QAAQ,EAAiC;IAC5E,qBACE,6WAAC;QAAI,WAAU;kBACb,cAAA,6WAAC;YAAI,WAAU;;8BACb,6WAAC;oBAAI,WAAU;8BACb,cAAA,6WAAC;wBAAE,MAAK;wBAAI,WAAU;kCAAqD;;;;;;;;;;;gBAI5E;;;;;;;;;;;;AAIT"}}]
-}

@@ -3,6 +3,7 @@
 import { Clock, Euro } from 'lucide-react'
 import { toast } from 'sonner'
 import { useState } from 'react'
+import { BookingCancelDialog } from './booking-cancel-dialog'
 
 interface ServiceData {
   name: string
@@ -50,7 +51,7 @@ export function BookingCard({ booking, onCancel }: BookingCardProps) {
   const [cancelling, setCancelling] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
 
-  const date = new Date(booking.date + 'T00:00:00')
+  const date    = new Date(booking.date + 'T00:00:00')
   const dayNum  = date.getDate()
   const month   = date.toLocaleDateString('es-ES', { month: 'short' })
   const weekday = date.toLocaleDateString('es-ES', { weekday: 'long' })
@@ -85,23 +86,18 @@ export function BookingCard({ booking, onCancel }: BookingCardProps) {
 
   return (
     <div className={`bg-white rounded-2xl overflow-hidden shadow-sm border border-neutral-100 ${isPast ? 'opacity-60' : ''}`}>
-      {/* Status accent bar */}
       <div className={`h-[3px] w-full ${statusBarColor[booking.status] || 'bg-neutral-200'}`} />
 
       <div className="p-4 sm:p-5 flex gap-4">
-        {/* Date block */}
         <div className="shrink-0 flex flex-col items-center justify-center w-14 h-14 rounded-xl bg-neutral-50 border border-neutral-100">
           <span className="text-xl font-bold text-neutral-900 leading-none">{dayNum}</span>
           <span className="text-xs uppercase tracking-wider text-neutral-500 mt-0.5 capitalize">{month}</span>
         </div>
 
-        {/* Content */}
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2 mb-1.5">
             <h3 className="font-semibold text-neutral-900 text-sm leading-tight">
-              {services.length === 1
-                ? services[0].name
-                : services.map((s) => s.name).join(' + ')}
+              {services.length === 1 ? services[0].name : services.map((s) => s.name).join(' + ')}
             </h3>
             <span className={`shrink-0 text-xs px-2 py-0.5 rounded-full font-medium ${statusBadge[booking.status] || statusBadge.pendiente}`}>
               {statusLabel[booking.status] || booking.status}
@@ -135,35 +131,14 @@ export function BookingCard({ booking, onCancel }: BookingCardProps) {
         </div>
       </div>
 
-      {/* Cancel section */}
       {canCancel && (
-        <div className="border-t border-neutral-100 px-4 sm:px-5 py-3">
-          {showConfirm ? (
-            <div className="flex items-center gap-3">
-              <p className="text-xs text-neutral-500 flex-1">¿Confirmar cancelación?</p>
-              <button
-                onClick={handleCancel}
-                disabled={cancelling}
-                className="text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-60"
-              >
-                {cancelling ? 'Cancelando...' : 'Sí, cancelar'}
-              </button>
-              <button
-                onClick={() => setShowConfirm(false)}
-                className="text-xs text-neutral-500 hover:text-neutral-600 px-2 py-1.5 rounded-lg hover:bg-neutral-50 transition-colors"
-              >
-                Volver
-              </button>
-            </div>
-          ) : (
-            <button
-              onClick={() => setShowConfirm(true)}
-              className="text-xs text-neutral-500 hover:text-red-500 transition-colors font-medium"
-            >
-              Cancelar cita
-            </button>
-          )}
-        </div>
+        <BookingCancelDialog
+          showConfirm={showConfirm}
+          cancelling={cancelling}
+          onCancel={() => setShowConfirm(true)}
+          onConfirm={handleCancel}
+          onDismiss={() => setShowConfirm(false)}
+        />
       )}
     </div>
   )

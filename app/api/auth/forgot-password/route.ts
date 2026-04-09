@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
   try {
     const { email } = await req.json()
     if (!email || typeof email !== 'string') {
-      return NextResponse.json({ error: 'Email requerido' }, { status: 400 })
+      return NextResponse.json({ success: false, error: 'Email requerido' }, { status: 400 })
     }
 
     await dbConnect()
@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
 
     // Always return 200 to prevent user enumeration
     if (!user || !user.password) {
-      return NextResponse.json({ ok: true })
+      return NextResponse.json({ success: true })
     }
 
     const token = crypto.randomBytes(32).toString('hex')
@@ -50,9 +50,9 @@ export async function POST(req: NextRequest) {
 
     await sendEmail(user.email, 'Restablecer contraseña – Lii.lab', html)
 
-    return NextResponse.json({ ok: true })
+    return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Error forgot-password:', error)
-    return NextResponse.json({ error: 'Error interno' }, { status: 500 })
+    return NextResponse.json({ success: false, error: 'Error interno' }, { status: 500 })
   }
 }

@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
+import Google from 'next-auth/providers/google'
 import { authConfig } from './auth.config'
 import { dbConnect } from './db'
 import User from '@/models/User'
@@ -7,6 +8,10 @@ import User from '@/models/User'
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
   providers: [
+    Google({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
     Credentials({
       credentials: {
         email: { label: 'Email', type: 'email' },
@@ -34,8 +39,26 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   callbacks: {
     async jwt({ token, user, account }) {
-      // On initial sign-in, populate token with user data
-      if (user) {
+      // Google OAuth sign-in: find or create user in MongoDB
+      if (account?.provider === 'google' && user?.email) {
+        await dbConnect()
+        let dbUser = await User.findOne({ email: user.email })
+        if (!dbUser) {
+          dbUser = await User.create({
+            name: user.name ?? user.email,
+            email: user.email,
+            googleId: user.id ?? undefined,
+            image: user.image ?? undefined,
+            role: 'user',
+          })
+        } else if (!dbUser.googleId) {
+          dbUser.googleId = user.id ?? undefined
+          await dbUser.save()
+        }
+        token.role = dbUser.role
+        token.id = dbUser._id.toString()
+      } else if (user) {
+        // Credentials sign-in: populate token with user data
         token.role = user.role || 'user'
         token.id = user.id
       }

@@ -23,7 +23,7 @@ export default function ClientsPage() {
   useEffect(() => {
     fetch('/api/admin/clients')
       .then((r) => r.json())
-      .then((data) => setClients(data))
+      .then((json) => setClients(json.data ?? []))
       .catch(() => toast.error('Error al cargar clientes'))
       .finally(() => setLoading(false))
   }, [])
@@ -81,12 +81,12 @@ export default function ClientsPage() {
           placeholder="Buscar por nombre, email o teléfono..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full pl-10 pr-4 py-2.5 text-sm border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-plum/30 bg-white dark:bg-[#1e1e24] dark:border-white/10"
+          className="w-full pl-10 pr-4 py-2.5 text-sm border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-plum/30 bg-white dark:bg-card dark:border-white/10"
         />
       </div>
 
       {/* Table */}
-      <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 overflow-hidden">
+      <div className="bg-white dark:bg-card rounded-2xl border border-neutral-100 dark:border-white/8 overflow-hidden">
         {filtered.length === 0 ? (
           <p className="text-sm text-neutral-400 py-10 text-center">No hay clientes</p>
         ) : (

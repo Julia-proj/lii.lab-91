@@ -16,7 +16,7 @@ export default function GlobalError({
 
   return (
     <html lang="es">
-      <body className="min-h-screen bg-[#F7F6F3] flex items-center justify-center px-4">
+      <body className="min-h-screen bg-warm-bg flex items-center justify-center px-4">
         <div className="text-center max-w-md">
           <p className="text-xs tracking-[0.25em] uppercase text-neutral-400 mb-4">Lii.lab</p>
           <h1 className="font-serif text-3xl text-neutral-900 mb-3">Algo ha ido mal</h1>

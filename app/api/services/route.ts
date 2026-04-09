@@ -18,25 +18,29 @@ export async function GET(req: NextRequest) {
 
   try {
     const services = await NailServiceService.getAll({ category, popular, all })
-    return NextResponse.json(services)
+    return NextResponse.json({ success: true, data: services })
   } catch {
-    return NextResponse.json({ error: 'Error al obtener servicios' }, { status: 500 })
+    return NextResponse.json({ success: false, error: 'Error al obtener servicios' }, { status: 500 })
   }
 }
 
 export async function POST(req: NextRequest) {
   const session = await auth()
   if (!session || session.user.role !== 'admin') {
-    return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
+    return NextResponse.json({ success: false, error: 'No autorizado' }, { status: 403 })
   }
 
-  const parsed = serviceSchema.safeParse(await req.json())
-  if (!parsed.success) return NextResponse.json({ error: parsed.error.errors[0].message }, { status: 400 })
+  let body: unknown
+  try { body = await req.json() } catch {
+    return NextResponse.json({ success: false, error: 'Formato de solicitud inválido' }, { status: 400 })
+  }
+  const parsed = serviceSchema.safeParse(body)
+  if (!parsed.success) return NextResponse.json({ success: false, error: parsed.error.errors[0].message }, { status: 400 })
 
   try {
     const service = await NailServiceService.create(parsed.data)
-    return NextResponse.json(service, { status: 201 })
+    return NextResponse.json({ success: true, data: service }, { status: 201 })
   } catch {
-    return NextResponse.json({ error: 'Error al crear servicio' }, { status: 500 })
+    return NextResponse.json({ success: false, error: 'Error al crear servicio' }, { status: 500 })
   }
 }

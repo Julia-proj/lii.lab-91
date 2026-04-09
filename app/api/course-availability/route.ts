@@ -10,8 +10,8 @@ export async function GET(req: NextRequest) {
 
   try {
     const availableStartDates = await ScheduleService.getCourseAvailability(courseType, weeksAhead)
-    return NextResponse.json({ availableStartDates })
+    return NextResponse.json({ success: true, data: { availableStartDates } })
   } catch {
-    return NextResponse.json({ error: 'Error al obtener disponibilidad del curso' }, { status: 500 })
+    return NextResponse.json({ success: false, error: 'Error al obtener disponibilidad del curso' }, { status: 500 })
   }
 }

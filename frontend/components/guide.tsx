@@ -15,7 +15,7 @@ export function Guide() {
   ]
 
   return (
-    <section id="guia" className="py-16 sm:py-20 md:py-28 bg-[#fafafa] border-t border-gray-100">
+    <section id="guia" className="py-16 sm:py-20 md:py-28 bg-background border-t border-gray-100">
       <div className="container mx-auto px-6">
         <div className="max-w-2xl mx-auto fade-in-section">
           <div className="mb-12">
@@ -59,7 +59,7 @@ export function Guide() {
             </div>
           </div>
 
-          <div className="mb-12 pl-6 border-l-4 border-[#CDB4DB]">
+          <div className="mb-12 pl-6 border-l-4 border-lavender">
             <h3 className="font-serif text-2xl font-bold text-neutral-900 mb-3">Para formadoras y profesionales</h3>
             <p className="text-neutral-600 text-base leading-relaxed">
               Facilita el trabajo de enseñanza y evita crear materiales desde cero.

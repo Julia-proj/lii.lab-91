@@ -1,46 +1,50 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { signIn } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { Suspense } from 'react'
+import { registerSchema, type RegisterInput } from '@/shared/validators'
 
 function RegisterForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get('callbackUrl') || '/'
-  const [form, setForm] = useState({ name: '', email: '', phone: '', password: '' })
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
-  }
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm<RegisterInput>({
+    resolver: zodResolver(registerSchema),
+  })
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError('')
-    setLoading(true)
-
+  const onSubmit = async (data: RegisterInput) => {
     try {
       const res = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          password: data.password,
+        }),
       })
 
-      const data = await res.json()
+      const json = await res.json()
 
       if (!res.ok) {
-        setError(data.error || 'Error al crear la cuenta')
+        setError('root', { message: json.error || 'Error al crear la cuenta' })
         return
       }
 
-      // Auto sign-in after registration
       const signInRes = await signIn('credentials', {
-        email: form.email,
-        password: form.password,
+        email: data.email,
+        password: data.password,
         redirect: false,
       })
 
@@ -51,9 +55,7 @@ function RegisterForm() {
         router.refresh()
       }
     } catch {
-      setError('Error al crear la cuenta')
-    } finally {
-      setLoading(false)
+      setError('root', { message: 'Error al crear la cuenta' })
     }
   }
 
@@ -61,10 +63,10 @@ function RegisterForm() {
     <div className="bg-white rounded-2xl shadow-sm border border-neutral-200 p-8">
       <h1 className="font-serif text-2xl text-center mb-6">Crear cuenta</h1>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {error && (
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        {errors.root && (
           <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg px-4 py-3">
-            {error}
+            {errors.root.message}
           </div>
         )}
 
@@ -74,14 +76,12 @@ function RegisterForm() {
           </label>
           <input
             id="name"
-            name="name"
             type="text"
-            required
-            value={form.name}
-            onChange={handleChange}
-            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#CDB4DB] focus:border-transparent"
+            {...register('name')}
+            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
             placeholder="Tu nombre"
           />
+          {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name.message}</p>}
         </div>
 
         <div>
@@ -90,14 +90,12 @@ function RegisterForm() {
           </label>
           <input
             id="email"
-            name="email"
             type="email"
-            required
-            value={form.email}
-            onChange={handleChange}
-            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#CDB4DB] focus:border-transparent"
+            {...register('email')}
+            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
             placeholder="tu@email.com"
           />
+          {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email.message}</p>}
         </div>
 
         <div>
@@ -106,14 +104,12 @@ function RegisterForm() {
           </label>
           <input
             id="phone"
-            name="phone"
             type="tel"
-            required
-            value={form.phone}
-            onChange={handleChange}
-            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#CDB4DB] focus:border-transparent"
+            {...register('phone')}
+            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
             placeholder="+34 600 000 000"
           />
+          {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone.message}</p>}
         </div>
 
         <div>
@@ -122,29 +118,40 @@ function RegisterForm() {
           </label>
           <input
             id="password"
-            name="password"
             type="password"
-            required
-            minLength={6}
-            value={form.password}
-            onChange={handleChange}
-            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#CDB4DB] focus:border-transparent"
+            {...register('password')}
+            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
             placeholder="Mínimo 6 caracteres"
           />
+          {errors.password && <p className="text-xs text-red-500 mt-1">{errors.password.message}</p>}
+        </div>
+
+        <div>
+          <label htmlFor="confirmPassword" className="block text-sm font-medium text-neutral-700 mb-1">
+            Confirmar contraseña
+          </label>
+          <input
+            id="confirmPassword"
+            type="password"
+            {...register('confirmPassword')}
+            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
+            placeholder="Repite tu contraseña"
+          />
+          {errors.confirmPassword && <p className="text-xs text-red-500 mt-1">{errors.confirmPassword.message}</p>}
         </div>
 
         <button
           type="submit"
-          disabled={loading}
-          className="w-full bg-[#B48EC5] hover:bg-[#a37ab5] text-white font-semibold py-3 rounded-full transition-colors disabled:opacity-60 shadow-sm hover:shadow-md"
+          disabled={isSubmitting}
+          className="w-full bg-plum hover:bg-plum-hover text-white font-semibold py-3 rounded-full transition-colors disabled:opacity-60 shadow-sm hover:shadow-md"
         >
-          {loading ? 'Creando cuenta...' : 'Crear cuenta'}
+          {isSubmitting ? 'Creando cuenta...' : 'Crear cuenta'}
         </button>
       </form>
 
       <p className="text-center text-sm text-neutral-500 mt-6">
         ¿Ya tienes cuenta?{' '}
-        <Link href="/login" className="text-[#9b7fa8] hover:text-[#7d6389] hover:underline font-medium">
+        <Link href="/login" className="text-plum hover:text-plum-hover hover:underline font-medium">
           Inicia sesión
         </Link>
       </p>
@@ -156,7 +163,7 @@ export default function RegisterPage() {
   return (
     <Suspense fallback={
       <div className="flex justify-center py-12">
-        <div className="animate-spin w-8 h-8 border-2 border-[#CDB4DB] border-t-transparent rounded-full" />
+        <div className="animate-spin w-8 h-8 border-2 border-lavender border-t-transparent rounded-full" />
       </div>
     }>
       <RegisterForm />

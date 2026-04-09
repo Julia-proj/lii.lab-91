@@ -43,7 +43,7 @@ export default async function ConfirmationPage({
     return (
       <div className="text-center py-12">
         <p className="text-neutral-500">Reserva no encontrada</p>
-        <Link href="/booking" className="text-[#CDB4DB] hover:underline mt-4 inline-block">
+        <Link href="/booking" className="text-lavender hover:underline mt-4 inline-block">
           Volver a reservar
         </Link>
       </div>
@@ -94,9 +94,9 @@ export default async function ConfirmationPage({
         <div className="mb-6">
 
           {/* Icon: soft lavender circle */}
-          <div className="w-20 h-20 rounded-full bg-[#CDB4DB]/10 flex items-center justify-center mx-auto mb-5">
-            <div className="w-14 h-14 rounded-full bg-[#CDB4DB]/20 flex items-center justify-center">
-              <CalendarClock className="w-7 h-7 text-[#CDB4DB]" />
+          <div className="w-20 h-20 rounded-full bg-lavender/10 flex items-center justify-center mx-auto mb-5">
+            <div className="w-14 h-14 rounded-full bg-lavender/20 flex items-center justify-center">
+              <CalendarClock className="w-7 h-7 text-lavender" />
             </div>
           </div>
 
@@ -110,10 +110,10 @@ export default async function ConfirmationPage({
           <div className="flex items-start justify-center gap-0 mt-6">
             {/* Step 1: done */}
             <div className="flex flex-col items-center gap-1.5 w-20">
-              <div className="w-7 h-7 rounded-full bg-[#CDB4DB] flex items-center justify-center shadow-sm">
+              <div className="w-7 h-7 rounded-full bg-lavender flex items-center justify-center shadow-sm">
                 <Check className="w-3.5 h-3.5 text-white" />
               </div>
-              <span className="text-[11px] font-medium text-[#CDB4DB]">Enviada</span>
+              <span className="text-[11px] font-medium text-lavender">Enviada</span>
             </div>
 
             {/* Connector */}
@@ -161,15 +161,15 @@ export default async function ConfirmationPage({
 
         <div className="space-y-3 text-sm">
           <div className="flex items-center gap-3 text-neutral-600">
-            <Calendar className="w-4 h-4 text-[#CDB4DB] shrink-0" />
+            <Calendar className="w-4 h-4 text-lavender shrink-0" />
             <span className="capitalize">{formatDate(booking.date)}</span>
           </div>
           <div className="flex items-center gap-3 text-neutral-600">
-            <Clock className="w-4 h-4 text-[#CDB4DB] shrink-0" />
+            <Clock className="w-4 h-4 text-lavender shrink-0" />
             <span>{booking.startTime} – {booking.endTime} · {formatDuration(booking.startTime, booking.endTime)}</span>
           </div>
           <div className="flex items-center gap-3 text-neutral-600">
-            <Euro className="w-4 h-4 text-[#CDB4DB] shrink-0" />
+            <Euro className="w-4 h-4 text-lavender shrink-0" />
             <span>{totalPrice}€ · Pago en local</span>
           </div>
         </div>
@@ -181,15 +181,15 @@ export default async function ConfirmationPage({
           <p className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2.5">¿Qué pasa ahora?</p>
           <ul className="space-y-2">
             <li className="flex items-start gap-2 text-sm text-neutral-500">
-              <span className="text-[#CDB4DB] font-bold mt-px">·</span>
+              <span className="text-lavender font-bold mt-px">·</span>
               Recibirás un <span className="font-medium text-neutral-700 mx-1">email o WhatsApp</span> cuando Lili confirme tu cita.
             </li>
             <li className="flex items-start gap-2 text-sm text-neutral-500">
-              <span className="text-[#CDB4DB] font-bold mt-px">·</span>
+              <span className="text-lavender font-bold mt-px">·</span>
               Si hubiera algún cambio en el horario, Lili te <span className="font-medium text-neutral-700 mx-1">contactará directamente.</span>
             </li>
             <li className="flex items-start gap-2 text-sm text-neutral-500">
-              <span className="text-[#CDB4DB] font-bold mt-px">·</span>
+              <span className="text-lavender font-bold mt-px">·</span>
               Suele confirmarse en <span className="font-medium text-neutral-700 mx-1">menos de 24 h.</span>
             </li>
           </ul>
@@ -200,7 +200,7 @@ export default async function ConfirmationPage({
       <div className="mt-6 flex flex-col gap-3">
         <Link
           href="/dashboard"
-          className="bg-[#CDB4DB] hover:bg-[#bda0cb] text-white font-medium py-3 rounded-full transition-colors text-center"
+          className="bg-lavender hover:bg-plum text-white font-medium py-3 rounded-full transition-colors text-center"
         >
           {isPending ? 'Seguir el estado de mi reserva' : 'Ver mis reservas'}
         </Link>

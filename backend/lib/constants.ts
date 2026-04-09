@@ -18,15 +18,3 @@ export const COURSE_STATUS_COLORS: Record<string, { bg: string; text: string; do
   cancelada:  { bg: 'bg-red-50',     text: 'text-red-600',     dot: 'bg-red-400'     },
 }
 
-// ── Service categories ───────────────────────────────────────────────────────
-
-export const SERVICE_CATEGORIES = [
-  'manicura',
-  'pedicura',
-  'pestañas',
-  'cejas',
-  'depilacion',
-  'otro',
-] as const
-
-export type ServiceCategory = (typeof SERVICE_CATEGORIES)[number]

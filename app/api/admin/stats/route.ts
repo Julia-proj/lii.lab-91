@@ -10,7 +10,7 @@ export async function GET() {
   try {
     const session = await auth()
     if (!session || session.user.role !== 'admin') {
-      return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
+      return NextResponse.json({ success: false, error: 'No autorizado' }, { status: 403 })
     }
 
     await dbConnect()
@@ -94,23 +94,26 @@ export async function GET() {
     const incomeThisMonth = incomeThisMonthAgg[0]?.total || 0
 
     return NextResponse.json({
-      stats: {
-        totalBookings,
-        bookingsThisMonth,
-        bookingsThisWeek,
-        bookingsToday,
-        totalUsers,
-        totalCourseBookings: courseBookings,
-        totalGuidesSold: guidesSold,
-        incomeToday,
-        incomeThisWeek,
-        incomeThisMonth,
+      success: true,
+      data: {
+        stats: {
+          totalBookings,
+          bookingsThisMonth,
+          bookingsThisWeek,
+          bookingsToday,
+          totalUsers,
+          totalCourseBookings: courseBookings,
+          totalGuidesSold: guidesSold,
+          incomeToday,
+          incomeThisWeek,
+          incomeThisMonth,
+        },
+        upcomingBookings,
+        recentBookings,
       },
-      upcomingBookings,
-      recentBookings,
     })
   } catch (error) {
     console.error('Error fetching admin stats:', error)
-    return NextResponse.json({ error: 'Error al obtener estadísticas' }, { status: 500 })
+    return NextResponse.json({ success: false, error: 'Error al obtener estadísticas' }, { status: 500 })
   }
 }

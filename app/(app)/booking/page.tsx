@@ -1,5 +1,10 @@
 import { BookingWizard } from '@/components/booking/booking-wizard'
 
+export const metadata = {
+  title: 'Reservar cita | Lii.lab',
+  description: 'Elige tus servicios y reserva tu cita de manicura en Valdemoro.',
+}
+
 export default function BookingPage() {
   return (
     <>

@@ -2,8 +2,7 @@ import mongoose, { Schema, type Document } from 'mongoose'
 
 export interface ISettingsDocument extends Document {
   key: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  value: any
+  value: unknown
   updatedAt: Date
 }
 

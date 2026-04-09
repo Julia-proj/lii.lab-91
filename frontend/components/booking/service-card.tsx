@@ -1,0 +1,115 @@
+'use client'
+
+import { Clock, Plus, Check, Minus } from 'lucide-react'
+import { formatDuration } from '@/lib/format'
+import type { IService } from '@/types'
+
+const SERVICE_IMAGE_FALLBACK: Record<string, string> = {
+  'Manicura combinada': 'ser1.jpg',
+  'Manicura combinada con refuerzo': 'ser4.jpg',
+  'Manicura francesa': 'ser3.jpg',
+  'Decoraciones': 'ser2.jpg',
+  'Manicura permanente con refuerzo y francesa': 'ser6.jpg',
+  'Refuerzo con restauración del cuadrado': 'ser6.jpg',
+  'Pedicura básica': 'ser8.jpg',
+  'Pedicura con esmalte permanente y francesa': 'ser7.jpg',
+}
+
+interface ServiceCardProps {
+  service: IService
+  isSelected: boolean
+  quantity: number
+  onToggle: (service: IService) => void
+  onSetQuantity: (serviceId: string, quantity: number) => void
+}
+
+export function ServiceCard({ service, isSelected, quantity, onToggle, onSetQuantity }: ServiceCardProps) {
+  const raw = service.image || SERVICE_IMAGE_FALLBACK[service.name]
+  const imgSrc = raw ? (raw.startsWith('/') ? raw : `/images/services/${raw}`) : null
+
+  return (
+    <div
+      onClick={() => onToggle(service)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === 'Enter' && onToggle(service)}
+      className={`bg-white border rounded-lg p-4 transition-all cursor-pointer ${
+        isSelected
+          ? 'border-lavender shadow-sm ring-1 ring-lavender/20'
+          : 'border-neutral-100 hover:border-lavender hover:shadow-sm'
+      }`}
+    >
+      <div className="flex gap-3">
+        {imgSrc && (
+          <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden">
+            <img src={imgSrc} alt={service.name} className="w-full h-full object-cover" />
+          </div>
+        )}
+
+        <div className="flex-1 min-w-0">
+          <div className="flex justify-between items-start gap-2">
+            <h3 className="font-medium text-sm text-neutral-900">{service.name}</h3>
+            <span className="text-neutral-900 font-semibold text-base shrink-0">
+              {service.price}{service.name === 'Decoraciones' ? '+' : ''}&euro;
+            </span>
+          </div>
+
+          {service.description && (
+            <p className="text-xs text-neutral-500 mt-1 line-clamp-2 leading-relaxed">
+              {service.description}
+            </p>
+          )}
+
+          <div className="flex items-center justify-between mt-1.5">
+            <div className="flex items-center gap-3">
+              <span className="flex items-center gap-1 text-xs text-neutral-500">
+                <Clock className="w-3 h-3" />
+                {formatDuration(service.duration)}
+              </span>
+              {service.includes && (
+                <span className="text-xs text-neutral-500">Incluye: {service.includes}</span>
+              )}
+            </div>
+            <button
+              onClick={(e) => e.stopPropagation()}
+              tabIndex={-1}
+              aria-hidden="true"
+              className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all pointer-events-none ${
+                isSelected
+                  ? 'bg-plum text-white shadow-sm'
+                  : 'bg-neutral-100 text-neutral-500 hover:bg-plum/20 hover:text-plum-hover border border-neutral-200'
+              }`}
+            >
+              {isSelected ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+            </button>
+          </div>
+
+          {isSelected && service.name === 'Decoraciones' && (
+            <div
+              className="flex items-center gap-3 mt-3 pt-3 border-t border-neutral-100"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <span className="text-xs text-neutral-500">Cantidad:</span>
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={() => { if (quantity > 1) onSetQuantity(service._id, quantity - 1) }}
+                  className="w-7 h-7 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors"
+                >
+                  <Minus className="w-3 h-3" />
+                </button>
+                <span className="w-8 text-center text-sm font-medium">{quantity}</span>
+                <button
+                  onClick={() => { if (quantity < 10) onSetQuantity(service._id, quantity + 1) }}
+                  className="w-7 h-7 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors"
+                >
+                  <Plus className="w-3 h-3" />
+                </button>
+              </div>
+              <span className="text-xs text-neutral-500 ml-auto">{quantity * service.price}&euro;</span>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}

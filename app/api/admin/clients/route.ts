@@ -9,7 +9,7 @@ export async function GET() {
   try {
     const session = await auth()
     if (!session || session.user.role !== 'admin') {
-      return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
+      return NextResponse.json({ success: false, error: 'No autorizado' }, { status: 403 })
     }
 
     await dbConnect()
@@ -45,9 +45,9 @@ export async function GET() {
       }
     })
 
-    return NextResponse.json(clients)
+    return NextResponse.json({ success: true, data: clients })
   } catch (error) {
     console.error('Error fetching clients:', error)
-    return NextResponse.json({ error: 'Error al obtener clientes' }, { status: 500 })
+    return NextResponse.json({ success: false, error: 'Error al obtener clientes' }, { status: 500 })
   }
 }

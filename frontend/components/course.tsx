@@ -1,54 +1,45 @@
 import type React from "react"
-import {
-  Shield,
-  Zap,
-  Sparkles,
-  Hand,
-  Brush,
-  ClipboardList,
-  Euro,
-  Clock,
-  Package,
-  UserCheck,
-  ArrowUpRight,
-  BookOpen,
-  Microscope,
-  Users,
-  Instagram,
-} from "lucide-react"
+import { Shield, Zap, Sparkles, Hand, Brush, ClipboardList, BookOpen, Microscope, Users, Instagram } from "lucide-react"
 import Link from "next/link"
-import { CourseDatesPreview } from "./course/course-dates-preview"
+import { CourseInfoCard } from "./course/course-info-card"
+import { CourseSubidaSection } from "./course/course-subida-section"
+
+function DayItem({ day, title, children }: { day: string; title: string; children: React.ReactNode }) {
+  return (
+    <div className="bg-white p-6 rounded-xl shadow-sm border border-neutral-100 hover:border-lavender/40 transition-colors">
+      <div className="flex items-center gap-4 mb-2">
+        <span className="text-5xl font-serif text-neutral-300 font-bold leading-none">{day}</span>
+        <h4 className="text-xl font-medium text-neutral-900">{title}</h4>
+      </div>
+      {children}
+    </div>
+  )
+}
+
+const features = [
+  { icon: Shield,      title: "Esterilización y desinfección" },
+  { icon: Zap,         title: "Uso del torno" },
+  { icon: Brush,       title: "Pinceles y herramientas" },
+  { icon: Sparkles,    title: "Acabados perfectos" },
+  { icon: BookOpen,    title: "Teoría completa" },
+  { icon: Hand,        title: "Práctica en modelos" },
+  { icon: Microscope,  title: "Anatomía detallada" },
+  { icon: ClipboardList, title: "Organización y método" },
+]
+
+const gallery = ["/images/Foto5.JPG", "/images/Foto4.JPG", "/images/Foto6.jpg", "/images/Foto3.jpg"]
 
 export function Course() {
-  const features = [
-    { icon: Shield, title: "Esterilización y desinfección" },
-    { icon: Zap, title: "Uso del torno" },
-    { icon: Brush, title: "Pinceles y herramientas" },
-    { icon: Sparkles, title: "Acabados perfectos" },
-    { icon: BookOpen, title: "Teoría completa" },
-    { icon: Hand, title: "Práctica en modelos" },
-    { icon: Microscope, title: "Anatomía detallada" },
-    { icon: ClipboardList, title: "Organización y método" },
-  ]
-
-  const gallery = [
-    "/images/Foto5.JPG",
-    "/images/Foto4.JPG",
-    "/images/Foto6.jpg",
-    "/images/Foto3.jpg",
-  ]
-
   return (
     <section id="cursos" className="py-24 bg-white relative">
-      {/* Background decoration */}
-      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#f5f5f5] to-white"></div>
+      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#f5f5f5] to-white" />
 
       <div className="container mx-auto px-6 relative z-10">
-        {/* 3.1 Intro */}
+        {/* Intro */}
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center mb-16 md:mb-24 fade-in-section">
           <div className="w-full lg:w-1/2">
             <div className="relative">
-              <div className="absolute -top-4 -left-4 w-24 h-24 bg-[#CDB4DB]/20 rounded-full z-0"></div>
+              <div className="absolute -top-4 -left-4 w-24 h-24 bg-lavender/20 rounded-full z-0" />
               <img
                 src="/images/Foto2.JPG"
                 alt="Curso Manicura"
@@ -59,23 +50,16 @@ export function Course() {
           </div>
           <div className="w-full lg:w-1/2 space-y-8">
             <div>
-              <span className="inline-block bg-[#CDB4DB] text-neutral-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4">
-                Curso de Iniciación
-              </span>
+              <span className="inline-block bg-lavender text-neutral-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4">Curso de Iniciación</span>
               <h2 className="text-3xl font-serif text-neutral-900 leading-tight mb-6">CURSO MANIC 0.0</h2>
               <p className="text-xl text-neutral-600 font-light leading-relaxed">
-                ¿Siempre has querido aprender manicura desde cero? Este curso es tu oportunidad perfecta. Te enseñaremos
-                todo lo necesario para iniciar tu camino profesional con bases sólidas.
+                ¿Siempre has querido aprender manicura desde cero? Este curso es tu oportunidad perfecta.
+                Te enseñaremos todo lo necesario para iniciar tu camino profesional con bases sólidas.
               </p>
             </div>
-
-            {/* Features Grid embedded in intro column for better flow on mobile */}
             <div className="grid grid-cols-2 gap-3 pt-4">
               {features.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="flex flex-row items-center gap-2 p-3 rounded-lg bg-neutral-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-[#CDB4DB]/30"
-                >
+                <div key={idx} className="flex flex-row items-center gap-2 p-3 rounded-lg bg-neutral-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-lavender/30">
                   <item.icon size={18} className="text-neutral-500 shrink-0" />
                   <span className="font-medium text-neutral-800 text-xs sm:text-sm leading-tight">{item.title}</span>
                 </div>
@@ -85,52 +69,9 @@ export function Course() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start fade-in-section">
-          {/* 3.3 Info Card */}
           <div className="lg:col-span-5">
-            <div className="bg-[#FAF8F5] text-neutral-900 p-8 rounded-2xl shadow-sm border border-neutral-200/60 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#CDB4DB] rounded-full blur-3xl opacity-10 -mr-16 -mt-16"></div>
-
-              <h3 className="text-2xl font-serif mb-4 relative z-10">Información del curso</h3>
-
-              {/* Preview video */}
-              <div className="relative z-10 mb-7 rounded-xl overflow-hidden shadow-sm ring-1 ring-black/5">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  className="w-full aspect-video object-cover"
-                >
-                  <source src="/videos/curso.mp4" type="video/mp4" />
-                </video>
-              </div>
-
-              <div className="space-y-6 relative z-10">
-                <InfoRow icon={Euro} label="Precio" text="749,99€" />
-                <InfoRow icon={Clock} label="Duración" text="3 días intensivos" />
-                <InfoRow icon={Package} label="Práctica" text="Modelos reales" />
-                <InfoRow icon={UserCheck} label="Incluye" text="Kit + Guía Metodológica" />
-              </div>
-
-              <CourseDatesPreview />
-
-              <div className="mt-5 relative z-10">
-                <Link
-                  href="/booking/course"
-                  className="group w-full bg-[#B48EC5] text-white text-center py-4 rounded-lg font-semibold hover:bg-[#a37ab5] transition-colors shadow-sm hover:shadow-md flex items-center justify-center gap-2"
-                >
-                  <span>Reservar plaza</span>
-                  <ArrowUpRight
-                    size={18}
-                    className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                  />
-                </Link>
-              </div>
-            </div>
+            <CourseInfoCard />
           </div>
-
-          {/* Program */}
           <div className="lg:col-span-7">
             <h3 className="text-3xl font-serif mb-8 text-neutral-900">Programa del curso</h3>
             <div className="space-y-6">
@@ -156,69 +97,13 @@ export function Course() {
           </div>
         </div>
 
-        {/* Subida de Cualificación course */}
-        <div className="mt-16 md:mt-24 fade-in-section">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            {/* Info Card — first on all screens */}
-            <div className="lg:col-span-5">
-              <div className="bg-[#FAF8F5] text-neutral-900 p-8 rounded-2xl shadow-sm border border-neutral-200/60 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#F4B4C7] rounded-full blur-3xl opacity-20 -mr-16 -mt-16" />
-                <div className="relative z-10 space-y-5 mb-8">
-                  <InfoRow icon={Euro} label="Precio" text="349,99€" />
-                  <InfoRow icon={Clock} label="Duración" text="1 día intensivo" />
-                  <InfoRow icon={Package} label="Formato" text="Teoría + práctica con 2 modelos reales" />
-                  <InfoRow icon={UserCheck} label="Nivel" text="Intermedio / Avanzado" />
-                </div>
-                <Link
-                  href="/booking/course?type=subida"
-                  className="group w-full bg-[#B48EC5] text-white text-center py-4 rounded-lg font-semibold hover:bg-[#a37ab5] transition-colors shadow-sm hover:shadow-md flex items-center justify-center gap-2 relative z-10"
-                >
-                  <span>Reservar plaza</span>
-                  <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </Link>
-              </div>
-            </div>
+        <CourseSubidaSection />
 
-            {/* Description */}
-            <div className="lg:col-span-7">
-              <div className="mb-4">
-                <span className="inline-block bg-[#F4B4C7] text-neutral-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
-                  Nuevo
-                </span>
-              </div>
-              <h3 className="text-3xl font-serif text-neutral-900 mb-1">Curso de Subida de Cualificación</h3>
-              <p className="text-lg text-[#B48EC5] font-light mb-5">Perfecciona tu técnica y optimiza tu tiempo</p>
-              <p className="text-neutral-600 leading-relaxed mb-8">
-                Para manicuristas que quieren pulir sus conocimientos y llegar a hacer manicura combinada perfecta.
-                10 años de experiencia, todos los trucos y sobre todo rendimiento de tiempo para mayor ganancia.
-              </p>
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  "Técnica de manicura combinada",
-                  "Trucos para optimizar tiempos",
-                  "Rendimiento y productividad",
-                  "Práctica con 2 modelos reales",
-                  "Teoría avanzada",
-                  "Certificado",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-2 p-3 rounded-lg bg-neutral-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-[#CDB4DB]/30"
-                  >
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#CDB4DB] shrink-0" />
-                    <span className="font-medium text-neutral-800 text-xs sm:text-sm leading-tight">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* CTA equipos de salón */}
+        {/* CTA equipos */}
         <div className="mt-12 md:mt-16 fade-in-section">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-5 bg-neutral-50 border border-neutral-200 rounded-2xl px-7 py-6">
             <div className="flex items-center gap-4">
-              <div className="p-3 rounded-xl bg-[#CDB4DB]/15 shrink-0">
+              <div className="p-3 rounded-xl bg-lavender/15 shrink-0">
                 <Users size={22} className="text-[#7B4FAC]" />
               </div>
               <div>
@@ -230,7 +115,7 @@ export function Course() {
               href="https://www.instagram.com/lii.lab/?hl=es"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 shrink-0 px-5 py-2.5 rounded-xl border border-neutral-300 text-neutral-700 text-sm font-medium hover:border-[#CDB4DB] hover:text-[#7B4FAC] hover:bg-[#CDB4DB]/5 transition-all"
+              className="flex items-center gap-2 shrink-0 px-5 py-2.5 rounded-xl border border-neutral-300 text-neutral-700 text-sm font-medium hover:border-lavender hover:text-plum hover:bg-lavender/5 transition-all"
             >
               <Instagram size={16} />
               Escribir por Instagram
@@ -238,7 +123,7 @@ export function Course() {
           </div>
         </div>
 
-        {/* 3.4 Gallery */}
+        {/* Gallery */}
         <div className="mt-12 md:mt-20 fade-in-section">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
             {gallery.map((src, idx) => (
@@ -255,31 +140,5 @@ export function Course() {
         </div>
       </div>
     </section>
-  )
-}
-
-function InfoRow({ icon: Icon, label, text }: { icon: any; label: string; text: string }) {
-  return (
-    <div className="flex items-center gap-4">
-      <div className="p-2 rounded-lg bg-[#CDB4DB]/10 text-[#8e7f97]">
-        <Icon size={20} />
-      </div>
-      <div>
-        <p className="text-xs font-bold uppercase tracking-wider text-neutral-500">{label}</p>
-        <p className="font-medium text-neutral-900">{text}</p>
-      </div>
-    </div>
-  )
-}
-
-function DayItem({ day, title, children }: { day: string; title: string; children: React.ReactNode }) {
-  return (
-    <div className="bg-white p-6 rounded-xl shadow-sm border border-neutral-100 hover:border-[#CDB4DB]/40 transition-colors">
-      <div className="flex items-center gap-4 mb-2">
-        <span className="text-5xl font-serif text-neutral-300 font-bold leading-none">{day}</span>
-        <h4 className="text-xl font-medium text-neutral-900">{title}</h4>
-      </div>
-      {children}
-    </div>
   )
 }

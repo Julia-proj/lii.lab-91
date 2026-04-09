@@ -10,10 +10,10 @@ export async function GET(
   const { id } = await params
   try {
     const service = await NailServiceService.getById(id)
-    return NextResponse.json(service)
+    return NextResponse.json({ success: true, data: service })
   } catch (e) {
     const msg = e instanceof Error ? e.message : 'Error al obtener servicio'
-    return NextResponse.json({ error: msg }, { status: 404 })
+    return NextResponse.json({ success: false, error: msg }, { status: 404 })
   }
 }
 
@@ -23,19 +23,19 @@ export async function PUT(
 ) {
   const session = await auth()
   if (!session || session.user.role !== 'admin') {
-    return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
+    return NextResponse.json({ success: false, error: 'No autorizado' }, { status: 403 })
   }
 
   const parsed = serviceSchema.partial().safeParse(await req.json())
-  if (!parsed.success) return NextResponse.json({ error: parsed.error.errors[0].message }, { status: 400 })
+  if (!parsed.success) return NextResponse.json({ success: false, error: parsed.error.errors[0].message }, { status: 400 })
 
   const { id } = await params
   try {
     const service = await NailServiceService.update(id, parsed.data)
-    return NextResponse.json(service)
+    return NextResponse.json({ success: true, data: service })
   } catch (e) {
     const msg = e instanceof Error ? e.message : 'Error al actualizar servicio'
-    return NextResponse.json({ error: msg }, { status: 404 })
+    return NextResponse.json({ success: false, error: msg }, { status: 404 })
   }
 }
 
@@ -45,15 +45,15 @@ export async function DELETE(
 ) {
   const session = await auth()
   if (!session || session.user.role !== 'admin') {
-    return NextResponse.json({ error: 'No autorizado' }, { status: 403 })
+    return NextResponse.json({ success: false, error: 'No autorizado' }, { status: 403 })
   }
 
   const { id } = await params
   try {
     await NailServiceService.deactivate(id)
-    return NextResponse.json({ message: 'Servicio desactivado' })
+    return NextResponse.json({ success: true })
   } catch (e) {
     const msg = e instanceof Error ? e.message : 'Error al eliminar servicio'
-    return NextResponse.json({ error: msg }, { status: 404 })
+    return NextResponse.json({ success: false, error: msg }, { status: 404 })
   }
 }

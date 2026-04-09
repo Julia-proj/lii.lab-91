@@ -25,8 +25,8 @@ export function useServices(category?: string) {
         const url = category ? `/api/services?category=${encodeURIComponent(category)}` : '/api/services'
         const res = await fetch(url)
         if (!res.ok) throw new Error('Error al cargar servicios')
-        const data = await res.json()
-        setServices(data)
+        const json = await res.json()
+        setServices(json.data ?? [])
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Error desconocido')
       } finally {

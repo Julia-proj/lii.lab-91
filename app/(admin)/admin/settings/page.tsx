@@ -12,7 +12,7 @@ export default function SettingsPage() {
       </div>
 
       {/* Bloqueos — redirigir a Horario */}
-      <div className="bg-white dark:bg-[#1e1e24] rounded-2xl border border-neutral-100 dark:border-white/8 p-5">
+      <div className="bg-white dark:bg-card rounded-2xl border border-neutral-100 dark:border-white/8 p-5">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-neutral-100 dark:bg-white/8 flex items-center justify-center shrink-0">

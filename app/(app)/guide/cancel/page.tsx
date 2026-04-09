@@ -13,7 +13,7 @@ export default function GuideCancelPage() {
       <div className="flex flex-col gap-3">
         <Link
           href="/#guia"
-          className="inline-block bg-[#CDB4DB] hover:bg-[#bda0cb] text-white font-medium py-3 px-6 rounded-full transition-colors"
+          className="inline-block bg-lavender hover:bg-plum text-white font-medium py-3 px-6 rounded-full transition-colors"
         >
           Volver a la guía
         </Link>

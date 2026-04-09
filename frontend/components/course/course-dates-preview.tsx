@@ -11,7 +11,7 @@ export function CourseDatesPreview() {
   useEffect(() => {
     fetch("/api/course-availability?weeks=12")
       .then((r) => r.json())
-      .then((d) => setDates(d.availableStartDates?.slice(0, 3) || []))
+      .then((json) => setDates((json.data?.availableStartDates ?? []).slice(0, 3)))
       .catch(() => {})
       .finally(() => setLoading(false))
   }, [])
@@ -53,7 +53,7 @@ export function CourseDatesPreview() {
             <Link
               key={d}
               href="/booking/course"
-              className="text-xs font-medium px-3 py-1.5 rounded-lg bg-[#CDB4DB]/15 text-[#7B4FAC] border border-[#CDB4DB]/30 hover:bg-[#CDB4DB]/25 transition-colors whitespace-nowrap"
+              className="text-xs font-medium px-3 py-1.5 rounded-lg bg-lavender/15 text-plum border border-lavender/30 hover:bg-lavender/25 transition-colors whitespace-nowrap"
             >
               {formatDate(d)} – {getEndDate(d)}
             </Link>
