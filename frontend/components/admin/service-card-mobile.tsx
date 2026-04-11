@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import Image from 'next/image'
 import { Pencil, Power, Star } from 'lucide-react'
 
@@ -15,8 +18,9 @@ export interface ServiceData {
 }
 
 const resolveImg = (img?: string) => {
-  if (!img) return ''
-  return img.startsWith('/') || img.startsWith('http') ? img : `/images/services/${img}`
+  const i = img?.trim()
+  if (!i || i === 'null' || i === 'undefined') return ''
+  return i.startsWith('/') || i.startsWith('http') ? i : `/images/services/${i}`
 }
 
 const fmt = (min: number) => {
@@ -34,11 +38,13 @@ interface ServiceCardMobileProps {
 }
 
 export function ServiceCardMobile({ service: s, onEdit, onToggleActive, onTogglePopular }: ServiceCardMobileProps) {
+  const imgSrc = resolveImg(s.image)
+  const [imgError, setImgError] = useState(false)
   return (
     <div className={`bg-white dark:bg-card rounded-xl border border-neutral-100 dark:border-white/8 p-3 flex gap-3 ${!s.active ? 'opacity-50' : ''}`}>
-      {s.image && (
+      {imgSrc && !imgError && (
         <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0 relative">
-          <Image src={resolveImg(s.image)} alt={s.name} fill sizes="56px" className="object-cover" />
+          <Image src={imgSrc} alt={s.name} fill sizes="56px" className="object-cover" onError={() => setImgError(true)} />
         </div>
       )}
       <div className="flex-1 min-w-0">

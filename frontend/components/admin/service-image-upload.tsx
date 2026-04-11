@@ -1,11 +1,12 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { ImagePlus, X, Loader2 } from 'lucide-react'
 
 const resolveImg = (img?: string) => {
-  if (!img) return ''
-  return img.startsWith('/') || img.startsWith('http') ? img : `/images/services/${img}`
+  const i = img?.trim()
+  if (!i || i === 'null' || i === 'undefined') return ''
+  return i.startsWith('/') || i.startsWith('http') ? i : `/images/services/${i}`
 }
 
 interface ServiceImageUploadProps {
@@ -17,14 +18,17 @@ interface ServiceImageUploadProps {
 
 export function ServiceImageUpload({ image, uploading, onUpload, onRemove }: ServiceImageUploadProps) {
   const fileRef = useRef<HTMLInputElement>(null)
+  const [imgError, setImgError] = useState(false)
+  
+  const imgSrc = resolveImg(image)
 
   return (
     <div className="mb-4">
       <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-2">Foto del servicio</label>
       <div className="flex items-center gap-3">
-        {image ? (
+        {imgSrc && !imgError ? (
           <div className="relative w-20 h-20 rounded-lg overflow-hidden border border-neutral-200 dark:border-white/10 shrink-0">
-            <img src={resolveImg(image)} alt="" className="w-full h-full object-cover" />
+            <img src={imgSrc} alt="" className="w-full h-full object-cover" onError={() => setImgError(true)} />
             <button onClick={onRemove}
               className="absolute top-0.5 right-0.5 w-5 h-5 bg-black/60 rounded-full flex items-center justify-center hover:bg-black/80 transition-colors">
               <X className="w-3 h-3 text-white" />
@@ -47,12 +51,12 @@ export function ServiceImageUpload({ image, uploading, onUpload, onRemove }: Ser
             onChange={(e) => { const f = e.target.files?.[0]; if (f) onUpload(f) }}
           />
           <button
-            onClick={() => fileRef.current?.click()}
+            onClick={(e) => { e.preventDefault(); fileRef.current?.click() }}
             disabled={uploading}
-            className="text-xs px-3 py-1.5 rounded-lg border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-400 hover:border-plum hover:text-plum transition-colors disabled:opacity-50 flex items-center gap-1.5"
+            className="text-xs px-3 py-1.5 rounded-lg border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-400 hover:border-plum hover:text-plum transition-colors disabled:opacity-50 flex items-center gap-1.5"  
           >
             <ImagePlus className="w-3.5 h-3.5" />
-            {uploading ? 'Subiendo...' : image ? 'Cambiar foto' : 'Subir foto'}
+            {uploading ? 'Subiendo...' : imgSrc ? 'Cambiar foto' : 'Subir foto'} 
           </button>
           <p className="text-[11px] text-neutral-400">JPG, PNG, WebP · max 5 MB</p>
         </div>

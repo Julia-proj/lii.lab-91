@@ -10,7 +10,13 @@
       "Bash(npm cache:*)",
       "Bash(npm install:*)",
       "Bash(wc -l components/admin/*.tsx)",
-      "Bash(pnpm build:*)"
+      "Bash(pnpm build:*)",
+      "Bash(netstat -ano)",
+      "Bash(find /c/Users/David/lii.lab-91/frontend -type f \\\\\\( -name \"*.tsx\" -o -name \"*.ts\" \\\\\\) -exec sh -c 'echo \"$\\(wc -l < \"$1\"\\) $1\"' _ {} \\\\;)",
+      "Bash(grep -rn \"import.*unused\\\\|//@ts-ignore\" /c/Users/David/lii.lab-91/frontend --include=\"*.tsx\" --include=\"*.ts\")",
+      "Bash(sed -i \"s|import { registerSchema, type RegisterInput } from '@/shared/validators'|import { registerFormSchema, type RegisterFormInput } from '@/shared/validators'|g\" \"c:/Users/David/lii.lab-91/app/\\(auth\\)/register/page.tsx\")",
+      "Bash(sed -i \"s|useForm<RegisterInput>|useForm<RegisterFormInput>|g\" \"c:/Users/David/lii.lab-91/app/\\(auth\\)/register/page.tsx\")",
+      "Bash(sed -i \"s|zodResolver\\(registerSchema\\)|zodResolver\\(registerFormSchema\\)|g\" \"c:/Users/David/lii.lab-91/app/\\(auth\\)/register/page.tsx\")"
     ]
   },
   "enableAllProjectMcpServers": true

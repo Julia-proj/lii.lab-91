@@ -124,7 +124,7 @@ export function ConfirmationStep() {
           <button
             onClick={handleConfirm}
             disabled={loading}
-            className="w-full mt-6 bg-plum hover:bg-plum-hover text-white font-semibold py-3 rounded-full transition-colors disabled:opacity-60 shadow-sm hover:shadow-md"
+            className="w-full mt-8 bg-neutral-900 hover:bg-neutral-800 text-white font-medium py-3.5 rounded-full transition-all duration-400 ease-out disabled:opacity-60 shadow-[0_4px_14px_rgba(0,0,0,0.1)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.15)] hover:-translate-y-0.5 tracking-wide ring-1 ring-neutral-900/10"
           >
             {loading ? 'Confirmando...' : 'Confirmar reserva'}
           </button>

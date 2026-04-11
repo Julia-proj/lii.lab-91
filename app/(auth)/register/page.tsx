@@ -78,7 +78,7 @@ function RegisterForm() {
             id="name"
             type="text"
             {...register('name')}
-            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
+            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
             placeholder="Tu nombre"
           />
           {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name.message}</p>}
@@ -92,7 +92,7 @@ function RegisterForm() {
             id="email"
             type="email"
             {...register('email')}
-            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
+            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
             placeholder="tu@email.com"
           />
           {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email.message}</p>}
@@ -106,7 +106,7 @@ function RegisterForm() {
             id="phone"
             type="tel"
             {...register('phone')}
-            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
+            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
             placeholder="+34 600 000 000"
           />
           {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone.message}</p>}
@@ -120,7 +120,7 @@ function RegisterForm() {
             id="password"
             type="password"
             {...register('password')}
-            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
+            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
             placeholder="Mínimo 6 caracteres"
           />
           {errors.password && <p className="text-xs text-red-500 mt-1">{errors.password.message}</p>}
@@ -134,7 +134,7 @@ function RegisterForm() {
             id="confirmPassword"
             type="password"
             {...register('confirmPassword')}
-            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
+            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
             placeholder="Repite tu contraseña"
           />
           {errors.confirmPassword && <p className="text-xs text-red-500 mt-1">{errors.confirmPassword.message}</p>}

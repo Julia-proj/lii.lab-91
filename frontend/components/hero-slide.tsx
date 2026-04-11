@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { useState } from "react"
 
 interface AtmosphericSlide {
   src: string
@@ -16,6 +17,8 @@ interface HeroSlideProps {
 }
 
 export function HeroSlide({ slide, index, active }: HeroSlideProps) {
+  const [imgLoaded, setImgLoaded] = useState(false)
+
   return (
     <div
       className={`absolute inset-0 z-0 transition-opacity duration-[2000ms] ease-in-out ${
@@ -29,7 +32,10 @@ export function HeroSlide({ slide, index, active }: HeroSlideProps) {
         fill
         loading="lazy"
         sizes="100vw"
-        className="md:hidden object-cover"
+        onLoad={() => setImgLoaded(true)}
+        className={`md:hidden object-cover transition-all duration-1000 ease-out ${
+          imgLoaded ? "blur-0 opacity-100" : "blur-md opacity-0"
+        }`}
         style={{
           objectPosition: slide.mobilePos,
           transform: `scale(${slide.mobileScale})`,
@@ -51,7 +57,10 @@ export function HeroSlide({ slide, index, active }: HeroSlideProps) {
           fill
           loading="lazy"
           sizes="72vw"
-          className="object-cover"
+          onLoad={() => setImgLoaded(true)}
+          className={`object-cover transition-all duration-1000 ease-out ${
+            imgLoaded ? "blur-0 opacity-100" : "blur-md opacity-0"
+          }`}
           style={{ objectPosition: slide.pos, transform: `scale(${slide.scale})` }}
         />
         <div className="absolute inset-0 bg-black/25 pointer-events-none" />

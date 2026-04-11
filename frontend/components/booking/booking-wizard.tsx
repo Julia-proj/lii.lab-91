@@ -93,14 +93,14 @@ function WizardContent() {
       </div>
 
       {state.step === 1 ? (
-        <div className="flex gap-8 items-start">
+        <div key="step-1" className="flex gap-8 items-start animate-in fade-in slide-in-from-right-4 duration-500 ease-out">
           <div className="flex-1 min-w-0">
             <CategoryStep />
           </div>
           <SelectedServicesSidebar />
         </div>
       ) : (
-        <div className="max-w-3xl mx-auto min-h-[400px]">
+        <div key={`step-${state.step}`} className="max-w-3xl mx-auto min-h-[400px] animate-in fade-in slide-in-from-right-4 duration-500 ease-out">
           {state.step === 2 && <DateTimeStep />}
           {state.step === 3 && <ConfirmationStep />}
         </div>

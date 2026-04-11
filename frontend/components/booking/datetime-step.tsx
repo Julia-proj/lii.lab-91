@@ -98,8 +98,20 @@ export function DateTimeStep() {
 
   if (calendarLoading) {
     return (
-      <div className="flex justify-center py-12">
-        <div className="animate-spin w-8 h-8 border-2 border-lavender border-t-transparent rounded-full" />
+      <div className="flex justify-center py-12 animate-pulse">
+        <div className="w-[300px] sm:w-[350px]">
+          <div className="h-6 bg-black/5 rounded w-32 mb-6 mx-auto" />
+          <div className="grid grid-cols-7 gap-1 mb-2">
+            {[...Array(7)].map((_, i) => (
+              <div key={`w-${i}`} className="h-4 bg-black/5 rounded w-full" />
+            ))}
+          </div>
+          <div className="grid grid-cols-7 gap-1">
+            {[...Array(35)].map((_, i) => (
+              <div key={`d-${i}`} className="aspect-square bg-black/5 rounded-full w-full" />
+            ))}
+          </div>
+        </div>
       </div>
     )
   }
@@ -110,6 +122,14 @@ export function DateTimeStep() {
         <p className="text-sm text-red-500">{loadError}</p>
       </div>
     )
+  }
+
+  const handleTimeSlotSelect = (slot: string) => {
+    dispatch({ type: 'SET_TIME', payload: slot })
+    // UX: Ð¿Ð°ÑƒÐ·Ð° Ð´Ð»Ñ Ñ„Ð¸ÐºÑÐ°Ñ†Ð¸Ð¸ ÑÑ„Ñ„ÐµÐºÑ‚Ð° ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¿ÐµÑ€ÐµÐ´ Ð¿Ð»Ð°Ð²Ð½Ñ‹Ð¼ Ð¿ÐµÑ€ÐµÑ…Ð¾Ð´Ð¾Ð¼
+    setTimeout(() => {
+      dispatch({ type: 'NEXT_STEP' })
+    }, 450)
   }
 
   return (
@@ -153,7 +173,7 @@ export function DateTimeStep() {
                 slotsLoading={slotsLoading}
                 selectedSlot={state.timeSlot}
                 totalDuration={totalDuration}
-                onSelectSlot={(slot) => dispatch({ type: 'SET_TIME', payload: slot })}
+                onSelectSlot={handleTimeSlotSelect}
               />
             )}
           </div>
@@ -164,7 +184,7 @@ export function DateTimeStep() {
               slotsLoading={slotsLoading}
               selectedSlot={state.timeSlot}
               totalDuration={totalDuration}
-              onSelectSlot={(slot) => dispatch({ type: 'SET_TIME', payload: slot })}
+              onSelectSlot={handleTimeSlotSelect}
             />
           </div>
         </div>

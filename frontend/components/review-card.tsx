@@ -55,6 +55,7 @@ export function ReviewCard({ review, onImageClick }: ReviewCardProps) {
           {review.attachedImages.map((img, i) => (
             <button
               key={i}
+              onPointerDown={(e) => e.stopPropagation()}
               onClick={(e) => { e.stopPropagation(); onImageClick(img) }}
               className="relative w-20 h-20 rounded-lg overflow-hidden border border-stone-200/60 bg-stone-50 shrink-0 cursor-zoom-in hover:scale-105 hover:shadow-md transition-all duration-200"
             >

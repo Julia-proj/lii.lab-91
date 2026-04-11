@@ -92,7 +92,7 @@ function ResetPasswordForm() {
             minLength={6}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-plum focus:border-transparent"
+            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-plum focus:border-transparent"
             placeholder="Mínimo 6 caracteres"
           />
         </div>
@@ -107,7 +107,7 @@ function ResetPasswordForm() {
             minLength={6}
             value={confirm}
             onChange={(e) => setConfirm(e.target.value)}
-            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-plum focus:border-transparent"
+            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-plum focus:border-transparent"
             placeholder="Repite la contraseña"
           />
         </div>

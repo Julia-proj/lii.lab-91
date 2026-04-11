@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #FCFCFA;
+  --background: #FAFAF8;
   --foreground: #1A1A1A;
   --card: #FFFFFF;
   --card-foreground: #1A1A1A;
@@ -51,7 +51,7 @@
 }
 
 .dark {
-  /* Warm sandy dark — fácil para la vista */
+  /* Warm sandy dark â€” fÃ¡cil para la vista */
   --background: oklch(0.17 0.008 65);
   --foreground: oklch(0.92 0.006 65);
   --card: oklch(0.20 0.008 65);
@@ -84,7 +84,7 @@
   --sidebar-accent-foreground: oklch(0.92 0.006 65);
   --sidebar-border: oklch(0.28 0.008 65);
   --sidebar-ring: oklch(0.45 0.006 65);
-  /* Brand tokens — dark mode */
+  /* Brand tokens â€” dark mode */
   --plum: 273 20% 55%;
   --plum-hover: 273 22% 48%;
   --lavender: 278 32% 72%;
@@ -136,7 +136,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Brand colors — mapped from CSS vars so dark mode works */
+  /* Brand colors â€” mapped from CSS vars so dark mode works */
   --color-plum: hsl(var(--plum));
   --color-plum-hover: hsl(var(--plum-hover));
   --color-plum-foreground: hsl(var(--plum-foreground));
@@ -222,7 +222,7 @@
   }
 
 
-  /* ── Hero slow zoom (Ken Burns) ── */
+  /* â”€â”€ Hero slow zoom (Ken Burns) â”€â”€ */
   @keyframes heroZoom {
     from { transform: scale(1);    }
     to   { transform: scale(1.07); }
@@ -232,7 +232,7 @@
     will-change: transform;
   }
 
-  /* ── Swipe hint arrow ── */
+  /* â”€â”€ Swipe hint arrow â”€â”€ */
   @keyframes swipeHint {
     0%, 100% { transform: translateX(0px); opacity: 0.45; }
     55%       { transform: translateX(7px); opacity: 1;    }

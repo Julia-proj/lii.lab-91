@@ -43,7 +43,7 @@ export function bookingReducer(state: BookingState, action: BookingAction): Book
     case 'SET_DATE':
       return { ...state, date: action.payload, timeSlot: null }
     case 'SET_TIME':
-      return { ...state, timeSlot: action.payload, step: 3 }
+      return { ...state, timeSlot: action.payload }
     case 'SET_NOTES':
       return { ...state, notes: action.payload }
     case 'NEXT_STEP':

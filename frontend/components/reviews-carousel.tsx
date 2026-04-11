@@ -30,7 +30,7 @@ export const ReviewsCarousel = () => {
   const onPointerMove = useCallback(() => { if (pointerDown.current) dragged.current = true }, [])
   const onPointerUp   = useCallback(() => { pointerDown.current = false }, [])
 
-  const openLightbox  = useCallback((src: string) => { if (!dragged.current) setLightboxSrc(src) }, [])
+  const openLightbox  = useCallback((src: string) => setLightboxSrc(src), [])
   const closeLightbox = useCallback(() => setLightboxSrc(null), [])
 
   const duplicatedReviews = useMemo(() => [...reviews, ...reviews, ...reviews], [])

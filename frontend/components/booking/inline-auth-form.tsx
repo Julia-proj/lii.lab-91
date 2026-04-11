@@ -67,7 +67,7 @@ export function InlineAuthForm({
               value={loginEmail}
               onChange={(e) => onEmailChange(e.target.value)}
               required
-              className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
+              className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
             />
             <input
               type="password"
@@ -75,7 +75,7 @@ export function InlineAuthForm({
               value={loginPassword}
               onChange={(e) => onPasswordChange(e.target.value)}
               required
-              className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
+              className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
             />
             {loginError && <p className="text-xs text-red-500">{loginError}</p>}
             <button

@@ -62,7 +62,7 @@ function LoginForm() {
             id="email"
             type="email"
             {...register('email')}
-            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-plum focus:border-transparent"
+            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-plum focus:border-transparent"
             placeholder="tu@email.com"
           />
           {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email.message}</p>}
@@ -81,7 +81,7 @@ function LoginForm() {
             id="password"
             type="password"
             {...register('password')}
-            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-plum focus:border-transparent"
+            className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-plum focus:border-transparent"
             placeholder="••••••"
           />
           {errors.password && <p className="text-xs text-red-500 mt-1">{errors.password.message}</p>}

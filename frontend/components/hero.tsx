@@ -17,6 +17,7 @@ const TOTAL = ATMOSPHERIC.length + 1
 
 export function Hero() {
   const [current, setCurrent] = useState(0)
+  const [imgLoaded, setImgLoaded] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -52,7 +53,10 @@ export function Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[center_20%] md:object-[center_28%] hero-zoom"
+          onLoad={() => setImgLoaded(true)}
+          className={`object-cover object-[center_20%] md:object-[center_28%] hero-zoom transition-all duration-1000 ease-out ${
+            imgLoaded ? "blur-0" : "blur-md scale-105"
+          }`}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/10 md:bg-gradient-to-r md:from-black/65 md:via-black/30 md:to-transparent" />
       </div>
@@ -76,12 +80,12 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 container mx-auto px-4 sm:px-6 pb-12 sm:pb-16 md:pb-20">
+      <div className="absolute bottom-0 left-0 right-0 z-10 container mx-auto px-4 sm:px-6 pb-16 sm:pb-20 md:pb-24">
         <div className="max-w-xl text-white">
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif leading-[1.1] mb-3 sm:mb-5 md:mb-6 text-white">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif tracking-tight leading-[1.1] mb-5 sm:mb-6 md:mb-8 text-white">
             Formación profesional<br /> en manicura
           </h1>
-          <p className="text-sm sm:text-base md:text-lg text-gray-200/90 mb-6 sm:mb-8 max-w-sm md:max-w-lg leading-relaxed font-light">
+          <p className="text-sm sm:text-base md:text-lg text-gray-200/90 mb-8 sm:mb-10 max-w-sm md:max-w-lg leading-relaxed font-light tracking-wide">
             Formación y guía metodológica para manicuristas que quieren trabajar con precisión, rapidez y método.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
