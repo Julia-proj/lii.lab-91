@@ -13,7 +13,7 @@ export function FormacionPrivadaBanner() {
               src="/images/form.jpg"
               alt="Formación privada de manicura profesional"
               fill
-              className="object-cover object-center grayscale-[80%] transition-all duration-1000 ease-out group-hover:grayscale-0 group-hover:scale-[1.04]"
+              className="object-cover object-center sm:grayscale-[80%] transition-all duration-1000 ease-out group-hover:grayscale-0 group-hover:scale-[1.04]"
               sizes="(max-width: 768px) 100vw, 1400px"
               priority
             />

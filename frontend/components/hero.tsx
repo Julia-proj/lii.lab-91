@@ -89,11 +89,11 @@ export function Hero() {
             Formación y guía metodológica para manicuristas que quieren trabajar con precisión, rapidez y método.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-            <Button size="lg" asChild className="bg-lavender text-white hover:bg-plum transition-colors">
+            <Button size="lg" asChild className="bg-[#81758C] text-white hover:bg-[#6D637A] transition-colors shadow-none touch-manipulation">
               <a href="#formacion">Ver cursos</a>
             </Button>
             <Button size="lg" variant="outline" asChild className="gap-2 border-white/40 text-white/85 bg-transparent hover:bg-white/10 hover:text-white hover:border-white/70 transition-colors">
-              <a href="#formacion">
+              <a href="/guide">
                 <Download className="w-4 h-4 opacity-75" />
                 Guía Metodológica
               </a>
