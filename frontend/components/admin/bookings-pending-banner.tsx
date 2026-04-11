@@ -19,10 +19,10 @@ export function BookingsPendingBanner({ pendingBookings, onConfirm }: BookingsPe
   if (pendingBookings.length === 0) return null
 
   return (
-    <div className="rounded-xl border border-amber-200 bg-amber-50 dark:bg-amber-500/8 dark:border-amber-500/20 p-4">
+    <div className="rounded-xl border border-[#EBE6E0] bg-[#FAF8F5] dark:bg-[#1C1B1A] dark:border-[#2D2A26] p-4">
       <div className="flex items-center gap-2 mb-3">
-        <Bell className="w-4 h-4 text-amber-500" />
-        <p className="text-sm font-semibold text-amber-800 dark:text-amber-400">
+        <Bell className="w-4 h-4 text-[#C2A581]" />
+        <p className="text-sm font-semibold text-[#8F7D65] dark:text-[#A68F70]">
           {pendingBookings.length} pendiente{pendingBookings.length !== 1 ? 's' : ''} de confirmacion
         </p>
       </div>
@@ -30,7 +30,7 @@ export function BookingsPendingBanner({ pendingBookings, onConfirm }: BookingsPe
         {pendingBookings
           .sort((a, b) => a.date.localeCompare(b.date))
           .map((b) => (
-            <div key={b._id} className="flex items-center justify-between bg-white dark:bg-card rounded-lg px-3 py-2.5 border border-amber-100 dark:border-white/6">
+            <div key={b._id} className="flex items-center justify-between bg-white dark:bg-card rounded-lg px-3 py-2.5 border border-[#EAE3DA] dark:border-white/6">
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100 truncate">{b.user?.name}</p>
                 <p className="text-[11px] text-neutral-400">

@@ -33,7 +33,7 @@ interface BookingData {
 
 const STATUS_BORDER: Record<string, string> = {
   confirmada: 'border-l-emerald-400',
-  pendiente:  'border-l-amber-400',
+  pendiente:  'border-l-[#D1BFA5]',
   cancelada:  'border-l-neutral-300',
   completada: 'border-l-blue-400',
 }
@@ -53,7 +53,7 @@ export function BookingsBookingRow({ booking, onUpdate }: { booking: BookingData
     new Date(d + 'T00:00:00').toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' })
 
   const handleDelete = async () => {
-    if (!confirm('¿Eliminar esta reserva?')) return
+    if (!confirm('Â¿Eliminar esta reserva?')) return
     try {
       const res = await fetch(`/api/bookings/${booking._id}`, { method: 'DELETE' })
       if (!res.ok) { toast.error('Error al eliminar'); return }

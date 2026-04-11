@@ -27,21 +27,21 @@ export function AgendaStatsRow({
       {/* Pendientes -- clickable */}
       <button
         onClick={onTogglePending}
-        className={`relative rounded-2xl border bg-amber-50/60 dark:bg-amber-900/10 border-amber-200/50 dark:border-amber-700/20 p-3 sm:p-4 text-left transition-all hover:opacity-90 ${
+        className={`relative rounded-2xl border bg-[#FAF8F5] dark:bg-[#1C1B1A] border-[#EBE6E0] dark:border-[#2D2A26] p-3 sm:p-4 text-left transition-all hover:opacity-90 ${
           pendingCount > 0 && !showPending
-            ? 'ring-2 ring-amber-300/50 dark:ring-amber-400/20 shadow-sm shadow-amber-100 dark:shadow-none'
+            ? 'ring-2 ring-[#D1BFA5]/50 dark:ring-[#9A8772]/30 shadow-sm shadow-[#EBE6E0] dark:shadow-none'
             : ''
         }`}
       >
         {pendingCount > 0 && !showPending && (
           <span className="absolute top-2 right-2 flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-60" />
-            <span className="relative inline-flex h-3 w-3 rounded-full bg-amber-400" />
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D1BFA5] opacity-60" />
+            <span className="relative inline-flex h-3 w-3 rounded-full bg-[#D1BFA5]" />
           </span>
         )}
         <p className="text-[10px] sm:text-xs uppercase tracking-widest text-neutral-400 mb-1.5 sm:mb-2">Pendientes</p>
         <p className={`text-2xl sm:text-3xl font-bold tabular-nums leading-none ${
-          pendingCount > 0 ? 'text-[#B8870D] dark:text-yellow-400' : 'text-neutral-900 dark:text-neutral-100'
+          pendingCount > 0 ? 'text-[#8F7D65] dark:text-[#A68F70]' : 'text-neutral-900 dark:text-neutral-100'
         }`}>
           {pendingCount}
         </p>

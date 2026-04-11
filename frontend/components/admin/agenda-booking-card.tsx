@@ -22,7 +22,7 @@ interface Booking {
 }
 
 const S_BORDER: Record<string, string> = {
-  pendiente:  'border-l-amber-500/50',
+  pendiente:  'border-l-[#D1BFA5] dark:border-l-[#9A8772]',
   confirmada: 'border-l-plum/60',
   completada: 'border-l-emerald-500/20',
   cancelada:  'border-l-neutral-200 dark:border-l-white/5',
@@ -40,7 +40,7 @@ export function AgendaBookingCard({ booking, onUpdate }: { booking: Booking; onU
   const isPending = booking.status === 'pendiente'
   const isActive = booking.status !== 'cancelada' && booking.status !== 'completada'
 
-  const pendingClass = 'bg-amber-500/10 dark:bg-amber-500/5 border border-amber-500/20 dark:border-amber-500/20 border-l-[3px] border-l-amber-500 shadow-[0_4px_16px_rgba(245,158,11,0.05)]'
+  const pendingClass = 'bg-[#FDFBF9] dark:bg-[#1A1918] border border-[#EBE6E0] dark:border-[#2B2927] border-l-[3px] border-l-[#D1BFA5] dark:border-l-[#9A8772] shadow-[0_4px_16px_rgba(209,191,165,0.06)]'
   const defaultClass = `bg-[#FFFFFF] dark:bg-[#121214] shadow-[0_2px_8px_rgba(0,0,0,0.02)] border border-black/[0.04] dark:border-white/5 border-l-[3px] ${S_BORDER[booking.status] || 'border-l-neutral-200'}`
 
   return (
@@ -74,9 +74,9 @@ export function AgendaBookingCard({ booking, onUpdate }: { booking: Booking; onU
       {expanded && (
         <div className="px-4 pb-4 border-t border-neutral-50 dark:border-white/5 pt-3 space-y-3">
           {booking.notes && (
-            <div className="bg-amber-50 dark:bg-amber-500/10 p-3 rounded-lg border border-amber-100 dark:border-amber-500/20">
-              <p className="text-xs font-semibold text-amber-800 dark:text-amber-500 mb-1">Nota del cliente:</p>
-              <p className="text-sm text-amber-900 dark:text-amber-400 whitespace-pre-wrap">{booking.notes}</p>
+            <div className="bg-[#F8F7F9] dark:bg-[#1C1A1E] p-3 rounded-lg border border-[#EAE8EF] dark:border-[#2E2B33]">
+              <p className="text-xs font-semibold text-[#766A80] dark:text-[#A79BB3] mb-1">Nota del cliente:</p>
+              <p className="text-sm text-[#5B5066] dark:text-[#C7BCDB] whitespace-pre-wrap">{booking.notes}</p>
             </div>
           )}
 

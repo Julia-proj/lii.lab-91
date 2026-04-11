@@ -14,7 +14,7 @@ const toMin = (t: string) => {
 export { toMin }
 
 const STATUS_COLOR: Record<string, string> = {
-  pendiente:  'bg-amber-400',
+  pendiente:  'bg-[#D1BFA5]',
   confirmada: 'bg-plum',
   completada: 'bg-emerald-500/40',
   cancelada:  'bg-neutral-200 dark:bg-neutral-800',

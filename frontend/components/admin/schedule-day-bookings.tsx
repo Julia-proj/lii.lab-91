@@ -33,7 +33,7 @@ export function ScheduleDayBookings({ dayBookings }: ScheduleDayBookingsProps) {
                   {b.user?.name}
                   <span className={`ml-2 px-1.5 py-0.5 rounded-full text-[10px] ${
                     b.status === 'confirmada' ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400' :
-                    b.status === 'pendiente' ? 'bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400' :
+                    b.status === 'pendiente' ? 'bg-[#FAF8F5] dark:bg-[#1C1B1A] text-[#8F7D65] dark:text-[#A68F70] border border-[#EBE6E0] dark:border-[#2D2A26]' :
                     'bg-neutral-100 dark:bg-white/8 text-neutral-500 dark:text-neutral-400'
                   }`}>
                     {b.status}

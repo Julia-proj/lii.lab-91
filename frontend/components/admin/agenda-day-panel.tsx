@@ -36,21 +36,21 @@ export function AgendaDayPanel({
 }: AgendaDayPanelProps) {
   if (showPending) {
     return (
-      <div className="bg-amber-50/60 dark:bg-amber-900/10 rounded-2xl border border-amber-100 dark:border-amber-700/20 p-3">
+      <div className="bg-[#FAF8F5] dark:bg-[#1C1B1A] rounded-2xl border border-[#EBE6E0] dark:border-[#2D2A26] p-3">
         {/* Pending header */}
         <div className="flex items-center justify-between mb-3 px-1">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
-            <p className="text-sm font-semibold text-amber-700 dark:text-amber-400">Sin confirmar</p>
+            <span className="w-2 h-2 rounded-full bg-[#D1BFA5] shrink-0" />
+            <p className="text-sm font-semibold text-[#8F7D65] dark:text-[#A68F70]">Sin confirmar</p>
             {allPendingBookings.length > 0 && (
-              <span className="text-[10px] font-semibold bg-amber-400 text-white rounded-full px-1.5 py-0.5 leading-none">
+              <span className="text-[10px] font-semibold bg-[#D1BFA5] text-white rounded-full px-1.5 py-0.5 leading-none">
                 {allPendingBookings.length}
               </span>
             )}
           </div>
           <button
             onClick={() => setShowPending(false)}
-            className="p-1.5 rounded-lg text-amber-400 hover:text-amber-700 hover:bg-amber-100 dark:hover:bg-amber-800/20 transition-colors"
+            className="p-1.5 rounded-lg text-[#C2A581] hover:text-[#8F7D65] hover:bg-[#EBE6E0]/50 dark:hover:bg-[#2D2A26] transition-colors"
           >
             <X className="w-3.5 h-3.5" />
           </button>
@@ -63,7 +63,7 @@ export function AgendaDayPanel({
           <div className="space-y-2">
             {allPendingBookings.map((b) => (
               <div key={b._id}>
-                <p className="text-[10px] uppercase tracking-widest text-amber-500/70 dark:text-amber-600 mb-1 px-1 capitalize">
+                <p className="text-[10px] uppercase tracking-widest text-[#B39E83] dark:text-[#8C7A60] mb-1 px-1 capitalize">
                   {new Date(b.date + 'T00:00:00').toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' })}
                 </p>
                 <AgendaBookingCard booking={b} onUpdate={onUpdate} />
