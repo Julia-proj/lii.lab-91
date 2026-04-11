@@ -1,4 +1,5 @@
 import type React from "react"
+import Image from "next/image"
 import { Shield, Zap, Sparkles, Hand, Brush, ClipboardList, BookOpen, Microscope, Users, Instagram } from "lucide-react"
 import Link from "next/link"
 import { CourseInfoCard } from "./course/course-info-card"
@@ -40,12 +41,16 @@ export function Course() {
           <div className="w-full lg:w-1/2">
             <div className="relative">
               <div className="absolute -top-4 -left-4 w-24 h-24 bg-lavender/20 rounded-full z-0" />
-              <img
-                src="/images/Foto2.JPG"
-                alt="Curso Manicura"
-                loading="lazy"
-                className="relative z-10 rounded-lg shadow-xl w-full object-cover object-top h-[420px] sm:h-[560px] lg:h-[620px] transition-all duration-500"
-              />
+              <div className="relative z-10 rounded-lg shadow-xl w-full overflow-hidden h-[420px] sm:h-[560px] lg:h-[620px] transition-all duration-500">
+                <Image
+                  src="/images/Foto2.JPG"
+                  alt="Curso Manicura"
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  loading="lazy"
+                  className="object-cover object-top"
+                />
+              </div>
             </div>
           </div>
           <div className="w-full lg:w-1/2 space-y-8">
@@ -58,8 +63,8 @@ export function Course() {
               </p>
             </div>
             <div className="grid grid-cols-2 gap-3 pt-4">
-              {features.map((item, idx) => (
-                <div key={idx} className="flex flex-row items-center gap-2 p-3 rounded-lg bg-neutral-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-lavender/30">
+              {features.map((item) => (
+                <div key={item.title} className="flex flex-row items-center gap-2 p-3 rounded-lg bg-neutral-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-lavender/30">
                   <item.icon size={18} className="text-neutral-500 shrink-0" />
                   <span className="font-medium text-neutral-800 text-xs sm:text-sm leading-tight">{item.title}</span>
                 </div>
@@ -126,13 +131,15 @@ export function Course() {
         {/* Gallery */}
         <div className="mt-12 md:mt-20 fade-in-section">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
-            {gallery.map((src, idx) => (
-              <div key={idx} className="aspect-square sm:aspect-[4/5] overflow-hidden rounded-lg group">
-                <img
+            {gallery.map((src) => (
+              <div key={src} className="aspect-square sm:aspect-[4/5] overflow-hidden rounded-lg group relative">
+                <Image
                   src={src || "/placeholder.svg"}
-                  alt={`Trabajo de manicura Lii.lab ${idx + 1}`}
+                  alt="Trabajo de manicura Lii.lab"
+                  fill
+                  sizes="(min-width: 768px) 25vw, 50vw"
                   loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
             ))}

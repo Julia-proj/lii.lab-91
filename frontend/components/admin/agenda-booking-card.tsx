@@ -6,7 +6,7 @@ import { PayCell } from '@/components/admin/pay-cell'
 import { BookingReschedulePanel } from '@/components/admin/booking-reschedule-panel'
 import { BookingNotesPanel } from '@/components/admin/booking-notes-panel'
 import { BookingActionsBar } from '@/components/admin/booking-actions-bar'
-import { useBookingActions } from '@/components/admin/use-booking-actions'
+import { useBookingActions } from '@/hooks/use-booking-actions'
 
 interface Booking {
   _id: string

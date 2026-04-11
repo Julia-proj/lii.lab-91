@@ -37,7 +37,7 @@ export function ReviewCard({ review, onImageClick }: ReviewCardProps) {
         {[...Array(5)].map((_, i) => (
           <Star
             key={i}
-            className={`w-4 h-4 ${i < review.rating ? "fill-[#F5A623] text-[#F5A623]" : "fill-[#E5E5E5] text-[#E5E5E5]"}`}
+            className={`w-4 h-4 ${i < review.rating ? "fill-gold text-gold" : "fill-neutral-200 text-neutral-200"}`}
           />
         ))}
       </div>
@@ -46,7 +46,7 @@ export function ReviewCard({ review, onImageClick }: ReviewCardProps) {
         <p className="text-[13px] font-medium text-stone-500 mb-2">{review.service}</p>
       )}
 
-      <p className="text-[#333333] text-[15px] leading-relaxed mb-5 font-normal flex-grow line-clamp-6">
+      <p className="text-neutral-800 text-[15px] leading-relaxed mb-5 font-normal flex-grow line-clamp-6">
         &ldquo;{review.text}&rdquo;
       </p>
 

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Pencil, Power, Star, Scissors } from 'lucide-react'
 import { ServiceCardMobile, type ServiceData, fmt, resolveImg } from '@/components/admin/service-card-mobile'
 
@@ -52,8 +53,8 @@ export function ServicesList({ services, onEdit, onToggleActive, onTogglePopular
                     <tr key={s._id} className={`hover:bg-neutral-50/60 dark:hover:bg-white/[0.03] transition-colors ${!s.active ? 'opacity-40' : ''}`}>
                       <td className="px-4 py-3">
                         {s.image && (
-                          <div className="w-9 h-9 rounded-lg overflow-hidden">
-                            <img src={resolveImg(s.image)} alt="" className="w-full h-full object-cover" />
+                          <div className="w-9 h-9 rounded-lg overflow-hidden relative">
+                            <Image src={resolveImg(s.image)} alt="" fill sizes="36px" className="object-cover" />
                           </div>
                         )}
                       </td>

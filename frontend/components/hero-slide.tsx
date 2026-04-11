@@ -2,7 +2,7 @@ import Image from "next/image"
 
 interface AtmosphericSlide {
   src: string
-  bg: string
+  bgClass: string
   pos: string
   mobilePos: string
   mobileScale: number

@@ -19,8 +19,9 @@ export function FormacionSubidaCard() {
   const [cursoPlaying, setCursoPlaying] = useState(false)
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
     if (window.innerWidth < 768) {
-      cursoRef.current?.play()
+      cursoRef.current?.play().catch(() => {})
     }
   }, [])
 
@@ -44,7 +45,7 @@ export function FormacionSubidaCard() {
         />
         {!cursoPlaying && (
           <button
-            onClick={() => { setCursoPlaying(true); cursoRef.current?.play() }}
+            onClick={() => { setCursoPlaying(true); cursoRef.current?.play().catch(() => {}) }}
             aria-label="Reproducir vídeo"
             className="absolute inset-0 hidden md:flex items-center justify-center group"
           >

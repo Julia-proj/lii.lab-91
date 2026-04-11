@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Pencil, Power, Star } from 'lucide-react'
 
 export interface ServiceData {
@@ -36,8 +37,8 @@ export function ServiceCardMobile({ service: s, onEdit, onToggleActive, onToggle
   return (
     <div className={`bg-white dark:bg-card rounded-xl border border-neutral-100 dark:border-white/8 p-3 flex gap-3 ${!s.active ? 'opacity-50' : ''}`}>
       {s.image && (
-        <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0">
-          <img src={resolveImg(s.image)} alt={s.name} className="w-full h-full object-cover" />
+        <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0 relative">
+          <Image src={resolveImg(s.image)} alt={s.name} fill sizes="56px" className="object-cover" />
         </div>
       )}
       <div className="flex-1 min-w-0">

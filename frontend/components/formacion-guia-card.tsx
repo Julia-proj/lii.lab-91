@@ -4,8 +4,7 @@ import { useRef, useState, useEffect } from "react"
 import { Check, BookOpen, Download, CreditCard, Play } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-
-const STRIPE_GUIDE_URL = "https://buy.stripe.com/7sYbIT592fFwbE34QS7EQ00"
+import { STRIPE_GUIDE_URL } from "../lib/constants"
 
 const guiaContents = [
   "Anatomía y fisiología de la uña",
@@ -21,8 +20,9 @@ export function FormacionGuiaCard() {
   const [guiaPlaying, setGuiaPlaying] = useState(false)
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
     if (window.innerWidth < 768) {
-      guiaRef.current?.play()
+      guiaRef.current?.play().catch(() => {})
     }
   }, [])
 
@@ -40,7 +40,7 @@ export function FormacionGuiaCard() {
         />
         {!guiaPlaying && (
           <button
-            onClick={() => { setGuiaPlaying(true); guiaRef.current?.play() }}
+            onClick={() => { setGuiaPlaying(true); guiaRef.current?.play().catch(() => {}) }}
             aria-label="Reproducir vídeo"
             className="absolute inset-0 hidden md:flex items-center justify-center group"
           >

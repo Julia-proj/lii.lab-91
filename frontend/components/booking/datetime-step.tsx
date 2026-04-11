@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { toast } from 'sonner'
 import { useBooking, getTotalDuration } from './booking-context'
 import { DayPicker } from 'react-day-picker'
 import type { DayButtonProps } from 'react-day-picker'
@@ -26,32 +27,60 @@ export function DateTimeStep() {
   const [calendarLoading, setCalendarLoading] = useState(true)
   const [slots, setSlots] = useState<string[]>([])
   const [slotsLoading, setSlotsLoading] = useState(false)
+  const [loadError, setLoadError] = useState<string | null>(null)
 
   const totalDuration = getTotalDuration(state.services, state.quantities)
   const firstService = state.services[0]
+  const firstServiceId = firstService?._id
 
   useEffect(() => {
-    fetch('/api/blocked-dates')
-      .then((res) => res.json())
-      .then((json) => setBlockedDates((json.data ?? []).map((d: { date: string }) => d.date)))
-      .catch(console.error)
-      .finally(() => setCalendarLoading(false))
+    let cancelled = false
+    const load = async () => {
+      try {
+        const res = await fetch('/api/blocked-dates')
+        if (!res.ok) throw new Error('request_failed')
+        const json = await res.json()
+        if (!cancelled) setBlockedDates((json.data ?? []).map((d: { date: string }) => d.date))
+      } catch {
+        if (!cancelled) {
+          setLoadError('Error al cargar los datos')
+          toast.error('Error al cargar los datos')
+        }
+      } finally {
+        if (!cancelled) setCalendarLoading(false)
+      }
+    }
+    load()
+    return () => { cancelled = true }
   }, [])
 
   useEffect(() => {
-    if (!state.date || state.services.length === 0) { setSlots([]); return }
+    if (!state.date || state.services.length === 0 || !firstServiceId) { setSlots([]); return }
+    let cancelled = false
     setSlotsLoading(true)
     const params = new URLSearchParams({
       date: state.date,
-      serviceId: firstService._id,
+      serviceId: firstServiceId,
       ...(state.services.length > 1 ? { duration: String(totalDuration) } : {}),
     })
-    fetch(`/api/available-slots?${params}`)
-      .then((res) => res.json())
-      .then((json) => setSlots(json.data?.slots ?? []))
-      .catch(console.error)
-      .finally(() => setSlotsLoading(false))
-  }, [state.date, state.services, firstService, totalDuration])
+    const load = async () => {
+      try {
+        const res = await fetch(`/api/available-slots?${params}`)
+        if (!res.ok) throw new Error('request_failed')
+        const json = await res.json()
+        if (!cancelled) setSlots(json.data?.slots ?? [])
+      } catch {
+        if (!cancelled) {
+          setSlots([])
+          toast.error('Error al cargar los datos')
+        }
+      } finally {
+        if (!cancelled) setSlotsLoading(false)
+      }
+    }
+    load()
+    return () => { cancelled = true }
+  }, [state.date, state.services.length, firstServiceId, totalDuration])
 
   const today = startOfDay(new Date())
 
@@ -71,6 +100,14 @@ export function DateTimeStep() {
     return (
       <div className="flex justify-center py-12">
         <div className="animate-spin w-8 h-8 border-2 border-lavender border-t-transparent rounded-full" />
+      </div>
+    )
+  }
+
+  if (loadError) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-sm text-red-500">{loadError}</p>
       </div>
     )
   }

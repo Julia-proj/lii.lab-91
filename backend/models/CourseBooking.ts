@@ -24,7 +24,7 @@ const CourseBookingSchema = new Schema<ICourseBookingDocument>(
     status: {
       type: String,
       enum: ['pendiente', 'confirmada', 'cancelada'],
-      default: 'confirmada',
+      default: 'pendiente',
     },
     notes: { type: String },
   },

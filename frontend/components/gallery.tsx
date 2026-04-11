@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export function Gallery() {
   const photos = [
     "/images/Foto5.JPG",
@@ -7,14 +9,16 @@ export function Gallery() {
   ]
 
   return (
-    <section className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#dedad6]">
-      {photos.map((src, idx) => (
-        <div key={idx} className="overflow-hidden aspect-[3/4]">
-          <img
+    <section className="grid grid-cols-2 md:grid-cols-4 gap-px bg-neutral-200">
+      {photos.map((src) => (
+        <div key={src} className="overflow-hidden aspect-[3/4] relative">
+          <Image
             src={src}
-            alt={`Lii.lab trabajo ${idx + 1}`}
+            alt={`Lii.lab trabajo`}
+            fill
+            sizes="(min-width: 768px) 25vw, 50vw"
             loading="lazy"
-            className="w-full h-full object-cover object-center"
+            className="object-cover object-center"
           />
         </div>
       ))}

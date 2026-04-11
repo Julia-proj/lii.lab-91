@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { signIn } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { registerSchema, type RegisterInput } from '@/shared/validators'
+import { registerFormSchema, type RegisterFormInput } from '@/shared/validators'
 
 function RegisterForm() {
   const router = useRouter()
@@ -18,11 +18,11 @@ function RegisterForm() {
     handleSubmit,
     setError,
     formState: { errors, isSubmitting },
-  } = useForm<RegisterInput>({
-    resolver: zodResolver(registerSchema),
+  } = useForm<RegisterFormInput>({
+    resolver: zodResolver(registerFormSchema),
   })
 
-  const onSubmit = async (data: RegisterInput) => {
+  const onSubmit = async (data: RegisterFormInput) => {
     try {
       const res = await fetch('/api/auth/register', {
         method: 'POST',

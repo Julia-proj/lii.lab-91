@@ -117,8 +117,8 @@ export function BookingCard({ booking, onCancel }: BookingCardProps) {
 
           {services.length > 1 && (
             <div className="mt-2 flex flex-wrap gap-1">
-              {services.map((s, i) => (
-                <span key={i} className="text-xs text-neutral-500 bg-neutral-50 px-2 py-0.5 rounded-md border border-neutral-100">
+              {services.map((s) => (
+                <span key={s.name} className="text-xs text-neutral-500 bg-neutral-50 px-2 py-0.5 rounded-md border border-neutral-100">
                   {s.name} · {s.price}€
                 </span>
               ))}

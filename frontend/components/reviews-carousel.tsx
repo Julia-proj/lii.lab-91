@@ -2,7 +2,7 @@
 
 import { useMemo, useState, useCallback, useRef } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { reviews } from "@/components/data/reviews"
+import { reviews } from "../lib/reviews"
 import useEmblaCarousel from "embla-carousel-react"
 import AutoScroll from "embla-carousel-auto-scroll"
 import { ReviewCard } from "./review-card"
@@ -19,7 +19,7 @@ export const ReviewsCarousel = () => {
         stopOnInteraction: false,
         stopOnMouseEnter: false,
         speed: 0.8,
-      }) as unknown as NonNullable<Parameters<typeof useEmblaCarousel>[1]>[number]
+      })
     ]
   )
 
@@ -38,7 +38,7 @@ export const ReviewsCarousel = () => {
   const scrollAndResume = (dir: 'prev' | 'next') => {
     if (!emblaApi) return
     dir === 'prev' ? emblaApi.scrollPrev() : emblaApi.scrollNext()
-    const autoScroll = (emblaApi.plugins() as unknown as Record<string, { play: () => void } | undefined>).autoScroll
+    const autoScroll = emblaApi.plugins().autoScroll
     if (autoScroll) autoScroll.play()
   }
 

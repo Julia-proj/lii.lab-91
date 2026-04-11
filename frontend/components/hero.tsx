@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button"
 import { HeroSlide } from "./hero-slide"
 
 const ATMOSPHERIC = [
-  { src: "/images/Foto5.JPG", bg: "#3e4449", pos: "center 42%", mobilePos: "center 30%", mobileScale: 1,    scale: 1 },
-  { src: "/images/Foto4.JPG", bg: "#2a2d32", pos: "55% 40%",    mobilePos: "center 30%", mobileScale: 1.12, scale: 1 },
-  { src: "/images/Foto6.jpg", bg: "#7a5f55", pos: "center 50%", mobilePos: "center 50%", mobileScale: 1,    scale: 1 },
-  { src: "/images/Foto3.jpg", bg: "#1a1a1e", pos: "center 28%", mobilePos: "center 28%", mobileScale: 1,    scale: 1 },
+  { src: "/images/Foto5.JPG", bgClass: "bg-neutral-700", pos: "center 42%", mobilePos: "center 30%", mobileScale: 1,    scale: 1 },
+  { src: "/images/Foto4.JPG", bgClass: "bg-neutral-800", pos: "55% 40%",    mobilePos: "center 30%", mobileScale: 1.12, scale: 1 },
+  { src: "/images/Foto6.jpg", bgClass: "bg-stone-600",   pos: "center 50%", mobilePos: "center 50%", mobileScale: 1,    scale: 1 },
+  { src: "/images/Foto3.jpg", bgClass: "bg-neutral-900", pos: "center 28%", mobilePos: "center 28%", mobileScale: 1,    scale: 1 },
 ]
 
 const TOTAL = ATMOSPHERIC.length + 1
@@ -20,6 +20,7 @@ export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
     const el = sectionRef.current
     if (!el) return
     const setHeight = () => { el.style.height = `${window.innerHeight}px` }
@@ -34,17 +35,14 @@ export function Hero() {
   }, [])
 
   const isHero = current === 0
+  const sectionBgClass = isHero ? "bg-neutral-950" : ATMOSPHERIC[current - 1].bgClass
 
   return (
     <section
       ref={sectionRef}
       id="hero"
-      className="relative overflow-hidden"
-      style={{
-        height: '100dvh',
-        backgroundColor: isHero ? "#0a0a0a" : ATMOSPHERIC[current - 1].bg,
-        transition: "background-color 2000ms ease-in-out",
-      }}
+      className={`relative overflow-hidden transition-colors duration-[2000ms] ease-in-out ${sectionBgClass}`}
+      style={{ height: '100dvh' }}
     >
       {/* Slide 0: Hero.JPG */}
       <div className={`absolute inset-0 z-0 transition-opacity duration-[2000ms] ease-in-out ${isHero ? "opacity-100" : "opacity-0"}`}>
@@ -87,7 +85,7 @@ export function Hero() {
             Formación y guía metodológica para manicuristas que quieren trabajar con precisión, rapidez y método.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-            <Button size="lg" asChild className="bg-[#B09EC2] md:bg-[#A896BA] text-white hover:bg-[#9e8cb0] md:hover:bg-[#9888AC] transition-colors">
+            <Button size="lg" asChild className="bg-lavender text-white hover:bg-plum transition-colors">
               <a href="#formacion">Ver cursos</a>
             </Button>
             <Button size="lg" variant="outline" asChild className="gap-2 border-white/40 text-white/85 bg-transparent hover:bg-white/10 hover:text-white hover:border-white/70 transition-colors">

@@ -1,8 +1,7 @@
 "use client"
 
 import { Check, Book, Instagram, ArrowRight, Sparkles } from "lucide-react"
-
-const STRIPE_GUIDE_URL = "https://buy.stripe.com/7sYbIT592fFwbE34QS7EQ00"
+import { STRIPE_GUIDE_URL } from "../lib/constants"
 
 export function Guide() {
   const contents = [
@@ -47,8 +46,8 @@ export function Guide() {
             <div className="p-8">
               <h3 className="text-xl font-serif mb-6 text-neutral-900">Contenido principal</h3>
               <ul className="space-y-3">
-                {contents.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3 group">
+                {contents.map((item) => (
+                  <li key={item} className="flex items-start gap-3 group">
                     <div className="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-green-50 flex items-center justify-center group-hover:bg-green-100 transition-colors border border-green-200">
                       <Check size={12} className="text-[#2e7d32]" strokeWidth={2.5} />
                     </div>

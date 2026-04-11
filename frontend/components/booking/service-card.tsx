@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { Clock, Plus, Check, Minus, ChevronDown, ChevronUp } from 'lucide-react'
 import { formatDuration } from '@/lib/format'
 import type { IService } from '@/types'
@@ -43,8 +44,8 @@ export function ServiceCard({ service, isSelected, quantity, onToggle, onSetQuan
     >
       <div className="flex gap-3">
         {imgSrc && (
-          <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden">
-            <img src={imgSrc} alt={service.name} className="w-full h-full object-cover" />
+          <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden relative">
+            <Image src={imgSrc} alt={service.name} fill sizes="64px" className="object-cover" />
           </div>
         )}
 
@@ -87,9 +88,7 @@ export function ServiceCard({ service, isSelected, quantity, onToggle, onSetQuan
                 <span className="text-xs text-neutral-500">Incluye: {service.includes}</span>
               )}
             </div>
-            <button
-              onClick={(e) => e.stopPropagation()}
-              tabIndex={-1}
+            <span
               aria-hidden="true"
               className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all pointer-events-none ${
                 isSelected
@@ -98,7 +97,7 @@ export function ServiceCard({ service, isSelected, quantity, onToggle, onSetQuan
               }`}
             >
               {isSelected ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-            </button>
+            </span>
           </div>
 
           {isSelected && service.name === 'Decoraciones' && (

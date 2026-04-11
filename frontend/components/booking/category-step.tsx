@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { toast } from 'sonner'
 import { useSession } from 'next-auth/react'
 import { useBooking, getTotalDuration, getTotalPrice } from './booking-context'
 import type { IService } from '@/types'
@@ -20,6 +21,7 @@ export function CategoryStep() {
   const { data: session } = useSession()
   const [allServices, setAllServices] = useState<IService[]>([])
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState<string | null>(null)
   const [openSections, setOpenSections] = useState<Set<string>>(new Set(['Populares']))
 
   const login = useInlineLogin(() => {
@@ -35,11 +37,24 @@ export function CategoryStep() {
   }, [login.loginSucceeded, session, state.services, dispatch])
 
   useEffect(() => {
-    fetch('/api/services')
-      .then((res) => res.json())
-      .then((json) => { if (Array.isArray(json.data)) setAllServices(json.data) })
-      .catch(console.error)
-      .finally(() => setLoading(false))
+    let cancelled = false
+    const load = async () => {
+      try {
+        const res = await fetch('/api/services')
+        if (!res.ok) throw new Error('request_failed')
+        const json = await res.json()
+        if (!cancelled && Array.isArray(json.data)) setAllServices(json.data)
+      } catch {
+        if (!cancelled) {
+          setLoadError('Error al cargar los datos')
+          toast.error('Error al cargar los datos')
+        }
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    }
+    load()
+    return () => { cancelled = true }
   }, [])
 
   const selectedIds = new Set(state.services.map((s) => s._id))
@@ -85,6 +100,15 @@ export function CategoryStep() {
             </div>
           ))}
         </div>
+      </div>
+    )
+  }
+
+  if (loadError) {
+    return (
+      <div>
+        <h2 className="font-serif text-xl mb-6 text-center">Elige tus servicios</h2>
+        <p className="text-sm text-red-500 text-center py-8">{loadError}</p>
       </div>
     )
   }
