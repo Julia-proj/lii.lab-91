@@ -73,15 +73,21 @@ export function AgendaBookingCard({ booking, onUpdate }: { booking: Booking; onU
 
       {expanded && (
         <div className="px-4 pb-4 border-t border-neutral-50 dark:border-white/5 pt-3 space-y-3">
-          {!isPending && (
-            <BookingActionsBar
-              status={booking.status} rescheduleOpen={actions.rescheduleOpen}
-              notesOpen={actions.notesOpen} hasNotes={!!actions.adminNotesVal}
-              showReschedule={isActive} onStatusChange={actions.handleStatus}
-              onToggleReschedule={() => { const open = !actions.rescheduleOpen; actions.setRescheduleOpen(open); if (open) { actions.setRescheduleDate(booking.date); actions.fetchSlots(booking.date) } }}
-              onToggleNotes={() => actions.setNotesOpen(!actions.notesOpen)}
-            />
+          {booking.notes && (
+            <div className="bg-amber-50 dark:bg-amber-500/10 p-3 rounded-lg border border-amber-100 dark:border-amber-500/20">
+              <p className="text-xs font-semibold text-amber-800 dark:text-amber-500 mb-1">Nota del cliente:</p>
+              <p className="text-sm text-amber-900 dark:text-amber-400 whitespace-pre-wrap">{booking.notes}</p>
+            </div>
           )}
+
+          <BookingActionsBar
+            status={booking.status} rescheduleOpen={actions.rescheduleOpen}   
+            notesOpen={actions.notesOpen} hasNotes={!!actions.adminNotesVal}  
+            showReschedule={isActive} onStatusChange={actions.handleStatus}   
+            onToggleReschedule={() => { const open = !actions.rescheduleOpen; actions.setRescheduleOpen(open); if (open) { actions.setRescheduleDate(booking.date); actions.fetchSlots(booking.date) } }}
+            onToggleNotes={() => actions.setNotesOpen(!actions.notesOpen)}    
+          />
+          
           {actions.rescheduleOpen && (
             <BookingReschedulePanel
               rescheduleDate={actions.rescheduleDate} availableSlots={actions.availableSlots}

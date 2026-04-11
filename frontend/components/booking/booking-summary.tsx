@@ -48,9 +48,9 @@ export function BookingSummary({
             {services.map((s) => {
               const qty = quantities[s._id] ?? 1
               return (
-                <div key={s._id} className="flex justify-between text-sm">
-                  <span className="text-neutral-700">{s.name}{qty > 1 ? ` x${qty}` : ''}</span>
-                  <span className="text-neutral-500">{s.price * qty}&euro; &middot; {formatDuration(s.duration * qty)}</span>
+                <div key={s._id} className="flex flex-col sm:flex-row sm:justify-between sm:items-start text-sm gap-0.5 sm:gap-4 py-1.5 sm:py-0 border-b border-neutral-50 sm:border-0 last:border-0">
+                  <span className="text-neutral-700 font-medium sm:font-normal leading-tight">{s.name}{qty > 1 ? ` x${qty}` : ''}</span>
+                  <span className="text-neutral-500 whitespace-nowrap text-xs sm:text-sm">{s.price * qty}&euro; &middot; {formatDuration(s.duration * qty)}</span>
                 </div>
               )
             })}

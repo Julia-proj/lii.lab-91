@@ -2,23 +2,23 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { CalendarDays, Scissors, BarChart2, CalendarOff, ClipboardList, Users, type LucideIcon } from 'lucide-react'
+import { CalendarDays, Scissors, BarChart2, CalendarOff, Settings, GraduationCap, type LucideIcon } from 'lucide-react'
 
 const navGroups: { label: string; items: { href: string; label: string; icon: LucideIcon }[] }[] = [
   {
-    label: 'Trabajo',
+    label: 'Principal',
     items: [
       { href: '/admin',              label: 'Agenda',       icon: CalendarDays },
       { href: '/admin/estadisticas', label: 'Estadísticas', icon: BarChart2 },
-      { href: '/admin/bookings',     label: 'Reservas',     icon: ClipboardList },
-      { href: '/admin/clients',      label: 'Clientes',     icon: Users },
     ],
   },
   {
     label: 'Configuración',
     items: [
-      { href: '/admin/schedule',  label: 'Horario',   icon: CalendarOff },
       { href: '/admin/services',  label: 'Servicios', icon: Scissors },
+      { href: '/admin/courses',   label: 'Cursos',    icon: GraduationCap },
+      { href: '/admin/schedule',  label: 'Horario',   icon: CalendarOff },
+      { href: '/admin/settings',  label: 'Sistema',   icon: Settings },
     ],
   },
 ]

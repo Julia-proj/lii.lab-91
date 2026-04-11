@@ -1,8 +1,9 @@
 'use client'
 
-import { Clock, Plus, Check, Minus } from 'lucide-react'
+import { Clock, Plus, Check, Minus, ChevronDown, ChevronUp } from 'lucide-react'
 import { formatDuration } from '@/lib/format'
 import type { IService } from '@/types'
+import { useState } from 'react'
 
 const SERVICE_IMAGE_FALLBACK: Record<string, string> = {
   'Manicura combinada': 'ser1.jpg',
@@ -24,6 +25,7 @@ interface ServiceCardProps {
 }
 
 export function ServiceCard({ service, isSelected, quantity, onToggle, onSetQuantity }: ServiceCardProps) {
+  const [isDescExpanded, setIsDescExpanded] = useState(false)
   const raw = service.image || SERVICE_IMAGE_FALLBACK[service.name]
   const imgSrc = raw ? (raw.startsWith('/') ? raw : `/images/services/${raw}`) : null
 
@@ -55,9 +57,24 @@ export function ServiceCard({ service, isSelected, quantity, onToggle, onSetQuan
           </div>
 
           {service.description && (
-            <p className="text-xs text-neutral-500 mt-1 line-clamp-2 leading-relaxed">
-              {service.description}
-            </p>
+            <div className="mt-1">
+              <p className={`text-xs text-neutral-500 leading-relaxed ${!isDescExpanded ? 'line-clamp-2' : ''}`}>
+                {service.description}
+              </p>
+              {service.description.length > 80 && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setIsDescExpanded(!isDescExpanded)
+                  }}
+                  className="text-xs text-plum font-medium mt-1 inline-flex items-center gap-1 hover:underline active:underline"
+                >
+                  {isDescExpanded ? 'Leer menos' : 'Leer más'}
+                  {isDescExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+                </button>
+              )}
+            </div>
           )}
 
           <div className="flex items-center justify-between mt-1.5">
