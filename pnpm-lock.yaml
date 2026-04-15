@@ -142,13 +142,13 @@ importers:
         version: 16.1.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       next-auth:
         specifier: 5.0.0-beta.30
-        version: 5.0.0-beta.30(next@16.1.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(nodemailer@8.0.2)(react@19.2.0)
+        version: 5.0.0-beta.30(next@16.1.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(nodemailer@7.0.13)(react@19.2.0)
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       nodemailer:
-        specifier: ^8.0.2
-        version: 8.0.2
+        specifier: ^7.0.7
+        version: 7.0.13
       radix-ui:
         specifier: ^1.4.3
         version: 1.4.3(@types/react-dom@19.0.0)(@types/react@19.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -2556,8 +2556,8 @@ packages:
   node-releases@2.0.27:
     resolution: {integrity: sha512-nmh3lCkYZ3grZvqcCH+fjmQ7X+H0OeZgP40OierEaAptX4XofMh5kwNbWh7lBduUzCcV/8kZ+NDLCwm2iorIlA==}
 
-  nodemailer@8.0.2:
-    resolution: {integrity: sha512-zbj002pZAIkWQFxyAaqoxvn+zoIwRnS40hgjqTXudKOOJkiFFgBeNqjgD3/YCR12sZnrghWYBY+yP1ZucdDRpw==}
+  nodemailer@7.0.13:
+    resolution: {integrity: sha512-PNDFSJdP+KFgdsG3ZzMXCgquO7I6McjY2vlqILjtJd0hy8wEvtugS9xKRF2NWlPNGxvLCXlTNIae4serI7dinw==}
     engines: {node: '>=6.0.0'}
 
   normalize-range@0.1.2:
@@ -2875,7 +2875,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.13
       '@jridgewell/trace-mapping': 0.3.31
 
-  '@auth/core@0.41.0(nodemailer@8.0.2)':
+  '@auth/core@0.41.0(nodemailer@7.0.13)':
     dependencies:
       '@panva/hkdf': 1.2.1
       jose: 6.2.1
@@ -2883,7 +2883,7 @@ snapshots:
       preact: 10.24.3
       preact-render-to-string: 6.5.11(preact@10.24.3)
     optionalDependencies:
-      nodemailer: 8.0.2
+      nodemailer: 7.0.13
 
   '@babel/runtime@7.28.4': {}
 
@@ -5013,13 +5013,13 @@ snapshots:
 
   nanoid@3.3.11: {}
 
-  next-auth@5.0.0-beta.30(next@16.1.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(nodemailer@8.0.2)(react@19.2.0):
+  next-auth@5.0.0-beta.30(next@16.1.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(nodemailer@7.0.13)(react@19.2.0):
     dependencies:
-      '@auth/core': 0.41.0(nodemailer@8.0.2)
+      '@auth/core': 0.41.0(nodemailer@7.0.13)
       next: 16.1.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react: 19.2.0
     optionalDependencies:
-      nodemailer: 8.0.2
+      nodemailer: 7.0.13
 
   next-themes@0.4.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
@@ -5052,7 +5052,7 @@ snapshots:
 
   node-releases@2.0.27: {}
 
-  nodemailer@8.0.2: {}
+  nodemailer@7.0.13: {}
 
   normalize-range@0.1.2: {}
 
