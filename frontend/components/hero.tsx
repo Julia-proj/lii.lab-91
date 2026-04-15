@@ -8,7 +8,7 @@ import { HeroSlide } from "./hero-slide"
 
 const ATMOSPHERIC = [
   { src: "/images/Foto5.JPG", bgClass: "bg-neutral-700", pos: "center 42%", mobilePos: "center 30%", mobileScale: 1,    scale: 1 },
-  { src: "/images/Foto4.JPG", bgClass: "bg-neutral-800", pos: "55% 40%",    mobilePos: "center 30%", mobileScale: 1.12, scale: 1 },
+  { src: "/images/Foto4.JPG", bgClass: "bg-neutral-800", pos: "55% 50%",    mobilePos: "center 40%", mobileScale: 1.12, scale: 1 },
   { src: "/images/Foto6.jpg", bgClass: "bg-stone-600",   pos: "center 50%", mobilePos: "center 50%", mobileScale: 1,    scale: 1 },
   { src: "/images/Foto3.jpg", bgClass: "bg-neutral-900", pos: "center 28%", mobilePos: "center 28%", mobileScale: 1,    scale: 1 },
 ]

@@ -1,7 +1,7 @@
 "use client"
 
-import { useRef, useState, useEffect } from "react"
-import { Check, BookOpen, Download, CreditCard, Play } from "lucide-react"
+import { useRef, useState, useEffect, useCallback } from "react"
+import { Check, BookOpen, Download, CreditCard, Play, Pause } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { STRIPE_GUIDE_URL } from "../lib/constants"
@@ -17,18 +17,53 @@ const guiaContents = [
 
 export function FormacionGuiaCard() {
   const guiaRef = useRef<HTMLVideoElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const [guiaPlaying, setGuiaPlaying] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+  const userPausedRef = useRef(false)
 
+  const playVideo = useCallback(() => {
+    guiaRef.current?.play().then(() => setGuiaPlaying(true)).catch(() => {})
+  }, [])
+
+  const pauseVideo = useCallback(() => {
+    guiaRef.current?.pause()
+    setGuiaPlaying(false)
+  }, [])
+
+  /* autoplay on mobile */
   useEffect(() => {
     if (typeof window === 'undefined') return
     if (window.innerWidth < 768) {
-      guiaRef.current?.play().catch(() => {})
+      playVideo()
     }
-  }, [])
+  }, [playVideo])
+
+  /* IntersectionObserver — pause off-screen, resume on-screen */
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting)
+        if (!entry.isIntersecting) {
+          guiaRef.current?.pause()
+          setGuiaPlaying(false)
+        } else if (!userPausedRef.current && guiaRef.current && !guiaRef.current.paused) {
+          /* already playing — noop */
+        } else if (!userPausedRef.current && guiaRef.current?.currentTime && guiaRef.current.currentTime > 0) {
+          playVideo()
+        }
+      },
+      { threshold: 0.3 },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [playVideo])
 
   return (
     <Card id="guia" className="fade-up relative p-0 overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col" data-delay="200">
-      <div className="relative overflow-hidden">
+      <div ref={containerRef} className="relative overflow-hidden group/video">
         <video
           ref={guiaRef}
           src="/videos/guia.mp4"
@@ -38,18 +73,32 @@ export function FormacionGuiaCard() {
           preload="metadata"
           className="w-full aspect-[3/2] object-cover"
         />
-        {!guiaPlaying && (
-          <button
-            onClick={() => { setGuiaPlaying(true); guiaRef.current?.play().catch(() => {}) }}
-            aria-label="Reproducir vídeo"
-            className="absolute inset-0 hidden md:flex items-center justify-center group"
-          >
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
-            <div className="relative w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200">
+        <button
+          onClick={() => {
+            if (guiaPlaying) {
+              pauseVideo()
+              userPausedRef.current = true
+            } else {
+              playVideo()
+              userPausedRef.current = false
+            }
+          }}
+          aria-label={guiaPlaying ? "Pausar vídeo" : "Reproducir vídeo"}
+          className={`absolute inset-0 hidden md:flex items-center justify-center transition-opacity duration-300 ${
+            guiaPlaying
+              ? "opacity-0 group-hover/video:opacity-100"
+              : "opacity-100"
+          }`}
+        >
+          <div className={`absolute inset-0 transition-colors ${guiaPlaying ? "bg-black/10" : "bg-black/20 hover:bg-black/30"}`} />
+          <div className="relative w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-200">
+            {guiaPlaying ? (
+              <Pause className="w-5 h-5 text-neutral-900" fill="currentColor" />
+            ) : (
               <Play className="w-5 h-5 text-neutral-900 ml-0.5" fill="currentColor" />
-            </div>
-          </button>
-        )}
+            )}
+          </div>
+        </button>
       </div>
 
       <div className="p-6 md:p-8 flex flex-col flex-1">

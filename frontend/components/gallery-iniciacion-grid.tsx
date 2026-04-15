@@ -27,7 +27,7 @@ function BeforeAfterCard({ pair }: { pair: Pair }) {
           src={`/images/${pair.before}`}
           alt={`Antes — alumna ${pair.id}`}
           fill
-          sizes="(max-width: 768px) 50vw, 17vw"
+          sizes="(max-width: 768px) 50vw, 33vw"
           className="object-cover object-center"
         />
       </div>
@@ -36,10 +36,12 @@ function BeforeAfterCard({ pair }: { pair: Pair }) {
           src={`/images/${pair.after}`}
           alt={`Resultado — alumna ${pair.id}`}
           fill
-          sizes="(max-width: 768px) 50vw, 17vw"
+          sizes="(max-width: 768px) 50vw, 33vw"
           className="object-cover object-center"
         />
       </div>
+      <div className="absolute inset-0 bg-[#A6B8CE] opacity-[0.14] mix-blend-color z-[1] pointer-events-none" />
+      <div className="absolute inset-0 bg-[#D4E0ED] opacity-[0.06] mix-blend-overlay z-[1] pointer-events-none" />
       <div className={`md:hidden absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/50 to-transparent p-4 transition-opacity duration-200 pointer-events-none ${showAfter ? "opacity-0" : "opacity-100"}`}>
         <p className="text-[11px] uppercase tracking-[0.3em] font-medium text-white/80 text-center">Toca para ver</p>
       </div>
@@ -56,7 +58,7 @@ export function GalleryIniciacionGrid() {
       <p className="text-center text-xs text-neutral-500 mb-5 md:hidden">
         Toca cada foto para ver el resultado
       </p>
-      <div className="grid grid-cols-2 md:grid-cols-6 gap-3 md:gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
         {iniciacionPairs.map((pair) => (
           <BeforeAfterCard key={pair.id} pair={pair} />
         ))}
