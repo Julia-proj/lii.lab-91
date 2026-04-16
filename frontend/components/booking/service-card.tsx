@@ -12,8 +12,8 @@ const SERVICE_IMAGE_FALLBACK: Record<string, string> = {
   'Manicura francesa': 'ser3.jpg',
   'Decoraciones': 'ser2.jpg',
   'Manicura permanente con refuerzo y francesa': 'ser6.jpg',
-  'Refuerzo con restauraciÃ³n del cuadrado': 'ser6.jpg',
-  'Pedicura bÃ¡sica': 'ser8.jpg',
+  'Refuerzo con restauración del cuadrado': 'ser6.jpg',
+  'Pedicura básica': 'ser8.jpg',
   'Pedicura con esmalte permanente y francesa': 'ser7.jpg',
 }
 
@@ -75,7 +75,7 @@ export function ServiceCard({ service, isSelected, quantity, onToggle, onSetQuan
                   }}
                   className="text-xs text-plum font-medium mt-1 inline-flex items-center gap-1 hover:underline active:underline"
                 >
-                  {isDescExpanded ? 'Leer menos' : 'Leer mÃ¡s'}
+                  {isDescExpanded ? 'Leer menos' : 'Leer más'}
                   {isDescExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
                 </button>
               )}
