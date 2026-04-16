@@ -175,22 +175,22 @@ export default async function ConfirmationPage({
         </div>
       </div>
 
-      {/* Pending: what happens next — desktop only */}
+      {/* Pending: what happens next */}
       {isPending && (
-        <div className="hidden sm:block mt-4 bg-neutral-50 rounded-xl border border-neutral-100 p-4 text-left">
-          <p className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2.5">¿Qué pasa ahora?</p>
-          <ul className="space-y-2">
-            <li className="flex items-start gap-2 text-sm text-neutral-500">
-              <span className="text-lavender font-bold mt-px">·</span>
-              Recibirás un <span className="font-medium text-neutral-700 mx-1">email o WhatsApp</span> cuando Lili confirme tu cita.
+        <div className="mt-4 bg-neutral-50 rounded-xl border border-neutral-100 p-4 text-left">
+          <p className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-3">¿Qué pasa ahora?</p>
+          <ul className="space-y-2.5">
+            <li className="flex items-start gap-2.5 text-sm text-neutral-500 leading-snug">
+              <span className="text-lavender font-bold shrink-0 mt-px">·</span>
+              <span>Recibirás un <strong className="font-medium text-neutral-700">email o WhatsApp</strong> cuando Lili confirme tu cita.</span>
             </li>
-            <li className="flex items-start gap-2 text-sm text-neutral-500">
-              <span className="text-lavender font-bold mt-px">·</span>
-              Si hubiera algún cambio en el horario, Lili te <span className="font-medium text-neutral-700 mx-1">contactará directamente.</span>
+            <li className="flex items-start gap-2.5 text-sm text-neutral-500 leading-snug">
+              <span className="text-lavender font-bold shrink-0 mt-px">·</span>
+              <span>Si hubiera algún cambio en el horario, Lili te <strong className="font-medium text-neutral-700">contactará directamente.</strong></span>
             </li>
-            <li className="flex items-start gap-2 text-sm text-neutral-500">
-              <span className="text-lavender font-bold mt-px">·</span>
-              Suele confirmarse en <span className="font-medium text-neutral-700 mx-1">menos de 24 h.</span>
+            <li className="flex items-start gap-2.5 text-sm text-neutral-500 leading-snug">
+              <span className="text-lavender font-bold shrink-0 mt-px">·</span>
+              <span>Suele confirmarse en <strong className="font-medium text-neutral-700">menos de 24 h.</strong></span>
             </li>
           </ul>
         </div>
