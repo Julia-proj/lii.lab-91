@@ -1,11 +1,11 @@
 "use client"
 
-import { useRef, useState, useEffect, useCallback } from "react"
-import { Clock, Users, Zap, TrendingUp, Award, Play, Pause } from "lucide-react"
+import { Clock, Users, Zap, TrendingUp, Award } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
+import { ScrollVideo } from "@/components/ui/video/scroll-video"
 
 const subidaFeatures = [
   { icon: Zap,        label: "Manicura combinada avanzada" },
@@ -15,51 +15,6 @@ const subidaFeatures = [
 ]
 
 export function FormacionSubidaCard() {
-  const cursoRef = useRef<HTMLVideoElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [cursoPlaying, setCursoPlaying] = useState(false)
-  const [isVisible, setIsVisible] = useState(false)
-  const userPausedRef = useRef(false)
-
-  const playVideo = useCallback(() => {
-    cursoRef.current?.play().then(() => setCursoPlaying(true)).catch(() => {})
-  }, [])
-
-  const pauseVideo = useCallback(() => {
-    cursoRef.current?.pause()
-    setCursoPlaying(false)
-  }, [])
-
-  /* autoplay on mobile */
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    if (window.innerWidth < 768) {
-      playVideo()
-    }
-  }, [playVideo])
-
-  /* IntersectionObserver — pause off-screen, resume on-screen */
-  useEffect(() => {
-    const el = containerRef.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting)
-        if (!entry.isIntersecting) {
-          cursoRef.current?.pause()
-          setCursoPlaying(false)
-        } else if (!userPausedRef.current && cursoRef.current && !cursoRef.current.paused) {
-          /* already playing — noop */
-        } else if (!userPausedRef.current && cursoRef.current?.currentTime && cursoRef.current.currentTime > 0) {
-          playVideo()
-        }
-      },
-      { threshold: 0.3 },
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [playVideo])
-
   return (
     <Card className="fade-up relative p-0 overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col" data-delay="100">
       <div className="absolute top-4 right-4 z-10">
@@ -68,43 +23,7 @@ export function FormacionSubidaCard() {
         </Badge>
       </div>
 
-      <div ref={containerRef} className="relative overflow-hidden group/video">
-        <video
-          ref={cursoRef}
-          src="/videos/curso.mp4"
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          className="w-full aspect-[3/2] object-cover"
-        />
-        <button
-          onClick={() => {
-            if (cursoPlaying) {
-              pauseVideo()
-              userPausedRef.current = true
-            } else {
-              playVideo()
-              userPausedRef.current = false
-            }
-          }}
-          aria-label={cursoPlaying ? "Pausar vídeo" : "Reproducir vídeo"}
-          className={`absolute inset-0 hidden md:flex items-center justify-center transition-opacity duration-300 ${
-            cursoPlaying
-              ? "opacity-0 group-hover/video:opacity-100"
-              : "opacity-100"
-          }`}
-        >
-          <div className={`absolute inset-0 transition-colors ${cursoPlaying ? "bg-black/10" : "bg-black/20 hover:bg-black/30"}`} />
-          <div className="relative w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-200">
-            {cursoPlaying ? (
-              <Pause className="w-5 h-5 text-neutral-900" fill="currentColor" />
-            ) : (
-              <Play className="w-5 h-5 text-neutral-900 ml-0.5" fill="currentColor" />
-            )}
-          </div>
-        </button>
-      </div>
+      <ScrollVideo src="/videos/curso.mp4" />
 
       <div className="p-6 md:p-8 flex flex-col flex-1">
         <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-2">Subida de Cualificación</p>
