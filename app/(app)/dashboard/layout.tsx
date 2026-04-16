@@ -8,6 +8,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
   let session = null
   try { session = await auth() } catch { /* ignore */ }
   if (!session) redirect('/login')
+  if (session.user?.role === 'admin') redirect('/admin')
 
   const firstName = session.user?.name?.split(' ')[0] || 'Hola'
   const initial = firstName[0]?.toUpperCase() || '?'

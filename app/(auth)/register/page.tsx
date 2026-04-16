@@ -7,11 +7,12 @@ import { signIn } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { registerFormSchema, type RegisterFormInput } from '@/shared/validators'
+import { GoogleSignInButton } from '@/components/auth/google-sign-in-button'
 
 function RegisterForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get('callbackUrl') || '/'
+  const callbackUrl = searchParams.get('callbackUrl') || '/dashboard'
 
   const {
     register,
@@ -62,6 +63,16 @@ function RegisterForm() {
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-neutral-200 p-8">
       <h1 className="font-serif text-2xl text-center mb-6">Crear cuenta</h1>
+
+      {/* Google OAuth */}
+      <GoogleSignInButton callbackUrl={callbackUrl} label="Registrarse con Google" />
+
+      {/* Divider */}
+      <div className="flex items-center gap-3 my-5">
+        <div className="flex-1 h-px bg-neutral-200" />
+        <span className="text-xs text-neutral-400 font-medium tracking-wide">o con email</span>
+        <div className="flex-1 h-px bg-neutral-200" />
+      </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {errors.root && (

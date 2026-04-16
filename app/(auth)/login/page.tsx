@@ -7,6 +7,7 @@ import { signIn, getSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { loginSchema, type LoginInput } from '@/shared/validators'
+import { GoogleSignInButton } from '@/components/auth/google-sign-in-button'
 
 function LoginForm() {
   const router = useRouter()
@@ -47,6 +48,17 @@ function LoginForm() {
     <div className="bg-white rounded-2xl shadow-sm border border-neutral-200 p-6 sm:p-8">
       <h1 className="font-serif text-2xl text-center mb-6">Iniciar sesión</h1>
 
+      {/* Google OAuth */}
+      <GoogleSignInButton callbackUrl="/dashboard" />
+
+      {/* Divider */}
+      <div className="flex items-center gap-3 my-5">
+        <div className="flex-1 h-px bg-neutral-200" />
+        <span className="text-xs text-neutral-400 font-medium tracking-wide">o</span>
+        <div className="flex-1 h-px bg-neutral-200" />
+      </div>
+
+      {/* Credentials form */}
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {errors.root && (
           <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg px-4 py-3">
