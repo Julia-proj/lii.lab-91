@@ -18,7 +18,7 @@ interface CourseBooking {
 
 const COURSE_LABELS: Record<string, { label: string; price: string; color: string; bg: string }> = {
   'manic-0.0':        { label: 'MANIC 0.0',         price: '749,99€', color: 'text-plum',     bg: 'bg-plum/10' },
-  'perfeccionamiento': { label: 'Perfeccionamiento', price: '349,99€', color: 'text-rose-600', bg: 'bg-rose-50' },
+  'perfeccionamiento': { label: 'Perfeccionamiento', price: '349,99€', color: 'text-stone-500 dark:text-stone-400', bg: 'bg-stone-100/70 dark:bg-stone-800/30' },
 }
 
 export default function CoursesPage() {

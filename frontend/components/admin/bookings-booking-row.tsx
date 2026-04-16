@@ -33,9 +33,9 @@ interface BookingData {
 
 const STATUS_BORDER: Record<string, string> = {
   confirmada: 'border-l-emerald-400',
-  pendiente:  'border-l-[#D1BFA5]',
-  cancelada:  'border-l-neutral-300',
-  completada: 'border-l-blue-400',
+  pendiente:  'border-l-gold',
+  cancelada:  'border-l-neutral-300 dark:border-l-neutral-700',
+  completada: 'border-l-plum',
 }
 
 export type { BookingData, ServiceData }
@@ -64,7 +64,7 @@ export function BookingsBookingRow({ booking, onUpdate }: { booking: BookingData
   const canReschedule = booking.status !== 'cancelada' && booking.status !== 'completada'
 
   return (
-    <div className={`bg-white dark:bg-card rounded-xl border border-neutral-100 dark:border-white/8 border-l-4 ${STATUS_BORDER[booking.status] || 'border-l-neutral-300'} overflow-hidden`}>
+    <div className={`bg-white dark:bg-card rounded-xl border border-neutral-100 dark:border-white/8 border-l-4 overflow-hidden ${STATUS_BORDER[booking.status] || 'border-l-neutral-300'}`}>
       <div role="button" tabIndex={0} onClick={() => setExpanded(!expanded)}
         onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setExpanded(!expanded) }}
         className="w-full text-left px-4 py-3 flex items-center gap-3 cursor-pointer">

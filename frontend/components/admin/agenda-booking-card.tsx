@@ -23,8 +23,8 @@ interface Booking {
 
 const S_BORDER: Record<string, string> = {
   pendiente:  'border-l-[#D1BFA5] dark:border-l-[#9A8772]',
-  confirmada: 'border-l-plum/60',
-  completada: 'border-l-emerald-500/20',
+  confirmada: 'border-l-emerald-400',
+  completada: 'border-l-plum/70',
   cancelada:  'border-l-neutral-200 dark:border-l-white/5',
 }
 

@@ -47,7 +47,7 @@ export function CourseBookingRow({ booking, onUpdate }: { booking: CourseBooking
 
   return (
     <div
-      className={`bg-white dark:bg-card rounded-xl border border-neutral-100 dark:border-white/8 border-l-4 ${COURSE_STATUS_COLORS[booking.status]?.dot ?? ''} overflow-hidden`}
+      className={`bg-white dark:bg-card rounded-xl border border-neutral-100 dark:border-white/8 border-l-4 overflow-hidden`}
       style={{ borderLeftColor: booking.status === 'confirmada' ? 'rgb(52 211 153)' : booking.status === 'cancelada' ? 'rgb(212 212 212)' : 'rgb(251 191 36)' }}
     >
       <div

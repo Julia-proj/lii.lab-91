@@ -76,8 +76,8 @@ export function SidebarNav({ onNavigate }: SidebarNavProps) {
                     
                     {count > 0 && (
                       <span className="ml-auto relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C4973B] opacity-50 duration-1000"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#C4973B]"></span>
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-50 duration-1000"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-gold"></span>
                       </span>
                     )}
 

@@ -1,4 +1,3 @@
-import { X } from 'lucide-react'
 
 interface AgendaStatsRowProps {
   todayCount: number
@@ -18,7 +17,7 @@ export function AgendaStatsRow({
   return (
     <div className="grid grid-cols-3 gap-2 sm:gap-3">
       {/* Hoy - citas */}
-      <div className="bg-[#FFFFFF] dark:bg-[#121214] shadow-[0_2px_8px_rgba(0,0,0,0.02)] rounded-2xl border border-black/[0.04] dark:border-white/5 p-3 sm:p-4">
+      <div className="bg-white dark:bg-card shadow-[0_2px_8px_rgba(0,0,0,0.02)] rounded-2xl border border-black/[0.04] dark:border-white/5 p-3 sm:p-4">
         <p className="text-[10px] sm:text-xs uppercase tracking-widest text-neutral-400 mb-1.5 sm:mb-2">Hoy</p>
         <p className="text-2xl sm:text-3xl font-bold tabular-nums text-neutral-900 dark:text-neutral-100 leading-none">{todayCount}</p>
         <p className="text-[11px] sm:text-xs text-neutral-400 mt-1 sm:mt-1.5">{todayCount === 1 ? 'cita' : 'citas'}</p>
@@ -27,21 +26,21 @@ export function AgendaStatsRow({
       {/* Pendientes -- clickable */}
       <button
         onClick={onTogglePending}
-        className={`relative rounded-2xl border bg-[#FAF8F5] dark:bg-[#1C1B1A] border-[#EBE6E0] dark:border-[#2D2A26] p-3 sm:p-4 text-left transition-all hover:opacity-90 ${
+        className={`relative rounded-2xl border bg-gold-light/40 dark:bg-card border-gold/20 dark:border-gold/10 p-3 sm:p-4 text-left transition-all hover:opacity-90 ${
           pendingCount > 0 && !showPending
-            ? 'ring-2 ring-[#D1BFA5]/50 dark:ring-[#9A8772]/30 shadow-sm shadow-[#EBE6E0] dark:shadow-none'
+            ? 'ring-2 ring-gold/30 dark:ring-gold/20 shadow-sm shadow-gold/10 dark:shadow-none'
             : ''
         }`}
       >
         {pendingCount > 0 && !showPending && (
           <span className="absolute top-2 right-2 flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D1BFA5] opacity-60" />
-            <span className="relative inline-flex h-3 w-3 rounded-full bg-[#D1BFA5]" />
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-50" />
+            <span className="relative inline-flex h-3 w-3 rounded-full bg-gold" />
           </span>
         )}
         <p className="text-[10px] sm:text-xs uppercase tracking-widest text-neutral-400 mb-1.5 sm:mb-2">Pendientes</p>
         <p className={`text-2xl sm:text-3xl font-bold tabular-nums leading-none ${
-          pendingCount > 0 ? 'text-[#8F7D65] dark:text-[#A68F70]' : 'text-neutral-900 dark:text-neutral-100'
+          pendingCount > 0 ? 'text-gold' : 'text-neutral-900 dark:text-neutral-100'
         }`}>
           {pendingCount}
         </p>

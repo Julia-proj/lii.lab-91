@@ -39,7 +39,7 @@ export function AgendaMonthCalendar({
   }, [currentMonth])
 
   return (
-    <div className="bg-[#FFFFFF] dark:bg-[#121214] shadow-[0_2px_8px_rgba(0,0,0,0.02)] rounded-2xl border border-black/[0.04] dark:border-white/5 overflow-hidden order-2 lg:order-1">
+    <div className="bg-white dark:bg-card shadow-[0_2px_8px_rgba(0,0,0,0.02)] rounded-2xl border border-black/[0.04] dark:border-white/5 overflow-hidden order-2 lg:order-1">
       {/* Month navigation */}
       <div className="flex items-center justify-between px-4 sm:px-5 py-3 sm:py-4 border-b border-neutral-50 dark:border-white/5">
         <button
@@ -95,7 +95,8 @@ export function AgendaMonthCalendar({
           const inMonth = isSameMonth(day, currentMonth)
           const isSel  = selectedDay === dayStr
           const isT    = isToday(day)
-          const hasPending = active.some((b) => b.status === 'pendiente')
+          const hasPending   = active.some((b) => b.status === 'pendiente')
+          const hasConfirmed = !hasPending && active.some((b) => b.status === 'confirmada')
           const isWeekend = day.getDay() === 0 || day.getDay() === 6
 
           return (
@@ -124,12 +125,21 @@ export function AgendaMonthCalendar({
                 {format(day, 'd')}
               </span>
               {active.length > 0 && (
-                <span className={`text-[10px] font-bold leading-none tabular-nums ${hasPending ? 'text-[#C89520]' : 'text-neutral-400 dark:text-neutral-500'}`}>
+                <span className={`text-[10px] font-bold leading-none tabular-nums ${
+                  hasPending
+                    ? 'text-[#C89520]'
+                    : hasConfirmed
+                      ? 'text-emerald-500 dark:text-emerald-400'
+                      : 'text-neutral-400 dark:text-neutral-500'
+                }`}>
                   {active.length}
                 </span>
               )}
               {hasPending && (
                 <span className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-[#C89520]" />
+              )}
+              {hasConfirmed && (
+                <span className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-emerald-400/80" />
               )}
             </button>
           )
