@@ -29,16 +29,16 @@ interface BookingCardProps {
 }
 
 const statusBarColor: Record<string, string> = {
-  confirmada: 'bg-emerald-400',
-  pendiente:  'bg-amber-400',
-  cancelada:  'bg-red-400',
+  confirmada: 'bg-[#7DAF8E]',
+  pendiente:  'bg-[#C89520]/60',
+  cancelada:  'bg-neutral-300',
   completada: 'bg-neutral-200',
 }
 const statusBadge: Record<string, string> = {
-  confirmada: 'bg-emerald-50 text-emerald-700',
+  confirmada: 'bg-[#EEF4F0] text-[#4A7A5A]',
   pendiente:  'bg-amber-50 text-amber-700',
-  cancelada:  'bg-red-50 text-red-600',
-  completada: 'bg-neutral-100 text-neutral-500',
+  cancelada:  'bg-neutral-100 text-neutral-500',
+  completada: 'bg-neutral-100 text-neutral-400',
 }
 const statusLabel: Record<string, string> = {
   confirmada: 'Confirmada',
