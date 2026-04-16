@@ -16,8 +16,8 @@ export async function sendWhatsApp(to: string, message: string) {
       const auth = Buffer.from(`${accountSid}:${authToken}`).toString('base64')
 
       const body = new URLSearchParams({
-        From: `whatsapp:${from}`,
-        To: `whatsapp:${to}`,
+        From: from.startsWith('whatsapp:') ? from : `whatsapp:${from}`,
+        To: to.startsWith('whatsapp:') ? to : `whatsapp:${to}`,
         Body: message,
       })
 
@@ -71,4 +71,53 @@ export async function sendWhatsAppToAdmin(message: string) {
     return
   }
   await sendWhatsApp(adminPhone, message)
+}
+
+// ─── WhatsApp Template API (Twilio Content Templates) ─────────────────────────
+
+interface TemplateResult {
+  success: boolean
+  error?: string
+}
+
+/**
+ * Send a pre-approved WhatsApp template via Twilio Content Templates API.
+ * Used for 24h reminders (utility templates work outside the 24h session window).
+ *
+ * @param to - Phone number in E.164 format (e.g. +34692569848)
+ * @param contentSid - Twilio Content Template SID (e.g. HXxxxxx)
+ * @param contentVariables - Template variables as Record<string, string>
+ */
+export async function sendWhatsAppTemplate(
+  to: string,
+  contentSid: string,
+  contentVariables: Record<string, string>,
+): Promise<TemplateResult> {
+  const accountSid = process.env.TWILIO_ACCOUNT_SID
+  const authToken = process.env.TWILIO_AUTH_TOKEN
+  const from = process.env.TWILIO_WHATSAPP_FROM
+
+  if (!accountSid || !authToken || !from) {
+    console.warn('WhatsApp template: Twilio credentials not configured, skipping')
+    return { success: false, error: 'Twilio not configured' }
+  }
+
+  try {
+    const Twilio = (await import('twilio')).default
+    const client = Twilio(accountSid, authToken)
+
+    await client.messages.create({
+      from,
+      to: to.startsWith('whatsapp:') ? to : `whatsapp:${to}`,
+      contentSid,
+      contentVariables: JSON.stringify(contentVariables),
+    })
+
+    console.log(`WhatsApp template sent to ${to}`)
+    return { success: true }
+  } catch (error) {
+    const msg = error instanceof Error ? error.message : 'Unknown error'
+    console.error(`WhatsApp template failed for ${to}:`, msg)
+    return { success: false, error: msg }
+  }
 }

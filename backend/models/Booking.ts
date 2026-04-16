@@ -12,6 +12,7 @@ export interface IBookingDocument extends Document {
   paidAmount?: number // Actual amount paid by the client (admin-only editable)
   adminNotes?: string // Internal admin notes (not visible to clients)
   reminderSent?: boolean
+  whatsappReminderSent?: boolean
   createdAt: Date
   updatedAt: Date
 }
@@ -33,6 +34,7 @@ const BookingSchema = new Schema<IBookingDocument>(
     paidAmount: { type: Number },
     adminNotes: { type: String },
     reminderSent: { type: Boolean, default: false },
+    whatsappReminderSent: { type: Boolean, default: false },
   },
   { timestamps: true }
 )
