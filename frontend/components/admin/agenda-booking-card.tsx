@@ -81,11 +81,13 @@ export function AgendaBookingCard({ booking, onUpdate }: { booking: Booking; onU
           )}
 
           <BookingActionsBar
-            status={booking.status} rescheduleOpen={actions.rescheduleOpen}   
-            notesOpen={actions.notesOpen} hasNotes={!!actions.adminNotesVal}  
-            showReschedule={isActive} onStatusChange={actions.handleStatus}   
+            status={booking.status} rescheduleOpen={actions.rescheduleOpen}
+            notesOpen={actions.notesOpen} hasNotes={!!actions.adminNotesVal}
+            showReschedule={isActive} totalPrice={totalPrice}
+            onStatusChange={actions.handleStatus}
+            onCompleteWithAmount={actions.handleCompleteWithAmount}
             onToggleReschedule={() => { const open = !actions.rescheduleOpen; actions.setRescheduleOpen(open); if (open) { actions.setRescheduleDate(booking.date); actions.fetchSlots(booking.date) } }}
-            onToggleNotes={() => actions.setNotesOpen(!actions.notesOpen)}    
+            onToggleNotes={() => actions.setNotesOpen(!actions.notesOpen)}
           />
           
           {actions.rescheduleOpen && (

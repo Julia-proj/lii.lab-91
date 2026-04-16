@@ -89,7 +89,9 @@ export function BookingsBookingRow({ booking, onUpdate }: { booking: BookingData
             status={booking.status} rescheduleOpen={actions.rescheduleOpen}
             notesOpen={actions.notesOpen} hasNotes={!!actions.adminNotesVal}
             showReschedule={canReschedule} showDelete={booking.status === 'cancelada'}
+            totalPrice={totalPrice}
             onStatusChange={actions.handleStatus}
+            onCompleteWithAmount={actions.handleCompleteWithAmount}
             onToggleReschedule={() => { const open = !actions.rescheduleOpen; actions.setRescheduleOpen(open); if (open) { actions.setRescheduleDate(booking.date); actions.fetchSlots(booking.date) } }}
             onToggleNotes={() => actions.setNotesOpen(!actions.notesOpen)}
             onDelete={handleDelete}

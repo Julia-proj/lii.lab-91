@@ -44,6 +44,18 @@ export function useBookingActions({ id, date, services, adminNotes, onUpdate }: 
     } catch { toast.error('Error de conexión') }
   }
 
+  const handleCompleteWithAmount = async (amount: number) => {
+    try {
+      const res = await fetch(`/api/bookings/${id}`, {
+        method: 'PATCH', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'completada', paidAmount: amount }),
+      })
+      if (!res.ok) { toast.error('Error al completar'); return }
+      onUpdate(id, { status: 'completada', paidAmount: amount })
+      toast.success('Cita completada · ' + amount + '€ registrados')
+    } catch { toast.error('Error de conexión') }
+  }
+
   const fetchSlots = async (d: string) => {
     if (!d || !services?.length) return
     setFetchingSlots(true); setSelectedSlot('')
@@ -87,6 +99,6 @@ export function useBookingActions({ id, date, services, adminNotes, onUpdate }: 
     rescheduleOpen, setRescheduleOpen, rescheduleDate, setRescheduleDate,
     availableSlots, selectedSlot, setSelectedSlot, fetchingSlots, savingReschedule,
     notesOpen, setNotesOpen, adminNotesVal, setAdminNotesVal, notesDirty, setNotesDirty, savingNotes,
-    handleStatus, fetchSlots, handleRescheduleSave, handleNotesSave,
+    handleStatus, handleCompleteWithAmount, fetchSlots, handleRescheduleSave, handleNotesSave,
   }
 }
