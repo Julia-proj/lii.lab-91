@@ -182,15 +182,15 @@ export default async function ConfirmationPage({
           <ul className="space-y-2.5">
             <li className="flex items-start gap-2.5 text-sm text-neutral-500 leading-snug">
               <span className="text-lavender font-bold shrink-0 mt-px">·</span>
-              <span>Recibirás un <strong className="font-medium text-neutral-700">email o WhatsApp</strong> cuando Lili confirme tu cita.</span>
+              <span>Puedes consultar el estado de tu cita en cualquier momento desde <strong className="font-medium text-neutral-700">Mis reservas.</strong></span>
+            </li>
+            <li className="flex items-start gap-2.5 text-sm text-neutral-500 leading-snug">
+              <span className="text-lavender font-bold shrink-0 mt-px">·</span>
+              <span>Si la cita se confirma sin cambios, <strong className="font-medium text-neutral-700">no recibirás ningún mensaje</strong> — aparecerá directamente como confirmada.</span>
             </li>
             <li className="flex items-start gap-2.5 text-sm text-neutral-500 leading-snug">
               <span className="text-lavender font-bold shrink-0 mt-px">·</span>
               <span>Si hubiera algún cambio en el horario, Lili te <strong className="font-medium text-neutral-700">contactará directamente.</strong></span>
-            </li>
-            <li className="flex items-start gap-2.5 text-sm text-neutral-500 leading-snug">
-              <span className="text-lavender font-bold shrink-0 mt-px">·</span>
-              <span>Suele confirmarse en <strong className="font-medium text-neutral-700">menos de 24 h.</strong></span>
             </li>
           </ul>
         </div>
